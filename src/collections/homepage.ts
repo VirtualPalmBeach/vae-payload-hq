@@ -14,23 +14,19 @@ export const Homepage = {
       name: 'introText',
       label: 'Intro Text',
       type: 'textarea',
+      required: false,
     },
     {
-      name: 'cta',
-      type: 'group',
-      label: 'Call to Action',
-      fields: [
-        {
-          name: 'text',
-          label: 'Button Text',
-          type: 'text',
-        },
-        {
-          name: 'url',
-          label: 'Button Link',
-          type: 'text',
-        }
-      ]
+      name: 'ctaText',
+      label: 'Call to Action Text',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'ctaLink',
+      label: 'Call to Action Link',
+      type: 'text',
+      required: false,
     }
   ],
 };
