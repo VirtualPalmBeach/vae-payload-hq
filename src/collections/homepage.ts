@@ -1,4 +1,4 @@
-export const Homepage = {
+const Homepage = {
   slug: 'homepage',
   admin: {
     useAsTitle: 'title',
@@ -6,20 +6,26 @@ export const Homepage = {
   fields: [
     {
       name: 'title',
+      label: 'Title',
       type: 'text',
       required: true,
     },
     {
       name: 'introText',
+      label: 'Intro Text',
       type: 'textarea',
     },
     {
       name: 'ctaText',
+      label: 'Call To Action Text',
       type: 'text',
     },
     {
       name: 'ctaLink',
+      label: 'Call To Action Link',
       type: 'text',
     }
   ],
 };
+
+export default Homepage;
