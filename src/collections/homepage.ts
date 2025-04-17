@@ -21,3 +21,12 @@ const Homepage: CollectionConfig = {
       type: "text",
       required: false,
     },
+    {
+      name: "ctaLink",
+      type: "text",
+      required: false,
+    }
+  ],
+};
+
+export default Homepage;
