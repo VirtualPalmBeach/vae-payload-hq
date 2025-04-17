@@ -1,27 +1,33 @@
-export const Homepage = {
-  slug: "homepage",
+import { CollectionConfig } from 'payload/types';
+
+export const Homepage: CollectionConfig = {
+  slug: 'homepage',
   admin: {
-    useAsTitle: "title",
+    useAsTitle: 'title',
   },
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      label: 'Page Title',
+      type: 'text',
       required: true,
     },
     {
-      name: "introText",
-      type: "textarea",
+      name: 'introText',
+      label: 'Intro Text',
+      type: 'textarea',
       required: false,
     },
     {
-      name: "ctaText",
-      type: "text",
+      name: 'ctaText',
+      label: 'CTA Text',
+      type: 'text',
       required: false,
     },
     {
-      name: "ctaLink",
-      type: "text",
+      name: 'ctaLink',
+      label: 'CTA Link',
+      type: 'text',
       required: false,
     }
   ],
