@@ -1,4 +1,4 @@
-const Homepage = {
+export const Homepage = {
   slug: "homepage",
   admin: {
     useAsTitle: "title",
@@ -26,5 +26,3 @@ const Homepage = {
     }
   ],
 };
-
-export default Homepage;
