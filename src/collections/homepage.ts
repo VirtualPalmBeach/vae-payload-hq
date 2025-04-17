@@ -1,6 +1,4 @@
-import { CollectionConfig } from 'payload/types';
-
-export const Homepage: CollectionConfig = {
+export const Homepage = {
   slug: 'homepage',
   admin: {
     useAsTitle: 'title',
