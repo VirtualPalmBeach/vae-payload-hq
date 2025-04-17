@@ -1,4 +1,6 @@
-const Homepage = {
+import { CollectionConfig } from 'payload';
+
+const Homepage: CollectionConfig = {
   slug: 'homepage',
   admin: {
     useAsTitle: 'title',
@@ -24,7 +26,7 @@ const Homepage = {
       name: 'ctaLink',
       label: 'Call To Action Link',
       type: 'text',
-    }
+    },
   ],
 };
 
