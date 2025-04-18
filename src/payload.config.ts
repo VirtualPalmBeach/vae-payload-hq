@@ -11,6 +11,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import Homepage from './collections/homepage'
+import { FAQs } from './collections/faqs';
 import { BlogPosts } from './collections/blogposts';
 
 const filename = fileURLToPath(import.meta.url)
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Homepage, BlogPosts],
+  collections: [Users, Media, Homepage, FAQs, BlogPosts],
   globals: [ SiteConfig ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
