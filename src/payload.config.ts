@@ -1,4 +1,5 @@
 // storage-adapter-import-placeholder
+import SiteConfig from './globals/SiteConfig';
 import { mongooseAdapter } from '@payloadcms/db-mongodb' // database-adapter-import
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -22,6 +23,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Homepage, Media],
+  globals: [ SiteConfig ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
