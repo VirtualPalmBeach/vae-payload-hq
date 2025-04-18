@@ -49,13 +49,6 @@ const Ads: CollectionConfig = {
       type: 'richText',
     },
     {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-    },
-    {
       name: 'categories',
       label: 'Categories',
       type: 'relationship',
