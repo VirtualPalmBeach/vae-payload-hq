@@ -1,8 +1,6 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 
-import { commonSiteKeyField } from './commonSiteKeyField';
-
 const ContactForm: CollectionConfig = {
   slug: 'contactForm',
   admin: { useAsTitle: 'email' },
