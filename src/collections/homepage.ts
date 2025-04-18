@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload';
+import { commonSiteKeyField } from './commonSiteKeyField';
 
 const Homepage: CollectionConfig = {
   slug: 'homepage',
