@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { commonSiteKeyField } from './commonSiteKeyField';
 
 export const Users: CollectionConfig = {
   slug: 'users',
