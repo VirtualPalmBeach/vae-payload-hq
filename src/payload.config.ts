@@ -11,6 +11,7 @@ import sharp from 'sharp';
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import Homepage from './collections/homepage';
+import Projects from './collections/projects';
 import { FAQs } from './collections/faqs';
 import { Testimonials } from './collections/testimonials';
 import { BlogPosts } from './collections/blogposts';
@@ -22,7 +23,6 @@ import Gallery from './collections/gallery';
 import LimitedTimeOffers from './collections/limitedtimeoffers';
 import Locations from './collections/locations';
 import Navigation from './collections/navigation';
-import Projects from './collections/projects';
 import Tags from './collections/tags';
 import Team from './collections/team';
 
