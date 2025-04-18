@@ -18,10 +18,10 @@ const Ads: CollectionConfig = {
       type: 'textarea',
     },
     {
-      name: 'image',
-      label: 'Image',
-      type: 'upload',
-      relationTo: ['media'],
+      name: 'imageUrl',
+      label: 'Image URL',
+      type: 'text',
+      required: false,
     },
     {
       name: 'url',
