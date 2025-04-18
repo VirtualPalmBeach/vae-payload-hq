@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 
 export const BlogPosts: CollectionConfig = {
