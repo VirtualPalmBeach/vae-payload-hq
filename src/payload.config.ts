@@ -15,7 +15,6 @@ import Projects from './collections/projects';
 import { FAQs } from './collections/faqs';
 import { Testimonials } from './collections/testimonials';
 import { BlogPosts } from './collections/blogposts';
-import Ads from './collections/ads';
 import Categories from './collections/categories';
 import ContactForm from './collections/contactform';
 import Events from './collections/events';
@@ -25,6 +24,7 @@ import Locations from './collections/locations';
 import Navigation from './collections/navigation';
 import Tags from './collections/tags';
 import Team from './collections/team';
+import Ads from './collections/ads';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -43,7 +43,6 @@ export default buildConfig({
     Projects,
     Tags,
     Categories,
-    Ads,
     BlogPosts,
     ContactForm,
     Events,
@@ -54,6 +53,7 @@ export default buildConfig({
     Navigation,
         Team,
     Testimonials,
+    Ads,
   ],
   globals: [SiteConfig],
   editor: lexicalEditor(),
