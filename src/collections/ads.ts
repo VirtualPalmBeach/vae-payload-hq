@@ -21,7 +21,7 @@ const Ads: CollectionConfig = {
       name: 'image',
       label: 'Image',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'url',
@@ -49,10 +49,23 @@ const Ads: CollectionConfig = {
       type: 'richText',
     },
     {
+      name: 'featuredProject',
+      label: 'Featured Project',
+      type: 'relationship',
+      relationTo: ['projects'],
+    },
+    {
+      name: 'tags',
+      label: 'Tags',
+      type: 'relationship',
+      relationTo: ['tags'],
+      hasMany: true,
+    },
+    {
       name: 'categories',
       label: 'Categories',
       type: 'relationship',
-      relationTo: 'categories',
+      relationTo: ['categories'],
       hasMany: true,
     },
     {
