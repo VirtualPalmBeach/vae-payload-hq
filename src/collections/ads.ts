@@ -49,26 +49,6 @@ const Ads: CollectionConfig = {
       type: 'richText',
     },
     {
-      name: 'featuredProject',
-      label: 'Featured Project',
-      type: 'relationship',
-      relationTo: ['projects'],
-    },
-    {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: ['tags'],
-      hasMany: true,
-    },
-    {
-      name: 'categories',
-      label: 'Categories',
-      type: 'relationship',
-      relationTo: ['categories'],
-      hasMany: true,
-    },
-    {
       name: 'projectCode',
       label: 'Project Code',
       type: 'text',
