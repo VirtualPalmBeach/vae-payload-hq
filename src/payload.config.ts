@@ -37,12 +37,6 @@ export default
       importMap: {
         baseDir: path.resolve(dirname),
       },
-      // theming / branding
-      meta: {
-        logo: '/assets/logo.svg',            // replace with your admin logo path
-        favicon: '/assets/favicon.ico',      // replace with your favicon
-        customStyles: '/assets/admin.css',   // optional admin CSS overrides
-      },
     },
 
     // → 2) GraphQL Playground
