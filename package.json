@@ -14,7 +14,7 @@
     "payload": "cross-env NODE_ENV=production NODE_OPTIONS=--no-deprecation payload",
     "payload:dev": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_ENV=production NODE_OPTIONS=--no-deprecation next start"
-  }
+  },
   "dependencies": {
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/next": "latest",
