@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload';
+import { CollectionConfig, CollectionSlug } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 
 const Ads: CollectionConfig = {
@@ -60,7 +60,6 @@ const Ads: CollectionConfig = {
       relationTo: ['tags'] as CollectionSlug[],
       hasMany: true,
     },
-   },
   ],
 };
 
