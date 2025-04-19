@@ -7,8 +7,7 @@ import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
-// → 1) Versions plugin
-import { withVersions } from 'payload/versions';
+import versions from '@payloadcms/plugin-versions';
 
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
@@ -91,6 +90,7 @@ export default withVersions(
     sharp,
 
     plugins: [
+      versions(),
       payloadCloudPlugin(),
       // storage-adapter-placeholder
     ],
