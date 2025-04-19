@@ -69,6 +69,27 @@ const LimitedTimeOffers: CollectionConfig = {
       required: true,
       defaultValue: 'scheduled',
     },
+    {
+      name: 'projects',
+      label: 'Projects',
+      type: 'relationship',
+      relationTo: ['projects'] as const,
+      hasMany: true,
+    },
+    {
+      name: 'categories',
+      label: 'Categories',
+      type: 'relationship',
+      relationTo: ['categories'] as const,
+      hasMany: true,
+    },
+    {
+      name: 'tags',
+      label: 'Tags',
+      type: 'relationship',
+      relationTo: ['tags'] as const,
+      hasMany: true,
+    },
   ],
 };
 
