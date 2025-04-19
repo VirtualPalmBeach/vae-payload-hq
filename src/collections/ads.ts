@@ -53,6 +53,13 @@ const Ads: CollectionConfig = {
       label: 'Project Code',
       type: 'text',
     },
+    {
+      name: 'tags',
+      label: 'Tags',
+      type: 'relationship',
+      relationTo: ['tags'] as CollectionSlug[],
+      hasMany: true,
+    },
   ],
 };
 
