@@ -28,7 +28,7 @@ export const BlogPosts: CollectionConfig = {
       name: 'publishDate',
       label: 'Publish Date',
       type: 'date',
-    }
+    },
     {
       name: 'projects',
       label: 'Projects',
