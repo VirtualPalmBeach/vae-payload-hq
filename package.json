@@ -22,7 +22,7 @@
     "@payloadcms/richtext-lexical": "latest",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
-    "next": "^15.1.6",  // Changed from "15.1.5" to "^15.1.6"
+    "next": "^15.1.6",
     "payload": "latest",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -34,7 +34,7 @@
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "eslint": "^9.16.0",
-    "eslint-config-next": "^15.1.6",  // Changed from "15.1.5" to "^15.1.6"
+    "eslint-config-next": "^15.1.6",
     "prettier": "^3.4.2",
     "typescript": "5.7.3"
   },
