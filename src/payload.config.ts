@@ -29,7 +29,7 @@ import Ads from './collections/ads';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-export default withVersions(
+export default
   buildConfig({
     // → A) Admin theming & custom components
     admin: {
@@ -93,4 +93,4 @@ export default withVersions(
       // storage-adapter-placeholder
     ],
   })
-);
+;
