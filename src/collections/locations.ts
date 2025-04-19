@@ -86,13 +86,6 @@ const Locations: CollectionConfig = {
       admin: { description: 'Cloudinary URL' },
     },
     {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-    },
-    {
       name: 'projectCode',
       label: 'Project Code',
       type: 'text',

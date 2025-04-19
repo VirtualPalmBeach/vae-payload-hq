@@ -53,29 +53,9 @@ const LimitedTimeOffers: CollectionConfig = {
       admin: { description: 'Cloudinary URL' },
     },
     {
-      name: 'location',
-      label: 'Location',
-      type: 'relationship',
-      relationTo: 'locations',
-    },
-    {
       name: 'projectCode',
       label: 'Project Code',
       type: 'text',
-    },
-    {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-    },
-    {
-      name: 'categories',
-      label: 'Categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
     },
     {
       name: 'status',

@@ -59,13 +59,6 @@ const Team: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-    },
-    {
       name: 'featured',
       label: 'Featured',
       type: 'checkbox',

@@ -40,20 +40,6 @@ const Gallery: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-    },
-    {
-      name: 'categories',
-      label: 'Categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-    },
-    {
       name: 'featured',
       label: 'Featured',
       type: 'checkbox',

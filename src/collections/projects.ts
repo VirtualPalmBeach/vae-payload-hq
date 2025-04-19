@@ -64,22 +64,7 @@ const Projects: CollectionConfig = {
     {
       name: 'featuredImage',
       label: 'Featured Image',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'categories',
-      label: 'Categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-    },
-    {
-      name: 'tags',
-      label: 'Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
+      type: 'text',
     },
   ],
 };

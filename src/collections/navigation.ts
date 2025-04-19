@@ -37,12 +37,6 @@ const Navigation: CollectionConfig = {
           required: true,
         },
         {
-          name: 'linkedPage',
-          label: 'Linked Page',
-          type: 'relationship',
-          relationTo: ['projects', 'blogPosts'],
-        },
-        {
           name: 'order',
           label: 'Order',
           type: 'number',
@@ -63,12 +57,6 @@ const Navigation: CollectionConfig = {
               label: 'URL',
               type: 'text',
               required: true,
-            },
-            {
-              name: 'linkedPage',
-              label: 'Linked Page',
-              type: 'relationship',
-              relationTo: ['projects', 'blogPosts'],
             },
             {
               name: 'order',
