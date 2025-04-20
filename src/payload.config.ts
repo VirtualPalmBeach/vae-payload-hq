@@ -7,7 +7,6 @@ import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
-import { buildConfig } from 'payload';
 
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
@@ -30,63 +29,61 @@ import Ads from './collections/ads';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-export default
-  buildConfig({
-    // → A) Admin theming & custom components
-    admin: {
-      user: Users.slug,
-      importMap: {
-        baseDir: path.resolve(dirname),
-      },
+export default buildConfig({
+  // A) Admin theming & custom components
+  admin: {
+    user: Users.slug,
+    importMap: {
+      baseDir: path.resolve(dirname),
     },
+  },
 
-    // → 2) GraphQL Playground
-    graphQL: {
-      // enable the Playground UI even in production mode
-      disablePlaygroundInProduction: false,
-    },
+  // 2) GraphQL Playground
+  graphQL: {
+    // enable the Playground UI even in production mode
+    disablePlaygroundInProduction: false,
+  },
 
-    collections: [
-      Users,
-      Media,
-      Homepage,
-      Projects,
-      Tags,
-      Categories,
-      BlogPosts,
-      ContactForm,
-      Events,
-      FAQs,
-      Gallery,
-      LimitedTimeOffers,
-      Locations,
-      Navigation,
-      Team,
-      Testimonials,
-      Ads,
-    ],
+  collections: [
+    Users,
+    Media,
+    Homepage,
+    Projects,
+    Tags,
+    Categories,
+    BlogPosts,
+    ContactForm,
+    Events,
+    FAQs,
+    Gallery,
+    LimitedTimeOffers,
+    Locations,
+    Navigation,
+    Team,
+    Testimonials,
+    Ads,
+  ],
 
-    globals: [SiteConfig],
+  globals: [SiteConfig],
 
-    editor: lexicalEditor(),
+  editor: lexicalEditor(),
 
-    secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || '',
 
-    typescript: {
-      outputFile: path.resolve(dirname, 'payload-types.ts'),
-    },
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
 
-    // database-adapter-config-start
-    db: mongooseAdapter({
-      url: process.env.DATABASE_URI || '',
-    }),
-    // database-adapter-config-end
+  // database-adapter-config-start
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URI || '',
+  }),
+  // database-adapter-config-end
 
-    sharp,
+  sharp,
 
-    plugins: [
-      payloadCloudPlugin(),
-      // storage-adapter-placeholder
-    ],
-  })
-;
+  plugins: [
+    payloadCloudPlugin(),
+    // storage-adapter-placeholder
+  ],
+});
