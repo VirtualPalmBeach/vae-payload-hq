@@ -38,9 +38,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    components: {
-      afterNavLinks: [DevModeBanner],
-    },  
+//    components: {
+//      afterNavLinks: [DevModeBanner],
+//    },  
   },
 
   // 2) GraphQL Playground
