@@ -7,6 +7,7 @@ import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import { buildConfig } from 'payload';
 
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
@@ -41,7 +42,8 @@ export default
 
     // → 2) GraphQL Playground
     graphQL: {
-      // default settings will enable /api/graphql + Playground
+      // enable the Playground UI even in production mode
+      disablePlaygroundInProduction: false,
     },
 
     collections: [
