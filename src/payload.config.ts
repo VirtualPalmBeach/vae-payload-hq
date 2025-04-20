@@ -8,6 +8,8 @@ import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 
+import DevModeBanner from './components/DevModeBanner';
+
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import Homepage from './collections/homepage';
@@ -36,6 +38,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      afterNavLinks: [DevModeBanner],
+    },  
   },
 
   // 2) GraphQL Playground
