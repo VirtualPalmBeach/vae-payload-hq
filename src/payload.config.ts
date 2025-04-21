@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import SiteConfig from './globals/SiteConfig';
+import SiteSettings from './collections/siteSettings';
 import { mongooseAdapter } from '@payloadcms/db-mongodb'; // database-adapter-import
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
@@ -67,6 +68,7 @@ export default buildConfig({
     Team,
     Testimonials,
     Ads,
+    SiteSettings,
   ],
 
   globals: [SiteConfig],
