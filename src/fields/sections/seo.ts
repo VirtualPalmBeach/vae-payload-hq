@@ -1,5 +1,5 @@
-import { validateUrl } from '../shared/validate';
-import { imageDimensionRequirements } from '../shared/imageDimensions';
+import { validateUrl } from '../shared/validate'
+import { imageDimensionRequirements } from '../shared/imageDimensions'
 
 const seoFields = [
   {
@@ -37,7 +37,7 @@ const seoFields = [
         name: 'ogImageUrl',
         label: 'Open Graph Image',
         type: 'upload',
-        relationTo: 'media',
+        relationTo: ['media'],
         admin: {
           description: `Recommended: ${imageDimensionRequirements.social.width}x${imageDimensionRequirements.social.height}px (${imageDimensionRequirements.social.aspectRatio})`,
         },
@@ -123,7 +123,14 @@ const seoFields = [
           condition: (_, siblingData) => siblingData?.structuredDataEnabled,
         },
         fields: [
-          { name: 'ratingValue', label: 'Rating', type: 'number', min: 0, max: 5, admin: { step: 0.1 } },
+          {
+            name: 'ratingValue',
+            label: 'Rating',
+            type: 'number',
+            min: 0,
+            max: 5,
+            admin: { step: 0.1 },
+          },
           { name: 'reviewCount', label: 'Review Count', type: 'number', min: 0 },
           { name: 'bestRating', label: 'Best Rating', type: 'number', defaultValue: 5 },
           { name: 'worstRating', label: 'Worst Rating', type: 'number', defaultValue: 1 },
@@ -131,9 +138,9 @@ const seoFields = [
       },
     ],
   },
-];
+]
 
 export default {
   label: 'SEO',
   fields: seoFields,
-};
+}

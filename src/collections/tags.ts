@@ -1,5 +1,5 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Tags: CollectionConfig = {
   slug: 'tags',
@@ -32,7 +32,7 @@ const Tags: CollectionConfig = {
       name: 'icon',
       label: 'Icon',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'projectCode',
@@ -41,6 +41,6 @@ const Tags: CollectionConfig = {
       required: false,
     },
   ],
-};
+}
 
-export default Tags;
+export default Tags

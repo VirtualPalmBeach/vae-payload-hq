@@ -1,5 +1,5 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -33,13 +33,13 @@ const Categories: CollectionConfig = {
       name: 'icon',
       label: 'Icon',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'coverImage',
       label: 'Cover Image',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'projectCode',
@@ -48,6 +48,6 @@ const Categories: CollectionConfig = {
       required: false,
     },
   ],
-};
+}
 
-export default Categories;
+export default Categories
