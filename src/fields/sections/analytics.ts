@@ -72,7 +72,7 @@ const analyticsFields = [
         ],
         defaultValue: 'opt-in',
         admin: {
-          condition: (_, siblingData) => siblingData?.cookieConsentEnabled === true,
+          condition: (_: any, siblingData: any) => siblingData?.cookieConsentEnabled === true,
         },
       },
     ],
