@@ -90,4 +90,7 @@ const navigationFields = [
   },
 ];
 
-export default navigationFields;
+export default {
+  label: 'Navigation',
+  fields: navigationFields,
+};
