@@ -1,3 +1,6 @@
+import { validateUrl } from '../shared/validate';
+import { imageDimensionRequirements } from '../shared/imageDimensions';
+
 const brandingTab: Tab = {
   label: 'Branding',
   name: 'branding',
