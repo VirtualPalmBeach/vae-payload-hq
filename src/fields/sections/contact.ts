@@ -1,7 +1,7 @@
 import { Field } from 'payload/types';
 import { validateEmail, validateUrl } from '../shared/validate';
 
-const analyticsFields = [
+const contactFields = [
   {
     name: 'contact',
     type: 'group',
