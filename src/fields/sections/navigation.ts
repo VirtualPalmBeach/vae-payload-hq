@@ -1,4 +1,3 @@
-import { Field } from 'payload/types';
 
 const navigationFields = [
   {

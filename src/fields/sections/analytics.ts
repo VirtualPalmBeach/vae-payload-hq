@@ -1,4 +1,3 @@
-import { Field } from 'payload/types';
 import { sanitizeScript } from '../shared/sanitize';
 
 const analyticsFields = [
