@@ -2,7 +2,7 @@ import { Field } from 'payload/types';
 import { validateUrl } from '../shared/validate';
 import { imageDimensionRequirements } from '../shared/imageDimensions';
 
-const analyticsFields = [
+const seoFields = [
   {
     name: 'seo',
     type: 'group',
