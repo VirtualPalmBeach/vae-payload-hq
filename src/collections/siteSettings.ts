@@ -19,9 +19,9 @@ const SiteSettings: CollectionConfig = {
   },
   access: {
     read: () => true,
-    update: ({ req: { user } }) => user?.role === 'admin',
-    create: ({ req: { user } }) => user?.role === 'admin',
-    delete: ({ req: { user } }) => user?.role === 'admin',
+    update: ({ req: { user } }) => (user as any)?.role === 'admin',
+    create: ({ req: { user } }) => (user as any)?.role === 'admin',
+    delete: ({ req: { user } }) => (user as any)?.role === 'admin',
   },
   versions: {
     drafts: true,
