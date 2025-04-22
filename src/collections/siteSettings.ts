@@ -1,19 +1,19 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 
-import brandingFields from '../fields/sections/branding';
-import seoFields from '../fields/sections/seo';
-import contactFields from '../fields/sections/contact';
-import navigationFields from '../fields/sections/navigation';
-import analyticsFields from '../fields/sections/analytics';
-import performanceFields from '../fields/sections/performance';
-import integrationsFields from '../fields/sections/integrations';
+import brandingTab from '../fields/sections/branding';
+import seoTab from '../fields/sections/seo';
+import contactTab from '../fields/sections/contact';
+import navigationTab from '../fields/sections/navigation';
+import analyticsTab from '../fields/sections/analytics';
+import performanceTab from '../fields/sections/performance';
+import integrationsTab from '../fields/sections/integrations';
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
     group: 'Settings',
-    useAsTitle: 'siteTitle', // ✅ Must be top-level
+    useAsTitle: 'siteTitle',
     defaultColumns: ['siteTitle', 'siteKey', 'isDefaultSite'],
     description: 'Site-wide configuration including branding, SEO, contact, and integrations',
   },
@@ -50,34 +50,13 @@ const SiteSettings: CollectionConfig = {
     {
       type: 'tabs',
       tabs: [
-        {
-          label: 'Branding',
-          fields: brandingFields,
-        },
-        {
-          label: 'SEO',
-          fields: seoFields,
-        },
-        {
-          label: 'Contact & Social',
-          fields: contactFields,
-        },
-        {
-          label: 'Navigation',
-          fields: navigationFields,
-        },
-        {
-          label: 'Analytics & Scripts',
-          fields: analyticsFields,
-        },
-        {
-          label: 'Performance',
-          fields: performanceFields,
-        },
-        {
-          label: 'Integrations',
-          fields: integrationsFields,
-        },
+        brandingTab,
+        seoTab,
+        contactTab,
+        navigationTab,
+        analyticsTab,
+        performanceTab,
+        integrationsTab,
       ],
     },
   ],
