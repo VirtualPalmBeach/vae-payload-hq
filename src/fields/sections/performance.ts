@@ -1,7 +1,7 @@
 import { Field } from 'payload/types';
 import { validateUrl } from '../shared/validate';
 
-const performanceFields: Field[] = [
+const analyticsFields = [
   {
     name: 'performance',
     type: 'group',

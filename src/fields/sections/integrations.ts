@@ -1,7 +1,7 @@
 import { Field } from 'payload/types';
 import { validateUrl } from '../shared/validate';
 
-const integrationsFields: Field[] = [
+const analyticsFields = [
   {
     name: 'apiIntegrations',
     label: 'API Integrations',

@@ -1,7 +1,7 @@
 import { Field } from 'payload/types';
-import { sanitizeScript } from 'payload/dist/types';
+import { sanitizeScript } from '../shared/sanitize';
 
-const analyticsFields: Field[] = [
+const analyticsFields = [
   {
     name: 'analytics',
     type: 'group',
