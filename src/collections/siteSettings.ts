@@ -1,5 +1,3 @@
-// src/collections/siteSettings.ts
-
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 
@@ -15,7 +13,7 @@ const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
     group: 'Settings',
-    useAsTitle: 'siteTitle',
+    useAsTitle: 'siteTitle', // ✅ Must be top-level
     defaultColumns: ['siteTitle', 'siteKey', 'isDefaultSite'],
     description: 'Site-wide configuration including branding, SEO, contact, and integrations',
   },
@@ -30,6 +28,16 @@ const SiteSettings: CollectionConfig = {
   },
   fields: [
     commonSiteKeyField,
+    {
+      name: 'siteTitle',
+      label: 'Site Title',
+      type: 'text',
+      required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'A short name for this site (used in admin UI)',
+      },
+    },
     {
       name: 'isDefaultSite',
       label: 'Default Site',
