@@ -1,49 +1,75 @@
 // src/collections/siteSettings.ts
+
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
+
+import brandingFields from '../fields/sections/branding';
+import seoFields from '../fields/sections/seo';
+import contactFields from '../fields/sections/contact';
+import navigationFields from '../fields/sections/navigation';
+import analyticsFields from '../fields/sections/analytics';
+import performanceFields from '../fields/sections/performance';
+import integrationsFields from '../fields/sections/integrations';
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
     group: 'Settings',
-    useAsTitle: 'siteName',
+    useAsTitle: 'siteTitle',
+    defaultColumns: ['siteTitle', 'siteKey', 'isDefaultSite'],
+    description: 'Site-wide configuration including branding, SEO, contact, and integrations',
   },
   access: {
-    // make site settings publicly readable if you need them client‑side
-    read: (): boolean => true,
+    read: () => true,
+    update: ({ req: { user } }) => user?.role === 'admin',
+    create: ({ req: { user } }) => user?.role === 'admin',
+    delete: ({ req: { user } }) => user?.role === 'admin',
+  },
+  versions: {
+    drafts: true,
   },
   fields: [
     commonSiteKeyField,
     {
-      name: 'siteName',
-      label: 'Site Name',
-      type: 'text',
-      required: true,
+      name: 'isDefaultSite',
+      label: 'Default Site',
+      type: 'checkbox',
+      admin: {
+        description: 'Designates this as the default fallback site',
+        position: 'sidebar',
+      },
     },
     {
-      name: 'tagline',
-      label: 'Tagline',
-      type: 'text',
-    },
-    {
-      name: 'logo',
-      label: 'Logo',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'favicon',
-      label: 'Favicon',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'defaultSeo',
-      label: 'Default SEO',
-      type: 'group',
-      fields: [
-        { name: 'metaTitleSuffix', label: 'Title Suffix', type: 'text' },
-        { name: 'metaDescription', label: 'Meta Description', type: 'textarea' },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Branding',
+          fields: brandingFields,
+        },
+        {
+          label: 'SEO',
+          fields: seoFields,
+        },
+        {
+          label: 'Contact & Social',
+          fields: contactFields,
+        },
+        {
+          label: 'Navigation',
+          fields: navigationFields,
+        },
+        {
+          label: 'Analytics & Scripts',
+          fields: analyticsFields,
+        },
+        {
+          label: 'Performance',
+          fields: performanceFields,
+        },
+        {
+          label: 'Integrations',
+          fields: integrationsFields,
+        },
       ],
     },
   ],

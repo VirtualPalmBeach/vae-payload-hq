@@ -1,12 +1,13 @@
-// storage-adapter-import-placeholder
-import SiteConfig from './globals/SiteConfig';
-import SiteSettings from './collections/siteSettings';
-import { mongooseAdapter } from '@payloadcms/db-mongodb'; // database-adapter-import
+// src/payload.config.ts
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { buildConfig } from 'payload';
+
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import path from 'path';
-import { buildConfig } from 'payload';
-import { fileURLToPath } from 'url';
+
 import sharp from 'sharp';
 
 import DevModeBanner from './components/DevModeBanner';
@@ -28,25 +29,23 @@ import Locations from './collections/locations';
 import Navigation from './collections/navigation';
 import Team from './collections/team';
 import Ads from './collections/ads';
+import SiteSettings from './collections/siteSettings'; // ✅ new modular site settings
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
-  // A) Admin theming & custom components
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
-//    components: {
-//      afterNavLinks: [DevModeBanner],
-//    },  
+    // components: {
+    //   afterNavLinks: [DevModeBanner],
+    // },
   },
 
-  // 2) GraphQL Playground
   graphQL: {
-    // enable the Playground UI even in production mode
     disablePlaygroundInProduction: false,
   },
 
@@ -68,10 +67,12 @@ export default buildConfig({
     Team,
     Testimonials,
     Ads,
-    SiteSettings,
+    SiteSettings, // ✅ wired collection
   ],
 
-  globals: [SiteConfig],
+  globals: [
+    // SiteConfig, // remove or keep as needed — deprecated by SiteSettings?
+  ],
 
   editor: lexicalEditor(),
 
@@ -81,11 +82,9 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 
-  // database-adapter-config-start
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  // database-adapter-config-end
 
   sharp,
 
