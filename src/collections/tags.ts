@@ -30,9 +30,8 @@ const Tags: CollectionConfig = {
     },
     {
       name: 'icon',
-      label: 'Icon',
-      type: 'text',
       label: 'Cloudinary URL',
+      type: 'text',
     },
     {
       name: 'projectCode',
