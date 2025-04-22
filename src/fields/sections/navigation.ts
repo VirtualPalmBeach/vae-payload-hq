@@ -1,6 +1,6 @@
 import { Field } from 'payload/types';
 
-const analyticsFields = [
+const navigationFields = [
   {
     name: 'navigation',
     type: 'group',
