@@ -33,13 +33,13 @@ const Categories: CollectionConfig = {
       name: 'icon',
       label: 'Icon',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'coverImage',
       label: 'Cover Image',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: ['media'],
     },
     {
       name: 'projectCode',
