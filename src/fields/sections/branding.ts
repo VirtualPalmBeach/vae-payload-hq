@@ -1,4 +1,4 @@
-import type { Tab } from 'payload/types';
+import type { Tab } from 'payload/dist/types/config/types';
 import { validateUrl } from '../shared/validate';
 import { imageDimensionRequirements } from '../shared/imageDimensions';
 
