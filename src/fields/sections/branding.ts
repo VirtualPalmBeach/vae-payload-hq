@@ -1,26 +1,26 @@
 import { validateUrl } from '../shared/validate'
 import { imageDimensionRequirements } from '../shared/imageDimensions'
 
-const brandingTab: Tab = {
+const brandingFields = [
+  {
+    name: 'logoUrl',
+    label: 'Logo URL',
+    type: 'text',
+  },
+  {
+    name: 'faviconUrl',
+    label: 'Favicon URL',
+    type: 'text',
+  },
+  {
+    name: 'brandColor',
+    label: 'Primary Brand Color',
+    type: 'text',
+  },
+]
+
+export default {
   label: 'Branding',
   name: 'branding',
-  fields: [
-    {
-      name: 'logoUrl',
-      label: 'Logo URL',
-      type: 'text',
-    },
-    {
-      name: 'faviconUrl',
-      label: 'Favicon URL',
-      type: 'text',
-    },
-    {
-      name: 'brandColor',
-      label: 'Primary Brand Color',
-      type: 'text',
-    },
-  ]
-};
-
-export default brandingTab;
+  fields: brandingFields,
+}
