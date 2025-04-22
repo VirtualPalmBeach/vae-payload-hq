@@ -181,4 +181,7 @@ const brandingFields = [
   },
 ];
 
-export default brandingFields;
+export default {
+  label: 'Branding',
+  fields: navigationFields,
+};

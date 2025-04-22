@@ -92,4 +92,7 @@ const performanceFields = [
   },
 ];
 
-export default performanceFields;
+export default {
+  label: 'Performance',
+  fields: navigationFields,
+};

@@ -123,4 +123,7 @@ const integrationsFields = [
   },
 ];
 
-export default integrationsFields;
+export default {
+  label: 'Integrations',
+  fields: navigationFields,
+};

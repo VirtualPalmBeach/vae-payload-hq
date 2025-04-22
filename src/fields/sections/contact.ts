@@ -79,4 +79,7 @@ const contactFields = [
   },
 ];
 
-export default contactFields;
+export default {
+  label: 'Contact',
+  fields: navigationFields,
+};

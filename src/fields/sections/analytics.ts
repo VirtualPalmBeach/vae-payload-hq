@@ -79,4 +79,7 @@ const analyticsFields = [
   },
 ];
 
-export default analyticsFields;
+export default {
+  label: 'Analytics',
+  fields: navigationFields,
+};

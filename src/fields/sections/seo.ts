@@ -133,4 +133,7 @@ const seoFields = [
   },
 ];
 
-export default seoFields;
+export default {
+  label: 'SEO',
+  fields: navigationFields,
+};
