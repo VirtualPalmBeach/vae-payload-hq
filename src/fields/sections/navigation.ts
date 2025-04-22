@@ -91,5 +91,6 @@ const navigationFields = [
 
 export default {
   label: 'Navigation',
+  name: 'navigation',
   fields: navigationFields,
 };

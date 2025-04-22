@@ -94,5 +94,6 @@ const performanceFields = [
 
 export default {
   label: 'Performance',
+  name: 'performance',
   fields: performanceFields,
 };

@@ -142,5 +142,6 @@ const seoFields = [
 
 export default {
   label: 'SEO',
+  name: 'seo',
   fields: seoFields,
 }

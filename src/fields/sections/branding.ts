@@ -189,5 +189,6 @@ const brandingFields = [
 
 export default {
   label: 'Branding',
+  name: 'branding',
   fields: brandingFields,
 }

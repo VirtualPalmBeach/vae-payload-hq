@@ -125,5 +125,6 @@ const integrationsFields = [
 
 export default {
   label: 'Integrations',
+  name: 'apiIntegrations',
   fields: integrationsFields,
 };
