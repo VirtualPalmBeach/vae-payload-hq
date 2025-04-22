@@ -135,5 +135,5 @@ const seoFields = [
 
 export default {
   label: 'SEO',
-  fields: sectionFields,
+  fields: seoFields,
 };

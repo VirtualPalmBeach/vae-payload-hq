@@ -125,5 +125,5 @@ const integrationsFields = [
 
 export default {
   label: 'Integrations',
-  fields: sectionFields,
+  fields: integrationsFields,
 };

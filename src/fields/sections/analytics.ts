@@ -81,5 +81,5 @@ const analyticsFields = [
 
 export default {
   label: 'Analytics',
-  fields: sectionFields,
+  fields: analyticsFields,
 };
