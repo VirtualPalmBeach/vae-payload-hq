@@ -81,5 +81,5 @@ const contactFields = [
 
 export default {
   label: 'Contact',
-  fields: navigationFields,
+  fields: sectionFields,
 };
