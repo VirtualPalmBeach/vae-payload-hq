@@ -36,8 +36,8 @@ const seoFields = [
       {
         name: 'ogImageUrl',
         label: 'Open Graph Image',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
         admin: {
           description: `Recommended: ${imageDimensionRequirements.social.width}x${imageDimensionRequirements.social.height}px (${imageDimensionRequirements.social.aspectRatio})`,
         },

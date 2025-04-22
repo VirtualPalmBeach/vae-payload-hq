@@ -31,8 +31,8 @@ const Tags: CollectionConfig = {
     {
       name: 'icon',
       label: 'Icon',
-      type: 'upload',
-      relationTo: ['media'],
+      type: 'text',
+      label: 'Cloudinary URL',
     },
     {
       name: 'projectCode',

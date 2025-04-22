@@ -15,8 +15,8 @@ const brandingFields = [
           {
             name: 'logoUrl',
             label: 'Logo',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
             admin: {
               description: `Recommended: ${imageDimensionRequirements.logo.width}x${imageDimensionRequirements.logo.height}px (${imageDimensionRequirements.logo.aspectRatio})`,
             },
@@ -41,8 +41,8 @@ const brandingFields = [
       {
         name: 'logoAltUrl',
         label: 'Alternative Logo',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
       },
       {
         name: 'favicon',
@@ -52,14 +52,14 @@ const brandingFields = [
           {
             name: 'faviconUrl',
             label: 'Favicon',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
           },
           {
             name: 'appleTouchIcon',
             label: 'Apple Touch Icon',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
           },
         ],
       },
@@ -71,8 +71,8 @@ const brandingFields = [
           {
             name: 'defaultBannerImageUrl',
             label: 'Default Banner Image',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
             admin: {
               description: `Recommended: ${imageDimensionRequirements.banner.width}x${imageDimensionRequirements.banner.height}px (${imageDimensionRequirements.banner.aspectRatio})`,
             },
@@ -80,28 +80,28 @@ const brandingFields = [
           {
             name: 'mobileBannerImageUrl',
             label: 'Mobile Banner Image',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
           },
           {
             name: 'tabletBannerImageUrl',
             label: 'Tablet Banner Image',
-            type: 'upload',
-            relationTo: ['media'],
+            type: 'text',
+            label: 'Cloudinary URL',
           },
         ],
       },
       {
         name: 'backgroundPatternUrl',
         label: 'Background Pattern',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
       },
       {
         name: 'socialShareImageUrl',
         label: 'Social Share Image',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
         admin: {
           description: `Recommended: ${imageDimensionRequirements.social.width}x${imageDimensionRequirements.social.height}px (${imageDimensionRequirements.social.aspectRatio})`,
         },
@@ -109,14 +109,14 @@ const brandingFields = [
       {
         name: 'heroImageUrl',
         label: 'Hero Image',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
       },
       {
         name: 'brandVideoUrl',
         label: 'Brand Video',
-        type: 'upload',
-        relationTo: ['media'],
+        type: 'text',
+        label: 'Cloudinary URL',
       },
       {
         name: 'mediaTheme',
