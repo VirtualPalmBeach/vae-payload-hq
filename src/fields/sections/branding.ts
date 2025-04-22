@@ -1,7 +1,8 @@
-import { validateUrl } from '../shared/validate'
-import { imageDimensionRequirements } from '../shared/imageDimensions'
+import type { Tab } from 'payload/types';
+import { validateUrl } from '../shared/validate';
+import { imageDimensionRequirements } from '../shared/imageDimensions';
 
-const brandingTab = {
+const brandingTab: Tab = {
   label: 'Branding',
   name: 'branding',
   fields: [
@@ -9,6 +10,7 @@ const brandingTab = {
       name: 'logoUrl',
       label: 'Logo URL',
       type: 'text',
+      validate: validateUrl,
       admin: {
         description: `Recommended: ${imageDimensionRequirements.logo.width}x${imageDimensionRequirements.logo.height}px (${imageDimensionRequirements.logo.aspectRatio})`,
       },
@@ -17,6 +19,7 @@ const brandingTab = {
       name: 'faviconUrl',
       label: 'Favicon URL',
       type: 'text',
+      validate: validateUrl,
     },
     {
       name: 'brandColor',
@@ -27,6 +30,7 @@ const brandingTab = {
       name: 'socialShareImageUrl',
       label: 'Social Share Image URL',
       type: 'text',
+      validate: validateUrl,
       admin: {
         description: `Recommended: ${imageDimensionRequirements.social.width}x${imageDimensionRequirements.social.height}px (${imageDimensionRequirements.social.aspectRatio})`,
       },
@@ -35,6 +39,7 @@ const brandingTab = {
       name: 'heroImageUrl',
       label: 'Hero Image URL',
       type: 'text',
+      validate: validateUrl,
     },
     {
       name: 'fontStyle',
@@ -54,7 +59,12 @@ const brandingTab = {
       label: 'Custom Fonts',
       type: 'array',
       fields: [
-        { name: 'fontName', label: 'Font Name', type: 'text', required: true },
+        {
+          name: 'fontName',
+          label: 'Font Name',
+          type: 'text',
+          required: true,
+        },
         {
           name: 'fontUrl',
           label: 'Font URL',
@@ -97,6 +107,6 @@ const brandingTab = {
       ],
     },
   ],
-}
+};
 
-export default brandingTab
+export default brandingTab;
