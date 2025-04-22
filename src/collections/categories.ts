@@ -30,18 +30,6 @@ const Categories: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'icon',
-      label: 'Icon',
-      type: 'upload',
-      relationTo: ['media'],
-    },
-    {
-      name: 'coverImage',
-      label: 'Cover Image',
-      type: 'upload',
-      relationTo: ['media'],
-    },
-    {
       name: 'projectCode',
       label: 'Project Code',
       type: 'text',
