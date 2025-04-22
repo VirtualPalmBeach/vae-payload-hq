@@ -1,5 +1,5 @@
 import { Field } from 'payload/types';
-import { sanitizeScript } from '../shared/sanitize';
+import { sanitizeScript } from 'payload/dist/types';
 
 const analyticsFields: Field[] = [
   {
