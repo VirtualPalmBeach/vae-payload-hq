@@ -1,12 +1,6 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
-import brandingTab from '../fields/sections/branding';
-import seoTab from '../fields/sections/seo';
-import contactTab from '../fields/sections/contact';
-import navigationTab from '../fields/sections/navigation';
-import analyticsTab from '../fields/sections/analytics';
-import performanceTab from '../fields/sections/performance';
-import integrationsTab from '../fields/sections/integrations';
+import { validateEmail, validateUrl } from '../utilities/validations'; // Ensure these exist or remove
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
@@ -50,39 +44,253 @@ const SiteSettings: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: brandingTab.label,
-          name: brandingTab.name,
-          fields: brandingTab.fields,
+          label: 'Branding',
+          name: 'branding',
+          fields: [
+            {
+              name: 'logoUrl',
+              label: 'Logo URL',
+              type: 'text',
+              admin: {
+                description: 'Recommended dimensions: 250x80px (3.125:1)',
+              },
+            },
+            // Add other branding fields as needed
+          ],
         },
         {
-          label: seoTab.label,
-          name: seoTab.name,
-          fields: seoTab.fields,
+          label: 'SEO',
+          name: 'seo',
+          fields: [
+            {
+              name: 'metaTitle',
+              label: 'Default Meta Title',
+              type: 'text',
+            },
+            {
+              name: 'metaDescription',
+              label: 'Default Meta Description',
+              type: 'textarea',
+            },
+            {
+              name: 'ogImage',
+              label: 'Default Social Image',
+              type: 'text',
+            },
+            // Add other SEO fields as needed
+          ],
         },
         {
-          label: contactTab.label,
-          name: contactTab.name,
-          fields: contactTab.fields,
+          label: 'Contact',
+          name: 'contact',
+          fields: [
+            {
+              name: 'phoneNumber',
+              label: 'Phone Number',
+              type: 'text',
+            },
+            {
+              name: 'emailAddress',
+              label: 'Email Address',
+              type: 'email',
+              validate: validateEmail,
+            },
+            {
+              name: 'contactFormUrl',
+              label: 'Contact Form URL',
+              type: 'text',
+              validate: validateUrl,
+            },
+            {
+              name: 'facebookUrl',
+              label: 'Facebook URL',
+              type: 'text',
+              validate: validateUrl,
+            },
+            {
+              name: 'instagramUrl',
+              label: 'Instagram URL',
+              type: 'text',
+              validate: validateUrl,
+            },
+            {
+              name: 'mapLink',
+              label: 'Map Link',
+              type: 'text',
+              validate: validateUrl,
+            },
+            {
+              name: 'contactCtaText',
+              label: 'CTA Text',
+              type: 'text',
+            },
+          ],
         },
         {
-          label: navigationTab.label,
-          name: navigationTab.name,
-          fields: navigationTab.fields,
+          label: 'Navigation',
+          name: 'navigation',
+          fields: [
+            {
+              name: 'stickyEnabled',
+              label: 'Sticky Navigation',
+              type: 'checkbox',
+              defaultValue: true,
+            },
+            {
+              name: 'primaryNav',
+              label: 'Primary Navigation',
+              type: 'array',
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Label',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'href',
+                  label: 'Href',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: 'footerNav',
+              label: 'Footer Navigation',
+              type: 'array',
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Label',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'href',
+                  label: 'Href',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: 'ctaLabel',
+              label: 'CTA Button Label',
+              type: 'text',
+            },
+            {
+              name: 'ctaHref',
+              label: 'CTA Button URL',
+              type: 'text',
+            },
+            {
+              name: 'mobileNavVariant',
+              label: 'Mobile Navigation Style',
+              type: 'select',
+              defaultValue: 'drawer',
+              options: [
+                {
+                  label: 'Drawer',
+                  value: 'drawer',
+                },
+                {
+                  label: 'Dropdown',
+                  value: 'dropdown',
+                },
+                {
+                  label: 'Full',
+                  value: 'full',
+                },
+              ],
+            },
+          ],
         },
         {
-          label: analyticsTab.label,
-          name: analyticsTab.name,
-          fields: analyticsTab.fields,
+          label: 'Analytics',
+          name: 'analytics',
+          fields: [
+            {
+              name: 'gtmContainerId',
+              label: 'Google Tag Manager Container ID',
+              type: 'text',
+            },
+            {
+              name: 'gtagId',
+              label: 'Google Analytics 4 Measurement ID',
+              type: 'text',
+            },
+            {
+              name: 'facebookPixelId',
+              label: 'Facebook Pixel ID',
+              type: 'text',
+            },
+            {
+              name: 'headerScripts',
+              label: 'Custom Header Scripts',
+              type: 'textarea',
+              admin: {
+                description: 'Paste JS snippets only (no <script> tags)',
+              },
+            },
+            {
+              name: 'footerScripts',
+              label: 'Custom Footer Scripts',
+              type: 'textarea',
+              admin: {
+                description: 'Paste JS snippets only (no <script> tags)',
+              },
+            },
+            {
+              name: 'cookieConsentEnabled',
+              label: 'Enable Cookie Consent Banner',
+              type: 'checkbox',
+              defaultValue: true,
+            },
+          ],
         },
         {
-          label: performanceTab.label,
-          name: performanceTab.name,
-          fields: performanceTab.fields,
+          label: 'Performance',
+          name: 'performance',
+          fields: [
+            {
+              name: 'lazyLoadMedia',
+              label: 'Enable Lazy Loading for Media',
+              type: 'checkbox',
+              defaultValue: true,
+            },
+            {
+              name: 'imageCompressionEnabled',
+              label: 'Enable Image Compression',
+              type: 'checkbox',
+              defaultValue: true,
+            },
+            {
+              name: 'cacheControl',
+              label: 'Cache-Control Header',
+              type: 'text',
+            },
+            {
+              name: 'cdnBaseUrl',
+              label: 'CDN Base URL',
+              type: 'text',
+            },
+          ],
         },
         {
-          label: integrationsTab.label,
-          name: integrationsTab.name,
-          fields: integrationsTab.fields,
+          label: 'Integrations',
+          name: 'integrations',
+          fields: [
+            {
+              name: 'integrationsPlaceholder',
+              label: 'Integrations',
+              type: 'text',
+              admin: {
+                description: 'Add your integration fields here',
+              },
+            },
+            // Add integration fields as needed
+          ],
         },
       ],
     },
