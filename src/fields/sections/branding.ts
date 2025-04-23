@@ -1,7 +1,7 @@
 import { validateUrl } from '../shared/validate';
 import { imageDimensionRequirements } from '../shared/imageDimensions';
 
-const brandingTab: Tab = {
+const brandingTab = {
   label: 'Branding',
   name: 'branding',
   fields: [
