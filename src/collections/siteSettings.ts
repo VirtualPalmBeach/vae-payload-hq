@@ -56,6 +56,20 @@ const SiteSettings: CollectionConfig = {
             },
           ],
         },
+        {
+          label: 'SEO',
+          name: 'seo',
+          fields: [
+            {
+              name: 'seoNote',
+              label: 'SEO Placeholder',
+              type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
+            },
+          ],
+        },
       ],
     },
   ],
