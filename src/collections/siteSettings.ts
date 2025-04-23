@@ -4,19 +4,14 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
-    group: 'Settings',
     useAsTitle: 'siteTitle',
-    defaultColumns: ['siteTitle', 'siteKey', 'isDefaultSite'],
     description: 'Site-wide configuration including branding, SEO, contact, and integrations',
   },
   access: {
     read: () => true,
-    update: ({ req: { user } }) => (user as any)?.role === 'admin',
-    create: ({ req: { user } }) => (user as any)?.role === 'admin',
-    delete: ({ req: { user } }) => (user as any)?.role === 'admin',
-  },
-  versions: {
-    drafts: true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
   },
   fields: [
     commonSiteKeyField,
@@ -26,7 +21,6 @@ const SiteSettings: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        position: 'sidebar',
         description: 'A short name for this site (used in admin UI)',
       },
     },
@@ -36,7 +30,6 @@ const SiteSettings: CollectionConfig = {
       type: 'checkbox',
       admin: {
         description: 'Designates this as the default fallback site',
-        position: 'sidebar',
       },
     },
     {
@@ -76,7 +69,6 @@ const SiteSettings: CollectionConfig = {
               label: 'Default Social Image',
               type: 'text',
             },
-            // Add other SEO fields as needed
           ],
         },
         {
@@ -283,7 +275,6 @@ const SiteSettings: CollectionConfig = {
                 description: 'Add your integration fields here',
               },
             },
-            // Add integration fields as needed
           ],
         },
       ],
