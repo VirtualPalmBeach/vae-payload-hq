@@ -112,6 +112,20 @@ const SiteSettings: CollectionConfig = {
             },
           ],
         },
+        {
+          label: 'Performance',
+          name: 'performance',
+          fields: [
+            {
+              name: 'performanceNote',
+              label: 'Performance Placeholder',
+              type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
+            },
+          ],
+        },
       ],
     },
   ],
