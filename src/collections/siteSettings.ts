@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload'
+import brandingTab from '../fields/sections/branding'
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
@@ -42,20 +43,7 @@ const SiteSettings: CollectionConfig = {
     {
       type: 'tabs',
       tabs: [
-        {
-          label: 'Branding',
-          name: 'branding',
-          fields: [
-            {
-              name: 'brandingNote',
-              label: 'Branding Placeholder',
-              type: 'text',
-              admin: {
-                description: 'Minimal tab test.',
-              },
-            },
-          ],
-        },
+        brandingTab,
         {
           label: 'SEO',
           name: 'seo',
