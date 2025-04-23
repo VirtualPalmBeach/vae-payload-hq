@@ -1,6 +1,5 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
-import { validateEmail, validateUrl } from '../utilities/validations'; // Ensure these exist or remove
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
