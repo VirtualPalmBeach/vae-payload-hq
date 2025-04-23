@@ -1,4 +1,3 @@
-import { validateUrl } from '../shared/validate'
 import { imageDimensionRequirements } from '../shared/imageDimensions'
 
 const brandingTab = {
@@ -9,7 +8,6 @@ const brandingTab = {
       name: 'logoUrl',
       label: 'Logo URL',
       type: 'text',
-      validate: (val) => validateUrl(val),
       admin: {
         description: `Recommended: ${imageDimensionRequirements.logo.width}x${imageDimensionRequirements.logo.height}px (${imageDimensionRequirements.logo.aspectRatio})`,
       },
@@ -18,7 +16,6 @@ const brandingTab = {
       name: 'faviconUrl',
       label: 'Favicon URL',
       type: 'text',
-      validate: (val) => validateUrl(val),
     },
     {
       name: 'brandColor',
@@ -29,7 +26,6 @@ const brandingTab = {
       name: 'socialShareImageUrl',
       label: 'Social Share Image URL',
       type: 'text',
-      validate: (val) => validateUrl(val),
       admin: {
         description: `Recommended: ${imageDimensionRequirements.social.width}x${imageDimensionRequirements.social.height}px (${imageDimensionRequirements.social.aspectRatio})`,
       },
@@ -38,7 +34,6 @@ const brandingTab = {
       name: 'heroImageUrl',
       label: 'Hero Image URL',
       type: 'text',
-      validate: (val) => validateUrl(val),
     },
     {
       name: 'fontStyle',
@@ -69,7 +64,6 @@ const brandingTab = {
           label: 'Font URL',
           type: 'text',
           required: true,
-          validate: (val) => validateUrl(val),
         },
         {
           name: 'fontWeight',
