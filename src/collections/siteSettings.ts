@@ -70,6 +70,20 @@ const SiteSettings: CollectionConfig = {
             },
           ],
         },
+        {
+          label: 'Contact',
+          name: 'contact',
+          fields: [
+            {
+              name: 'contactNote',
+              label: 'Contact Placeholder',
+              type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
+            },
+          ],
+        },
       ],
     },
   ],
