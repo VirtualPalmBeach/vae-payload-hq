@@ -12,8 +12,6 @@ import integrationsTab from '../fields/sections/integrations';
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
-    position: 'sidebar',
-    hidden: false,
     group: 'Settings',
     useAsTitle: 'siteTitle',
     defaultColumns: ['siteTitle', 'siteKey', 'isDefaultSite'],
