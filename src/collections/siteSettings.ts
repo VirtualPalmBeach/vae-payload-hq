@@ -84,6 +84,34 @@ const SiteSettings: CollectionConfig = {
             },
           ],
         },
+        {
+          label: 'Navigation',
+          name: 'navigation',
+          fields: [
+            {
+              name: 'navigationNote',
+              label: 'Navigation Placeholder',
+              type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
+            },
+          ],
+        },
+        {
+          label: 'Analytics',
+          name: 'analytics',
+          fields: [
+            {
+              name: 'analyticsNote',
+              label: 'Analytics Placeholder',
+              type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
+            },
+          ],
+        },
       ],
     },
   ],
