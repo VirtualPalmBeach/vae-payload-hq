@@ -15,6 +15,11 @@ const SiteSettings: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'siteSlug',
+      label: 'Site Slug',
+      type: 'text',
+    },
+    {
       type: 'tabs',
       tabs: [
         {
