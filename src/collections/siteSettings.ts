@@ -92,31 +92,26 @@ const SiteSettings: CollectionConfig = {
               name: 'emailAddress',
               label: 'Email Address',
               type: 'email',
-              validate: validateEmail,
             },
             {
               name: 'contactFormUrl',
               label: 'Contact Form URL',
               type: 'text',
-              validate: validateUrl,
             },
             {
               name: 'facebookUrl',
               label: 'Facebook URL',
               type: 'text',
-              validate: validateUrl,
             },
             {
               name: 'instagramUrl',
               label: 'Instagram URL',
               type: 'text',
-              validate: validateUrl,
             },
             {
               name: 'mapLink',
               label: 'Map Link',
               type: 'text',
-              validate: validateUrl,
             },
             {
               name: 'contactCtaText',
