@@ -4,7 +4,7 @@ const brandingTab = {
   fields: [
     {
       name: 'brandingNote',
-      label: 'Brand Placeholder',
+      label: 'Branding Placeholder',
       type: 'text',
       admin: {
         description: 'This tab is intentionally minimal for validation testing.',
