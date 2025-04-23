@@ -2,6 +2,7 @@ import { validateUrl } from '../shared/validate';
 import { imageDimensionRequirements } from '../shared/imageDimensions';
 
 const brandingTab = {
+  type: 'tab',
   label: 'Branding',
   name: 'branding',
   fields: [
