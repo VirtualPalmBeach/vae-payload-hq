@@ -20,6 +20,11 @@ const SiteSettings: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'isDefaultSite',
+      label: 'Default Site',
+      type: 'checkbox',
+    },
+    {
       type: 'tabs',
       tabs: [
         {
