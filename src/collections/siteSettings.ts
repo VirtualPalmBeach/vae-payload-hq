@@ -1,5 +1,5 @@
-import { CollectionConfig, Tab } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig, Tab } from 'payload';
 
 import brandingTab from '../fields/sections/branding';
 import seoTab from '../fields/sections/seo';
