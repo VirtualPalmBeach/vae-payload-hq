@@ -3,12 +3,24 @@ const contactTab = {
   name: 'contact',
   fields: [
     {
-      name: 'contactNote',
-      label: 'Contact Placeholder',
+      name: 'phoneNumber',
+      label: 'Phone Number',
       type: 'text',
-      admin: {
-        description: 'Minimal Contact tab for validation testing.',
-      },
+    },
+    {
+      name: 'emailAddress',
+      label: 'Email Address',
+      type: 'email',
+    },
+    {
+      name: 'mapLink',
+      label: 'Map Link',
+      type: 'text',
+    },
+    {
+      name: 'contactCtaText',
+      label: 'CTA Text',
+      type: 'text',
     },
   ],
 }
