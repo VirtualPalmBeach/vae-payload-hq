@@ -43,13 +43,16 @@ const SiteSettings: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'General',
-          name: 'general',
+          label: 'Branding',
+          name: 'branding',
           fields: [
             {
-              name: 'note',
-              label: 'Placeholder Field',
+              name: 'brandingNote',
+              label: 'Branding Placeholder',
               type: 'text',
+              admin: {
+                description: 'Minimal tab test.',
+              },
             },
           ],
         },
