@@ -34,6 +34,7 @@ import Team from './collections/team';
 import Ads from './collections/ads';
 import Pages from './collections/pages';
 import Blocks from './collections/blocks';
+import Redirects from './collections/redirects';
 import SiteSettings from './collections/siteSettings';
 
 const filename = fileURLToPath(import.meta.url);
