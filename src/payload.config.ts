@@ -33,6 +33,7 @@ import Navigation from './collections/navigation';
 import Team from './collections/team';
 import Ads from './collections/ads';
 import Pages from './collections/pages';
+import Blocks from './collections/blocks';
 import SiteSettings from './collections/siteSettings';
 
 const filename = fileURLToPath(import.meta.url);
@@ -72,6 +73,7 @@ export default buildConfig({
     Testimonials,
     Ads,
     Pages,
+    Blocks,
     SiteSettings,
   ],
 
