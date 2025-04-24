@@ -35,6 +35,7 @@ import Ads from './collections/ads';
 import Pages from './collections/pages';
 import Blocks from './collections/blocks';
 import Redirects from './collections/redirects';
+import Services from './collections/services';
 import SiteSettings from './collections/siteSettings';
 
 const filename = fileURLToPath(import.meta.url);
@@ -76,6 +77,7 @@ export default buildConfig({
     Pages,
     Blocks,
     Redirects,
+    Services,
     SiteSettings,
   ],
 
