@@ -75,6 +75,7 @@ export default buildConfig({
     Ads,
     Pages,
     Blocks,
+    Redirects,
     SiteSettings,
   ],
 
