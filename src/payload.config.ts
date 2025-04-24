@@ -17,7 +17,6 @@ import { optionalDisplayFields, visibilityField, featuredField, sortOrderField }
 // Collections
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
-import { Pages } from './collections/pages';
 import Homepage from './collections/homepage';
 import Projects from './collections/projects';
 import Tags from './collections/tags';
@@ -33,6 +32,7 @@ import Locations from './collections/locations';
 import Navigation from './collections/navigation';
 import Team from './collections/team';
 import Ads from './collections/ads';
+import Pages from './collections/pages';
 import SiteSettings from './collections/siteSettings';
 
 const filename = fileURLToPath(import.meta.url);
