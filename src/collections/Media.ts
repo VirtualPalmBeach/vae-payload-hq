@@ -9,42 +9,7 @@ export const Media: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'alt',
-    defaultColumns: ['filename', 'alt', 'mediaType', 'tags', 'uploadedAt'],
-  },
-  upload: {
-    // Configure for Cloudinary integration
-    staticURL: '/media',
-    staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-      },
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-      {
-        name: 'tablet',
-        width: 1024,
-        // By specifying only width, height will scale proportionally
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'application/pdf', 'video/mp4'],
-  },
-  hooks: {
-    // This is where Cloudinary integration would be handled
-    // Example of minimal local storage with Cloudinary priority
-    afterChange: [
-      // Placeholder for Cloudinary upload hook
-      // Would handle pushing to Cloudinary and updating the document with CDN URLs
-    ],
+    defaultColumns: ['filename', 'alt', 'mediaType', 'tags', 'updatedAt'],
   },
   fields: [
     commonSiteKeyField,
@@ -114,24 +79,21 @@ export const Media: CollectionConfig = {
       },
     },
     {
-      name: 'cloudinaryData',
+      name: 'cloudinary',
       label: 'Cloudinary Data',
       type: 'group',
-      admin: {
-        readOnly: true,
-        description: 'Auto-populated from Cloudinary',
-        position: 'sidebar',
-      },
       fields: [
         {
-          name: 'cloudinaryId',
+          name: 'id',
           label: 'Cloudinary ID',
           type: 'text',
+          required: true,
         },
         {
-          name: 'cloudinaryUrl',
+          name: 'url',
           label: 'Cloudinary URL',
           type: 'text',
+          required: true,
         },
         {
           name: 'secureUrl',
@@ -158,29 +120,17 @@ export const Media: CollectionConfig = {
           label: 'File Size (bytes)',
           type: 'number',
         },
-      ],
-    },
-    {
-      name: 'uploadedAt',
-      label: 'Uploaded At',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-        date: {
-          pickerAppearance: 'dayAndTime',
+        {
+          name: 'resourceType',
+          label: 'Resource Type',
+          type: 'text',
         },
-        readOnly: true,
-      },
-      hooks: {
-        beforeChange: [
-          ({ operation, value }) => {
-            if (operation === 'create') {
-              return new Date();
-            }
-            return value;
-          },
-        ],
-      },
+        {
+          name: 'folder',
+          label: 'Folder',
+          type: 'text',
+        },
+      ],
     },
     ...timestampedFields,
   ],
