@@ -11,8 +11,8 @@ import sharp from 'sharp';
 import DevModeBanner from './components/DevModeBanner';
 
 // Field modules
-import { timestampedFields } from './src/fields/timestampedFields';
-import { optionalDisplayFields, visibilityField, featuredField, sortOrderField } from './src/fields/optionalFields';
+import { timestampedFields } from './fields/timestampedFields';
+import { optionalDisplayFields, visibilityField, featuredField, sortOrderField } from './fields/optionalFields';
 
 // Collections
 import { Users } from './collections/Users';
