@@ -17,6 +17,7 @@ import { optionalDisplayFields, visibilityField, featuredField, sortOrderField }
 // Collections
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
+import { Pages } from './collections/pages';
 import Homepage from './collections/homepage';
 import Projects from './collections/projects';
 import Tags from './collections/tags';
