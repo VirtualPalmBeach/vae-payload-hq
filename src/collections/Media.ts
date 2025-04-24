@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
-import { timestampedFields } from './fields/timestampedFields';
+import { timestampedFields } from '../fields/timestampedFields';
 
 export const Media: CollectionConfig = {
   slug: 'media',
