@@ -71,6 +71,7 @@ export default buildConfig({
     Team,
     Testimonials,
     Ads,
+    Pages,
     SiteSettings,
   ],
 
