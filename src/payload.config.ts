@@ -79,7 +79,7 @@ export default buildConfig({
     Blocks,
     Redirects,
     Services,
-    LandingPages.
+    LandingPages,
     SiteSettings,
   ],
 
