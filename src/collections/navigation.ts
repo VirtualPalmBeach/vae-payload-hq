@@ -4,6 +4,9 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 const Navigation: CollectionConfig = {
   slug: 'navigation',
   admin: { useAsTitle: 'label' },
+  access: {
+    read: () => true, // <-- ADD THIS
+  },
   fields: [
     commonSiteKeyField,
     {
@@ -24,45 +27,16 @@ const Navigation: CollectionConfig = {
       label: 'Items',
       type: 'array',
       fields: [
-        {
-          name: 'text',
-          label: 'Text',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'url',
-          label: 'URL',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'order',
-          label: 'Order',
-          type: 'number',
-        },
+        { name: 'text', type: 'text', required: true },
+        { name: 'url', type: 'text', required: true },
+        { name: 'order', type: 'number' },
         {
           name: 'subItems',
-          label: 'Sub Items',
           type: 'array',
           fields: [
-            {
-              name: 'text',
-              label: 'Text',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'url',
-              label: 'URL',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'order',
-              label: 'Order',
-              type: 'number',
-            },
+            { name: 'text', type: 'text', required: true },
+            { name: 'url', type: 'text', required: true },
+            { name: 'order', type: 'number' },
           ],
         },
       ],
