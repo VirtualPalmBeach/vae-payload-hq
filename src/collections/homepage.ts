@@ -33,7 +33,7 @@ const Homepage: CollectionConfig = {
     {
       name: 'heroImage',
       label: 'Hero Image',
-      type: 'upload',
+      type: 'relationship',
       relationTo: 'media',
     },
     {
