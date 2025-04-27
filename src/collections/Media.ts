@@ -87,7 +87,6 @@ export const Media: CollectionConfig = {
           name: 'id',
           label: 'Cloudinary ID',
           type: 'text',
-          required: true,
         },
         {
           name: 'url',
