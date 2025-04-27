@@ -62,7 +62,7 @@ const Homepage: CollectionConfig = {
             {
               name: 'backgroundImage',
               label: 'Background Image',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
           ],
