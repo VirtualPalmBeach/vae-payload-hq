@@ -6,7 +6,6 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
-import type { CollectionConfig } from "payload/types";
 
 // Components
 import DevModeBanner from "./components/DevModeBanner";
@@ -50,31 +49,23 @@ const dirname = path.dirname(filename);
 
 // Revalidation webhook configuration
 const REVALIDATION_ENABLED = process.env.ENABLE_REVALIDATION === "true";
-const REVALIDATION_URLS: Record<string, string | undefined> = {
+const REVALIDATION_URLS: { [key: string]: string | undefined } = {
   // Add more site keys and their respective revalidation URLs as needed
   dfwPoolBuilder: process.env.DFW_POOL_BUILDER_REVALIDATION_URL,
   // example: anotherSite: process.env.ANOTHER_SITE_REVALIDATION_URL,
 };
 const REVALIDATION_TOKEN = process.env.REVALIDATION_TOKEN;
 
-// TypeScript interface for hook parameters
-interface RevalidationHookArgs {
-  doc: {
-    siteKey?: string;
-    [key: string]: any;
-  };
-  collection: {
-    slug: string;
-  };
-  operation: string;
-}
-
 // Global hook for site revalidation
 const triggerRevalidation = async ({
   doc,
   collection,
   operation,
-}: RevalidationHookArgs): Promise<void> => {
+}: {
+  doc: { siteKey?: string; [key: string]: any };
+  collection: { slug: string };
+  operation: string;
+}): Promise<void> => {
   try {
     // Skip if revalidation is disabled
     if (!REVALIDATION_ENABLED) return;
