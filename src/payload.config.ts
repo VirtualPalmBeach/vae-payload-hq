@@ -6,7 +6,6 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
-import axios from "axios";
 
 // Components
 import DevModeBanner from "./components/DevModeBanner";
@@ -82,11 +81,17 @@ const triggerRevalidation = async ({ doc, collection, operation }) => {
     // Append token as query parameter
     const urlWithToken = `${revalidationUrl}?token=${REVALIDATION_TOKEN}`;
 
-    // Send webhook request to the revalidation endpoint
-    const response = await axios.post(urlWithToken, {
-      collection: collection.slug,
-      operation,
-      doc,
+    // Send webhook request to the revalidation endpoint using native fetch
+    const response = await fetch(urlWithToken, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        collection: collection.slug,
+        operation,
+        doc,
+      }),
     });
 
     console.log(
