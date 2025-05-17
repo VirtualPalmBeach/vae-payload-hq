@@ -6,10 +6,8 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
-
 // Components
 import DevModeBanner from "./components/DevModeBanner";
-
 // Field modules
 import { timestampedFields } from "./fields/timestampedFields";
 import {
@@ -18,7 +16,6 @@ import {
   featuredField,
   sortOrderField,
 } from "./fields/optionalFields";
-
 // Collections
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -43,77 +40,8 @@ import Redirects from "./collections/redirects";
 import Services from "./collections/services";
 import LandingPages from "./collections/landingPages";
 import SiteSettings from "./collections/siteSettings";
-
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-// Revalidation webhook configuration
-const REVALIDATION_ENABLED = process.env.ENABLE_REVALIDATION === "true";
-const REVALIDATION_URLS: { [key: string]: string | undefined } = {
-  // Add more site keys and their respective revalidation URLs as needed
-  dfwPoolBuilder: process.env.DFW_POOL_BUILDER_REVALIDATION_URL,
-  // example: anotherSite: process.env.ANOTHER_SITE_REVALIDATION_URL,
-};
-const REVALIDATION_TOKEN = process.env.REVALIDATION_TOKEN;
-
-// Global hook for site revalidation
-const triggerRevalidation = async ({
-  doc,
-  collection,
-  operation,
-}: {
-  doc: { siteKey?: string; [key: string]: any };
-  collection: { slug: string };
-  operation: string;
-}): Promise<void> => {
-  try {
-    // Skip if revalidation is disabled
-    if (!REVALIDATION_ENABLED) return;
-
-    // Get the siteKey from the document
-    const siteKey = doc.siteKey;
-
-    // Skip if no siteKey or no revalidation URL for this siteKey
-    if (!siteKey || !REVALIDATION_URLS[siteKey]) return;
-
-    const revalidationUrl = REVALIDATION_URLS[siteKey];
-
-    // Skip if revalidation URL is not set
-    if (!revalidationUrl || !REVALIDATION_TOKEN) {
-      console.log(
-        `Revalidation skipped: missing URL or token for siteKey: ${siteKey}`
-      );
-      return;
-    }
-
-    // Append token as query parameter
-    const urlWithToken = `${revalidationUrl}?token=${REVALIDATION_TOKEN}`;
-
-    // Send webhook request to the revalidation endpoint using native fetch
-    const response = await fetch(urlWithToken, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        collection: collection.slug,
-        operation,
-        doc,
-      }),
-    });
-
-    console.log(
-      `Revalidation triggered for ${siteKey}: ${response.status} ${response.statusText}`
-    );
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error(
-      `Revalidation error for ${doc.siteKey || "unknown site"}:`,
-      errorMessage
-    );
-  }
-};
-
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -168,9 +96,4 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
-  hooks: {
-    afterChange: [triggerRevalidation],
-    afterCreate: [triggerRevalidation],
-    afterDelete: [triggerRevalidation],
-  },
 });
