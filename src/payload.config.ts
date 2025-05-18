@@ -33,6 +33,7 @@ import LimitedTimeOffers from "./collections/limitedtimeoffers";
 import Locations from "./collections/locations";
 import Navigation from "./collections/navigation";
 import Team from "./collections/team";
+import Videos from "./collections/videos";
 import Ads from "./collections/ads";
 import Pages from "./collections/pages";
 import Blocks from "./collections/blocks";
@@ -68,6 +69,7 @@ export default buildConfig({
     FAQs,
     Gallery,
     LimitedTimeOffers,
+    Videos,
     Locations,
     Navigation,
     Team,
