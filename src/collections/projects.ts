@@ -4,6 +4,9 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 const Projects: CollectionConfig = {
   slug: 'projects',
   admin: { useAsTitle: 'title' },
+  access: {
+    read: () => true,
+  },
   fields: [
     commonSiteKeyField,
     {

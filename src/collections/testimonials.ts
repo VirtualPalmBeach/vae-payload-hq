@@ -6,6 +6,9 @@ export const Testimonials: CollectionConfig = {
   admin: {
     useAsTitle: 'author',
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     commonSiteKeyField,
     {
