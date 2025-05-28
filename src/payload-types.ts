@@ -6,23 +6,137 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * Supported timezones in IANA format.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supportedTimezones".
+ */
+export type SupportedTimezones =
+  | 'Pacific/Midway'
+  | 'Pacific/Niue'
+  | 'Pacific/Honolulu'
+  | 'Pacific/Rarotonga'
+  | 'America/Anchorage'
+  | 'Pacific/Gambier'
+  | 'America/Los_Angeles'
+  | 'America/Tijuana'
+  | 'America/Denver'
+  | 'America/Phoenix'
+  | 'America/Chicago'
+  | 'America/Guatemala'
+  | 'America/New_York'
+  | 'America/Bogota'
+  | 'America/Caracas'
+  | 'America/Santiago'
+  | 'America/Buenos_Aires'
+  | 'America/Sao_Paulo'
+  | 'Atlantic/South_Georgia'
+  | 'Atlantic/Azores'
+  | 'Atlantic/Cape_Verde'
+  | 'Europe/London'
+  | 'Europe/Berlin'
+  | 'Africa/Lagos'
+  | 'Europe/Athens'
+  | 'Africa/Cairo'
+  | 'Europe/Moscow'
+  | 'Asia/Riyadh'
+  | 'Asia/Dubai'
+  | 'Asia/Baku'
+  | 'Asia/Karachi'
+  | 'Asia/Tashkent'
+  | 'Asia/Calcutta'
+  | 'Asia/Dhaka'
+  | 'Asia/Almaty'
+  | 'Asia/Jakarta'
+  | 'Asia/Bangkok'
+  | 'Asia/Shanghai'
+  | 'Asia/Singapore'
+  | 'Asia/Tokyo'
+  | 'Asia/Seoul'
+  | 'Australia/Brisbane'
+  | 'Australia/Sydney'
+  | 'Pacific/Guam'
+  | 'Pacific/Noumea'
+  | 'Pacific/Auckland'
+  | 'Pacific/Fiji';
+
 export interface Config {
   auth: {
     users: UserAuthOperations;
   };
+  blocks: {};
   collections: {
     users: User;
     media: Media;
+    homepage: Homepage;
+    projects: Project;
+    tags: Tag;
+    categories: Category;
+    blogPosts: BlogPost;
+    contactForm: ContactForm;
+    events: Event;
+    faqs: Faq;
+    gallery: Gallery;
+    limitedtimeoffers: Limitedtimeoffer;
+    videos: Video;
+    locations: Location;
+    navigation: Navigation;
+    team: Team;
+    testimonials: Testimonial;
+    ads: Ad;
+    pages: Page;
+    blocks: Block;
+    redirects: Redirect;
+    services: Service;
+    landingPages: LandingPage;
+    siteSettings: SiteSetting;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
+  collectionsSelect: {
+    users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
+    contactForm: ContactFormSelect<false> | ContactFormSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
+    limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
+    locations: LocationsSelect<false> | LocationsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    ads: AdsSelect<false> | AdsSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    blocks: BlocksSelect<false> | BlocksSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    landingPages: LandingPagesSelect<false> | LandingPagesSelect<true>;
+    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
   globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -66,18 +180,1114 @@ export interface User {
  */
 export interface Media {
   id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Important for accessibility and SEO
+   */
   alt: string;
+  caption?: string | null;
+  mediaType?: ('image' | 'document' | 'video' | 'audio') | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Credit the creator or source if needed
+   */
+  source?: string | null;
+  cloudinary: {
+    id?: string | null;
+    url: string;
+    secureUrl?: string | null;
+    format?: string | null;
+    width?: number | null;
+    height?: number | null;
+    bytes?: number | null;
+    resourceType?: string | null;
+    folder?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  heroImage?: (string | null) | Media;
+  body?:
+    | (
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            backgroundImage?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            heading?: string | null;
+            text?: string | null;
+            buttonText?: string | null;
+            buttonLink?: string | null;
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+      )[]
+    | null;
+  callToAction?: {
+    text?: string | null;
+    link?: string | null;
+    style?: ('button' | 'text' | 'banner') | null;
+  };
+  conversionGoal?: ('lead' | 'sales' | 'newsletter' | 'event' | 'download' | 'other') | null;
+  /**
+   * Used to identify this page in A/B testing
+   */
+  abTestIdentifier?: string | null;
+  /**
+   * Settings for analytics and conversion tracking
+   */
+  conversionTracking?: {
+    goalID?: string | null;
+    eventCategory?: string | null;
+    eventAction?: string | null;
+  };
+  targetAudience?: ('new' | 'returning' | 'subscribers' | 'social' | 'all') | null;
+  /**
+   * Associated marketing campaign identifier
+   */
+  campaignAssociation?: string | null;
+  /**
+   * JSON-LD for enhanced SEO
+   */
+  structuredData?: string | null;
+  pageSettings?: {
+    noIndex?: boolean | null;
+    hideNavigation?: boolean | null;
+    hideFooter?: boolean | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+    canonicalUrl?: string | null;
+  };
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  projectCode: string;
+  title: string;
+  status: string;
+  description?: string | null;
+  location: {
+    street?: string | null;
+    city?: string | null;
+    state?: string | null;
+    zip?: string | null;
+    county?: string | null;
+    subdivision?: string | null;
+    coordinates: {
+      latitude: number;
+      longitude: number;
+    };
+  };
+  featuredImage?: string | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  slug: string;
+  description?: string | null;
+  color?: string | null;
+  projectCode?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  label: string;
+  slug: string;
+  description?: string | null;
+  color?: string | null;
+  icon?: string | null;
+  projectCode?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogPosts".
+ */
+export interface BlogPost {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  author?: string | null;
+  publishDate?: string | null;
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactForm".
+ */
+export interface ContactForm {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  email: string;
+  postalCode: string;
+  phone?: string | null;
+  message: string;
+  sourcePage?: string | null;
+  referrer?: string | null;
+  internalNotes?: string | null;
+  submittedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  description?: string | null;
+  eventDate: string;
+  planningWindowWeeks?: number | null;
+  /**
+   * Cloudinary URL
+   */
+  featuredImage?: string | null;
+  projectCode?: string | null;
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  question: string;
+  answer?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  caption?: string | null;
+  imageUrl: string;
+  videoUrl?: string | null;
+  order: number;
+  projectCode?: string | null;
+  featured?: boolean | null;
+  publishDate?: string | null;
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "limitedtimeoffers".
+ */
+export interface Limitedtimeoffer {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  startDate: string;
+  endDate: string;
+  ctaText?: string | null;
+  ctaUrl?: string | null;
+  /**
+   * Cloudinary URL
+   */
+  featuredImage?: string | null;
+  projectCode?: string | null;
+  status: 'scheduled' | 'active' | 'expired';
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  description?: string | null;
+  cloudinaryPublicId: string;
+  thumbnailUrl?: string | null;
+  orientation?: ('landscape' | 'portrait' | 'square') | null;
+  status: 'draft' | 'published' | 'archived';
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations".
+ */
+export interface Location {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  slug: string;
+  region: string;
+  city: string;
+  county: string;
+  state: string;
+  zipCodes?:
+    | {
+        zip?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  description?: string | null;
+  /**
+   * Cloudinary URL
+   */
+  featuredImage?: string | null;
+  projectCode?: string | null;
+  serviceRadiusMeters?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  label: string;
+  slug: string;
+  items?:
+    | {
+        text: string;
+        url: string;
+        order?: number | null;
+        subItems?:
+          | {
+              text: string;
+              url: string;
+              order?: number | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  slug: string;
+  role: string;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary image URL
+   */
+  headshotUrl?: string | null;
+  yearsOfExperience?: number | null;
+  certifications?:
+    | {
+        certification?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  projectCode?: string | null;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  quote: string;
+  author: string;
+  company?: string | null;
+  rating?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads".
+ */
+export interface Ad {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  headline: string;
+  copy?: string | null;
+  imageUrl?: string | null;
   url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  landingPageSlug?: string | null;
+  landingPageContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  projectCode?: string | null;
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+  };
+  layout?:
+    | (
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+      )[]
+    | null;
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blocks".
+ */
+export interface Block {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  type: 'hero' | 'cta' | 'content' | 'featureGrid' | 'testimonials';
+  content?: {
+    heading?: string | null;
+    subheading?: string | null;
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (string | null) | Media;
+    backgroundColor?: ('white' | 'lightGray' | 'primary' | 'secondary') | null;
+    ctaButton?: {
+      label?: string | null;
+      link?: string | null;
+      style?: ('primary' | 'secondary' | 'text') | null;
+    };
+    features?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          icon?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    testimonials?: (string | Testimonial)[] | null;
+  };
+  isGlobal?: boolean | null;
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * The path that will be redirected (e.g., /old-page)
+   */
+  slug: string;
+  /**
+   * The destination path (e.g., /new-page)
+   */
+  target: string;
+  statusCode: '301' | '302';
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  /**
+   * Brief description of the service (displayed in lists and previews)
+   */
+  summary?: string | null;
+  featuredImage?: (string | null) | Media;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  features?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  pricing?: {
+    priceType?: ('fixed' | 'starting' | 'contact') | null;
+    price?: string | null;
+    pricePeriod?: ('onetime' | 'hour' | 'day' | 'month' | 'year') | null;
+  };
+  relatedServices?: (string | Service)[] | null;
+  seo?: {
+    /**
+     * If left blank, the service title will be used
+     */
+    title?: string | null;
+    /**
+     * Recommended length: 120-155 characters
+     */
+    description?: string | null;
+    image?: (string | null) | Media;
+  };
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landingPages".
+ */
+export interface LandingPage {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  heroImage?: (string | null) | Media;
+  body?:
+    | (
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            backgroundImage?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            heading?: string | null;
+            text?: string | null;
+            buttonText?: string | null;
+            buttonLink?: string | null;
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+      )[]
+    | null;
+  callToAction?: {
+    text?: string | null;
+    link?: string | null;
+    style?: ('button' | 'text' | 'banner') | null;
+  };
+  conversionGoal?: ('lead' | 'sales' | 'newsletter' | 'event' | 'download' | 'other') | null;
+  /**
+   * Used to identify this page in A/B testing
+   */
+  abTestIdentifier?: string | null;
+  /**
+   * Settings for analytics and conversion tracking
+   */
+  conversionTracking?: {
+    goalID?: string | null;
+    eventCategory?: string | null;
+    eventAction?: string | null;
+  };
+  targetAudience?: ('new' | 'returning' | 'subscribers' | 'social' | 'all') | null;
+  /**
+   * Associated marketing campaign identifier
+   */
+  campaignAssociation?: string | null;
+  /**
+   * JSON-LD for enhanced SEO
+   */
+  structuredData?: string | null;
+  pageSettings?: {
+    noIndex?: boolean | null;
+    hideNavigation?: boolean | null;
+    hideFooter?: boolean | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+    canonicalUrl?: string | null;
+  };
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Site-wide configuration including branding, SEO, contact, and integrations
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings".
+ */
+export interface SiteSetting {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * A short name for this site (used in admin UI)
+   */
+  siteTitle: string;
+  /**
+   * Designates this as the default fallback site
+   */
+  isDefaultSite?: boolean | null;
+  branding?: {
+    /**
+     * Recommended dimensions: 250x80px (3.125:1)
+     */
+    logoUrl?: string | null;
+  };
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: string | null;
+  };
+  contact?: {
+    phoneNumber?: string | null;
+    emailAddress?: string | null;
+    contactFormUrl?: string | null;
+    facebookUrl?: string | null;
+    instagramUrl?: string | null;
+    mapLink?: string | null;
+    contactCtaText?: string | null;
+  };
+  navigation?: {
+    stickyEnabled?: boolean | null;
+    primaryNav?:
+      | {
+          label: string;
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
+    footerNav?:
+      | {
+          label: string;
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    ctaHref?: string | null;
+    mobileNavVariant?: ('drawer' | 'dropdown' | 'full') | null;
+  };
+  analytics?: {
+    gtmContainerId?: string | null;
+    gtagId?: string | null;
+    facebookPixelId?: string | null;
+    /**
+     * Paste JS snippets only (no <script> tags)
+     */
+    headerScripts?: string | null;
+    /**
+     * Paste JS snippets only (no <script> tags)
+     */
+    footerScripts?: string | null;
+    cookieConsentEnabled?: boolean | null;
+  };
+  performance?: {
+    lazyLoadMedia?: boolean | null;
+    imageCompressionEnabled?: boolean | null;
+    cacheControl?: string | null;
+    cdnBaseUrl?: string | null;
+  };
+  integrations?: {
+    /**
+     * Add your integration fields here
+     */
+    integrationsPlaceholder?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: string;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'homepage';
+        value: string | Homepage;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: string | Tag;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'blogPosts';
+        value: string | BlogPost;
+      } | null)
+    | ({
+        relationTo: 'contactForm';
+        value: string | ContactForm;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'gallery';
+        value: string | Gallery;
+      } | null)
+    | ({
+        relationTo: 'limitedtimeoffers';
+        value: string | Limitedtimeoffer;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: string | Video;
+      } | null)
+    | ({
+        relationTo: 'locations';
+        value: string | Location;
+      } | null)
+    | ({
+        relationTo: 'navigation';
+        value: string | Navigation;
+      } | null)
+    | ({
+        relationTo: 'team';
+        value: string | Team;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'ads';
+        value: string | Ad;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'blocks';
+        value: string | Block;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: string | Redirect;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'landingPages';
+        value: string | LandingPage;
+      } | null)
+    | ({
+        relationTo: 'siteSettings';
+        value: string | SiteSetting;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: string | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -112,6 +1322,760 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  siteKey?: T;
+  alt?: T;
+  caption?: T;
+  mediaType?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  source?: T;
+  cloudinary?:
+    | T
+    | {
+        id?: T;
+        url?: T;
+        secureUrl?: T;
+        format?: T;
+        width?: T;
+        height?: T;
+        bytes?: T;
+        resourceType?: T;
+        folder?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  heroImage?: T;
+  body?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  callToAction?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        style?: T;
+      };
+  conversionGoal?: T;
+  abTestIdentifier?: T;
+  conversionTracking?:
+    | T
+    | {
+        goalID?: T;
+        eventCategory?: T;
+        eventAction?: T;
+      };
+  targetAudience?: T;
+  campaignAssociation?: T;
+  structuredData?: T;
+  pageSettings?:
+    | T
+    | {
+        noIndex?: T;
+        hideNavigation?: T;
+        hideFooter?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        canonicalUrl?: T;
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  projectCode?: T;
+  title?: T;
+  status?: T;
+  description?: T;
+  location?:
+    | T
+    | {
+        street?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+        county?: T;
+        subdivision?: T;
+        coordinates?:
+          | T
+          | {
+              latitude?: T;
+              longitude?: T;
+            };
+      };
+  featuredImage?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  siteKey?: T;
+  label?: T;
+  slug?: T;
+  description?: T;
+  color?: T;
+  icon?: T;
+  projectCode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  description?: T;
+  color?: T;
+  projectCode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogPosts_select".
+ */
+export interface BlogPostsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  body?: T;
+  author?: T;
+  publishDate?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactForm_select".
+ */
+export interface ContactFormSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  email?: T;
+  postalCode?: T;
+  phone?: T;
+  message?: T;
+  sourcePage?: T;
+  referrer?: T;
+  internalNotes?: T;
+  submittedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  description?: T;
+  eventDate?: T;
+  planningWindowWeeks?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  siteKey?: T;
+  question?: T;
+  answer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  caption?: T;
+  imageUrl?: T;
+  videoUrl?: T;
+  order?: T;
+  projectCode?: T;
+  featured?: T;
+  publishDate?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "limitedtimeoffers_select".
+ */
+export interface LimitedtimeoffersSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  description?: T;
+  startDate?: T;
+  endDate?: T;
+  ctaText?: T;
+  ctaUrl?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  status?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  description?: T;
+  cloudinaryPublicId?: T;
+  thumbnailUrl?: T;
+  orientation?: T;
+  status?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations_select".
+ */
+export interface LocationsSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  region?: T;
+  city?: T;
+  county?: T;
+  state?: T;
+  zipCodes?:
+    | T
+    | {
+        zip?: T;
+        id?: T;
+      };
+  coordinates?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+      };
+  description?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  serviceRadiusMeters?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  siteKey?: T;
+  label?: T;
+  slug?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        url?: T;
+        order?: T;
+        subItems?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+              order?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  role?: T;
+  bio?: T;
+  headshotUrl?: T;
+  yearsOfExperience?: T;
+  certifications?:
+    | T
+    | {
+        certification?: T;
+        id?: T;
+      };
+  projectCode?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  siteKey?: T;
+  quote?: T;
+  author?: T;
+  company?: T;
+  rating?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads_select".
+ */
+export interface AdsSelect<T extends boolean = true> {
+  siteKey?: T;
+  headline?: T;
+  copy?: T;
+  imageUrl?: T;
+  url?: T;
+  startDate?: T;
+  endDate?: T;
+  landingPageSlug?: T;
+  landingPageContent?: T;
+  projectCode?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blocks_select".
+ */
+export interface BlocksSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  type?: T;
+  content?:
+    | T
+    | {
+        heading?: T;
+        subheading?: T;
+        richText?: T;
+        image?: T;
+        backgroundColor?: T;
+        ctaButton?:
+          | T
+          | {
+              label?: T;
+              link?: T;
+              style?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
+        testimonials?: T;
+      };
+  isGlobal?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  slug?: T;
+  target?: T;
+  statusCode?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  summary?: T;
+  featuredImage?: T;
+  content?: T;
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  pricing?:
+    | T
+    | {
+        priceType?: T;
+        price?: T;
+        pricePeriod?: T;
+      };
+  relatedServices?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landingPages_select".
+ */
+export interface LandingPagesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  heroImage?: T;
+  body?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  callToAction?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        style?: T;
+      };
+  conversionGoal?: T;
+  abTestIdentifier?: T;
+  conversionTracking?:
+    | T
+    | {
+        goalID?: T;
+        eventCategory?: T;
+        eventAction?: T;
+      };
+  targetAudience?: T;
+  campaignAssociation?: T;
+  structuredData?: T;
+  pageSettings?:
+    | T
+    | {
+        noIndex?: T;
+        hideNavigation?: T;
+        hideFooter?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        canonicalUrl?: T;
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteKey?: T;
+  siteTitle?: T;
+  isDefaultSite?: T;
+  branding?:
+    | T
+    | {
+        logoUrl?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  contact?:
+    | T
+    | {
+        phoneNumber?: T;
+        emailAddress?: T;
+        contactFormUrl?: T;
+        facebookUrl?: T;
+        instagramUrl?: T;
+        mapLink?: T;
+        contactCtaText?: T;
+      };
+  navigation?:
+    | T
+    | {
+        stickyEnabled?: T;
+        primaryNav?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        footerNav?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        ctaHref?: T;
+        mobileNavVariant?: T;
+      };
+  analytics?:
+    | T
+    | {
+        gtmContainerId?: T;
+        gtagId?: T;
+        facebookPixelId?: T;
+        headerScripts?: T;
+        footerScripts?: T;
+        cookieConsentEnabled?: T;
+      };
+  performance?:
+    | T
+    | {
+        lazyLoadMedia?: T;
+        imageCompressionEnabled?: T;
+        cacheControl?: T;
+        cdnBaseUrl?: T;
+      };
+  integrations?:
+    | T
+    | {
+        integrationsPlaceholder?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

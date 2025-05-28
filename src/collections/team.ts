@@ -4,6 +4,9 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 const Team: CollectionConfig = {
   slug: 'team',
   admin: { useAsTitle: 'name' },
+  access: {
+    read: () => true,
+  },
   fields: [
     commonSiteKeyField,
     {
