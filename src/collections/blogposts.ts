@@ -1,10 +1,14 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blogPosts',
   admin: {
     useAsTitle: 'title',
+  },
+  access: {
+    read: () => true, // Allow public reading of blog posts
+    // create, update, delete remain restricted to authenticated users
   },
   fields: [
     commonSiteKeyField,
@@ -20,7 +24,7 @@ export const BlogPosts: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
-      index: true,        // optional but recommended for lookups
+      index: true, // optional but recommended for lookups
       admin: { position: 'sidebar' },
     },
     {
@@ -60,4 +64,4 @@ export const BlogPosts: CollectionConfig = {
       hasMany: true,
     },
   ],
-};
+}
