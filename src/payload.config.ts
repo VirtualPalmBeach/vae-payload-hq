@@ -44,9 +44,6 @@ import SiteSettings from './collections/siteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
-  cors: process.env.CORS_ORIGINS
-    ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
-    : ['http://localhost:3001'],
   admin: {
     user: Users.slug,
     importMap: {
