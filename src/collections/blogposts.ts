@@ -33,6 +33,12 @@ export const BlogPosts: CollectionConfig = {
       type: 'richText',
     },
     {
+      name: 'featuredImage',
+      label: 'Featured Image (Cloudinary URL)',
+      type: 'text',
+      required: false,
+    },
+    {
       name: 'author',
       label: 'Author',
       type: 'text',
