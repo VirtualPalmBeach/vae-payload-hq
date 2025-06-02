@@ -15,6 +15,15 @@ export const BlogPosts: CollectionConfig = {
       required: true,
     },
     {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,        // optional but recommended for lookups
+      admin: { position: 'sidebar' },
+    },
+    {
       name: 'body',
       label: 'Body Content',
       type: 'richText',

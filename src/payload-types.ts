@@ -391,6 +391,7 @@ export interface BlogPost {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
+  slug: string;
   body?: {
     root: {
       type: string;
@@ -1518,6 +1519,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface BlogPostsSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
+  slug?: T;
   body?: T;
   author?: T;
   publishDate?: T;
