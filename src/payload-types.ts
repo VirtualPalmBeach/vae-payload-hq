@@ -407,6 +407,7 @@ export interface BlogPost {
     };
     [k: string]: unknown;
   } | null;
+  featuredImage?: string | null;
   author?: string | null;
   publishDate?: string | null;
   projects?:
@@ -1521,6 +1522,7 @@ export interface BlogPostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   body?: T;
+  featuredImage?: T;
   author?: T;
   publishDate?: T;
   projects?: T;
