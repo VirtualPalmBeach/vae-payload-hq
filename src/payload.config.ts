@@ -45,18 +45,24 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   cors: [
+    'https://vae-payload-hq.payloadcms.app',
     'https://selah.pro',
     'https://www.selah.pro',
     'https://selah-pro-catalyst-4mfx8xe65-selah-designs-projects.vercel.app',
     'https://selah-pro-catalyst-le0l93e6z-selah-designs-projects.vercel.app',
+    'http://localhost:3000',
+    'http://192.168.5.245:3000',
     'http://localhost:3001',
     'http://192.168.5.245:3001',
   ],
   csrf: [
+    'https://vae-payload-hq.payloadcms.app',
     'https://selah.pro',
     'https://www.selah.pro',
     'https://selah-pro-catalyst-4mfx8xe65-selah-designs-projects.vercel.app',
     'https://selah-pro-catalyst-le0l93e6z-selah-designs-projects.vercel.app',
+    'http://localhost:3000',
+    'http://192.168.5.245:3000',
     'http://localhost:3001',
     'http://192.168.5.245:3001',
   ],
