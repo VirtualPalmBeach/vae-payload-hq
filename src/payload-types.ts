@@ -78,6 +78,7 @@ export interface Config {
     events: Event;
     faqs: Faq;
     gallery: Gallery;
+    spotlights: Spotlight;
     limitedtimeoffers: Limitedtimeoffer;
     videos: Video;
     locations: Location;
@@ -108,6 +109,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
+    spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
     limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
     locations: LocationsSelect<false> | LocationsSelect<true>;
@@ -540,6 +542,43 @@ export interface Gallery {
         value: string | Tag;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "spotlights".
+ */
+export interface Spotlight {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  /**
+   * URL-friendly identifier for this spotlight gallery
+   */
+  slug: string;
+  /**
+   * Brief description of this spotlight gallery
+   */
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)
+   */
+  cloudinaryTags: string;
+  /**
+   * Organize this spotlight with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Display order (lower numbers appear first)
+   */
+  order?: number | null;
+  publishDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1239,6 +1278,10 @@ export interface PayloadLockedDocument {
         value: string | Gallery;
       } | null)
     | ({
+        relationTo: 'spotlights';
+        value: string | Spotlight;
+      } | null)
+    | ({
         relationTo: 'limitedtimeoffers';
         value: string | Limitedtimeoffer;
       } | null)
@@ -1601,6 +1644,24 @@ export interface GallerySelect<T extends boolean = true> {
   projects?: T;
   categories?: T;
   tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "spotlights_select".
+ */
+export interface SpotlightsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  description?: T;
+  cloudinaryTags?: T;
+  tags?: T;
+  featured?: T;
+  status?: T;
+  order?: T;
+  publishDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }
