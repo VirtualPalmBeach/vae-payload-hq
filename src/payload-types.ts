@@ -374,12 +374,19 @@ export interface Category {
 export interface Tag {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  label: string;
-  slug: string;
-  description?: string | null;
-  color?: string | null;
-  icon?: string | null;
-  projectCode?: string | null;
+  /**
+   * Project code or Spotlight category (e.g. Social, Features, Materials)
+   */
+  parentTag: string;
+  /**
+   * Enter URL-friendly slug
+   */
+  slug?: string | null;
+  /**
+   * Spotlight category (e.g. Single Project, Social, Features, Materials)
+   */
+  childTags?: string | null;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1490,12 +1497,10 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface TagsSelect<T extends boolean = true> {
   siteKey?: T;
-  label?: T;
+  parentTag?: T;
   slug?: T;
-  description?: T;
-  color?: T;
-  icon?: T;
-  projectCode?: T;
+  childTags?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

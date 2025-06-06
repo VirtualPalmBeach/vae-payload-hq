@@ -3,41 +3,41 @@ import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Tags: CollectionConfig = {
   slug: 'tags',
-  admin: { useAsTitle: 'label' },
+  admin: { useAsTitle: 'parentTag' },
   fields: [
     commonSiteKeyField,
     {
-      name: 'label',
-      label: 'Label',
+      name: 'parentTag',
+      label: 'Parent Tag',
       type: 'text',
       required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Project code or Spotlight category (e.g. Social, Features, Materials)',
+      },
     },
     {
       name: 'slug',
       label: 'Slug',
       type: 'text',
-      required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Enter URL-friendly slug',
+      },
     },
     {
-      name: 'description',
-      label: 'Description',
-      type: 'textarea',
-    },
-    {
-      name: 'color',
-      label: 'Color',
+      name: 'childTags',
+      label: 'Child Tags',
       type: 'text',
+      admin: {
+        description: 'Spotlight category (e.g. Single Project, Social, Features, Materials)',
+      },
     },
     {
-      name: 'icon',
-      label: 'Cloudinary URL',
-      type: 'text',
-    },
-    {
-      name: 'projectCode',
-      label: 'Project Code',
-      type: 'text',
-      required: false,
+      name: 'order',
+      label: 'Order',
+      type: 'number',
+      admin: { position: 'sidebar' },
     },
   ],
 }
