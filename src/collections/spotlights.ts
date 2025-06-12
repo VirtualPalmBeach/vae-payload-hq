@@ -28,7 +28,7 @@ const Spotlights: CollectionConfig = {
     {
       name: 'description',
       label: 'Description',
-      type: 'textarea',
+      type: 'richText',
       admin: {
         description: 'Brief description of this spotlight gallery',
       },
