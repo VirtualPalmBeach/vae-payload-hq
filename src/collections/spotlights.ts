@@ -26,6 +26,14 @@ const Spotlights: CollectionConfig = {
       },
     },
     {
+      name: 'headline',
+      label: 'Headline',
+      type: 'richText',
+      admin: {
+        description: 'Headline for this spotlight gallery',
+      },
+    },
+    {
       name: 'description',
       label: 'Description',
       type: 'textarea',
