@@ -79,6 +79,7 @@ export interface Config {
     faqs: Faq;
     gallery: Gallery;
     spotlights: Spotlight;
+    reals: Real;
     limitedtimeoffers: Limitedtimeoffer;
     videos: Video;
     locations: Location;
@@ -110,6 +111,7 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
+    reals: RealsSelect<false> | RealsSelect<true>;
     limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
     locations: LocationsSelect<false> | LocationsSelect<true>;
@@ -557,6 +559,79 @@ export interface Spotlight {
    * URL-friendly identifier for this spotlight gallery
    */
   slug: string;
+  /**
+   * Headline for this spotlight gallery
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Brief description of this spotlight gallery
+   */
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)
+   */
+  cloudinaryTags: string;
+  /**
+   * Organize this spotlight with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Display order (lower numbers appear first)
+   */
+  order?: number | null;
+  publishDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reals".
+ */
+export interface Real {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  /**
+   * URL-friendly identifier for this spotlight gallery
+   */
+  slug: string;
+  /**
+   * Headline for this spotlight gallery
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   /**
    * Brief description of this spotlight gallery
    */
@@ -1282,6 +1357,10 @@ export interface PayloadLockedDocument {
         value: string | Spotlight;
       } | null)
     | ({
+        relationTo: 'reals';
+        value: string | Real;
+      } | null)
+    | ({
         relationTo: 'limitedtimeoffers';
         value: string | Limitedtimeoffer;
       } | null)
@@ -1655,6 +1734,26 @@ export interface SpotlightsSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
   slug?: T;
+  headline?: T;
+  description?: T;
+  cloudinaryTags?: T;
+  tags?: T;
+  featured?: T;
+  status?: T;
+  order?: T;
+  publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reals_select".
+ */
+export interface RealsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  headline?: T;
   description?: T;
   cloudinaryTags?: T;
   tags?: T;

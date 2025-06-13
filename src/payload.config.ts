@@ -41,6 +41,7 @@ import Redirects from './collections/redirects'
 import Services from './collections/services'
 import LandingPages from './collections/landingPages'
 import SiteSettings from './collections/siteSettings'
+import Reals from './collections/reals'
 import Spotlights from './collections/spotlights'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -92,6 +93,7 @@ export default buildConfig({
     FAQs,
     Gallery,
     Spotlights,
+    Reals,
     LimitedTimeOffers,
     Videos,
     Locations,
