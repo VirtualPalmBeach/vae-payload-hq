@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { v2 as cloudinary } from 'cloudinary'
 
 const Reals: CollectionConfig = {
   slug: 'reals',
@@ -48,6 +49,41 @@ const Reals: CollectionConfig = {
       required: true,
       admin: {
         description: 'Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)',
+      },
+    },
+    {
+      name: 'cloudinaryPublicId',
+      label: 'Cloudinary Public ID',
+      type: 'text',
+      admin: {
+        readOnly: true,
+        description: 'Auto-generated from Cloudinary tags search',
+      },
+    },
+    {
+      name: 'posterPublicId',
+      label: 'Poster Public ID',
+      type: 'text',
+      admin: {
+        readOnly: true,
+        description: 'Auto-generated poster frame ID',
+      },
+    },
+    {
+      name: 'thumbnails',
+      label: 'Thumbnails',
+      type: 'json',
+      admin: {
+        readOnly: true,
+        description: 'Generated thumbnail URLs for responsive display',
+      },
+    },
+    {
+      name: 'regenerateThumbnails',
+      label: 'Regenerate Thumbnails',
+      type: 'checkbox',
+      admin: {
+        description: 'Check to regenerate thumbnails on next save',
       },
     },
     {
@@ -104,6 +140,86 @@ const Reals: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc, req, operation }) => {
+        // Skip if this is triggered by our own hook to prevent loops
+        if (req.context?.skipPoster) return doc
+
+        // Only process on create/update operations
+        if (operation === 'create' || operation === 'update') {
+          try {
+            // Configure Cloudinary with Doppler environment variables
+            cloudinary.config({
+              cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+              api_key: process.env.CLOUDINARY_API_KEY,
+              api_secret: process.env.CLOUDINARY_API_SECRET,
+            })
+
+            console.log('Cloudinary configured for:', doc.title)
+
+            // Tag-to-publicId resolution via Cloudinary Search API
+            if (doc.cloudinaryTags) {
+              const tags = doc.cloudinaryTags.split(',').map((tag: string) => tag.trim())
+              console.log('Searching for tags:', tags)
+
+              const searchResult = await cloudinary.search
+                .expression(`tags:${tags.join(' OR tags:')} AND resource_type:video`)
+                .sort_by('created_at', 'desc')
+                .max_results(1)
+                .execute()
+
+              if (searchResult.resources && searchResult.resources.length > 0) {
+                const video = searchResult.resources[0]
+                console.log('Found video:', video.public_id)
+
+                // Generate eager transforms for responsive thumbnails
+                const transformSizes = [
+                  { width: 480, name: 'small' },
+                  { width: 768, name: 'medium' },
+                  { width: 1280, name: 'large' },
+                ]
+
+                const thumbnails: { [key: string]: string } = {}
+
+                for (const size of transformSizes) {
+                  const transformation = `so_1.5,c_fill,ar_9:16,w_${size.width},q_auto,f_auto`
+                  thumbnails[size.name] = cloudinary.url(video.public_id, {
+                    resource_type: 'video',
+                    transformation: transformation,
+                  })
+                }
+
+                console.log('Generated thumbnails:', thumbnails)
+
+                // Update document with Cloudinary results
+                const updatedDoc = await req.payload.update({
+                  collection: 'reals',
+                  id: doc.id,
+                  data: {
+                    cloudinaryPublicId: video.public_id,
+                    posterPublicId: video.public_id,
+                    thumbnails: thumbnails,
+                    regenerateThumbnails: false,
+                  },
+                  context: { skipPoster: true },
+                })
+
+                console.log('Document updated with Cloudinary data')
+                return updatedDoc
+              } else {
+                console.log('No videos found for tags:', tags)
+              }
+            }
+          } catch (error) {
+            console.error('Cloudinary hook error:', error)
+          }
+        }
+
+        return doc
+      },
+    ],
+  },
   access: {
     read: () => true,
   },

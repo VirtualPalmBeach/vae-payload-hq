@@ -641,6 +641,30 @@ export interface Real {
    */
   cloudinaryTags: string;
   /**
+   * Auto-generated from Cloudinary tags search
+   */
+  cloudinaryPublicId?: string | null;
+  /**
+   * Auto-generated poster frame ID
+   */
+  posterPublicId?: string | null;
+  /**
+   * Generated thumbnail URLs for responsive display
+   */
+  thumbnails?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Check to regenerate thumbnails on next save
+   */
+  regenerateThumbnails?: boolean | null;
+  /**
    * Organize this spotlight with gallery tags
    */
   tags?: (string | Tag)[] | null;
@@ -1756,6 +1780,10 @@ export interface RealsSelect<T extends boolean = true> {
   headline?: T;
   description?: T;
   cloudinaryTags?: T;
+  cloudinaryPublicId?: T;
+  posterPublicId?: T;
+  thumbnails?: T;
+  regenerateThumbnails?: T;
   tags?: T;
   featured?: T;
   status?: T;
