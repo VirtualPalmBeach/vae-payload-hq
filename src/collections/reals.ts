@@ -168,8 +168,12 @@ const Reals: CollectionConfig = {
               const tags = doc.cloudinaryTags.split(',').map((tag: string) => tag.trim())
               console.log('Searching for tags:', tags)
 
+              // Require ALL tags to match (comprehensive filtering)
+              const expression = tags.map((tag: string) => `tags:${tag}`).join(' AND ')
+              console.log('Search expression (AND logic):', expression)
+
               const searchResult = await cloudinary.search
-                .expression(`tags:${tags.join(' OR tags:')} AND resource_type:video`)
+                .expression(`${expression} AND resource_type:video`)
                 .sort_by('created_at', 'desc')
                 .max_results(1)
                 .execute()
