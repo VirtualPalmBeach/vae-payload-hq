@@ -149,13 +149,18 @@ const Reals: CollectionConfig = {
         // Only process on create/update operations
         if (operation === 'create' || operation === 'update') {
           try {
-            // Configure Cloudinary with Doppler environment variables
+            // Force fresh Cloudinary configuration on each hook execution
             cloudinary.config({
               cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
               api_key: process.env.CLOUDINARY_API_KEY,
               api_secret: process.env.CLOUDINARY_API_SECRET,
+              secure: true, // Ensure HTTPS in production
             })
-
+            // Verify configuration loaded
+            console.log(
+              'Cloudinary config - Cloud name:',
+              process.env.CLOUDINARY_CLOUD_NAME ? 'SET' : 'MISSING',
+            )
             console.log('Cloudinary configured for:', doc.title)
 
             // Tag-to-publicId resolution via Cloudinary Search API
