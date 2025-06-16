@@ -192,10 +192,14 @@ const Reals: CollectionConfig = {
                 const thumbnails: { [key: string]: string } = {}
 
                 for (const size of transformSizes) {
-                  const transformation = `so_1.5,c_fill,ar_9:16,w_${size.width},q_auto,f_auto`
                   thumbnails[size.name] = cloudinary.url(video.public_id, {
                     resource_type: 'video',
-                    transformation: transformation,
+                    start_offset: '1.5',
+                    crop: 'fill',
+                    aspect_ratio: '9:16',
+                    width: size.width,
+                    quality: 'auto',
+                    fetch_format: 'auto',
                   })
                 }
 
