@@ -205,13 +205,13 @@ const Reals: CollectionConfig = {
 
                 console.log('Generated thumbnails:', thumbnails)
 
-                // Store results for deferred update (avoid write conflict)
-                console.log('Cloudinary processing complete, storing results...')
+                // Update document with Cloudinary results (with retry for cloud concurrency)
+                let updateAttempts = 0
+                const maxAttempts = 3
 
-                // Set a flag for background processing instead of immediate update
-                setTimeout(async () => {
+                while (updateAttempts < maxAttempts) {
                   try {
-                    await req.payload.update({
+                    const updatedDoc = await req.payload.update({
                       collection: 'reals',
                       id: doc.id,
                       data: {
@@ -220,14 +220,29 @@ const Reals: CollectionConfig = {
                         thumbnails: thumbnails,
                         regenerateThumbnails: false,
                       },
+                      context: { skipPoster: true },
                     })
-                    console.log('Deferred update completed successfully')
-                  } catch (deferredError) {
-                    console.error('Deferred update error:', deferredError)
-                  }
-                }, 1000)
 
-                console.log('Hook completed, deferred update scheduled')
+                    console.log('Document updated with Cloudinary data')
+                    return updatedDoc
+                  } catch (updateError: unknown) {
+                    updateAttempts++
+
+                    // Type-safe error code checking
+                    const isWriteConflict =
+                      updateError &&
+                      typeof updateError === 'object' &&
+                      'code' in updateError &&
+                      updateError.code === 112
+
+                    if (isWriteConflict && updateAttempts < maxAttempts) {
+                      console.log(`Write conflict, retrying... (${updateAttempts}/${maxAttempts})`)
+                      await new Promise((resolve) => setTimeout(resolve, 100 * updateAttempts))
+                    } else {
+                      throw updateError
+                    }
+                  }
+                }
               } else {
                 console.log('No videos found for tags:', tags)
               }
