@@ -133,6 +133,7 @@ const Reals: CollectionConfig = {
       name: 'publishDate',
       label: 'Publish Date',
       type: 'date',
+      defaultValue: () => new Date(),
       admin: {
         position: 'sidebar',
         date: {
