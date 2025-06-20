@@ -614,11 +614,11 @@ export interface Real {
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
   /**
-   * URL-friendly identifier for this spotlight gallery
+   * URL-friendly identifier for the Reals page
    */
   slug: string;
   /**
-   * Headline for this spotlight gallery
+   * Headline for this Reals page
    */
   headline?: {
     root: {
@@ -636,11 +636,11 @@ export interface Real {
     [k: string]: unknown;
   } | null;
   /**
-   * Brief description of this spotlight gallery
+   * Brief description of this Reals page
    */
   description?: string | null;
   /**
-   * Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)
+   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
    */
   cloudinaryTags: string;
   /**
@@ -668,7 +668,7 @@ export interface Real {
    */
   regenerateThumbnails?: boolean | null;
   /**
-   * Organize this spotlight with gallery tags
+   * Organize this Reals with gallery tags
    */
   tags?: (string | Tag)[] | null;
   /**
@@ -677,7 +677,7 @@ export interface Real {
   featured?: boolean | null;
   status?: ('draft' | 'published') | null;
   /**
-   * Display order (lower numbers appear first)
+   * Display priority (higher numbers appear first; leave blank for default position)
    */
   order?: number | null;
   publishDate?: string | null;

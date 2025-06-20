@@ -22,7 +22,7 @@ const Reals: CollectionConfig = {
       required: true,
       admin: {
         position: 'sidebar',
-        description: 'URL-friendly identifier for this spotlight gallery',
+        description: 'URL-friendly identifier for the Reals page',
       },
     },
     {
@@ -30,7 +30,7 @@ const Reals: CollectionConfig = {
       label: 'Headline',
       type: 'richText',
       admin: {
-        description: 'Headline for this spotlight gallery',
+        description: 'Headline for this Reals page',
       },
     },
     {
@@ -38,7 +38,7 @@ const Reals: CollectionConfig = {
       label: 'Description',
       type: 'textarea',
       admin: {
-        description: 'Brief description of this spotlight gallery',
+        description: 'Brief description of this Reals page',
       },
     },
     {
@@ -47,7 +47,8 @@ const Reals: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)',
+        description:
+          'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
       },
     },
     {
@@ -93,7 +94,7 @@ const Reals: CollectionConfig = {
       hasMany: true,
       admin: {
         position: 'sidebar',
-        description: 'Organize this spotlight with gallery tags',
+        description: 'Organize this Reals with gallery tags',
       },
     },
     {
@@ -124,7 +125,8 @@ const Reals: CollectionConfig = {
       type: 'number',
       admin: {
         position: 'sidebar',
-        description: 'Display order (lower numbers appear first)',
+        description:
+          'Display priority (higher numbers appear first; leave blank for default position)',
       },
     },
     {
