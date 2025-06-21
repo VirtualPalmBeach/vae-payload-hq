@@ -644,6 +644,10 @@ export interface Real {
    */
   cloudinaryTags: string;
   /**
+   * Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
+   */
+  loopStartTime?: number | null;
+  /**
    * Auto-generated from Cloudinary tags search
    */
   cloudinaryPublicId?: string | null;
@@ -1786,6 +1790,7 @@ export interface RealsSelect<T extends boolean = true> {
   headline?: T;
   description?: T;
   cloudinaryTags?: T;
+  loopStartTime?: T;
   cloudinaryPublicId?: T;
   posterPublicId?: T;
   thumbnails?: T;

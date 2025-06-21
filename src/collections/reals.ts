@@ -52,6 +52,19 @@ const Reals: CollectionConfig = {
       },
     },
     {
+      name: 'loopStartTime',
+      label: 'Loop Start Time (sec)',
+      type: 'number',
+      min: 0,
+      max: 25,
+      defaultValue: 0.5,
+      admin: {
+        description:
+          'Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).',
+        step: 0.1,
+      },
+    },
+    {
       name: 'cloudinaryPublicId',
       label: 'Cloudinary Public ID',
       type: 'text',
