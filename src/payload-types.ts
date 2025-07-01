@@ -80,6 +80,7 @@ export interface Config {
     gallery: Gallery;
     spotlights: Spotlight;
     reals: Real;
+    scenes: Scene;
     limitedtimeoffers: Limitedtimeoffer;
     videos: Video;
     locations: Location;
@@ -112,6 +113,7 @@ export interface Config {
     gallery: GallerySelect<false> | GallerySelect<true>;
     spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
     reals: RealsSelect<false> | RealsSelect<true>;
+    scenes: ScenesSelect<false> | ScenesSelect<true>;
     limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
     locations: LocationsSelect<false> | LocationsSelect<true>;
@@ -673,6 +675,84 @@ export interface Real {
   regenerateThumbnails?: boolean | null;
   /**
    * Organize this Reals with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Display priority (higher numbers appear first; leave blank for default position)
+   */
+  order?: number | null;
+  publishDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scenes".
+ */
+export interface Scene {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Select the Cloudinary environment for this scene
+   */
+  cloudinaryEnvironment: 'base' | 'staging' | 'live';
+  title: string;
+  /**
+   * URL-friendly identifier for the Scenes page
+   */
+  slug: string;
+  /**
+   * Descriptive text for screen readers and SEO
+   */
+  altText: string;
+  /**
+   * Headline for this Scenes page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Brief description of this Scenes page
+   */
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., scene,portrait,featured)
+   */
+  cloudinaryTags: string;
+  /**
+   * Auto-generated from Cloudinary tags search
+   */
+  cloudinaryPublicId?: string | null;
+  /**
+   * Coordinates for smart cropping (0-100 scale)
+   */
+  focalPoint?: {
+    x?: number | null;
+    y?: number | null;
+  };
+  /**
+   * Enforced aspect ratio for this scene
+   */
+  aspectRatio?: ('9:16' | '2:3' | '3:4') | null;
+  /**
+   * Organize this Scenes with gallery tags
    */
   tags?: (string | Tag)[] | null;
   /**
@@ -1392,6 +1472,10 @@ export interface PayloadLockedDocument {
         value: string | Real;
       } | null)
     | ({
+        relationTo: 'scenes';
+        value: string | Scene;
+      } | null)
+    | ({
         relationTo: 'limitedtimeoffers';
         value: string | Limitedtimeoffer;
       } | null)
@@ -1795,6 +1879,35 @@ export interface RealsSelect<T extends boolean = true> {
   posterPublicId?: T;
   thumbnails?: T;
   regenerateThumbnails?: T;
+  tags?: T;
+  featured?: T;
+  status?: T;
+  order?: T;
+  publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scenes_select".
+ */
+export interface ScenesSelect<T extends boolean = true> {
+  siteKey?: T;
+  cloudinaryEnvironment?: T;
+  title?: T;
+  slug?: T;
+  altText?: T;
+  headline?: T;
+  description?: T;
+  cloudinaryTags?: T;
+  cloudinaryPublicId?: T;
+  focalPoint?:
+    | T
+    | {
+        x?: T;
+        y?: T;
+      };
+  aspectRatio?: T;
   tags?: T;
   featured?: T;
   status?: T;
