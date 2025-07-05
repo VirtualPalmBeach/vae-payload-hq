@@ -94,6 +94,7 @@ export interface Config {
     services: Service;
     landingPages: LandingPage;
     siteSettings: SiteSetting;
+    portfolioLanding: PortfolioLanding;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -127,6 +128,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     landingPages: LandingPagesSelect<false> | LandingPagesSelect<true>;
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    portfolioLanding: PortfolioLandingSelect<false> | PortfolioLandingSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1413,6 +1415,101 @@ export interface SiteSetting {
   createdAt: string;
 }
 /**
+ * Portfolio landing page configuration with dynamic sections
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioLanding".
+ */
+export interface PortfolioLanding {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Internal title for this portfolio landing page
+   */
+  title: string;
+  /**
+   * Main headline displayed on the portfolio landing page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Supporting description text for the portfolio landing page
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Configure the three portfolio sections (Commercial, Residential, Design)
+   */
+  sections?:
+    | {
+        /**
+         * Internal identifier for this section (locked after creation)
+         */
+        sectionKey: 'commercial' | 'residential' | 'design';
+        /**
+         * Public-facing title for this portfolio section
+         */
+        title: string;
+        /**
+         * Optional supporting copy for this portfolio section
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Tag used to fetch images from Cloudinary for this section (e.g., commercial, residential)
+         */
+        cloudinaryTag: string;
+        /**
+         * Route path for this portfolio section (e.g., /portfolio/commercial)
+         */
+        linkTo: string;
+        id?: string | null;
+      }[]
+    | null;
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -1526,6 +1623,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'siteSettings';
         value: string | SiteSetting;
+      } | null)
+    | ({
+        relationTo: 'portfolioLanding';
+        value: string | PortfolioLanding;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -2365,6 +2466,29 @@ export interface SiteSettingsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioLanding_select".
+ */
+export interface PortfolioLandingSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  headline?: T;
+  description?: T;
+  sections?:
+    | T
+    | {
+        sectionKey?: T;
+        title?: T;
+        description?: T;
+        cloudinaryTag?: T;
+        linkTo?: T;
+        id?: T;
+      };
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
