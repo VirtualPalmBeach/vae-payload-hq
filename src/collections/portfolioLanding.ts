@@ -55,7 +55,7 @@ const PortfolioLanding: CollectionConfig = {
       minRows: 3,
       maxRows: 3,
       admin: {
-        description: 'Configure the three portfolio sections (Commercial, Residential, Design)',
+        description: 'Configure the three portfolio sections (Commercial, Residential, Renovation),',
         initCollapsed: false,
       },
       defaultValue: [
@@ -72,10 +72,10 @@ const PortfolioLanding: CollectionConfig = {
           linkTo: '/portfolio/residential',
         },
         {
-          sectionKey: 'design',
-          title: 'Design',
-          cloudinaryTag: 'design',
-          linkTo: '/portfolio/design',
+          sectionKey: 'renovation',
+          title: 'Renovation',
+          cloudinaryTag: 'renovation',
+          linkTo: '/portfolio/renovation',
         },
       ],
       fields: [
@@ -87,7 +87,7 @@ const PortfolioLanding: CollectionConfig = {
           options: [
             { label: 'Commercial', value: 'commercial' },
             { label: 'Residential', value: 'residential' },
-            { label: 'Design', value: 'design' },
+            { label: 'Renovation', value: 'renovation' },
           ],
           admin: {
             hidden: true,
@@ -156,7 +156,7 @@ const PortfolioLanding: CollectionConfig = {
         if (operation === 'update' && data.sections) {
           // Preserve the original sectionKey values
           data.sections = data.sections.map((section: any, index: number) => {
-            const keys = ['commercial', 'residential', 'design']
+            const keys = ['commercial', 'residential', 'renovation']
             return {
               ...section,
               sectionKey: keys[index] || section.sectionKey,

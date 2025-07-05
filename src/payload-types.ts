@@ -1464,14 +1464,14 @@ export interface PortfolioLanding {
     [k: string]: unknown;
   } | null;
   /**
-   * Configure the three portfolio sections (Commercial, Residential, Design)
+   * Configure the three portfolio sections (Commercial, Residential, Renovation),
    */
   sections?:
     | {
         /**
          * Internal identifier for this section (locked after creation)
          */
-        sectionKey: 'commercial' | 'residential' | 'design';
+        sectionKey: 'commercial' | 'residential' | 'renovation';
         /**
          * Public-facing title for this portfolio section
          */
