@@ -45,6 +45,7 @@ import Reals from './collections/reals'
 import Scenes from './collections/scenes'
 import Spotlights from './collections/spotlights'
 import PortfolioLanding from './collections/portfolioLanding'
+import PortfolioProjects from './collections/portfolioProjects'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -111,6 +112,7 @@ export default buildConfig({
     LandingPages,
     SiteSettings,
     PortfolioLanding,
+    PortfolioProjects,
   ],
   globals: [
     // SiteConfig, // remove or keep as needed — deprecated by SiteSettings?

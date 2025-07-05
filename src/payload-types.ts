@@ -95,6 +95,7 @@ export interface Config {
     landingPages: LandingPage;
     siteSettings: SiteSetting;
     portfolioLanding: PortfolioLanding;
+    portfolioProjects: PortfolioProject;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -129,6 +130,7 @@ export interface Config {
     landingPages: LandingPagesSelect<false> | LandingPagesSelect<true>;
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     portfolioLanding: PortfolioLandingSelect<false> | PortfolioLandingSelect<true>;
+    portfolioProjects: PortfolioProjectsSelect<false> | PortfolioProjectsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1510,6 +1512,133 @@ export interface PortfolioLanding {
   updatedAt: string;
 }
 /**
+ * Individual portfolio projects for category grids and detail pages
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioProjects".
+ */
+export interface PortfolioProject {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Title of the portfolio project
+   */
+  title: string;
+  /**
+   * Universal project identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)
+   */
+  projectCode: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
+   */
+  slug: string;
+  /**
+   * Project category for grid filtering
+   */
+  category: 'residential' | 'commercial' | 'renovation';
+  /**
+   * Brief summary displayed on category grid cards (max 200 chars)
+   */
+  shortDescription: string;
+  /**
+   * Detailed project description for the project detail page
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for the main project image shown in grids
+   */
+  heroImage: string;
+  /**
+   * Additional images for the project detail page gallery
+   */
+  projectImages?:
+    | {
+        /**
+         * Tag for gallery image
+         */
+        cloudinaryTag: string;
+        /**
+         * Optional caption for this image
+         */
+        caption?: string | null;
+        /**
+         * Preferred display aspect ratio
+         */
+        aspectRatio?: ('16:9' | '9:16' | '1:1' | '21:9' | '4:3') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Display prominently in category grids
+   */
+  featured?: boolean | null;
+  /**
+   * When the project was completed
+   */
+  completionDate?: string | null;
+  /**
+   * Optional: Client name for testimonials or attribution
+   */
+  clientName?: string | null;
+  /**
+   * Geographic location of the project
+   */
+  projectLocation?: string | null;
+  projectDetails?: {
+    /**
+     * Optional: Project budget range
+     */
+    budget?: ('under-50k' | '50k-100k' | '100k-250k' | '250k-500k' | 'over-500k') | null;
+    /**
+     * How long the project took
+     */
+    duration?: string | null;
+    /**
+     * Key features or achievements
+     */
+    highlights?:
+      | {
+          highlight: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Make this project visible on the website
+   */
+  published: boolean;
+  /**
+   * When to publish this project
+   */
+  publishDate?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -1627,6 +1756,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'portfolioLanding';
         value: string | PortfolioLanding;
+      } | null)
+    | ({
+        relationTo: 'portfolioProjects';
+        value: string | PortfolioProject;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -2487,6 +2620,54 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
         id?: T;
       };
   status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioProjects_select".
+ */
+export interface PortfolioProjectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  projectCode?: T;
+  slug?: T;
+  category?: T;
+  shortDescription?: T;
+  fullDescription?: T;
+  heroImage?: T;
+  projectImages?:
+    | T
+    | {
+        cloudinaryTag?: T;
+        caption?: T;
+        aspectRatio?: T;
+        id?: T;
+      };
+  featured?: T;
+  completionDate?: T;
+  clientName?: T;
+  projectLocation?: T;
+  projectDetails?:
+    | T
+    | {
+        budget?: T;
+        duration?: T;
+        highlights?:
+          | T
+          | {
+              highlight?: T;
+              id?: T;
+            };
+      };
+  published?: T;
+  publishDate?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
   createdAt?: T;
   updatedAt?: T;
 }
