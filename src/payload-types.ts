@@ -1795,9 +1795,91 @@ export interface Journey {
              * Message shown after successful form submission
              */
             successMessage?: string | null;
+            /**
+             * Optional: Formbricks form ID for integration
+             */
+            formId?: string | null;
+            /**
+             * How the form appears to users
+             */
+            triggerMode?: ('inline' | 'modal' | 'slide') | null;
+            /**
+             * Optional: Delay before showing form (for modal/slide modes)
+             */
+            triggerDelay?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'feedbackForm';
+          }
+        | {
+            heading?: string | null;
+            entries?:
+              | {
+                  date: string;
+                  title: string;
+                  description?: string | null;
+                  /**
+                   * Optional: Cloudinary tag for event image/video
+                   */
+                  mediaTag?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
+        | {
+            heading?: string | null;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  /**
+                   * Optional: Unit or qualifier
+                   */
+                  suffix?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            heading?: string | null;
+            questions?:
+              | {
+                  question: string;
+                  answer: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  /**
+                   * Optional: Group similar questions
+                   */
+                  category?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Show all answers expanded on page load
+             */
+            expandedByDefault?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
           }
       )[]
     | null;
@@ -1843,7 +1925,14 @@ export interface Journey {
      */
     zipCode?: string | null;
     /**
-     * Keywords for search and filtering
+     * Optional: GPS coordinates for mapping features
+     */
+    locationPoint?: {
+      latitude?: number | null;
+      longitude?: number | null;
+    };
+    /**
+     * Keywords for search and filtering (lowercase, hyphenated)
      */
     tags?:
       | {
@@ -1880,6 +1969,18 @@ export interface Journey {
     style?: ('primary' | 'secondary' | 'link') | null;
   };
   /**
+   * Link to related stories for cross-promotion
+   */
+  relatedJourneys?: (string | Journey)[] | null;
+  /**
+   * Link to portfolio projects featured in this story
+   */
+  relatedProjects?: (string | PortfolioProject)[] | null;
+  /**
+   * Optional: Group multi-part stories (e.g., "pool-renovation-series")
+   */
+  seriesKey?: string | null;
+  /**
    * Make this story visible on the website
    */
   published: boolean;
@@ -1905,6 +2006,32 @@ export interface Journey {
      */
     metaDescription?: string | null;
   };
+  /**
+   * Optional: Schema.org markup for enhanced search results
+   */
+  structuredData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Optional: Override default canonical URL
+   */
+  canonicalUrl?: string | null;
+  /**
+   * Track previous URLs for future redirect management
+   */
+  redirectHistory?:
+    | {
+        oldSlug: string;
+        redirectDate: string;
+        id?: string | null;
+      }[]
+    | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3034,6 +3161,56 @@ export interface JourneysSelect<T extends boolean = true> {
               description?: T;
               formType?: T;
               successMessage?: T;
+              formId?: T;
+              triggerMode?: T;
+              triggerDelay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        timeline?:
+          | T
+          | {
+              heading?: T;
+              entries?:
+                | T
+                | {
+                    date?: T;
+                    title?: T;
+                    description?: T;
+                    mediaTag?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              heading?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    suffix?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              heading?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    category?: T;
+                    id?: T;
+                  };
+              expandedByDefault?: T;
               id?: T;
               blockName?: T;
             };
@@ -3051,6 +3228,12 @@ export interface JourneysSelect<T extends boolean = true> {
         state?: T;
         cityName?: T;
         zipCode?: T;
+        locationPoint?:
+          | T
+          | {
+              latitude?: T;
+              longitude?: T;
+            };
         tags?:
           | T
           | {
@@ -3072,6 +3255,9 @@ export interface JourneysSelect<T extends boolean = true> {
         link?: T;
         style?: T;
       };
+  relatedJourneys?: T;
+  relatedProjects?: T;
+  seriesKey?: T;
   published?: T;
   scheduledPublishDate?: T;
   versionNumber?: T;
@@ -3081,6 +3267,15 @@ export interface JourneysSelect<T extends boolean = true> {
     | {
         metaTitle?: T;
         metaDescription?: T;
+      };
+  structuredData?: T;
+  canonicalUrl?: T;
+  redirectHistory?:
+    | T
+    | {
+        oldSlug?: T;
+        redirectDate?: T;
+        id?: T;
       };
   createdAt?: T;
   updatedAt?: T;

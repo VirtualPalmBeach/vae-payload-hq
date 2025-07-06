@@ -414,6 +414,201 @@ const Journeys: CollectionConfig = {
                 description: 'Message shown after successful form submission',
               },
             },
+            {
+              name: 'formId',
+              label: 'Formbricks Form ID',
+              type: 'text',
+              admin: {
+                description: 'Optional: Formbricks form ID for integration',
+                placeholder: 'e.g., clh1234567890abcdef',
+              },
+            },
+            {
+              name: 'triggerMode',
+              label: 'Form Trigger Mode',
+              type: 'select',
+              options: [
+                { label: 'Inline Display', value: 'inline' },
+                { label: 'Modal Popup', value: 'modal' },
+                { label: 'Slide-in Panel', value: 'slide' },
+              ],
+              defaultValue: 'inline',
+              admin: {
+                description: 'How the form appears to users',
+              },
+            },
+            {
+              name: 'triggerDelay',
+              label: 'Trigger Delay (seconds)',
+              type: 'number',
+              min: 0,
+              max: 60,
+              admin: {
+                description: 'Optional: Delay before showing form (for modal/slide modes)',
+              },
+            },
+          ],
+        },
+        
+        // Timeline Block - v3.0
+        {
+          slug: 'timeline',
+          labels: {
+            singular: 'Timeline',
+            plural: 'Timelines',
+          },
+          fields: [
+            {
+              name: 'heading',
+              label: 'Timeline Heading',
+              type: 'text',
+              defaultValue: 'Project Timeline',
+            },
+            {
+              name: 'entries',
+              label: 'Timeline Entries',
+              type: 'array',
+              minRows: 2,
+              fields: [
+                {
+                  name: 'date',
+                  label: 'Date',
+                  type: 'date',
+                  required: true,
+                  admin: {
+                    date: {
+                      pickerAppearance: 'dayOnly',
+                    },
+                  },
+                },
+                {
+                  name: 'title',
+                  label: 'Event Title',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'description',
+                  label: 'Event Description',
+                  type: 'textarea',
+                },
+                {
+                  name: 'mediaTag',
+                  label: 'Media Tag',
+                  type: 'text',
+                  admin: {
+                    description: 'Optional: Cloudinary tag for event image/video',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        
+        // Stats Block - v3.0
+        {
+          slug: 'stats',
+          labels: {
+            singular: 'Statistics',
+            plural: 'Statistics Blocks',
+          },
+          fields: [
+            {
+              name: 'heading',
+              label: 'Stats Heading',
+              type: 'text',
+              defaultValue: 'Project Highlights',
+            },
+            {
+              name: 'stats',
+              label: 'Statistics',
+              type: 'array',
+              minRows: 2,
+              maxRows: 6,
+              fields: [
+                {
+                  name: 'value',
+                  label: 'Statistic Value',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    placeholder: 'e.g., 25,000 gal',
+                  },
+                },
+                {
+                  name: 'label',
+                  label: 'Statistic Label',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    placeholder: 'e.g., Pool Capacity',
+                  },
+                },
+                {
+                  name: 'suffix',
+                  label: 'Value Suffix',
+                  type: 'text',
+                  admin: {
+                    description: 'Optional: Unit or qualifier',
+                    placeholder: 'e.g., per year',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        
+        // FAQ Block - v3.0
+        {
+          slug: 'faq',
+          labels: {
+            singular: 'FAQ Section',
+            plural: 'FAQ Sections',
+          },
+          fields: [
+            {
+              name: 'heading',
+              label: 'FAQ Heading',
+              type: 'text',
+              defaultValue: 'Frequently Asked Questions',
+            },
+            {
+              name: 'questions',
+              label: 'Questions & Answers',
+              type: 'array',
+              minRows: 1,
+              fields: [
+                {
+                  name: 'question',
+                  label: 'Question',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'answer',
+                  label: 'Answer',
+                  type: 'richText',
+                  required: true,
+                },
+                {
+                  name: 'category',
+                  label: 'FAQ Category',
+                  type: 'text',
+                  admin: {
+                    description: 'Optional: Group similar questions',
+                  },
+                },
+              ],
+            },
+            {
+              name: 'expandedByDefault',
+              label: 'Expanded by Default',
+              type: 'checkbox',
+              defaultValue: false,
+              admin: {
+                description: 'Show all answers expanded on page load',
+              },
+            },
           ],
         },
       ],
@@ -545,6 +740,36 @@ const Journeys: CollectionConfig = {
           },
         },
         {
+          name: 'locationPoint',
+          label: 'Location Coordinates',
+          type: 'group',
+          admin: {
+            description: 'Optional: GPS coordinates for mapping features',
+          },
+          fields: [
+            {
+              name: 'latitude',
+              label: 'Latitude',
+              type: 'number',
+              min: -90,
+              max: 90,
+              admin: {
+                placeholder: 'e.g., 32.7767',
+              },
+            },
+            {
+              name: 'longitude',
+              label: 'Longitude',
+              type: 'number',
+              min: -180,
+              max: 180,
+              admin: {
+                placeholder: 'e.g., -96.7970',
+              },
+            },
+          ],
+        },
+        {
           name: 'tags',
           label: 'Tags',
           type: 'array',
@@ -553,10 +778,19 @@ const Journeys: CollectionConfig = {
               name: 'tag',
               type: 'text',
               required: true,
+              validate: (value: string | null | undefined) => {
+                if (!value) return true
+                // Validate tag pattern: lowercase, alphanumeric with hyphens
+                const pattern = /^[a-z0-9]+(-[a-z0-9]+)*$/
+                if (!pattern.test(value)) {
+                  return 'Tags must be lowercase, alphanumeric with hyphens (e.g., pool-renovation)'
+                }
+                return true
+              },
             },
           ],
           admin: {
-            description: 'Keywords for search and filtering',
+            description: 'Keywords for search and filtering (lowercase, hyphenated)',
           },
         },
       ],
@@ -627,6 +861,39 @@ const Journeys: CollectionConfig = {
           defaultValue: 'primary',
         },
       ],
+    },
+    
+    // Structured Relationships - v3.0
+    {
+      name: 'relatedJourneys',
+      label: 'Related Stories',
+      type: 'relationship',
+      relationTo: 'journeys',
+      hasMany: true,
+      maxRows: 6,
+      admin: {
+        description: 'Link to related stories for cross-promotion',
+      },
+    },
+    {
+      name: 'relatedProjects',
+      label: 'Related Projects',
+      type: 'relationship',
+      relationTo: 'portfolioProjects',
+      hasMany: true,
+      maxRows: 4,
+      admin: {
+        description: 'Link to portfolio projects featured in this story',
+      },
+    },
+    {
+      name: 'seriesKey',
+      label: 'Series Key',
+      type: 'text',
+      admin: {
+        description: 'Optional: Group multi-part stories (e.g., "pool-renovation-series")',
+        placeholder: 'renovation-series-2024',
+      },
     },
     
     // Publishing Controls
@@ -700,6 +967,49 @@ const Journeys: CollectionConfig = {
           admin: {
             description: 'Override the default meta description',
           },
+        },
+      ],
+    },
+    
+    // Advanced SEO/AEO - v3.0
+    {
+      name: 'structuredData',
+      label: 'Structured Data (JSON-LD)',
+      type: 'json',
+      admin: {
+        description: 'Optional: Schema.org markup for enhanced search results',
+        placeholder: '{\n  "@type": "Article",\n  "headline": "...",\n  "author": {...}\n}',
+      },
+    },
+    {
+      name: 'canonicalUrl',
+      label: 'Canonical URL',
+      type: 'text',
+      admin: {
+        description: 'Optional: Override default canonical URL',
+        placeholder: 'https://selah.pro/journeys/custom-url',
+      },
+    },
+    {
+      name: 'redirectHistory',
+      label: 'Redirect History',
+      type: 'array',
+      admin: {
+        description: 'Track previous URLs for future redirect management',
+      },
+      fields: [
+        {
+          name: 'oldSlug',
+          label: 'Old Slug',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'redirectDate',
+          label: 'Redirect Date',
+          type: 'date',
+          required: true,
+          defaultValue: () => new Date().toISOString(),
         },
       ],
     },
