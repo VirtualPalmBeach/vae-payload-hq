@@ -36,9 +36,36 @@ const Journeys: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
+      validate: async (value: string | null | undefined, { payload, id, data, operation, originalDoc }: any) => {
+        if (!value) return 'Slug is required'
+        
+        // Prevent slug changes on updates (editorial protection)
+        if (operation === 'update' && originalDoc?.slug && originalDoc.slug !== value) {
+          return 'Slug cannot be changed after creation to prevent broken URLs. Create a new journey instead.'
+        }
+        
+        // Check for uniqueness within siteKey scope
+        const existingDocs = await payload.find({
+          collection: 'journeys',
+          where: {
+            and: [
+              { slug: { equals: value } },
+              { siteKey: { equals: data?.siteKey || 'selahPro' } },
+              { id: { not_equals: id } }, // Exclude current document
+            ],
+          },
+        })
+        
+        if (existingDocs.docs.length > 0) {
+          return `The slug "${value}" is already in use. Please choose a different URL identifier.`
+        }
+        
+        return true
+      },
       admin: {
         position: 'sidebar',
-        description: 'URL-friendly identifier (auto-generated from title)',
+        description: 'URL-friendly identifier (auto-generated from title). Cannot be changed after creation.',
+        // Note: Slug protection is enforced via validation to prevent changes after creation
       },
       hooks: {
         beforeValidate: [
@@ -337,6 +364,58 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
+        
+        // Feedback Form Block - Scaffolding for future Formbricks integration
+        {
+          slug: 'feedbackForm',
+          labels: {
+            singular: 'Feedback Form',
+            plural: 'Feedback Forms',
+          },
+          fields: [
+            {
+              name: 'heading',
+              label: 'Form Heading',
+              type: 'text',
+              defaultValue: 'Share Your Thoughts',
+              admin: {
+                description: 'Heading displayed above the feedback form',
+              },
+            },
+            {
+              name: 'description',
+              label: 'Form Description',
+              type: 'textarea',
+              admin: {
+                description: 'Optional description or instructions for the form',
+              },
+            },
+            {
+              name: 'formType',
+              label: 'Form Type',
+              type: 'select',
+              options: [
+                { label: 'General Feedback', value: 'general' },
+                { label: 'Project Inquiry', value: 'inquiry' },
+                { label: 'Testimonial', value: 'testimonial' },
+                { label: 'Survey', value: 'survey' },
+              ],
+              defaultValue: 'general',
+              admin: {
+                description: 'Type of feedback form (for future Formbricks configuration)',
+              },
+            },
+            {
+              name: 'successMessage',
+              label: 'Success Message',
+              type: 'text',
+              defaultValue: 'Thank you for your feedback!',
+              admin: {
+                description: 'Message shown after successful form submission',
+              },
+            },
+          ],
+        },
       ],
     },
     
@@ -346,6 +425,7 @@ const Journeys: CollectionConfig = {
       label: 'Category',
       type: 'select',
       required: true,
+      index: true,
       options: [
         { label: 'Client Story', value: 'client-story' },
         { label: 'Spotlight', value: 'spotlight' },
@@ -374,6 +454,7 @@ const Journeys: CollectionConfig = {
       label: 'Featured Story',
       type: 'checkbox',
       defaultValue: false,
+      index: true,
       admin: {
         position: 'sidebar',
         description: 'Display prominently in story grids',
@@ -385,9 +466,15 @@ const Journeys: CollectionConfig = {
       name: 'heroImage',
       label: 'Hero Image',
       type: 'text',
-      required: true,
+      validate: (value: string | null | undefined, { data }: any) => {
+        // Required only when published is true
+        if (data?.published === true && !value) {
+          return 'Hero image is required for published stories'
+        }
+        return true
+      },
       admin: {
-        description: 'Cloudinary tag for the main story image',
+        description: 'Cloudinary tag for the main story image (required for published stories)',
         placeholder: 'e.g., journey-client-pool-transformation',
       },
     },
@@ -396,6 +483,7 @@ const Journeys: CollectionConfig = {
       label: 'Published Date',
       type: 'date',
       required: true,
+      index: true,
       defaultValue: () => new Date().toISOString(),
       admin: {
         position: 'sidebar',

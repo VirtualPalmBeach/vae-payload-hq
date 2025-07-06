@@ -1661,7 +1661,7 @@ export interface Journey {
    */
   title: string;
   /**
-   * URL-friendly identifier (auto-generated from title)
+   * URL-friendly identifier (auto-generated from title). Cannot be changed after creation.
    */
   slug: string;
   /**
@@ -1778,6 +1778,27 @@ export interface Journey {
             blockName?: string | null;
             blockType: 'divider';
           }
+        | {
+            /**
+             * Heading displayed above the feedback form
+             */
+            heading?: string | null;
+            /**
+             * Optional description or instructions for the form
+             */
+            description?: string | null;
+            /**
+             * Type of feedback form (for future Formbricks configuration)
+             */
+            formType?: ('general' | 'inquiry' | 'testimonial' | 'survey') | null;
+            /**
+             * Message shown after successful form submission
+             */
+            successMessage?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'feedbackForm';
+          }
       )[]
     | null;
   /**
@@ -1793,9 +1814,9 @@ export interface Journey {
    */
   featured?: boolean | null;
   /**
-   * Cloudinary tag for the main story image
+   * Cloudinary tag for the main story image (required for published stories)
    */
-  heroImage: string;
+  heroImage?: string | null;
   /**
    * Story publication date
    */
@@ -3003,6 +3024,16 @@ export interface JourneysSelect<T extends boolean = true> {
           | {
               style?: T;
               size?: T;
+              id?: T;
+              blockName?: T;
+            };
+        feedbackForm?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              formType?: T;
+              successMessage?: T;
               id?: T;
               blockName?: T;
             };
