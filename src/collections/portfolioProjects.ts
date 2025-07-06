@@ -166,18 +166,17 @@ const PortfolioProjects: CollectionConfig = {
       ],
     },
     
-    // TODO: Re-add linkedJourney relationship to 'journeys' once journeys collection is implemented
-    // Field removed temporarily due to Payload CLI schema validation requirements
-    // {
-    //   name: 'linkedJourney',
-    //   label: 'Linked Journey',
-    //   type: 'relationship',
-    //   relationTo: ['journeys'],
-    //   hasMany: false,
-    //   admin: {
-    //     description: 'Optional: Link to a detailed project journey or case study',
-    //   },
-    // },
+    // Journey Integration (Optional)
+    {
+      name: 'linkedJourney',
+      label: 'Linked Journey',
+      type: 'relationship',
+      relationTo: ['journeys'],
+      hasMany: false,
+      admin: {
+        description: 'Optional: Link to a detailed project journey or case study',
+      },
+    },
     
     // Metadata & Organization
     {

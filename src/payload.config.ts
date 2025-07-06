@@ -46,6 +46,7 @@ import Scenes from './collections/scenes'
 import Spotlights from './collections/spotlights'
 import PortfolioLanding from './collections/portfolioLanding'
 import PortfolioProjects from './collections/portfolioProjects'
+import Journeys from './collections/journeys'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -113,6 +114,7 @@ export default buildConfig({
     SiteSettings,
     PortfolioLanding,
     PortfolioProjects,
+    Journeys,
   ],
   globals: [
     // SiteConfig, // remove or keep as needed — deprecated by SiteSettings?

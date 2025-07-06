@@ -96,6 +96,7 @@ export interface Config {
     siteSettings: SiteSetting;
     portfolioLanding: PortfolioLanding;
     portfolioProjects: PortfolioProject;
+    journeys: Journey;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -131,6 +132,7 @@ export interface Config {
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     portfolioLanding: PortfolioLandingSelect<false> | PortfolioLandingSelect<true>;
     portfolioProjects: PortfolioProjectsSelect<false> | PortfolioProjectsSelect<true>;
+    journeys: JourneysSelect<false> | JourneysSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1583,6 +1585,13 @@ export interface PortfolioProject {
       }[]
     | null;
   /**
+   * Optional: Link to a detailed project journey or case study
+   */
+  linkedJourney?: {
+    relationTo: 'journeys';
+    value: string | Journey;
+  } | null;
+  /**
    * Display prominently in category grids
    */
   featured?: boolean | null;
@@ -1625,6 +1634,132 @@ export interface PortfolioProject {
    * When to publish this project
    */
   publishDate?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Story-based content for client journeys, spotlights, and insights
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "journeys".
+ */
+export interface Journey {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Title of the journey or story
+   */
+  title: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
+   */
+  slug: string;
+  /**
+   * Brief summary for card displays (max 200 chars)
+   */
+  shortDescription: string;
+  /**
+   * Complete story content for detail pages
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Story category for filtering and organization
+   */
+  category: 'client-story' | 'spotlight' | 'insight';
+  /**
+   * Optional: Link to portfolio project (e.g., ROD2301)
+   */
+  projectCode?: string | null;
+  /**
+   * Display prominently in story grids
+   */
+  featured?: boolean | null;
+  /**
+   * Cloudinary tag for the main story image
+   */
+  heroImage: string;
+  /**
+   * Story publication date
+   */
+  publishedDate: string;
+  storyDetails?: {
+    /**
+     * Estimated reading time
+     */
+    readingTime?: string | null;
+    /**
+     * Story author or contributor
+     */
+    author?: string | null;
+    /**
+     * Geographic location if relevant
+     */
+    location?: string | null;
+    /**
+     * Keywords for search and filtering
+     */
+    tags?:
+      | {
+          tag: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Additional images for the story
+   */
+  galleryImages?:
+    | {
+        /**
+         * Tag for gallery image
+         */
+        cloudinaryTag: string;
+        /**
+         * Optional caption for this image
+         */
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  callToAction?: {
+    /**
+     * Button or link text
+     */
+    text?: string | null;
+    /**
+     * URL for the call to action
+     */
+    link?: string | null;
+    style?: ('primary' | 'secondary' | 'link') | null;
+  };
+  /**
+   * Make this story visible on the website
+   */
+  published: boolean;
   seo?: {
     /**
      * Override the default meta title
@@ -1760,6 +1895,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'portfolioProjects';
         value: string | PortfolioProject;
+      } | null)
+    | ({
+        relationTo: 'journeys';
+        value: string | Journey;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -2644,6 +2783,7 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
         aspectRatio?: T;
         id?: T;
       };
+  linkedJourney?: T;
   featured?: T;
   completionDate?: T;
   clientName?: T;
@@ -2662,6 +2802,58 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
       };
   published?: T;
   publishDate?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "journeys_select".
+ */
+export interface JourneysSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  shortDescription?: T;
+  fullDescription?: T;
+  category?: T;
+  projectCode?: T;
+  featured?: T;
+  heroImage?: T;
+  publishedDate?: T;
+  storyDetails?:
+    | T
+    | {
+        readingTime?: T;
+        author?: T;
+        location?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+      };
+  galleryImages?:
+    | T
+    | {
+        cloudinaryTag?: T;
+        caption?: T;
+        id?: T;
+      };
+  callToAction?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        style?: T;
+      };
+  published?: T;
   seo?:
     | T
     | {
