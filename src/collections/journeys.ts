@@ -117,7 +117,7 @@ const Journeys: CollectionConfig = {
         {
           slug: 'richText',
           labels: {
-            singular: 'Rich Text',
+            singular: 'Rich Text - Content & Formatting',
             plural: 'Rich Text Blocks',
           },
           fields: [
@@ -216,7 +216,7 @@ const Journeys: CollectionConfig = {
         {
           slug: 'video',
           labels: {
-            singular: 'Video',
+            singular: 'Video - Cloudinary Hosted',
             plural: 'Videos',
           },
           fields: [
@@ -284,7 +284,7 @@ const Journeys: CollectionConfig = {
         {
           slug: 'callToActionBlock',
           labels: {
-            singular: 'Call to Action',
+            singular: 'Call to Action - Conversion Driver',
             plural: 'Calls to Action',
           },
           fields: [
@@ -373,7 +373,7 @@ const Journeys: CollectionConfig = {
         {
           slug: 'feedbackForm',
           labels: {
-            singular: 'Feedback Form',
+            singular: 'Feedback Form - User Engagement',
             plural: 'Feedback Forms',
           },
           fields: [
@@ -455,14 +455,12 @@ const Journeys: CollectionConfig = {
         },
         
         // Timeline Block - v3.0
+        // Display project milestones in chronological order. Perfect for renovation stories and multi-phase projects.
         {
           slug: 'timeline',
           labels: {
-            singular: 'Timeline',
+            singular: 'Timeline - Project Milestones',
             plural: 'Timelines',
-          },
-          admin: {
-            description: 'Display project milestones in chronological order. Perfect for renovation stories and multi-phase projects.',
           },
           fields: [
             {
@@ -513,10 +511,11 @@ const Journeys: CollectionConfig = {
         },
         
         // Stats Block - v3.0
+        // Display numeric highlights with labels and optional suffixes
         {
           slug: 'stats',
           labels: {
-            singular: 'Statistics',
+            singular: 'Statistics - Numeric Highlights',
             plural: 'Statistics Blocks',
           },
           fields: [
@@ -566,10 +565,11 @@ const Journeys: CollectionConfig = {
         },
         
         // FAQ Block - v3.0
+        // Question and answer pairs with optional categorization
         {
           slug: 'faq',
           labels: {
-            singular: 'FAQ Section',
+            singular: 'FAQ - Questions & Answers',
             plural: 'FAQ Sections',
           },
           fields: [
