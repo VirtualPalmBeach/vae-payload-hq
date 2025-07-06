@@ -1669,7 +1669,7 @@ export interface Journey {
    */
   shortDescription: string;
   /**
-   * Complete story content for detail pages
+   * Opening narrative or introduction for the story
    */
   fullDescription?: {
     root: {
@@ -1687,9 +1687,103 @@ export interface Journey {
     [k: string]: unknown;
   } | null;
   /**
+   * Build your story with flexible content blocks
+   */
+  contentBlocks?:
+    | (
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | {
+            /**
+             * Cloudinary tag for the image
+             */
+            cloudinaryTag: string;
+            /**
+             * Optional image caption
+             */
+            caption?: string | null;
+            aspectRatio?: ('16:9' | '21:9' | '1:1' | '4:3') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'fullWidthImage';
+          }
+        | {
+            columns?: ('2' | '3' | '4') | null;
+            images?:
+              | {
+                  cloudinaryTag: string;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGrid';
+          }
+        | {
+            /**
+             * Cloudinary public ID or tag for the video
+             */
+            cloudinaryVideoTag: string;
+            /**
+             * Optional caption below the video
+             */
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            text: string;
+            author: string;
+            authorTitle?: string | null;
+            style?: ('centered' | 'left' | 'pull') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quote';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            buttonText: string;
+            buttonLink: string;
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            backgroundStyle?: ('gray' | 'blue' | 'white') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBlock';
+          }
+        | {
+            style?: ('line' | 'dots' | 'space') | null;
+            size?: ('small' | 'medium' | 'large') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'divider';
+          }
+      )[]
+    | null;
+  /**
    * Story category for filtering and organization
    */
-  category: 'client-story' | 'spotlight' | 'insight';
+  category: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
   /**
    * Optional: Link to portfolio project (e.g., ROD2301)
    */
@@ -1716,9 +1810,17 @@ export interface Journey {
      */
     author?: string | null;
     /**
-     * Geographic location if relevant
+     * State abbreviation
      */
-    location?: string | null;
+    state?: string | null;
+    /**
+     * City where the project is located
+     */
+    cityName?: string | null;
+    /**
+     * Zip code for location
+     */
+    zipCode?: string | null;
     /**
      * Keywords for search and filtering
      */
@@ -1760,6 +1862,18 @@ export interface Journey {
    * Make this story visible on the website
    */
   published: boolean;
+  /**
+   * Optional: Schedule when this story should be published
+   */
+  scheduledPublishDate?: string | null;
+  /**
+   * Version tracking (e.g., 1.0, 1.1, 2.0)
+   */
+  versionNumber?: string | null;
+  /**
+   * Notes about changes in this version
+   */
+  revisionNotes?: string | null;
   seo?: {
     /**
      * Override the default meta title
@@ -2821,6 +2935,78 @@ export interface JourneysSelect<T extends boolean = true> {
   slug?: T;
   shortDescription?: T;
   fullDescription?: T;
+  contentBlocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        fullWidthImage?:
+          | T
+          | {
+              cloudinaryTag?: T;
+              caption?: T;
+              aspectRatio?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageGrid?:
+          | T
+          | {
+              columns?: T;
+              images?:
+                | T
+                | {
+                    cloudinaryTag?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              cloudinaryVideoTag?: T;
+              caption?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quote?:
+          | T
+          | {
+              text?: T;
+              author?: T;
+              authorTitle?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        callToActionBlock?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              backgroundStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        divider?:
+          | T
+          | {
+              style?: T;
+              size?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   category?: T;
   projectCode?: T;
   featured?: T;
@@ -2831,7 +3017,9 @@ export interface JourneysSelect<T extends boolean = true> {
     | {
         readingTime?: T;
         author?: T;
-        location?: T;
+        state?: T;
+        cityName?: T;
+        zipCode?: T;
         tags?:
           | T
           | {
@@ -2854,6 +3042,9 @@ export interface JourneysSelect<T extends boolean = true> {
         style?: T;
       };
   published?: T;
+  scheduledPublishDate?: T;
+  versionNumber?: T;
+  revisionNotes?: T;
   seo?:
     | T
     | {
