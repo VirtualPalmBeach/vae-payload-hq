@@ -1648,7 +1648,7 @@ export interface PortfolioProject {
   updatedAt: string;
 }
 /**
- * Story-based content for client journeys, spotlights, and insights
+ * Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "journeys".
@@ -1657,7 +1657,7 @@ export interface Journey {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Title of the journey or story
+   * The main headline for your story. Keep it compelling and under 60 characters for best display.
    */
   title: string;
   /**
@@ -1665,11 +1665,11 @@ export interface Journey {
    */
   slug: string;
   /**
-   * Brief summary for card displays (max 200 chars)
+   * Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).
    */
   shortDescription: string;
   /**
-   * Opening narrative or introduction for the story
+   * Opening narrative that sets the scene. This appears before content blocks and should introduce the story's main themes.
    */
   fullDescription?: {
     root: {
@@ -1687,7 +1687,7 @@ export interface Journey {
     [k: string]: unknown;
   } | null;
   /**
-   * Build your story with flexible content blocks
+   * Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.
    */
   contentBlocks?:
     | (
@@ -1796,7 +1796,7 @@ export interface Journey {
              */
             successMessage?: string | null;
             /**
-             * Optional: Formbricks form ID for integration
+             * Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.
              */
             formId?: string | null;
             /**
@@ -1896,7 +1896,7 @@ export interface Journey {
    */
   featured?: boolean | null;
   /**
-   * Cloudinary tag for the main story image (required for published stories)
+   * Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.
    */
   heroImage?: string | null;
   /**
@@ -1925,10 +1925,16 @@ export interface Journey {
      */
     zipCode?: string | null;
     /**
-     * Optional: GPS coordinates for mapping features
+     * Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)
      */
     locationPoint?: {
+      /**
+       * North/South position (-90 to 90)
+       */
       latitude?: number | null;
+      /**
+       * East/West position (-180 to 180)
+       */
       longitude?: number | null;
     };
     /**
@@ -1969,7 +1975,7 @@ export interface Journey {
     style?: ('primary' | 'secondary' | 'link') | null;
   };
   /**
-   * Link to related stories for cross-promotion
+   * Link to related stories for cross-promotion. These appear at the end of the story to keep readers engaged.
    */
   relatedJourneys?: (string | Journey)[] | null;
   /**
@@ -1977,7 +1983,7 @@ export interface Journey {
    */
   relatedProjects?: (string | PortfolioProject)[] | null;
   /**
-   * Optional: Group multi-part stories (e.g., "pool-renovation-series")
+   * Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.
    */
   seriesKey?: string | null;
   /**
@@ -1989,11 +1995,11 @@ export interface Journey {
    */
   scheduledPublishDate?: string | null;
   /**
-   * Version tracking (e.g., 1.0, 1.1, 2.0)
+   * Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).
    */
   versionNumber?: string | null;
   /**
-   * Notes about changes in this version
+   * Document what changed in this version. Helpful for team collaboration and content audits.
    */
   revisionNotes?: string | null;
   seo?: {
@@ -2007,7 +2013,7 @@ export interface Journey {
     metaDescription?: string | null;
   };
   /**
-   * Optional: Schema.org markup for enhanced search results. Example: {"@type": "Article", "headline": "...", "author": {...}}
+   * Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.
    */
   structuredData?:
     | {
@@ -2019,7 +2025,7 @@ export interface Journey {
     | boolean
     | null;
   /**
-   * Optional: Override default canonical URL
+   * Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.
    */
   canonicalUrl?: string | null;
   /**

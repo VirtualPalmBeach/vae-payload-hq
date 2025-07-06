@@ -6,8 +6,10 @@ const Journeys: CollectionConfig = {
   slug: 'journeys',
   admin: {
     useAsTitle: 'title',
-    description: 'Story-based content for client journeys, spotlights, and insights',
-    defaultColumns: ['title', 'category', 'featured', 'siteKey', 'published', 'updatedAt'],
+    description: 'Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.',
+    defaultColumns: ['title', 'category', 'published', 'featured', 'heroImage', 'scheduledPublishDate', 'updatedAt'],
+    listSearchableFields: ['title', 'shortDescription', 'projectCode', 'seriesKey'],
+    group: 'Content',
   },
   access: {
     read: () => true,
@@ -19,6 +21,7 @@ const Journeys: CollectionConfig = {
     // Site Configuration
     commonSiteKeyField,
     
+    // === HERO & VISUAL SECTION ===
     // Core Story Fields
     {
       name: 'title',
@@ -26,7 +29,7 @@ const Journeys: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'Title of the journey or story',
+        description: 'The main headline for your story. Keep it compelling and under 60 characters for best display.',
       },
     },
     {
@@ -88,7 +91,7 @@ const Journeys: CollectionConfig = {
       required: true,
       maxLength: 200,
       admin: {
-        description: 'Brief summary for card displays (max 200 chars)',
+        description: 'Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).',
       },
     },
     {
@@ -96,17 +99,18 @@ const Journeys: CollectionConfig = {
       label: 'Story Introduction',
       type: 'richText',
       admin: {
-        description: 'Opening narrative or introduction for the story',
+        description: 'Opening narrative that sets the scene. This appears before content blocks and should introduce the story\'s main themes.',
       },
     },
     
+    // === CONTENT & BLOCKS SECTION ===
     // Content Blocks - Self-contained flexible content
     {
       name: 'contentBlocks',
       label: 'Content Blocks',
       type: 'blocks',
       admin: {
-        description: 'Build your story with flexible content blocks',
+        description: 'Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.',
       },
       blocks: [
         // Rich Text Block
@@ -419,7 +423,7 @@ const Journeys: CollectionConfig = {
               label: 'Formbricks Form ID',
               type: 'text',
               admin: {
-                description: 'Optional: Formbricks form ID for integration',
+                description: 'Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.',
                 placeholder: 'e.g., clh1234567890abcdef',
               },
             },
@@ -456,6 +460,9 @@ const Journeys: CollectionConfig = {
           labels: {
             singular: 'Timeline',
             plural: 'Timelines',
+          },
+          admin: {
+            description: 'Display project milestones in chronological order. Perfect for renovation stories and multi-phase projects.',
           },
           fields: [
             {
@@ -614,6 +621,7 @@ const Journeys: CollectionConfig = {
       ],
     },
     
+    // === METADATA & ORGANIZATION SECTION ===
     // Categorization
     {
       name: 'category',
@@ -669,7 +677,7 @@ const Journeys: CollectionConfig = {
         return true
       },
       admin: {
-        description: 'Cloudinary tag for the main story image (required for published stories)',
+        description: 'Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.',
         placeholder: 'e.g., journey-client-pool-transformation',
       },
     },
@@ -744,7 +752,7 @@ const Journeys: CollectionConfig = {
           label: 'Location Coordinates',
           type: 'group',
           admin: {
-            description: 'Optional: GPS coordinates for mapping features',
+            description: 'Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)',
           },
           fields: [
             {
@@ -755,6 +763,7 @@ const Journeys: CollectionConfig = {
               max: 90,
               admin: {
                 placeholder: 'e.g., 32.7767',
+                description: 'North/South position (-90 to 90)',
               },
             },
             {
@@ -765,6 +774,7 @@ const Journeys: CollectionConfig = {
               max: 180,
               admin: {
                 placeholder: 'e.g., -96.7970',
+                description: 'East/West position (-180 to 180)',
               },
             },
           ],
@@ -863,6 +873,7 @@ const Journeys: CollectionConfig = {
       ],
     },
     
+    // === RELATIONSHIPS SECTION ===
     // Structured Relationships - v3.0
     {
       name: 'relatedJourneys',
@@ -872,7 +883,7 @@ const Journeys: CollectionConfig = {
       hasMany: true,
       maxRows: 6,
       admin: {
-        description: 'Link to related stories for cross-promotion',
+        description: 'Link to related stories for cross-promotion. These appear at the end of the story to keep readers engaged.',
       },
     },
     {
@@ -891,11 +902,12 @@ const Journeys: CollectionConfig = {
       label: 'Series Key',
       type: 'text',
       admin: {
-        description: 'Optional: Group multi-part stories (e.g., "pool-renovation-series")',
+        description: 'Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.',
         placeholder: 'renovation-series-2024',
       },
     },
     
+    // === PUBLISHING & SEO SECTION ===
     // Publishing Controls
     {
       name: 'published',
@@ -928,7 +940,7 @@ const Journeys: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
-        description: 'Version tracking (e.g., 1.0, 1.1, 2.0)',
+        description: 'Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).',
         placeholder: '1.0',
       },
     },
@@ -938,7 +950,7 @@ const Journeys: CollectionConfig = {
       type: 'textarea',
       admin: {
         position: 'sidebar',
-        description: 'Notes about changes in this version',
+        description: 'Document what changed in this version. Helpful for team collaboration and content audits.',
         placeholder: 'Initial publish, Updated images, etc.',
       },
     },
@@ -977,7 +989,7 @@ const Journeys: CollectionConfig = {
       label: 'Structured Data (JSON-LD)',
       type: 'json',
       admin: {
-        description: 'Optional: Schema.org markup for enhanced search results. Example: {"@type": "Article", "headline": "...", "author": {...}}',
+        description: 'Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.',
       },
     },
     {
@@ -985,7 +997,7 @@ const Journeys: CollectionConfig = {
       label: 'Canonical URL',
       type: 'text',
       admin: {
-        description: 'Optional: Override default canonical URL',
+        description: 'Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.',
         placeholder: 'https://selah.pro/journeys/custom-url',
       },
     },
