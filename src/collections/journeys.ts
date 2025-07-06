@@ -977,8 +977,7 @@ const Journeys: CollectionConfig = {
       label: 'Structured Data (JSON-LD)',
       type: 'json',
       admin: {
-        description: 'Optional: Schema.org markup for enhanced search results',
-        placeholder: '{\n  "@type": "Article",\n  "headline": "...",\n  "author": {...}\n}',
+        description: 'Optional: Schema.org markup for enhanced search results. Example: {"@type": "Article", "headline": "...", "author": {...}}',
       },
     },
     {

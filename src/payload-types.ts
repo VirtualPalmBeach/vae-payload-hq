@@ -2007,7 +2007,7 @@ export interface Journey {
     metaDescription?: string | null;
   };
   /**
-   * Optional: Schema.org markup for enhanced search results
+   * Optional: Schema.org markup for enhanced search results. Example: {"@type": "Article", "headline": "...", "author": {...}}
    */
   structuredData?:
     | {
