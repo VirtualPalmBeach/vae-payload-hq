@@ -1975,14 +1975,6 @@ export interface Journey {
     style?: ('primary' | 'secondary' | 'link') | null;
   };
   /**
-   * Link to related stories for cross-promotion. These appear at the end of the story to keep readers engaged.
-   */
-  relatedJourneys?: (string | Journey)[] | null;
-  /**
-   * Link to portfolio projects featured in this story
-   */
-  relatedProjects?: (string | PortfolioProject)[] | null;
-  /**
    * Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.
    */
   seriesKey?: string | null;
@@ -3261,8 +3253,6 @@ export interface JourneysSelect<T extends boolean = true> {
         link?: T;
         style?: T;
       };
-  relatedJourneys?: T;
-  relatedProjects?: T;
   seriesKey?: T;
   published?: T;
   scheduledPublishDate?: T;

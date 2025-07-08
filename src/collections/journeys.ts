@@ -864,30 +864,8 @@ const Journeys: CollectionConfig = {
       ],
     },
     
-    // === RELATIONSHIPS SECTION ===
-    // Structured Relationships - v3.0
-    {
-      name: 'relatedJourneys',
-      label: 'Related Stories',
-      type: 'relationship',
-      relationTo: 'journeys',
-      hasMany: true,
-      maxRows: 6,
-      admin: {
-        description: 'Link to related stories for cross-promotion. These appear at the end of the story to keep readers engaged.',
-      },
-    },
-    {
-      name: 'relatedProjects',
-      label: 'Related Projects',
-      type: 'relationship',
-      relationTo: 'portfolioProjects',
-      hasMany: true,
-      maxRows: 4,
-      admin: {
-        description: 'Link to portfolio projects featured in this story',
-      },
-    },
+    // === ORGANIZATION SECTION ===
+    // Series Management
     {
       name: 'seriesKey',
       label: 'Series Key',
