@@ -1,4 +1,4 @@
-import { CollectionConfig, TextField, ValidateOptions } from 'payload'
+import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 
@@ -38,41 +38,22 @@ const Journeys: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
-      index: true,
-      validate: async (value: string | null | undefined, options: ValidateOptions<Record<string, unknown>, Record<string, unknown>, TextField, string>) => {
-        if (!value) return 'Slug is required'
-        
-        const { req, id, data, operation } = options
-        const originalDoc = options.req?.payload?.findByID ? 
-          await options.req.payload.findByID({ collection: 'journeys', id: id as string }) : 
-          null
-        
-        // Prevent slug changes on updates (editorial protection)
-        if (operation === 'update' && originalDoc?.slug && originalDoc.slug !== value) {
-          return 'Slug cannot be changed after creation to prevent broken URLs. Create a new journey instead.'
-        }
-        
-        // Check for uniqueness within siteKey scope
-        const existingDocs = await req.payload.find({
-          collection: 'journeys',
-          where: {
-            and: [
-              { slug: { equals: value } },
-              { siteKey: { equals: data?.siteKey || 'selahPro' } },
-              { id: { not_equals: id } }, // Exclude current document
-            ],
-          },
-        })
-        
-        if (existingDocs.docs.length > 0) {
-          return `The slug "${value}" is already in use. Please choose a different URL identifier.`
-        }
-        
-        return true
-      },
       admin: {
         position: 'sidebar',
-        description: 'URL-friendly identifier. Must be unique and cannot be changed after creation.',
+        description: 'URL-friendly identifier (auto-generated from title)',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (!value && data?.title) {
+              return data.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '')
+            }
+            return value
+          },
+        ],
       },
     },
     {
@@ -660,9 +641,9 @@ const Journeys: CollectionConfig = {
       name: 'heroImage',
       label: 'Hero Image',
       type: 'text',
-      validate: (value: string | null | undefined, options: ValidateOptions<Record<string, unknown>, Record<string, unknown>, TextField, string>) => {
+      validate: (value: string | null | undefined, { data }: { data: Record<string, unknown> }) => {
         // Required only when published is true
-        if (options.data?.published === true && !value) {
+        if (data?.published === true && !value) {
           return 'Hero image is required for published stories'
         }
         return true

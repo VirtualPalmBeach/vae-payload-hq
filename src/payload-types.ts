@@ -1661,7 +1661,7 @@ export interface Journey {
    */
   title: string;
   /**
-   * URL-friendly identifier. Must be unique and cannot be changed after creation.
+   * URL-friendly identifier (auto-generated from title)
    */
   slug: string;
   /**
