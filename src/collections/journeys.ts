@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig, TextField, ValidateOptions } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 
@@ -39,8 +39,13 @@ const Journeys: CollectionConfig = {
       required: true,
       unique: true,
       index: true,
-      validate: async (value: string | null | undefined, { payload, id, data, operation, originalDoc }: any) => {
+      validate: async (value: string | null | undefined, options: ValidateOptions<Record<string, unknown>, Record<string, unknown>, TextField, string>) => {
         if (!value) return 'Slug is required'
+        
+        const { req, id, data, operation } = options
+        const originalDoc = options.req?.payload?.findByID ? 
+          await options.req.payload.findByID({ collection: 'journeys', id: id as string }) : 
+          null
         
         // Prevent slug changes on updates (editorial protection)
         if (operation === 'update' && originalDoc?.slug && originalDoc.slug !== value) {
@@ -48,7 +53,7 @@ const Journeys: CollectionConfig = {
         }
         
         // Check for uniqueness within siteKey scope
-        const existingDocs = await payload.find({
+        const existingDocs = await req.payload.find({
           collection: 'journeys',
           where: {
             and: [
@@ -67,21 +72,7 @@ const Journeys: CollectionConfig = {
       },
       admin: {
         position: 'sidebar',
-        description: 'URL-friendly identifier (auto-generated from title). Cannot be changed after creation.',
-        // Note: Slug protection is enforced via validation to prevent changes after creation
-      },
-      hooks: {
-        beforeValidate: [
-          ({ value, originalDoc, data }) => {
-            if (!value && data?.title) {
-              return data.title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '')
-            }
-            return value
-          },
-        ],
+        description: 'URL-friendly identifier. Must be unique and cannot be changed after creation.',
       },
     },
     {
@@ -669,9 +660,9 @@ const Journeys: CollectionConfig = {
       name: 'heroImage',
       label: 'Hero Image',
       type: 'text',
-      validate: (value: string | null | undefined, { data }: any) => {
+      validate: (value: string | null | undefined, options: ValidateOptions<Record<string, unknown>, Record<string, unknown>, TextField, string>) => {
         // Required only when published is true
-        if (data?.published === true && !value) {
+        if (options.data?.published === true && !value) {
           return 'Hero image is required for published stories'
         }
         return true
