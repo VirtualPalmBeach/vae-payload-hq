@@ -8,6 +8,7 @@ const PortfolioProjects: CollectionConfig = {
     useAsTitle: 'title',
     description: 'Individual portfolio projects for category grids and detail pages',
     defaultColumns: ['title', 'category', 'featured', 'siteKey', 'published', 'updatedAt'],
+    group: 'Content',
   },
   access: {
     read: () => true,

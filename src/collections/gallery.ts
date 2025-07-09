@@ -3,7 +3,10 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 
 const Gallery: CollectionConfig = {
   slug: 'gallery',
-  admin: { useAsTitle: 'title' },
+  admin: { 
+    useAsTitle: 'title',
+    group: 'Content',
+  },
   fields: [
     commonSiteKeyField,
     {

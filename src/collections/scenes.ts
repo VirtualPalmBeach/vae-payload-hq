@@ -6,6 +6,7 @@ const Scenes: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'cloudinaryEnvironment', 'status', 'featured', 'order'],
+    group: 'Content',
   },
   fields: [
     // Site Configuration

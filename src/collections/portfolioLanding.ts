@@ -8,6 +8,7 @@ const PortfolioLanding: CollectionConfig = {
     useAsTitle: 'title',
     description: 'Portfolio landing page configuration with dynamic sections',
     defaultColumns: ['title', 'siteKey', 'updatedAt'],
+    group: 'Content',
   },
   access: {
     read: () => true,

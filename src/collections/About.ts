@@ -62,16 +62,9 @@ const About: CollectionConfig = {
           label: 'Hero Image',
           type: 'text',
           required: true,
-          validate: (value: string | null | undefined) => {
-            if (!value) return true
-            if (!/^[a-z0-9-]+$/.test(value)) {
-              return 'Hero image tag must contain only lowercase letters, numbers, and hyphens'
-            }
-            return true
-          },
           admin: {
             description: 'Cloudinary tag for hero background image',
-            placeholder: 'e.g., about-hero-luxury-pool',
+            placeholder: 'e.g., Selah,Hero,AboutPage',
           },
         },
       ],
@@ -114,13 +107,6 @@ const About: CollectionConfig = {
               label: 'Image Tag',
               type: 'text',
               required: true,
-              validate: (value: string | null | undefined) => {
-                if (!value) return true
-                if (!/^[a-z0-9-]+$/.test(value)) {
-                  return 'Image tag must contain only lowercase letters, numbers, and hyphens'
-                }
-                return true
-              },
               admin: {
                 description: 'Cloudinary tag for the image',
               },
@@ -185,13 +171,6 @@ const About: CollectionConfig = {
                   label: 'Image Tag',
                   type: 'text',
                   required: true,
-                  validate: (value: string | null | undefined) => {
-                    if (!value) return true
-                    if (!/^[a-z0-9-]+$/.test(value)) {
-                      return 'Image tag must contain only lowercase letters, numbers, and hyphens'
-                    }
-                    return true
-                  },
                 },
                 {
                   name: 'caption',
@@ -216,13 +195,6 @@ const About: CollectionConfig = {
               label: 'Video Tag',
               type: 'text',
               required: true,
-              validate: (value: string | null | undefined) => {
-                if (!value) return true
-                if (!/^[a-z0-9-]+$/.test(value)) {
-                  return 'Video tag must contain only lowercase letters, numbers, and hyphens'
-                }
-                return true
-              },
               admin: {
                 description: 'Cloudinary tag for the video',
               },
