@@ -98,6 +98,7 @@ export interface Config {
     portfolioProjects: PortfolioProject;
     journeys: Journey;
     about: About;
+    signatureServices: SignatureService;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -135,6 +136,7 @@ export interface Config {
     portfolioProjects: PortfolioProjectsSelect<false> | PortfolioProjectsSelect<true>;
     journeys: JourneysSelect<false> | JourneysSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2216,6 +2218,133 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signatureServices".
+ */
+export interface SignatureService {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * The main title for this signature service
+   */
+  title: string;
+  /**
+   * Brief overview of the service (for cards and listings)
+   */
+  shortDescription: string;
+  /**
+   * Cloudinary tag for the hero image
+   */
+  heroImage: string;
+  /**
+   * Optional Cloudinary public ID for a showcase video
+   */
+  videoPublicId?: string | null;
+  /**
+   * Add detailed content blocks with optional images
+   */
+  detailBlocks?:
+    | {
+        blockTitle: string;
+        richTextContent: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        /**
+         * Cloudinary tag for optional block image
+         */
+        optionalImage?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional image gallery for this service
+   */
+  galleryImages?:
+    | {
+        /**
+         * Cloudinary tag for gallery image
+         */
+        cloudinaryTag: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * SEO title (defaults to service title if empty)
+   */
+  metaTitle?: string | null;
+  /**
+   * SEO description for search results
+   */
+  metaDescription?: string | null;
+  /**
+   * Optional schema.org JSON-LD structured data
+   */
+  structuredDataJSON?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Optional service type for schema.org alignment (e.g., "PoolConstruction", "PoolDesign")
+   */
+  serviceType?: string | null;
+  /**
+   * Primary service location for local SEO
+   */
+  primaryLocation: {
+    street?: string | null;
+    city: string;
+    /**
+     * Two-letter state code (e.g., TX)
+     */
+    state: string;
+    zip: string;
+  };
+  /**
+   * How the service area is defined
+   */
+  serviceAreaType?: ('radius' | 'regions' | 'custom') | null;
+  /**
+   * Service radius in miles from primary location
+   */
+  serviceRadius?: number | null;
+  /**
+   * Specific cities/regions served
+   */
+  serviceRegions?:
+    | {
+        city: string;
+        /**
+         * Two-letter state code
+         */
+        state: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Editorial description of the service coverage area for local SEO
+   */
+  geoDescription?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -2344,6 +2473,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'about';
         value: string | About;
+      } | null)
+    | ({
+        relationTo: 'signatureServices';
+        value: string | SignatureService;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3588,6 +3721,55 @@ export interface AboutSelect<T extends boolean = true> {
         metaDescription?: T;
         metaImage?: T;
       };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signatureServices_select".
+ */
+export interface SignatureServicesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  shortDescription?: T;
+  heroImage?: T;
+  videoPublicId?: T;
+  detailBlocks?:
+    | T
+    | {
+        blockTitle?: T;
+        richTextContent?: T;
+        optionalImage?: T;
+        id?: T;
+      };
+  galleryImages?:
+    | T
+    | {
+        cloudinaryTag?: T;
+        id?: T;
+      };
+  metaTitle?: T;
+  metaDescription?: T;
+  structuredDataJSON?: T;
+  serviceType?: T;
+  primaryLocation?:
+    | T
+    | {
+        street?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+      };
+  serviceAreaType?: T;
+  serviceRadius?: T;
+  serviceRegions?:
+    | T
+    | {
+        city?: T;
+        state?: T;
+        id?: T;
+      };
+  geoDescription?: T;
   createdAt?: T;
   updatedAt?: T;
 }
