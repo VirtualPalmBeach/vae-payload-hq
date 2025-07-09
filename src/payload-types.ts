@@ -97,6 +97,7 @@ export interface Config {
     portfolioLanding: PortfolioLanding;
     portfolioProjects: PortfolioProject;
     journeys: Journey;
+    about: About;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -133,6 +134,7 @@ export interface Config {
     portfolioLanding: PortfolioLandingSelect<false> | PortfolioLandingSelect<true>;
     portfolioProjects: PortfolioProjectsSelect<false> | PortfolioProjectsSelect<true>;
     journeys: JourneysSelect<false> | JourneysSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2034,6 +2036,185 @@ export interface Journey {
   updatedAt: string;
 }
 /**
+ * Flagship brand reveal page with rich content blocks
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Main page title for the about section
+   */
+  title: string;
+  heroSection: {
+    /**
+     * Main headline displayed in hero section
+     */
+    headline: string;
+    /**
+     * Supporting text below headline
+     */
+    subheadline?: string | null;
+    /**
+     * Cloudinary tag for hero background image
+     */
+    heroImage: string;
+  };
+  contentBlocks?:
+    | (
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | {
+            /**
+             * Cloudinary tag for the image
+             */
+            cloudinaryTag: string;
+            /**
+             * Optional image caption
+             */
+            caption?: string | null;
+            aspectRatio?: ('16:9' | '21:9' | '1:1') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'fullWidthImage';
+          }
+        | {
+            title?: string | null;
+            columns: '2' | '3' | '4';
+            images?:
+              | {
+                  cloudinaryTag: string;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGallery';
+          }
+        | {
+            /**
+             * Cloudinary tag for the video
+             */
+            cloudinaryVideoTag: string;
+            title?: string | null;
+            /**
+             * Enable autoplay (muted)
+             */
+            autoplay?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoEmbed';
+          }
+        | {
+            text: string;
+            author?: string | null;
+            authorTitle?: string | null;
+            style?: ('centered' | 'left') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quote';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            displayMode: 'all' | 'featured' | 'selected';
+            /**
+             * Choose specific team members to display
+             */
+            selectedMembers?: (string | Team)[] | null;
+            columns: '2' | '3' | '4';
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamShowcase';
+          }
+        | {
+            heading: string;
+            values?:
+              | {
+                  title: string;
+                  description: string;
+                  icon?: ('star' | 'shield' | 'heart' | 'trophy' | 'sparkles' | 'lightning') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'companyValues';
+          }
+        | {
+            heading?: string | null;
+            stats?:
+              | {
+                  /**
+                   * e.g., "100", "25K", "99%"
+                   */
+                  value: string;
+                  label: string;
+                  /**
+                   * e.g., "+", "%", "years"
+                   */
+                  suffix?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            buttonText: string;
+            /**
+             * Internal link (e.g., /contact) or external URL
+             */
+            buttonLink: string;
+            backgroundStyle?: ('blue' | 'gray' | 'white') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+      )[]
+    | null;
+  seo?: {
+    /**
+     * Override page title for SEO (60 chars max)
+     */
+    metaTitle?: string | null;
+    /**
+     * Page description for search results (160 chars max)
+     */
+    metaDescription?: string | null;
+    /**
+     * Cloudinary tag for social sharing image
+     */
+    metaImage?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -2159,6 +2340,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'journeys';
         value: string | Journey;
+      } | null)
+    | ({
+        relationTo: 'about';
+        value: string | About;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3272,6 +3457,136 @@ export interface JourneysSelect<T extends boolean = true> {
         oldSlug?: T;
         redirectDate?: T;
         id?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  heroSection?:
+    | T
+    | {
+        headline?: T;
+        subheadline?: T;
+        heroImage?: T;
+      };
+  contentBlocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        fullWidthImage?:
+          | T
+          | {
+              cloudinaryTag?: T;
+              caption?: T;
+              aspectRatio?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageGallery?:
+          | T
+          | {
+              title?: T;
+              columns?: T;
+              images?:
+                | T
+                | {
+                    cloudinaryTag?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoEmbed?:
+          | T
+          | {
+              cloudinaryVideoTag?: T;
+              title?: T;
+              autoplay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quote?:
+          | T
+          | {
+              text?: T;
+              author?: T;
+              authorTitle?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        teamShowcase?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              displayMode?: T;
+              selectedMembers?: T;
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        companyValues?:
+          | T
+          | {
+              heading?: T;
+              values?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              heading?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    suffix?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              backgroundStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        metaImage?: T;
       };
   createdAt?: T;
   updatedAt?: T;
