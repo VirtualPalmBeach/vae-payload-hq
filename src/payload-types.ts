@@ -99,6 +99,7 @@ export interface Config {
     journeys: Journey;
     about: About;
     signatureServices: SignatureService;
+    contactPage: ContactPage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -137,6 +138,7 @@ export interface Config {
     journeys: JourneysSelect<false> | JourneysSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
+    contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2345,6 +2347,141 @@ export interface SignatureService {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPage".
+ */
+export interface ContactPage {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Main heading for the contact page (e.g., "Let's Build Something Beautiful")
+   */
+  heroHeading: string;
+  /**
+   * Short paragraph or rich text block beneath the hero heading
+   */
+  heroSubheading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
+   */
+  heroImage?: string | null;
+  contactDetails?: {
+    /**
+     * Primary contact phone number
+     */
+    phoneNumber?: string | null;
+    /**
+     * Primary contact email address
+     */
+    emailAddress?: string | null;
+    address?: {
+      street?: string | null;
+      city?: string | null;
+      /**
+       * Two-letter state code (e.g., TX)
+       */
+      state?: string | null;
+      zip?: string | null;
+    };
+    /**
+     * Google Maps iframe embed code. Get this from Google Maps > Share > Embed a map. Paste the full iframe code here.
+     */
+    mapEmbedCode?: string | null;
+  };
+  /**
+   * Array of grouped content blocks for trust indicators
+   */
+  trustIndicators?:
+    | {
+        title: string;
+        description: string;
+        /**
+         * Cloudinary tags for icon or image. Recommended dimensions: 64x64px for icons.
+         */
+        optionalIconOrImage?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text prompt that appears just above the embedded form
+   */
+  formHeading?: string | null;
+  /**
+   * Formbricks or other form provider embed code. Paste the complete embed script/iframe here.
+   */
+  formEmbedCode?: string | null;
+  /**
+   * Show fallback message if the embedded form fails to load
+   */
+  formFallbackEnabled?: boolean | null;
+  /**
+   * Message shown if the embedded form fails to load
+   */
+  formFallbackMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * SEO title (defaults to hero heading if empty)
+   */
+  metaTitle?: string | null;
+  /**
+   * SEO description for search results
+   */
+  metaDescription?: string | null;
+  /**
+   * Optional manual override for schema.org JSON-LD structured data. Must be valid JSON.
+   */
+  structuredDataJSON?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Toggle to display the map on the contact page
+   */
+  showMap?: boolean | null;
+  /**
+   * Allows frontend to emphasize phone on mobile
+   */
+  highlightPhoneNumber?: boolean | null;
+  /**
+   * Toggle to use Formbricks vs fallback ContactForm
+   */
+  useFormEmbed?: boolean | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -2477,6 +2614,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'signatureServices';
         value: string | SignatureService;
+      } | null)
+    | ({
+        relationTo: 'contactPage';
+        value: string | ContactPage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3770,6 +3911,51 @@ export interface SignatureServicesSelect<T extends boolean = true> {
         id?: T;
       };
   geoDescription?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPage_select".
+ */
+export interface ContactPageSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroImage?: T;
+  contactDetails?:
+    | T
+    | {
+        phoneNumber?: T;
+        emailAddress?: T;
+        address?:
+          | T
+          | {
+              street?: T;
+              city?: T;
+              state?: T;
+              zip?: T;
+            };
+        mapEmbedCode?: T;
+      };
+  trustIndicators?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        optionalIconOrImage?: T;
+        id?: T;
+      };
+  formHeading?: T;
+  formEmbedCode?: T;
+  formFallbackEnabled?: T;
+  formFallbackMessage?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  structuredDataJSON?: T;
+  showMap?: T;
+  highlightPhoneNumber?: T;
+  useFormEmbed?: T;
   createdAt?: T;
   updatedAt?: T;
 }
