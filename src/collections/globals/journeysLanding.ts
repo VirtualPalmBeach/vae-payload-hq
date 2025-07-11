@@ -1,4 +1,4 @@
-import { GlobalConfig } from 'payload/types'
+import { GlobalConfig } from 'payload'
 import { commonSiteKeyField } from '../commonSiteKeyField'
 import { timestampedFields } from '../../fields/timestampedFields'
 
