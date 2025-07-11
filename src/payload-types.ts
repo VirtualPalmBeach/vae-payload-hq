@@ -100,6 +100,7 @@ export interface Config {
     about: About;
     signatureServices: SignatureService;
     contactPage: ContactPage;
+    realsIndex: RealsIndex;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -139,6 +140,7 @@ export interface Config {
     about: AboutSelect<false> | AboutSelect<true>;
     signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
     contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
+    realsIndex: RealsIndexSelect<false> | RealsIndexSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2481,6 +2483,44 @@ export interface ContactPage {
   updatedAt: string;
 }
 /**
+ * Hero content for the Reals index page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex".
+ */
+export interface RealsIndex {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Main heading for the reals page
+   */
+  heroHeading: string;
+  /**
+   * Short paragraph or rich text block beneath the hero heading
+   */
+  heroSubheading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
+   */
+  heroImage?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -2618,6 +2658,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contactPage';
         value: string | ContactPage;
+      } | null)
+    | ({
+        relationTo: 'realsIndex';
+        value: string | RealsIndex;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3956,6 +4000,18 @@ export interface ContactPageSelect<T extends boolean = true> {
   showMap?: T;
   highlightPhoneNumber?: T;
   useFormEmbed?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex_select".
+ */
+export interface RealsIndexSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroImage?: T;
   createdAt?: T;
   updatedAt?: T;
 }

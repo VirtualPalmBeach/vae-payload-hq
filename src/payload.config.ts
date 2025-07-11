@@ -50,6 +50,7 @@ import Journeys from './collections/journeys'
 import About from './collections/About'
 import SignatureServices from './collections/SignatureServices'
 import ContactPage from './collections/ContactPage'
+import realsIndex from './collections/globals/realsIndex'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -121,6 +122,7 @@ export default buildConfig({
     About,
     SignatureServices,
     ContactPage,
+    realsIndex,
   ],
   globals: [
     // SiteConfig, // remove or keep as needed — deprecated by SiteSettings?
