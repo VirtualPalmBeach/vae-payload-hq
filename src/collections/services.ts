@@ -8,6 +8,7 @@ const Services: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'summary', 'updatedAt'],
+    group: 'Content',
   },
   access: {
     read: () => true,

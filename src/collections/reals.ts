@@ -6,6 +6,7 @@ const Reals: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'status', 'featured', 'order'],
+    group: 'Content',
   },
   fields: [
     commonSiteKeyField,

@@ -20,6 +20,47 @@ const PortfolioLanding: CollectionConfig = {
     // Site Configuration
     commonSiteKeyField,
     
+    // Hero Section Fields - Index Hero Pattern v1
+    {
+      name: 'heroImage',
+      label: 'Hero Image',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Used as the background image for the hero section.',
+        placeholder: 'e.g., selah-pro,portfolio,hero',
+      },
+    },
+    {
+      name: 'heroHeading',
+      label: 'Hero Heading',
+      type: 'text',
+      required: true,
+      maxLength: 200,
+      defaultValue: 'Portfolio',
+      admin: {
+        description: 'Headline text over the hero image.',
+      },
+    },
+    {
+      name: 'heroSubheading',
+      label: 'Hero Subheading',
+      type: 'text',
+      required: false,
+      maxLength: 300,
+      admin: {
+        description: 'Optional subheading for additional context.',
+      },
+    },
+    {
+      name: 'heroRichText',
+      label: 'Hero Rich Text',
+      type: 'richText',
+      admin: {
+        description: 'Optional supporting text below the hero heading.',
+      },
+    },
+    
     // Content Fields
     {
       name: 'title',
@@ -46,6 +87,130 @@ const PortfolioLanding: CollectionConfig = {
       admin: {
         description: 'Supporting description text for the portfolio landing page',
       },
+    },
+    
+    // Subpage Hero Fields - Index Hero Pattern v1 for category pages
+    // Residential Hero
+    {
+      name: 'residentialHero',
+      label: 'Residential Page Hero',
+      type: 'group',
+      admin: {
+        description: 'Hero content for the Residential portfolio page',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Hero Title',
+          type: 'text',
+          required: false,
+          maxLength: 200,
+          defaultValue: 'Residential Portfolio',
+          admin: {
+            description: 'Headline text for the Residential portfolio page hero',
+          },
+        },
+        {
+          name: 'subhead',
+          label: 'Hero Subheading',
+          type: 'richText',
+          admin: {
+            description: 'Supporting rich text content below the hero title',
+          },
+        },
+        {
+          name: 'cloudinaryTag',
+          label: 'Hero Image Tag',
+          type: 'text',
+          required: false,
+          admin: {
+            description: 'Cloudinary tag for the Residential hero background image',
+            placeholder: 'e.g., selah-pro,portfolio,residential,hero',
+          },
+        },
+      ],
+    },
+    
+    // Renovation Hero
+    {
+      name: 'renovationHero',
+      label: 'Renovation Page Hero',
+      type: 'group',
+      admin: {
+        description: 'Hero content for the Renovation portfolio page',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Hero Title',
+          type: 'text',
+          required: false,
+          maxLength: 200,
+          defaultValue: 'Renovation Portfolio',
+          admin: {
+            description: 'Headline text for the Renovation portfolio page hero',
+          },
+        },
+        {
+          name: 'subhead',
+          label: 'Hero Subheading',
+          type: 'richText',
+          admin: {
+            description: 'Supporting rich text content below the hero title',
+          },
+        },
+        {
+          name: 'cloudinaryTag',
+          label: 'Hero Image Tag',
+          type: 'text',
+          required: false,
+          admin: {
+            description: 'Cloudinary tag for the Renovation hero background image',
+            placeholder: 'e.g., selah-pro,portfolio,renovation,hero',
+          },
+        },
+      ],
+    },
+    
+    // Commercial Hero
+    {
+      name: 'commercialHero',
+      label: 'Commercial Page Hero',
+      type: 'group',
+      admin: {
+        description: 'Hero content for the Commercial portfolio page',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Hero Title',
+          type: 'text',
+          required: false,
+          maxLength: 200,
+          defaultValue: 'Commercial Portfolio',
+          admin: {
+            description: 'Headline text for the Commercial portfolio page hero',
+          },
+        },
+        {
+          name: 'subhead',
+          label: 'Hero Subheading',
+          type: 'richText',
+          admin: {
+            description: 'Supporting rich text content below the hero title',
+          },
+        },
+        {
+          name: 'cloudinaryTag',
+          label: 'Hero Image Tag',
+          type: 'text',
+          required: false,
+          admin: {
+            description: 'Cloudinary tag for the Commercial hero background image',
+            placeholder: 'e.g., selah-pro,portfolio,commercial,hero',
+          },
+        },
+      ],
     },
     
     // Portfolio Sections Array

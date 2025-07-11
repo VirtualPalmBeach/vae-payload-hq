@@ -7,7 +7,8 @@ const Homepage: CollectionConfig = {
   slug: 'homepage',
   admin: { 
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'conversionGoal', 'updatedAt']
+    defaultColumns: ['title', 'slug', 'conversionGoal', 'updatedAt'],
+    group: 'Content'
   },
   access: {
     read: () => true,

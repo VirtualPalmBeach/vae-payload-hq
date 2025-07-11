@@ -1436,6 +1436,36 @@ export interface PortfolioLanding {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
+   * Used as the background image for the hero section.
+   */
+  heroImage?: string | null;
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
    * Internal title for this portfolio landing page
    */
   title: string;
@@ -1475,6 +1505,99 @@ export interface PortfolioLanding {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Hero content for the Residential portfolio page
+   */
+  residentialHero?: {
+    /**
+     * Headline text for the Residential portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Residential hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
+  /**
+   * Hero content for the Renovation portfolio page
+   */
+  renovationHero?: {
+    /**
+     * Headline text for the Renovation portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Renovation hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
+  /**
+   * Hero content for the Commercial portfolio page
+   */
+  commercialHero?: {
+    /**
+     * Headline text for the Commercial portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Commercial hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
   /**
    * Configure the three portfolio sections (Commercial, Residential, Renovation),
    */
@@ -3508,9 +3631,34 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  */
 export interface PortfolioLandingSelect<T extends boolean = true> {
   siteKey?: T;
+  heroImage?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
   title?: T;
   headline?: T;
   description?: T;
+  residentialHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
+  renovationHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
+  commercialHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
   sections?:
     | T
     | {
