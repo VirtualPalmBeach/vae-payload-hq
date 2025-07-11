@@ -51,6 +51,7 @@ import About from './collections/About'
 import SignatureServices from './collections/SignatureServices'
 import ContactPage from './collections/ContactPage'
 import realsIndex from './collections/globals/realsIndex'
+import journeysLanding from './collections/globals/journeysLanding'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -122,10 +123,10 @@ export default buildConfig({
     About,
     SignatureServices,
     ContactPage,
-    realsIndex,
   ],
   globals: [
-    // SiteConfig, // remove or keep as needed — deprecated by SiteSettings?
+    realsIndex,
+    journeysLanding,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
