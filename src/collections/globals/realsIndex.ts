@@ -16,23 +16,19 @@
  * - Unique index constraint per site
  */
 
-import { CollectionConfig } from 'payload'
+import { GlobalConfig } from 'payload'
 import { commonSiteKeyField } from '../commonSiteKeyField'
 import { timestampedFields } from '../../fields/timestampedFields'
 
-const realsIndex: CollectionConfig = {
+const realsIndex: GlobalConfig = {
   slug: 'realsIndex',
   admin: {
-    useAsTitle: 'heroHeading',
-    defaultColumns: ['heroHeading', 'siteKey', 'updatedAt'],
     group: 'Content',
     description: 'Hero content for the Reals index page',
   },
   access: {
     read: () => true,
-    create: () => true,
     update: () => true,
-    delete: () => true,
   },
   fields: [
     // Site Configuration
@@ -71,20 +67,6 @@ const realsIndex: CollectionConfig = {
     
     // Timestamps
     ...timestampedFields,
-  ],
-  hooks: {
-    beforeValidate: [
-      ({ data }) => {
-        // Ensure single document per site
-        return data
-      },
-    ],
-  },
-  indexes: [
-    {
-      fields: ['siteKey'],
-      unique: true, // One reals index page per site
-    },
   ],
 }
 

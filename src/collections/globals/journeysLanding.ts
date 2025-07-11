@@ -1,20 +1,16 @@
-import { CollectionConfig } from 'payload'
+import { GlobalConfig } from 'payload'
 import { commonSiteKeyField } from '../commonSiteKeyField'
 import { timestampedFields } from '../../fields/timestampedFields'
 
-const JourneysLanding: CollectionConfig = {
+const JourneysLanding: GlobalConfig = {
   slug: 'journeysLanding',
   admin: {
-    useAsTitle: 'heroHeading',
-    defaultColumns: ['heroHeading', 'siteKey', 'updatedAt'],
     description: 'Journeys landing page configuration - Index Hero Pattern v1',
     group: 'Content',
   },
   access: {
     read: () => true,
-    create: () => true,
     update: () => true,
-    delete: () => true,
   },
   fields: [
     // Site Configuration
