@@ -50,7 +50,7 @@ import Journeys from './collections/journeys'
 import About from './collections/About'
 import SignatureServices from './collections/SignatureServices'
 import ContactPage from './collections/ContactPage'
-import realsIndex from './collections/realsIndex'
+import RealsIndex from './collections/RealsIndex'
 import journeysLanding from './collections/journeysLanding'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -123,7 +123,7 @@ export default buildConfig({
     About,
     SignatureServices,
     ContactPage,
-    realsIndex,
+    RealsIndex,
     journeysLanding,
   ],
   globals: [
