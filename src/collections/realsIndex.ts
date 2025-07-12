@@ -1,40 +1,38 @@
-/**
- * Index Hero Pattern v1 - Template for scalable index page hero content
- * 
- * This pattern establishes a consistent structure for index page hero sections
- * across the application. Can be used as a template for:
- * - journeysIndex
- * - portfolioIndex
- * - servicesIndex
- * - And other future index pages requiring hero content
- * 
- * Pattern includes:
- * - Hero heading (text)
- * - Hero subheading (rich text)
- * - Hero image (Cloudinary tag)
- * - Site-specific configuration
- * - Unique index constraint per site
- */
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
+import { timestampedFields } from '../fields/timestampedFields'
 
-import { GlobalConfig } from 'payload'
-import { commonSiteKeyField } from '../commonSiteKeyField'
-import { timestampedFields } from '../../fields/timestampedFields'
-
-const realsIndex: GlobalConfig = {
+const realsIndex: CollectionConfig = {
   slug: 'realsIndex',
   admin: {
-    group: 'Content',
+    useAsTitle: 'title',
     description: 'Hero content for the Reals index page',
+    defaultColumns: ['title', 'siteKey', 'status', 'updatedAt'],
+    group: 'Content',
   },
   access: {
     read: () => true,
+    create: () => true,
     update: () => true,
+    delete: () => true,
   },
   fields: [
     // Site Configuration
     commonSiteKeyField,
     
-    // Hero Content Fields - following ContactPage exact pattern
+    // Page Title
+    {
+      name: 'title',
+      label: 'Page Title',
+      type: 'text',
+      required: true,
+      defaultValue: 'Reals Index',
+      admin: {
+        description: 'Internal title for this reals index configuration',
+      },
+    },
+    
+    // Hero Content Fields
     {
       name: 'heroHeading',
       label: 'Hero Heading',
@@ -62,6 +60,21 @@ const realsIndex: GlobalConfig = {
       admin: {
         description: 'Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.',
         placeholder: 'e.g., selah-pro,reals,hero',
+      },
+    },
+    
+    // Publishing Status
+    {
+      name: 'status',
+      label: 'Status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'published',
+      admin: {
+        position: 'sidebar',
       },
     },
     

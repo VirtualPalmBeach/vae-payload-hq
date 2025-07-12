@@ -1,20 +1,36 @@
-import { GlobalConfig } from 'payload'
-import { commonSiteKeyField } from '../commonSiteKeyField'
-import { timestampedFields } from '../../fields/timestampedFields'
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
+import { timestampedFields } from '../fields/timestampedFields'
 
-const JourneysLanding: GlobalConfig = {
+const journeysLanding: CollectionConfig = {
   slug: 'journeysLanding',
   admin: {
+    useAsTitle: 'title',
     description: 'Journeys landing page configuration - Index Hero Pattern v1',
+    defaultColumns: ['title', 'siteKey', 'status', 'updatedAt'],
     group: 'Content',
   },
   access: {
     read: () => true,
+    create: () => true,
     update: () => true,
+    delete: () => true,
   },
   fields: [
     // Site Configuration
     commonSiteKeyField,
+    
+    // Page Title
+    {
+      name: 'title',
+      label: 'Page Title',
+      type: 'text',
+      required: true,
+      defaultValue: 'Journeys',
+      admin: {
+        description: 'Internal title for this journeys landing page',
+      },
+    },
     
     // Hero Section Fields - Index Hero Pattern v1
     {
@@ -59,16 +75,6 @@ const JourneysLanding: GlobalConfig = {
     
     // Content Fields
     {
-      name: 'title',
-      label: 'Page Title',
-      type: 'text',
-      required: true,
-      defaultValue: 'Journeys',
-      admin: {
-        description: 'Internal title for this journeys landing page',
-      },
-    },
-    {
       name: 'headline',
       label: 'Headline',
       type: 'richText',
@@ -85,7 +91,7 @@ const JourneysLanding: GlobalConfig = {
       },
     },
     
-    // Publishing & Timestamps
+    // Publishing Status
     {
       name: 'status',
       label: 'Status',
@@ -99,8 +105,10 @@ const JourneysLanding: GlobalConfig = {
         position: 'sidebar',
       },
     },
+    
+    // Timestamps
     ...timestampedFields,
   ],
 }
 
-export default JourneysLanding
+export default journeysLanding

@@ -100,6 +100,8 @@ export interface Config {
     about: About;
     signatureServices: SignatureService;
     contactPage: ContactPage;
+    realsIndex: RealsIndex;
+    journeysLanding: JourneysLanding;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -139,6 +141,8 @@ export interface Config {
     about: AboutSelect<false> | AboutSelect<true>;
     signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
     contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
+    realsIndex: RealsIndexSelect<false> | RealsIndexSelect<true>;
+    journeysLanding: JourneysLandingSelect<false> | JourneysLandingSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -146,14 +150,8 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {
-    realsIndex: RealsIndex;
-    journeysLanding: JourneysLanding;
-  };
-  globalsSelect: {
-    realsIndex: RealsIndexSelect<false> | RealsIndexSelect<true>;
-    journeysLanding: JourneysLandingSelect<false> | JourneysLandingSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
     collection: 'users';
@@ -2610,6 +2608,132 @@ export interface ContactPage {
   updatedAt: string;
 }
 /**
+ * Hero content for the Reals index page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex".
+ */
+export interface RealsIndex {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Internal title for this reals index configuration
+   */
+  title: string;
+  /**
+   * Main heading for the reals page
+   */
+  heroHeading: string;
+  /**
+   * Short paragraph or rich text block beneath the hero heading
+   */
+  heroSubheading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
+   */
+  heroImage?: string | null;
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Journeys landing page configuration - Index Hero Pattern v1
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "journeysLanding".
+ */
+export interface JourneysLanding {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Internal title for this journeys landing page
+   */
+  title: string;
+  /**
+   * Used as the background image for the hero section.
+   */
+  heroImage?: string | null;
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Main headline displayed on the journeys landing page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Supporting description text for the journeys landing page
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -2747,6 +2871,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contactPage';
         value: string | ContactPage;
+      } | null)
+    | ({
+        relationTo: 'realsIndex';
+        value: string | RealsIndex;
+      } | null)
+    | ({
+        relationTo: 'journeysLanding';
+        value: string | JourneysLanding;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -4115,6 +4247,37 @@ export interface ContactPageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex_select".
+ */
+export interface RealsIndexSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroImage?: T;
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "journeysLanding_select".
+ */
+export interface JourneysLandingSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  heroImage?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  headline?: T;
+  description?: T;
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -4144,158 +4307,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * Hero content for the Reals index page
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "realsIndex".
- */
-export interface RealsIndex {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Main heading for the reals page
-   */
-  heroHeading: string;
-  /**
-   * Short paragraph or rich text block beneath the hero heading
-   */
-  heroSubheading?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
-   */
-  heroImage?: string | null;
-  createdAt?: string | null;
-  updatedAt?: string | null;
-}
-/**
- * Journeys landing page configuration - Index Hero Pattern v1
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "journeysLanding".
- */
-export interface JourneysLanding {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Used as the background image for the hero section.
-   */
-  heroImage?: string | null;
-  /**
-   * Headline text over the hero image.
-   */
-  heroHeading: string;
-  /**
-   * Optional subheading for additional context.
-   */
-  heroSubheading?: string | null;
-  /**
-   * Optional supporting text below the hero heading.
-   */
-  heroRichText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Internal title for this journeys landing page
-   */
-  title: string;
-  /**
-   * Main headline displayed on the journeys landing page
-   */
-  headline?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Supporting description text for the journeys landing page
-   */
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  status?: ('draft' | 'published') | null;
-  createdAt?: string | null;
-  updatedAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "realsIndex_select".
- */
-export interface RealsIndexSelect<T extends boolean = true> {
-  siteKey?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroImage?: T;
-  createdAt?: T;
-  updatedAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "journeysLanding_select".
- */
-export interface JourneysLandingSelect<T extends boolean = true> {
-  siteKey?: T;
-  heroImage?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroRichText?: T;
-  title?: T;
-  headline?: T;
-  description?: T;
-  status?: T;
-  createdAt?: T;
-  updatedAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
