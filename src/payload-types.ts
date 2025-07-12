@@ -77,7 +77,7 @@ export interface Config {
     contactForm: ContactForm;
     events: Event;
     faqs: Faq;
-    gallery: Gallery;
+    galleries: Gallery;
     spotlights: Spotlight;
     reals: Real;
     scenes: Scene;
@@ -118,7 +118,7 @@ export interface Config {
     contactForm: ContactFormSelect<false> | ContactFormSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
-    gallery: GallerySelect<false> | GallerySelect<true>;
+    galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
     reals: RealsSelect<false> | RealsSelect<true>;
     scenes: ScenesSelect<false> | ScenesSelect<true>;
@@ -533,40 +533,72 @@ export interface Faq {
   createdAt: string;
 }
 /**
+ * Gallery collections with dynamic image sourcing
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery".
+ * via the `definition` "galleries".
  */
 export interface Gallery {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Display name for this gallery
+   */
   title: string;
-  caption?: string | null;
-  imageUrl: string;
-  videoUrl?: string | null;
-  order: number;
-  projectCode?: string | null;
-  featured?: boolean | null;
-  publishDate?: string | null;
-  projects?:
+  /**
+   * URL-friendly identifier for this gallery (e.g., "featured-projects")
+   */
+  slug: string;
+  heroMedia?: (string | null) | Media;
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Images to display in this gallery with optional labels
+   */
+  images?:
     | {
-        relationTo: 'projects';
-        value: string | Project;
+        /**
+         * Select an image from the media library
+         */
+        media: string | Media;
+        /**
+         * Optional label displayed as overlay on the image card
+         */
+        cardLabel?: string | null;
+        id?: string | null;
       }[]
     | null;
-  categories?:
-    | {
-        relationTo: 'categories';
-        value: string | Category;
-      }[]
-    | null;
-  tags?:
-    | {
-        relationTo: 'tags';
-        value: string | Tag;
-      }[]
-    | null;
-  updatedAt: string;
+  /**
+   * DEPRECATED - Use Gallery Images array instead. Cloudinary folder path for gallery images.
+   */
+  imageSource?: string | null;
+  status?: ('draft' | 'published') | null;
   createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2617,10 +2649,6 @@ export interface RealsIndex {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Internal title for this reals index configuration
-   */
-  title: string;
-  /**
    * Main heading for the reals page
    */
   heroHeading: string;
@@ -2646,7 +2674,6 @@ export interface RealsIndex {
    * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
    */
   heroImage?: string | null;
-  status?: ('draft' | 'published') | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2781,7 +2808,7 @@ export interface PayloadLockedDocument {
         value: string | Faq;
       } | null)
     | ({
-        relationTo: 'gallery';
+        relationTo: 'galleries';
         value: string | Gallery;
       } | null)
     | ({
@@ -3179,23 +3206,27 @@ export interface FaqsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery_select".
+ * via the `definition` "galleries_select".
  */
-export interface GallerySelect<T extends boolean = true> {
+export interface GalleriesSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
-  caption?: T;
-  imageUrl?: T;
-  videoUrl?: T;
-  order?: T;
-  projectCode?: T;
-  featured?: T;
-  publishDate?: T;
-  projects?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
+  slug?: T;
+  heroMedia?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  images?:
+    | T
+    | {
+        media?: T;
+        cardLabel?: T;
+        id?: T;
+      };
+  imageSource?: T;
+  status?: T;
   createdAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -4251,11 +4282,9 @@ export interface ContactPageSelect<T extends boolean = true> {
  */
 export interface RealsIndexSelect<T extends boolean = true> {
   siteKey?: T;
-  title?: T;
   heroHeading?: T;
   heroSubheading?: T;
   heroImage?: T;
-  status?: T;
   createdAt?: T;
   updatedAt?: T;
 }
