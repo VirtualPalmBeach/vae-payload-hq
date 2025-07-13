@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',
+  labels: {
+    singular: 'Gallery Index',
+    plural: 'Galleries Index',
+  },
   admin: {
     useAsTitle: 'title',
     description: 'Gallery collections with dynamic image sourcing',

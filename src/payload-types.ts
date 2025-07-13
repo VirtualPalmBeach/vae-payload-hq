@@ -67,82 +67,84 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
-    homepage: Homepage;
-    projects: Project;
-    tags: Tag;
-    categories: Category;
+    about: About;
+    ads: Ad;
+    blocks: Block;
     blogPosts: BlogPost;
+    categories: Category;
     contactForm: ContactForm;
+    contactPage: ContactPage;
     events: Event;
     faqs: Faq;
     galleries: Gallery;
-    spotlights: Spotlight;
-    reals: Real;
-    scenes: Scene;
-    limitedtimeoffers: Limitedtimeoffer;
-    videos: Video;
-    locations: Location;
-    navigation: Navigation;
-    team: Team;
-    testimonials: Testimonial;
-    ads: Ad;
-    pages: Page;
-    blocks: Block;
-    redirects: Redirect;
-    services: Service;
+    gallery: Gallery1;
+    homepage: Homepage;
+    journeys: Journey;
+    journeysLanding: JourneysLanding;
     landingPages: LandingPage;
-    siteSettings: SiteSetting;
+    limitedtimeoffers: Limitedtimeoffer;
+    locations: Location;
+    media: Media;
+    navigation: Navigation;
+    pages: Page;
     portfolioLanding: PortfolioLanding;
     portfolioProjects: PortfolioProject;
-    journeys: Journey;
-    about: About;
-    signatureServices: SignatureService;
-    contactPage: ContactPage;
+    projects: Project;
+    reals: Real;
     realsIndex: RealsIndex;
-    journeysLanding: JourneysLanding;
+    redirects: Redirect;
+    scenes: Scene;
+    services: Service;
+    signatureServices: SignatureService;
+    siteSettings: SiteSetting;
+    spotlights: Spotlight;
+    tags: Tag;
+    team: Team;
+    testimonials: Testimonial;
+    users: User;
+    videos: Video;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    homepage: HomepageSelect<false> | HomepageSelect<true>;
-    projects: ProjectsSelect<false> | ProjectsSelect<true>;
-    tags: TagsSelect<false> | TagsSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
+    ads: AdsSelect<false> | AdsSelect<true>;
+    blocks: BlocksSelect<false> | BlocksSelect<true>;
     blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     contactForm: ContactFormSelect<false> | ContactFormSelect<true>;
+    contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
-    spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
-    reals: RealsSelect<false> | RealsSelect<true>;
-    scenes: ScenesSelect<false> | ScenesSelect<true>;
-    limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
-    videos: VideosSelect<false> | VideosSelect<true>;
-    locations: LocationsSelect<false> | LocationsSelect<true>;
-    navigation: NavigationSelect<false> | NavigationSelect<true>;
-    team: TeamSelect<false> | TeamSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
-    ads: AdsSelect<false> | AdsSelect<true>;
-    pages: PagesSelect<false> | PagesSelect<true>;
-    blocks: BlocksSelect<false> | BlocksSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
-    services: ServicesSelect<false> | ServicesSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    journeys: JourneysSelect<false> | JourneysSelect<true>;
+    journeysLanding: JourneysLandingSelect<false> | JourneysLandingSelect<true>;
     landingPages: LandingPagesSelect<false> | LandingPagesSelect<true>;
-    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    limitedtimeoffers: LimitedtimeoffersSelect<false> | LimitedtimeoffersSelect<true>;
+    locations: LocationsSelect<false> | LocationsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     portfolioLanding: PortfolioLandingSelect<false> | PortfolioLandingSelect<true>;
     portfolioProjects: PortfolioProjectsSelect<false> | PortfolioProjectsSelect<true>;
-    journeys: JourneysSelect<false> | JourneysSelect<true>;
-    about: AboutSelect<false> | AboutSelect<true>;
-    signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
-    contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    reals: RealsSelect<false> | RealsSelect<true>;
     realsIndex: RealsIndexSelect<false> | RealsIndexSelect<true>;
-    journeysLanding: JourneysLandingSelect<false> | JourneysLandingSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    scenes: ScenesSelect<false> | ScenesSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
+    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    spotlights: SpotlightsSelect<false> | SpotlightsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -180,84 +182,36 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Flagship brand reveal page with rich content blocks
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "about".
  */
-export interface User {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
+export interface About {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Important for accessibility and SEO
+   * Main page title for the about section
    */
-  alt: string;
-  caption?: string | null;
-  mediaType?: ('image' | 'document' | 'video' | 'audio') | null;
-  tags?:
-    | {
-        tag?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Credit the creator or source if needed
-   */
-  source?: string | null;
-  cloudinary: {
-    id?: string | null;
-    url: string;
-    secureUrl?: string | null;
-    format?: string | null;
-    width?: number | null;
-    height?: number | null;
-    bytes?: number | null;
-    resourceType?: string | null;
-    folder?: string | null;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
- */
-export interface Homepage {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
-  slug: string;
-  heroImage?: (string | null) | Media;
-  body?:
+  heroSection: {
+    /**
+     * Main headline displayed in hero section
+     */
+    headline: string;
+    /**
+     * Supporting text below headline
+     */
+    subheadline?: string | null;
+    /**
+     * Cloudinary tag for hero background image
+     */
+    heroImage: string;
+  };
+  contentBlocks?:
     | (
         | {
-            heading?: string | null;
-            subheading?: string | null;
-            backgroundImage?: (string | null) | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero';
-          }
-        | {
-            content?: {
+            content: {
               root: {
                 type: string;
                 children: {
@@ -271,72 +225,232 @@ export interface Homepage {
                 version: number;
               };
               [k: string]: unknown;
-            } | null;
+            };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'content';
+            blockType: 'richText';
+          }
+        | {
+            /**
+             * Cloudinary tag for the image
+             */
+            cloudinaryTag: string;
+            /**
+             * Optional image caption
+             */
+            caption?: string | null;
+            aspectRatio?: ('16:9' | '21:9' | '1:1') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'fullWidthImage';
+          }
+        | {
+            title?: string | null;
+            columns: '2' | '3' | '4';
+            images?:
+              | {
+                  cloudinaryTag: string;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGallery';
+          }
+        | {
+            /**
+             * Cloudinary tag for the video
+             */
+            cloudinaryVideoTag: string;
+            title?: string | null;
+            /**
+             * Enable autoplay (muted)
+             */
+            autoplay?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoEmbed';
+          }
+        | {
+            text: string;
+            author?: string | null;
+            authorTitle?: string | null;
+            style?: ('centered' | 'left') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quote';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            displayMode: 'all' | 'featured' | 'selected';
+            /**
+             * Choose specific team members to display
+             */
+            selectedMembers?: (string | Team)[] | null;
+            columns: '2' | '3' | '4';
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamShowcase';
+          }
+        | {
+            heading: string;
+            values?:
+              | {
+                  title: string;
+                  description: string;
+                  icon?: ('star' | 'shield' | 'heart' | 'trophy' | 'sparkles' | 'lightning') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'companyValues';
           }
         | {
             heading?: string | null;
-            text?: string | null;
-            buttonText?: string | null;
-            buttonLink?: string | null;
-            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            stats?:
+              | {
+                  /**
+                   * e.g., "100", "25K", "99%"
+                   */
+                  value: string;
+                  label: string;
+                  /**
+                   * e.g., "+", "%", "years"
+                   */
+                  suffix?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            buttonText: string;
+            /**
+             * Internal link (e.g., /contact) or external URL
+             */
+            buttonLink: string;
+            backgroundStyle?: ('blue' | 'gray' | 'white') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'callToAction';
           }
       )[]
     | null;
-  callToAction?: {
-    text?: string | null;
-    link?: string | null;
-    style?: ('button' | 'text' | 'banner') | null;
-  };
-  conversionGoal?: ('lead' | 'sales' | 'newsletter' | 'event' | 'download' | 'other') | null;
-  /**
-   * Used to identify this page in A/B testing
-   */
-  abTestIdentifier?: string | null;
-  /**
-   * Settings for analytics and conversion tracking
-   */
-  conversionTracking?: {
-    goalID?: string | null;
-    eventCategory?: string | null;
-    eventAction?: string | null;
-  };
-  targetAudience?: ('new' | 'returning' | 'subscribers' | 'social' | 'all') | null;
-  /**
-   * Associated marketing campaign identifier
-   */
-  campaignAssociation?: string | null;
-  /**
-   * JSON-LD for enhanced SEO
-   */
-  structuredData?: string | null;
-  pageSettings?: {
-    noIndex?: boolean | null;
-    hideNavigation?: boolean | null;
-    hideFooter?: boolean | null;
-  };
   seo?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (string | null) | Media;
-    canonicalUrl?: string | null;
+    /**
+     * Override page title for SEO (60 chars max)
+     */
+    metaTitle?: string | null;
+    /**
+     * Page description for search results (160 chars max)
+     */
+    metaDescription?: string | null;
+    /**
+     * Cloudinary tag for social sharing image
+     */
+    metaImage?: string | null;
   };
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
   createdAt: string;
   updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  slug: string;
+  role: string;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary image URL
+   */
+  headshotUrl?: string | null;
+  yearsOfExperience?: number | null;
+  certifications?:
+    | {
+        certification?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  projectCode?: string | null;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads".
+ */
+export interface Ad {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  headline: string;
+  copy?: string | null;
+  imageUrl?: string | null;
+  url?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  landingPageSlug?: string | null;
+  landingPageContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  projectCode?: string | null;
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -417,6 +531,114 @@ export interface Tag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blocks".
+ */
+export interface Block {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  type: 'hero' | 'cta' | 'content' | 'featureGrid' | 'testimonials';
+  content?: {
+    heading?: string | null;
+    subheading?: string | null;
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (string | null) | Media;
+    backgroundColor?: ('white' | 'lightGray' | 'primary' | 'secondary') | null;
+    ctaButton?: {
+      label?: string | null;
+      link?: string | null;
+      style?: ('primary' | 'secondary' | 'text') | null;
+    };
+    features?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          icon?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    testimonials?: (string | Testimonial)[] | null;
+  };
+  isGlobal?: boolean | null;
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Important for accessibility and SEO
+   */
+  alt: string;
+  caption?: string | null;
+  mediaType?: ('image' | 'document' | 'video' | 'audio') | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Credit the creator or source if needed
+   */
+  source?: string | null;
+  cloudinary: {
+    id?: string | null;
+    url: string;
+    secureUrl?: string | null;
+    format?: string | null;
+    width?: number | null;
+    height?: number | null;
+    bytes?: number | null;
+    resourceType?: string | null;
+    folder?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  quote: string;
+  author: string;
+  company?: string | null;
+  rating?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blogPosts".
  */
 export interface BlogPost {
@@ -481,6 +703,141 @@ export interface ContactForm {
   submittedAt?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPage".
+ */
+export interface ContactPage {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Main heading for the contact page (e.g., "Let's Build Something Beautiful")
+   */
+  heroHeading: string;
+  /**
+   * Short paragraph or rich text block beneath the hero heading
+   */
+  heroSubheading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
+   */
+  heroImage?: string | null;
+  contactDetails?: {
+    /**
+     * Primary contact phone number
+     */
+    phoneNumber?: string | null;
+    /**
+     * Primary contact email address
+     */
+    emailAddress?: string | null;
+    address?: {
+      street?: string | null;
+      city?: string | null;
+      /**
+       * Two-letter state code (e.g., TX)
+       */
+      state?: string | null;
+      zip?: string | null;
+    };
+    /**
+     * Google Maps iframe embed code. Get this from Google Maps > Share > Embed a map. Paste the full iframe code here.
+     */
+    mapEmbedCode?: string | null;
+  };
+  /**
+   * Array of grouped content blocks for trust indicators
+   */
+  trustIndicators?:
+    | {
+        title: string;
+        description: string;
+        /**
+         * Cloudinary tags for icon or image. Recommended dimensions: 64x64px for icons.
+         */
+        optionalIconOrImage?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text prompt that appears just above the embedded form
+   */
+  formHeading?: string | null;
+  /**
+   * Formbricks or other form provider embed code. Paste the complete embed script/iframe here.
+   */
+  formEmbedCode?: string | null;
+  /**
+   * Show fallback message if the embedded form fails to load
+   */
+  formFallbackEnabled?: boolean | null;
+  /**
+   * Message shown if the embedded form fails to load
+   */
+  formFallbackMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * SEO title (defaults to hero heading if empty)
+   */
+  metaTitle?: string | null;
+  /**
+   * SEO description for search results
+   */
+  metaDescription?: string | null;
+  /**
+   * Optional manual override for schema.org JSON-LD structured data. Must be valid JSON.
+   */
+  structuredDataJSON?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Toggle to display the map on the contact page
+   */
+  showMap?: boolean | null;
+  /**
+   * Allows frontend to emphasize phone on mobile
+   */
+  highlightPhoneNumber?: boolean | null;
+  /**
+   * Toggle to use Formbricks vs fallback ContactForm
+   */
+  useFormEmbed?: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -601,255 +958,22 @@ export interface Gallery {
   updatedAt: string;
 }
 /**
+ * Individual gallery media items and pages
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "spotlights".
+ * via the `definition` "gallery".
  */
-export interface Spotlight {
+export interface Gallery1 {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
-  /**
-   * URL-friendly identifier for this spotlight gallery
-   */
-  slug: string;
-  /**
-   * Headline for this spotlight gallery
-   */
-  headline?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Brief description of this spotlight gallery
-   */
-  description?: string | null;
-  /**
-   * Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)
-   */
-  cloudinaryTags: string;
-  /**
-   * Organize this spotlight with gallery tags
-   */
-  tags?: (string | Tag)[] | null;
-  /**
-   * Display prominently on gallery index
-   */
-  featured?: boolean | null;
-  status?: ('draft' | 'published') | null;
-  /**
-   * Display order (lower numbers appear first)
-   */
-  order?: number | null;
-  publishDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "reals".
- */
-export interface Real {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  /**
-   * URL-friendly identifier for the Reals page
-   */
-  slug: string;
-  /**
-   * Headline for this Reals page
-   */
-  headline?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Brief description of this Reals page
-   */
-  description?: string | null;
-  /**
-   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
-   */
-  cloudinaryTags: string;
-  /**
-   * Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
-   */
-  loopStartTime?: number | null;
-  /**
-   * Auto-generated from Cloudinary tags search
-   */
-  cloudinaryPublicId?: string | null;
-  /**
-   * Auto-generated poster frame ID
-   */
-  posterPublicId?: string | null;
-  /**
-   * Generated thumbnail URLs for responsive display
-   */
-  thumbnails?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  /**
-   * Check to regenerate thumbnails on next save
-   */
-  regenerateThumbnails?: boolean | null;
-  /**
-   * Organize this Reals with gallery tags
-   */
-  tags?: (string | Tag)[] | null;
-  /**
-   * Display prominently on gallery index
-   */
-  featured?: boolean | null;
-  status?: ('draft' | 'published') | null;
-  /**
-   * Display priority (higher numbers appear first; leave blank for default position)
-   */
-  order?: number | null;
-  publishDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "scenes".
- */
-export interface Scene {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Select the Cloudinary environment for this scene
-   */
-  cloudinaryEnvironment: 'base' | 'staging' | 'live';
-  title: string;
-  /**
-   * URL-friendly identifier for the Scenes page
-   */
-  slug: string;
-  /**
-   * Descriptive text for screen readers and SEO
-   */
-  altText: string;
-  /**
-   * Headline for this Scenes page
-   */
-  headline?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Brief description of this Scenes page
-   */
-  description?: string | null;
-  /**
-   * Comma-separated tags for Cloudinary search (e.g., scene,portrait,featured)
-   */
-  cloudinaryTags: string;
-  /**
-   * Auto-generated from Cloudinary tags search
-   */
-  cloudinaryPublicId?: string | null;
-  /**
-   * Coordinates for smart cropping (0-100 scale)
-   */
-  focalPoint?: {
-    x?: number | null;
-    y?: number | null;
-  };
-  /**
-   * Enforced aspect ratio for this scene
-   */
-  aspectRatio?: ('9:16' | '2:3' | '3:4') | null;
-  /**
-   * Organize this Scenes with gallery tags
-   */
-  tags?: (string | Tag)[] | null;
-  /**
-   * Display prominently on gallery index
-   */
-  featured?: boolean | null;
-  status?: ('draft' | 'published') | null;
-  /**
-   * Display priority (higher numbers appear first; leave blank for default position)
-   */
-  order?: number | null;
-  publishDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "limitedtimeoffers".
- */
-export interface Limitedtimeoffer {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  slug: string;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  startDate: string;
-  endDate: string;
-  ctaText?: string | null;
-  ctaUrl?: string | null;
-  /**
-   * Cloudinary URL
-   */
-  featuredImage?: string | null;
+  caption?: string | null;
+  imageUrl: string;
+  videoUrl?: string | null;
+  order: number;
   projectCode?: string | null;
-  status: 'scheduled' | 'active' | 'expired';
+  featured?: boolean | null;
+  publishDate?: string | null;
   projects?:
     | {
         relationTo: 'projects';
@@ -873,410 +997,9 @@ export interface Limitedtimeoffer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos".
+ * via the `definition` "homepage".
  */
-export interface Video {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  description?: string | null;
-  cloudinaryPublicId: string;
-  thumbnailUrl?: string | null;
-  orientation?: ('landscape' | 'portrait' | 'square') | null;
-  status: 'draft' | 'published' | 'archived';
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "locations".
- */
-export interface Location {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  name: string;
-  slug: string;
-  region: string;
-  city: string;
-  county: string;
-  state: string;
-  zipCodes?:
-    | {
-        zip?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
-  description?: string | null;
-  /**
-   * Cloudinary URL
-   */
-  featuredImage?: string | null;
-  projectCode?: string | null;
-  serviceRadiusMeters?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navigation".
- */
-export interface Navigation {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  label: string;
-  slug: string;
-  items?:
-    | {
-        text: string;
-        url: string;
-        order?: number | null;
-        subItems?:
-          | {
-              text: string;
-              url: string;
-              order?: number | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team".
- */
-export interface Team {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  name: string;
-  slug: string;
-  role: string;
-  bio?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Cloudinary image URL
-   */
-  headshotUrl?: string | null;
-  yearsOfExperience?: number | null;
-  certifications?:
-    | {
-        certification?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  projectCode?: string | null;
-  featured?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  quote: string;
-  author: string;
-  company?: string | null;
-  rating?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ads".
- */
-export interface Ad {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  headline: string;
-  copy?: string | null;
-  imageUrl?: string | null;
-  url?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  landingPageSlug?: string | null;
-  landingPageContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  projectCode?: string | null;
-  projects?:
-    | {
-        relationTo: 'projects';
-        value: string | Project;
-      }[]
-    | null;
-  categories?:
-    | {
-        relationTo: 'categories';
-        value: string | Category;
-      }[]
-    | null;
-  tags?:
-    | {
-        relationTo: 'tags';
-        value: string | Tag;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
- */
-export interface Page {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  slug: string;
-  seo?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (string | null) | Media;
-  };
-  layout?:
-    | (
-        | {
-            heading?: string | null;
-            subheading?: string | null;
-            image?: (string | null) | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero';
-          }
-        | {
-            content?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'content';
-          }
-      )[]
-    | null;
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blocks".
- */
-export interface Block {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  type: 'hero' | 'cta' | 'content' | 'featureGrid' | 'testimonials';
-  content?: {
-    heading?: string | null;
-    subheading?: string | null;
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    image?: (string | null) | Media;
-    backgroundColor?: ('white' | 'lightGray' | 'primary' | 'secondary') | null;
-    ctaButton?: {
-      label?: string | null;
-      link?: string | null;
-      style?: ('primary' | 'secondary' | 'text') | null;
-    };
-    features?:
-      | {
-          title?: string | null;
-          description?: string | null;
-          icon?: (string | null) | Media;
-          id?: string | null;
-        }[]
-      | null;
-    testimonials?: (string | Testimonial)[] | null;
-  };
-  isGlobal?: boolean | null;
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * The path that will be redirected (e.g., /old-page)
-   */
-  slug: string;
-  /**
-   * The destination path (e.g., /new-page)
-   */
-  target: string;
-  statusCode: '301' | '302';
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  slug: string;
-  /**
-   * Brief description of the service (displayed in lists and previews)
-   */
-  summary?: string | null;
-  featuredImage?: (string | null) | Media;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  features?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  pricing?: {
-    priceType?: ('fixed' | 'starting' | 'contact') | null;
-    price?: string | null;
-    pricePeriod?: ('onetime' | 'hour' | 'day' | 'month' | 'year') | null;
-  };
-  relatedServices?: (string | Service)[] | null;
-  seo?: {
-    /**
-     * If left blank, the service title will be used
-     */
-    title?: string | null;
-    /**
-     * Recommended length: 120-155 characters
-     */
-    description?: string | null;
-    image?: (string | null) | Media;
-  };
-  visibility?: ('public' | 'hidden' | 'draft') | null;
-  /**
-   * Display in featured sections
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Lower numbers display first
-   */
-  sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landingPages".
- */
-export interface LandingPage {
+export interface Homepage {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
@@ -1371,444 +1094,6 @@ export interface LandingPage {
    * Lower numbers display first
    */
   sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * Site-wide configuration including branding, SEO, contact, and integrations
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSettings".
- */
-export interface SiteSetting {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * A short name for this site (used in admin UI)
-   */
-  siteTitle: string;
-  /**
-   * Designates this as the default fallback site
-   */
-  isDefaultSite?: boolean | null;
-  branding?: {
-    /**
-     * Recommended dimensions: 250x80px (3.125:1)
-     */
-    logoUrl?: string | null;
-  };
-  seo?: {
-    metaTitle?: string | null;
-    metaDescription?: string | null;
-    ogImage?: string | null;
-  };
-  contact?: {
-    phoneNumber?: string | null;
-    emailAddress?: string | null;
-    contactFormUrl?: string | null;
-    facebookUrl?: string | null;
-    instagramUrl?: string | null;
-    mapLink?: string | null;
-    contactCtaText?: string | null;
-  };
-  navigation?: {
-    stickyEnabled?: boolean | null;
-    primaryNav?:
-      | {
-          label: string;
-          href: string;
-          id?: string | null;
-        }[]
-      | null;
-    footerNav?:
-      | {
-          label: string;
-          href: string;
-          id?: string | null;
-        }[]
-      | null;
-    ctaLabel?: string | null;
-    ctaHref?: string | null;
-    mobileNavVariant?: ('drawer' | 'dropdown' | 'full') | null;
-  };
-  analytics?: {
-    gtmContainerId?: string | null;
-    gtagId?: string | null;
-    facebookPixelId?: string | null;
-    /**
-     * Paste JS snippets only (no <script> tags)
-     */
-    headerScripts?: string | null;
-    /**
-     * Paste JS snippets only (no <script> tags)
-     */
-    footerScripts?: string | null;
-    cookieConsentEnabled?: boolean | null;
-  };
-  performance?: {
-    lazyLoadMedia?: boolean | null;
-    imageCompressionEnabled?: boolean | null;
-    cacheControl?: string | null;
-    cdnBaseUrl?: string | null;
-  };
-  integrations?: {
-    /**
-     * Add your integration fields here
-     */
-    integrationsPlaceholder?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Portfolio landing page configuration with dynamic sections
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolioLanding".
- */
-export interface PortfolioLanding {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Used as the background image for the hero section.
-   */
-  heroImage?: string | null;
-  /**
-   * Headline text over the hero image.
-   */
-  heroHeading: string;
-  /**
-   * Optional subheading for additional context.
-   */
-  heroSubheading?: string | null;
-  /**
-   * Optional supporting text below the hero heading.
-   */
-  heroRichText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Internal title for this portfolio landing page
-   */
-  title: string;
-  /**
-   * Main headline displayed on the portfolio landing page
-   */
-  headline?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Supporting description text for the portfolio landing page
-   */
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Hero content for the Residential portfolio page
-   */
-  residentialHero?: {
-    /**
-     * Headline text for the Residential portfolio page hero
-     */
-    title?: string | null;
-    /**
-     * Supporting rich text content below the hero title
-     */
-    subhead?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    /**
-     * Cloudinary tag for the Residential hero background image
-     */
-    cloudinaryTag?: string | null;
-  };
-  /**
-   * Hero content for the Renovation portfolio page
-   */
-  renovationHero?: {
-    /**
-     * Headline text for the Renovation portfolio page hero
-     */
-    title?: string | null;
-    /**
-     * Supporting rich text content below the hero title
-     */
-    subhead?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    /**
-     * Cloudinary tag for the Renovation hero background image
-     */
-    cloudinaryTag?: string | null;
-  };
-  /**
-   * Hero content for the Commercial portfolio page
-   */
-  commercialHero?: {
-    /**
-     * Headline text for the Commercial portfolio page hero
-     */
-    title?: string | null;
-    /**
-     * Supporting rich text content below the hero title
-     */
-    subhead?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    /**
-     * Cloudinary tag for the Commercial hero background image
-     */
-    cloudinaryTag?: string | null;
-  };
-  /**
-   * Configure the three portfolio sections (Commercial, Residential, Renovation),
-   */
-  sections?:
-    | {
-        /**
-         * Internal identifier for this section (locked after creation)
-         */
-        sectionKey: 'commercial' | 'residential' | 'renovation';
-        /**
-         * Public-facing title for this portfolio section
-         */
-        title: string;
-        /**
-         * Optional supporting copy for this portfolio section
-         */
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        /**
-         * Tag used to fetch images from Cloudinary for this section (e.g., commercial, residential)
-         */
-        cloudinaryTag: string;
-        /**
-         * Route path for this portfolio section (e.g., /portfolio/commercial)
-         */
-        linkTo: string;
-        id?: string | null;
-      }[]
-    | null;
-  status?: ('draft' | 'published') | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * Individual portfolio projects for category grids and detail pages
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolioProjects".
- */
-export interface PortfolioProject {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Title of the portfolio project
-   */
-  title: string;
-  /**
-   * Universal project identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)
-   */
-  projectCode: string;
-  /**
-   * URL-friendly identifier (auto-generated from title)
-   */
-  slug: string;
-  /**
-   * Project category for grid filtering
-   */
-  category: 'residential' | 'commercial' | 'renovation';
-  /**
-   * Brief summary displayed on category grid cards (max 200 chars)
-   */
-  shortDescription: string;
-  /**
-   * Detailed project description for the project detail page
-   */
-  fullDescription?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Cloudinary tag for the main project image shown in grids
-   */
-  heroImage: string;
-  /**
-   * Additional images for the project detail page gallery
-   */
-  projectImages?:
-    | {
-        /**
-         * Tag for gallery image
-         */
-        cloudinaryTag: string;
-        /**
-         * Optional caption for this image
-         */
-        caption?: string | null;
-        /**
-         * Preferred display aspect ratio
-         */
-        aspectRatio?: ('16:9' | '9:16' | '1:1' | '21:9' | '4:3') | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Optional: Link to a detailed project journey or case study
-   */
-  linkedJourney?: {
-    relationTo: 'journeys';
-    value: string | Journey;
-  } | null;
-  /**
-   * Display prominently in category grids
-   */
-  featured?: boolean | null;
-  /**
-   * When the project was completed
-   */
-  completionDate?: string | null;
-  /**
-   * Optional: Client name for testimonials or attribution
-   */
-  clientName?: string | null;
-  /**
-   * Geographic location of the project
-   */
-  projectLocation?: string | null;
-  projectDetails?: {
-    /**
-     * Optional: Project budget range
-     */
-    budget?: ('under-50k' | '50k-100k' | '100k-250k' | '250k-500k' | 'over-500k') | null;
-    /**
-     * How long the project took
-     */
-    duration?: string | null;
-    /**
-     * Key features or achievements
-     */
-    highlights?:
-      | {
-          highlight: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  /**
-   * Make this project visible on the website
-   */
-  published: boolean;
-  /**
-   * When to publish this project
-   */
-  publishDate?: string | null;
-  seo?: {
-    /**
-     * Override the default meta title
-     */
-    metaTitle?: string | null;
-    /**
-     * Override the default meta description
-     */
-    metaDescription?: string | null;
-  };
   createdAt: string;
   updatedAt: string;
 }
@@ -2199,36 +1484,110 @@ export interface Journey {
   updatedAt: string;
 }
 /**
- * Flagship brand reveal page with rich content blocks
+ * Journeys landing page configuration - Index Hero Pattern v1
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about".
+ * via the `definition` "journeysLanding".
  */
-export interface About {
+export interface JourneysLanding {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Main page title for the about section
+   * Internal title for this journeys landing page
    */
   title: string;
-  heroSection: {
-    /**
-     * Main headline displayed in hero section
-     */
-    headline: string;
-    /**
-     * Supporting text below headline
-     */
-    subheadline?: string | null;
-    /**
-     * Cloudinary tag for hero background image
-     */
-    heroImage: string;
-  };
-  contentBlocks?:
+  /**
+   * Used as the background image for the hero section.
+   */
+  heroImage?: string | null;
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Main headline displayed on the journeys landing page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Supporting description text for the journeys landing page
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landingPages".
+ */
+export interface LandingPage {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  heroImage?: (string | null) | Media;
+  body?:
     | (
         | {
-            content: {
+            heading?: string | null;
+            subheading?: string | null;
+            backgroundImage?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content?: {
               root: {
                 type: string;
                 children: {
@@ -2242,138 +1601,889 @@ export interface About {
                 version: number;
               };
               [k: string]: unknown;
-            };
+            } | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'richText';
-          }
-        | {
-            /**
-             * Cloudinary tag for the image
-             */
-            cloudinaryTag: string;
-            /**
-             * Optional image caption
-             */
-            caption?: string | null;
-            aspectRatio?: ('16:9' | '21:9' | '1:1') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'fullWidthImage';
-          }
-        | {
-            title?: string | null;
-            columns: '2' | '3' | '4';
-            images?:
-              | {
-                  cloudinaryTag: string;
-                  caption?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'imageGallery';
-          }
-        | {
-            /**
-             * Cloudinary tag for the video
-             */
-            cloudinaryVideoTag: string;
-            title?: string | null;
-            /**
-             * Enable autoplay (muted)
-             */
-            autoplay?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'videoEmbed';
-          }
-        | {
-            text: string;
-            author?: string | null;
-            authorTitle?: string | null;
-            style?: ('centered' | 'left') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'quote';
-          }
-        | {
-            heading: string;
-            description?: string | null;
-            displayMode: 'all' | 'featured' | 'selected';
-            /**
-             * Choose specific team members to display
-             */
-            selectedMembers?: (string | Team)[] | null;
-            columns: '2' | '3' | '4';
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'teamShowcase';
-          }
-        | {
-            heading: string;
-            values?:
-              | {
-                  title: string;
-                  description: string;
-                  icon?: ('star' | 'shield' | 'heart' | 'trophy' | 'sparkles' | 'lightning') | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'companyValues';
+            blockType: 'content';
           }
         | {
             heading?: string | null;
-            stats?:
-              | {
-                  /**
-                   * e.g., "100", "25K", "99%"
-                   */
-                  value: string;
-                  label: string;
-                  /**
-                   * e.g., "+", "%", "years"
-                   */
-                  suffix?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'stats';
-          }
-        | {
-            heading: string;
-            description?: string | null;
-            buttonText: string;
-            /**
-             * Internal link (e.g., /contact) or external URL
-             */
-            buttonLink: string;
-            backgroundStyle?: ('blue' | 'gray' | 'white') | null;
+            text?: string | null;
+            buttonText?: string | null;
+            buttonLink?: string | null;
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'callToAction';
           }
       )[]
     | null;
+  callToAction?: {
+    text?: string | null;
+    link?: string | null;
+    style?: ('button' | 'text' | 'banner') | null;
+  };
+  conversionGoal?: ('lead' | 'sales' | 'newsletter' | 'event' | 'download' | 'other') | null;
+  /**
+   * Used to identify this page in A/B testing
+   */
+  abTestIdentifier?: string | null;
+  /**
+   * Settings for analytics and conversion tracking
+   */
+  conversionTracking?: {
+    goalID?: string | null;
+    eventCategory?: string | null;
+    eventAction?: string | null;
+  };
+  targetAudience?: ('new' | 'returning' | 'subscribers' | 'social' | 'all') | null;
+  /**
+   * Associated marketing campaign identifier
+   */
+  campaignAssociation?: string | null;
+  /**
+   * JSON-LD for enhanced SEO
+   */
+  structuredData?: string | null;
+  pageSettings?: {
+    noIndex?: boolean | null;
+    hideNavigation?: boolean | null;
+    hideFooter?: boolean | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+    canonicalUrl?: string | null;
+  };
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "limitedtimeoffers".
+ */
+export interface Limitedtimeoffer {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  startDate: string;
+  endDate: string;
+  ctaText?: string | null;
+  ctaUrl?: string | null;
+  /**
+   * Cloudinary URL
+   */
+  featuredImage?: string | null;
+  projectCode?: string | null;
+  status: 'scheduled' | 'active' | 'expired';
+  projects?:
+    | {
+        relationTo: 'projects';
+        value: string | Project;
+      }[]
+    | null;
+  categories?:
+    | {
+        relationTo: 'categories';
+        value: string | Category;
+      }[]
+    | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations".
+ */
+export interface Location {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  name: string;
+  slug: string;
+  region: string;
+  city: string;
+  county: string;
+  state: string;
+  zipCodes?:
+    | {
+        zip?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  description?: string | null;
+  /**
+   * Cloudinary URL
+   */
+  featuredImage?: string | null;
+  projectCode?: string | null;
+  serviceRadiusMeters?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  label: string;
+  slug: string;
+  items?:
+    | {
+        text: string;
+        url: string;
+        order?: number | null;
+        subItems?:
+          | {
+              text: string;
+              url: string;
+              order?: number | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (string | null) | Media;
+  };
+  layout?:
+    | (
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+      )[]
+    | null;
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Portfolio landing page configuration with dynamic sections
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioLanding".
+ */
+export interface PortfolioLanding {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Used as the background image for the hero section.
+   */
+  heroImage?: string | null;
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Internal title for this portfolio landing page
+   */
+  title: string;
+  /**
+   * Main headline displayed on the portfolio landing page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Supporting description text for the portfolio landing page
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Hero content for the Residential portfolio page
+   */
+  residentialHero?: {
+    /**
+     * Headline text for the Residential portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Residential hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
+  /**
+   * Hero content for the Renovation portfolio page
+   */
+  renovationHero?: {
+    /**
+     * Headline text for the Renovation portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Renovation hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
+  /**
+   * Hero content for the Commercial portfolio page
+   */
+  commercialHero?: {
+    /**
+     * Headline text for the Commercial portfolio page hero
+     */
+    title?: string | null;
+    /**
+     * Supporting rich text content below the hero title
+     */
+    subhead?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Cloudinary tag for the Commercial hero background image
+     */
+    cloudinaryTag?: string | null;
+  };
+  /**
+   * Configure the three portfolio sections (Commercial, Residential, Renovation),
+   */
+  sections?:
+    | {
+        /**
+         * Internal identifier for this section (locked after creation)
+         */
+        sectionKey: 'commercial' | 'residential' | 'renovation';
+        /**
+         * Public-facing title for this portfolio section
+         */
+        title: string;
+        /**
+         * Optional supporting copy for this portfolio section
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Tag used to fetch images from Cloudinary for this section (e.g., commercial, residential)
+         */
+        cloudinaryTag: string;
+        /**
+         * Route path for this portfolio section (e.g., /portfolio/commercial)
+         */
+        linkTo: string;
+        id?: string | null;
+      }[]
+    | null;
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Individual portfolio projects for category grids and detail pages
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioProjects".
+ */
+export interface PortfolioProject {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Title of the portfolio project
+   */
+  title: string;
+  /**
+   * Universal project identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)
+   */
+  projectCode: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
+   */
+  slug: string;
+  /**
+   * Project category for grid filtering
+   */
+  category: 'residential' | 'commercial' | 'renovation';
+  /**
+   * Brief summary displayed on category grid cards (max 200 chars)
+   */
+  shortDescription: string;
+  /**
+   * Detailed project description for the project detail page
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for the main project image shown in grids
+   */
+  heroImage: string;
+  /**
+   * Additional images for the project detail page gallery
+   */
+  projectImages?:
+    | {
+        /**
+         * Tag for gallery image
+         */
+        cloudinaryTag: string;
+        /**
+         * Optional caption for this image
+         */
+        caption?: string | null;
+        /**
+         * Preferred display aspect ratio
+         */
+        aspectRatio?: ('16:9' | '9:16' | '1:1' | '21:9' | '4:3') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional: Link to a detailed project journey or case study
+   */
+  linkedJourney?: {
+    relationTo: 'journeys';
+    value: string | Journey;
+  } | null;
+  /**
+   * Display prominently in category grids
+   */
+  featured?: boolean | null;
+  /**
+   * When the project was completed
+   */
+  completionDate?: string | null;
+  /**
+   * Optional: Client name for testimonials or attribution
+   */
+  clientName?: string | null;
+  /**
+   * Geographic location of the project
+   */
+  projectLocation?: string | null;
+  projectDetails?: {
+    /**
+     * Optional: Project budget range
+     */
+    budget?: ('under-50k' | '50k-100k' | '100k-250k' | '250k-500k' | 'over-500k') | null;
+    /**
+     * How long the project took
+     */
+    duration?: string | null;
+    /**
+     * Key features or achievements
+     */
+    highlights?:
+      | {
+          highlight: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Make this project visible on the website
+   */
+  published: boolean;
+  /**
+   * When to publish this project
+   */
+  publishDate?: string | null;
   seo?: {
     /**
-     * Override page title for SEO (60 chars max)
+     * Override the default meta title
      */
     metaTitle?: string | null;
     /**
-     * Page description for search results (160 chars max)
+     * Override the default meta description
      */
     metaDescription?: string | null;
-    /**
-     * Cloudinary tag for social sharing image
-     */
-    metaImage?: string | null;
   };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reals".
+ */
+export interface Real {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  /**
+   * URL-friendly identifier for the Reals page
+   */
+  slug: string;
+  /**
+   * Headline for this Reals page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Brief description of this Reals page
+   */
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
+   */
+  cloudinaryTags: string;
+  /**
+   * Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
+   */
+  loopStartTime?: number | null;
+  /**
+   * Auto-generated from Cloudinary tags search
+   */
+  cloudinaryPublicId?: string | null;
+  /**
+   * Auto-generated poster frame ID
+   */
+  posterPublicId?: string | null;
+  /**
+   * Generated thumbnail URLs for responsive display
+   */
+  thumbnails?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Check to regenerate thumbnails on next save
+   */
+  regenerateThumbnails?: boolean | null;
+  /**
+   * Organize this Reals with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Display priority (higher numbers appear first; leave blank for default position)
+   */
+  order?: number | null;
+  publishDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Hero content for the Reals index page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex".
+ */
+export interface RealsIndex {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Main heading for the reals page
+   */
+  heroHeading: string;
+  /**
+   * Short paragraph or rich text block beneath the hero heading
+   */
+  heroSubheading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
+   */
+  heroImage?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * The path that will be redirected (e.g., /old-page)
+   */
+  slug: string;
+  /**
+   * The destination path (e.g., /new-page)
+   */
+  target: string;
+  statusCode: '301' | '302';
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scenes".
+ */
+export interface Scene {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Select the Cloudinary environment for this scene
+   */
+  cloudinaryEnvironment: 'base' | 'staging' | 'live';
+  title: string;
+  /**
+   * URL-friendly identifier for the Scenes page
+   */
+  slug: string;
+  /**
+   * Descriptive text for screen readers and SEO
+   */
+  altText: string;
+  /**
+   * Headline for this Scenes page
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Brief description of this Scenes page
+   */
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., scene,portrait,featured)
+   */
+  cloudinaryTags: string;
+  /**
+   * Auto-generated from Cloudinary tags search
+   */
+  cloudinaryPublicId?: string | null;
+  /**
+   * Coordinates for smart cropping (0-100 scale)
+   */
+  focalPoint?: {
+    x?: number | null;
+    y?: number | null;
+  };
+  /**
+   * Enforced aspect ratio for this scene
+   */
+  aspectRatio?: ('9:16' | '2:3' | '3:4') | null;
+  /**
+   * Organize this Scenes with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Display priority (higher numbers appear first; leave blank for default position)
+   */
+  order?: number | null;
+  publishDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  slug: string;
+  /**
+   * Brief description of the service (displayed in lists and previews)
+   */
+  summary?: string | null;
+  featuredImage?: (string | null) | Media;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  features?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  pricing?: {
+    priceType?: ('fixed' | 'starting' | 'contact') | null;
+    price?: string | null;
+    pricePeriod?: ('onetime' | 'hour' | 'day' | 'month' | 'year') | null;
+  };
+  relatedServices?: (string | Service)[] | null;
+  seo?: {
+    /**
+     * If left blank, the service title will be used
+     */
+    title?: string | null;
+    /**
+     * Recommended length: 120-155 characters
+     */
+    description?: string | null;
+    image?: (string | null) | Media;
+  };
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2505,223 +2615,105 @@ export interface SignatureService {
   updatedAt: string;
 }
 /**
+ * Site-wide configuration including branding, SEO, contact, and integrations
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactPage".
+ * via the `definition` "siteSettings".
  */
-export interface ContactPage {
+export interface SiteSetting {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Main heading for the contact page (e.g., "Let's Build Something Beautiful")
+   * A short name for this site (used in admin UI)
    */
-  heroHeading: string;
+  siteTitle: string;
   /**
-   * Short paragraph or rich text block beneath the hero heading
+   * Designates this as the default fallback site
    */
-  heroSubheading?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
-   */
-  heroImage?: string | null;
-  contactDetails?: {
+  isDefaultSite?: boolean | null;
+  branding?: {
     /**
-     * Primary contact phone number
+     * Recommended dimensions: 250x80px (3.125:1)
      */
-    phoneNumber?: string | null;
-    /**
-     * Primary contact email address
-     */
-    emailAddress?: string | null;
-    address?: {
-      street?: string | null;
-      city?: string | null;
-      /**
-       * Two-letter state code (e.g., TX)
-       */
-      state?: string | null;
-      zip?: string | null;
-    };
-    /**
-     * Google Maps iframe embed code. Get this from Google Maps > Share > Embed a map. Paste the full iframe code here.
-     */
-    mapEmbedCode?: string | null;
+    logoUrl?: string | null;
   };
-  /**
-   * Array of grouped content blocks for trust indicators
-   */
-  trustIndicators?:
-    | {
-        title: string;
-        description: string;
-        /**
-         * Cloudinary tags for icon or image. Recommended dimensions: 64x64px for icons.
-         */
-        optionalIconOrImage?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Text prompt that appears just above the embedded form
-   */
-  formHeading?: string | null;
-  /**
-   * Formbricks or other form provider embed code. Paste the complete embed script/iframe here.
-   */
-  formEmbedCode?: string | null;
-  /**
-   * Show fallback message if the embedded form fails to load
-   */
-  formFallbackEnabled?: boolean | null;
-  /**
-   * Message shown if the embedded form fails to load
-   */
-  formFallbackMessage?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * SEO title (defaults to hero heading if empty)
-   */
-  metaTitle?: string | null;
-  /**
-   * SEO description for search results
-   */
-  metaDescription?: string | null;
-  /**
-   * Optional manual override for schema.org JSON-LD structured data. Must be valid JSON.
-   */
-  structuredDataJSON?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  /**
-   * Toggle to display the map on the contact page
-   */
-  showMap?: boolean | null;
-  /**
-   * Allows frontend to emphasize phone on mobile
-   */
-  highlightPhoneNumber?: boolean | null;
-  /**
-   * Toggle to use Formbricks vs fallback ContactForm
-   */
-  useFormEmbed?: boolean | null;
-  createdAt: string;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: string | null;
+  };
+  contact?: {
+    phoneNumber?: string | null;
+    emailAddress?: string | null;
+    contactFormUrl?: string | null;
+    facebookUrl?: string | null;
+    instagramUrl?: string | null;
+    mapLink?: string | null;
+    contactCtaText?: string | null;
+  };
+  navigation?: {
+    stickyEnabled?: boolean | null;
+    primaryNav?:
+      | {
+          label: string;
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
+    footerNav?:
+      | {
+          label: string;
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    ctaHref?: string | null;
+    mobileNavVariant?: ('drawer' | 'dropdown' | 'full') | null;
+  };
+  analytics?: {
+    gtmContainerId?: string | null;
+    gtagId?: string | null;
+    facebookPixelId?: string | null;
+    /**
+     * Paste JS snippets only (no <script> tags)
+     */
+    headerScripts?: string | null;
+    /**
+     * Paste JS snippets only (no <script> tags)
+     */
+    footerScripts?: string | null;
+    cookieConsentEnabled?: boolean | null;
+  };
+  performance?: {
+    lazyLoadMedia?: boolean | null;
+    imageCompressionEnabled?: boolean | null;
+    cacheControl?: string | null;
+    cdnBaseUrl?: string | null;
+  };
+  integrations?: {
+    /**
+     * Add your integration fields here
+     */
+    integrationsPlaceholder?: string | null;
+  };
   updatedAt: string;
+  createdAt: string;
 }
 /**
- * Hero content for the Reals index page
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "realsIndex".
+ * via the `definition` "spotlights".
  */
-export interface RealsIndex {
+export interface Spotlight {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Main heading for the reals page
-   */
-  heroHeading: string;
-  /**
-   * Short paragraph or rich text block beneath the hero heading
-   */
-  heroSubheading?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.
-   */
-  heroImage?: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * Journeys landing page configuration - Index Hero Pattern v1
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "journeysLanding".
- */
-export interface JourneysLanding {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Internal title for this journeys landing page
-   */
   title: string;
   /**
-   * Used as the background image for the hero section.
+   * URL-friendly identifier for this spotlight gallery
    */
-  heroImage?: string | null;
+  slug: string;
   /**
-   * Headline text over the hero image.
-   */
-  heroHeading: string;
-  /**
-   * Optional subheading for additional context.
-   */
-  heroSubheading?: string | null;
-  /**
-   * Optional supporting text below the hero heading.
-   */
-  heroRichText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Main headline displayed on the journeys landing page
+   * Headline for this spotlight gallery
    */
   headline?: {
     root: {
@@ -2739,24 +2731,72 @@ export interface JourneysLanding {
     [k: string]: unknown;
   } | null;
   /**
-   * Supporting description text for the journeys landing page
+   * Brief description of this spotlight gallery
    */
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., social,spotlight,featured)
+   */
+  cloudinaryTags: string;
+  /**
+   * Organize this spotlight with gallery tags
+   */
+  tags?: (string | Tag)[] | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
   status?: ('draft' | 'published') | null;
+  /**
+   * Display order (lower numbers appear first)
+   */
+  order?: number | null;
+  publishDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  title: string;
+  description?: string | null;
+  cloudinaryPublicId: string;
+  thumbnailUrl?: string | null;
+  orientation?: ('landscape' | 'portrait' | 'square') | null;
+  status: 'draft' | 'published' | 'archived';
+  visibility?: ('public' | 'hidden' | 'draft') | null;
+  /**
+   * Display in featured sections
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Lower numbers display first
+   */
+  sortOrder?: number | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2768,36 +2808,32 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'about';
+        value: string | About;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
+        relationTo: 'ads';
+        value: string | Ad;
       } | null)
     | ({
-        relationTo: 'homepage';
-        value: string | Homepage;
-      } | null)
-    | ({
-        relationTo: 'projects';
-        value: string | Project;
-      } | null)
-    | ({
-        relationTo: 'tags';
-        value: string | Tag;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
+        relationTo: 'blocks';
+        value: string | Block;
       } | null)
     | ({
         relationTo: 'blogPosts';
         value: string | BlogPost;
       } | null)
     | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
         relationTo: 'contactForm';
         value: string | ContactForm;
+      } | null)
+    | ({
+        relationTo: 'contactPage';
+        value: string | ContactPage;
       } | null)
     | ({
         relationTo: 'events';
@@ -2812,68 +2848,44 @@ export interface PayloadLockedDocument {
         value: string | Gallery;
       } | null)
     | ({
-        relationTo: 'spotlights';
-        value: string | Spotlight;
+        relationTo: 'gallery';
+        value: string | Gallery1;
       } | null)
     | ({
-        relationTo: 'reals';
-        value: string | Real;
+        relationTo: 'homepage';
+        value: string | Homepage;
       } | null)
     | ({
-        relationTo: 'scenes';
-        value: string | Scene;
+        relationTo: 'journeys';
+        value: string | Journey;
       } | null)
     | ({
-        relationTo: 'limitedtimeoffers';
-        value: string | Limitedtimeoffer;
-      } | null)
-    | ({
-        relationTo: 'videos';
-        value: string | Video;
-      } | null)
-    | ({
-        relationTo: 'locations';
-        value: string | Location;
-      } | null)
-    | ({
-        relationTo: 'navigation';
-        value: string | Navigation;
-      } | null)
-    | ({
-        relationTo: 'team';
-        value: string | Team;
-      } | null)
-    | ({
-        relationTo: 'testimonials';
-        value: string | Testimonial;
-      } | null)
-    | ({
-        relationTo: 'ads';
-        value: string | Ad;
-      } | null)
-    | ({
-        relationTo: 'pages';
-        value: string | Page;
-      } | null)
-    | ({
-        relationTo: 'blocks';
-        value: string | Block;
-      } | null)
-    | ({
-        relationTo: 'redirects';
-        value: string | Redirect;
-      } | null)
-    | ({
-        relationTo: 'services';
-        value: string | Service;
+        relationTo: 'journeysLanding';
+        value: string | JourneysLanding;
       } | null)
     | ({
         relationTo: 'landingPages';
         value: string | LandingPage;
       } | null)
     | ({
-        relationTo: 'siteSettings';
-        value: string | SiteSetting;
+        relationTo: 'limitedtimeoffers';
+        value: string | Limitedtimeoffer;
+      } | null)
+    | ({
+        relationTo: 'locations';
+        value: string | Location;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'navigation';
+        value: string | Navigation;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: string | Page;
       } | null)
     | ({
         relationTo: 'portfolioLanding';
@@ -2884,28 +2896,60 @@ export interface PayloadLockedDocument {
         value: string | PortfolioProject;
       } | null)
     | ({
-        relationTo: 'journeys';
-        value: string | Journey;
+        relationTo: 'projects';
+        value: string | Project;
       } | null)
     | ({
-        relationTo: 'about';
-        value: string | About;
-      } | null)
-    | ({
-        relationTo: 'signatureServices';
-        value: string | SignatureService;
-      } | null)
-    | ({
-        relationTo: 'contactPage';
-        value: string | ContactPage;
+        relationTo: 'reals';
+        value: string | Real;
       } | null)
     | ({
         relationTo: 'realsIndex';
         value: string | RealsIndex;
       } | null)
     | ({
-        relationTo: 'journeysLanding';
-        value: string | JourneysLanding;
+        relationTo: 'redirects';
+        value: string | Redirect;
+      } | null)
+    | ({
+        relationTo: 'scenes';
+        value: string | Scene;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'signatureServices';
+        value: string | SignatureService;
+      } | null)
+    | ({
+        relationTo: 'siteSettings';
+        value: string | SiteSetting;
+      } | null)
+    | ({
+        relationTo: 'spotlights';
+        value: string | Spotlight;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: string | Tag;
+      } | null)
+    | ({
+        relationTo: 'team';
+        value: string | Team;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -2951,53 +2995,363 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "about_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T;
+export interface AboutSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  heroSection?:
+    | T
+    | {
+        headline?: T;
+        subheadline?: T;
+        heroImage?: T;
+      };
+  contentBlocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        fullWidthImage?:
+          | T
+          | {
+              cloudinaryTag?: T;
+              caption?: T;
+              aspectRatio?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageGallery?:
+          | T
+          | {
+              title?: T;
+              columns?: T;
+              images?:
+                | T
+                | {
+                    cloudinaryTag?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoEmbed?:
+          | T
+          | {
+              cloudinaryVideoTag?: T;
+              title?: T;
+              autoplay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quote?:
+          | T
+          | {
+              text?: T;
+              author?: T;
+              authorTitle?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        teamShowcase?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              displayMode?: T;
+              selectedMembers?: T;
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        companyValues?:
+          | T
+          | {
+              heading?: T;
+              values?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              heading?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    suffix?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              backgroundStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        metaImage?: T;
+      };
   createdAt?: T;
-  enableAPIKey?: T;
-  apiKey?: T;
-  apiKeyIndex?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "ads_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface AdsSelect<T extends boolean = true> {
   siteKey?: T;
-  alt?: T;
-  caption?: T;
-  mediaType?: T;
-  tags?:
+  headline?: T;
+  copy?: T;
+  imageUrl?: T;
+  url?: T;
+  startDate?: T;
+  endDate?: T;
+  landingPageSlug?: T;
+  landingPageContent?: T;
+  projectCode?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blocks_select".
+ */
+export interface BlocksSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  type?: T;
+  content?:
     | T
     | {
-        tag?: T;
-        id?: T;
+        heading?: T;
+        subheading?: T;
+        richText?: T;
+        image?: T;
+        backgroundColor?: T;
+        ctaButton?:
+          | T
+          | {
+              label?: T;
+              link?: T;
+              style?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
+        testimonials?: T;
       };
-  source?: T;
-  cloudinary?:
-    | T
-    | {
-        id?: T;
-        url?: T;
-        secureUrl?: T;
-        format?: T;
-        width?: T;
-        height?: T;
-        bytes?: T;
-        resourceType?: T;
-        folder?: T;
-      };
+  isGlobal?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
   createdAt?: T;
   updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogPosts_select".
+ */
+export interface BlogPostsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  body?: T;
+  featuredImage?: T;
+  author?: T;
+  publishDate?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  description?: T;
+  color?: T;
+  projectCode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactForm_select".
+ */
+export interface ContactFormSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  email?: T;
+  postalCode?: T;
+  phone?: T;
+  message?: T;
+  sourcePage?: T;
+  referrer?: T;
+  internalNotes?: T;
+  submittedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPage_select".
+ */
+export interface ContactPageSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroImage?: T;
+  contactDetails?:
+    | T
+    | {
+        phoneNumber?: T;
+        emailAddress?: T;
+        address?:
+          | T
+          | {
+              street?: T;
+              city?: T;
+              state?: T;
+              zip?: T;
+            };
+        mapEmbedCode?: T;
+      };
+  trustIndicators?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        optionalIconOrImage?: T;
+        id?: T;
+      };
+  formHeading?: T;
+  formEmbedCode?: T;
+  formFallbackEnabled?: T;
+  formFallbackMessage?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  structuredDataJSON?: T;
+  showMap?: T;
+  highlightPhoneNumber?: T;
+  useFormEmbed?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  description?: T;
+  eventDate?: T;
+  planningWindowWeeks?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  siteKey?: T;
+  question?: T;
+  answer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries_select".
+ */
+export interface GalleriesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  heroMedia?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  images?:
+    | T
+    | {
+        media?: T;
+        cardLabel?: T;
+        id?: T;
+      };
+  imageSource?: T;
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  caption?: T;
+  imageUrl?: T;
+  videoUrl?: T;
+  order?: T;
+  projectCode?: T;
+  featured?: T;
+  publishDate?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3076,774 +3430,6 @@ export interface HomepageSelect<T extends boolean = true> {
   visibility?: T;
   isFeatured?: T;
   sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects_select".
- */
-export interface ProjectsSelect<T extends boolean = true> {
-  siteKey?: T;
-  projectCode?: T;
-  title?: T;
-  status?: T;
-  description?: T;
-  location?:
-    | T
-    | {
-        street?: T;
-        city?: T;
-        state?: T;
-        zip?: T;
-        county?: T;
-        subdivision?: T;
-        coordinates?:
-          | T
-          | {
-              latitude?: T;
-              longitude?: T;
-            };
-      };
-  featuredImage?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags_select".
- */
-export interface TagsSelect<T extends boolean = true> {
-  siteKey?: T;
-  parentTag?: T;
-  slug?: T;
-  childTags?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  siteKey?: T;
-  name?: T;
-  slug?: T;
-  description?: T;
-  color?: T;
-  projectCode?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogPosts_select".
- */
-export interface BlogPostsSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  body?: T;
-  featuredImage?: T;
-  author?: T;
-  publishDate?: T;
-  projects?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactForm_select".
- */
-export interface ContactFormSelect<T extends boolean = true> {
-  siteKey?: T;
-  name?: T;
-  email?: T;
-  postalCode?: T;
-  phone?: T;
-  message?: T;
-  sourcePage?: T;
-  referrer?: T;
-  internalNotes?: T;
-  submittedAt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events_select".
- */
-export interface EventsSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  eventDate?: T;
-  planningWindowWeeks?: T;
-  featuredImage?: T;
-  projectCode?: T;
-  projects?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs_select".
- */
-export interface FaqsSelect<T extends boolean = true> {
-  siteKey?: T;
-  question?: T;
-  answer?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "galleries_select".
- */
-export interface GalleriesSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  heroMedia?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroRichText?: T;
-  images?:
-    | T
-    | {
-        media?: T;
-        cardLabel?: T;
-        id?: T;
-      };
-  imageSource?: T;
-  status?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "spotlights_select".
- */
-export interface SpotlightsSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  headline?: T;
-  description?: T;
-  cloudinaryTags?: T;
-  tags?: T;
-  featured?: T;
-  status?: T;
-  order?: T;
-  publishDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "reals_select".
- */
-export interface RealsSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  headline?: T;
-  description?: T;
-  cloudinaryTags?: T;
-  loopStartTime?: T;
-  cloudinaryPublicId?: T;
-  posterPublicId?: T;
-  thumbnails?: T;
-  regenerateThumbnails?: T;
-  tags?: T;
-  featured?: T;
-  status?: T;
-  order?: T;
-  publishDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "scenes_select".
- */
-export interface ScenesSelect<T extends boolean = true> {
-  siteKey?: T;
-  cloudinaryEnvironment?: T;
-  title?: T;
-  slug?: T;
-  altText?: T;
-  headline?: T;
-  description?: T;
-  cloudinaryTags?: T;
-  cloudinaryPublicId?: T;
-  focalPoint?:
-    | T
-    | {
-        x?: T;
-        y?: T;
-      };
-  aspectRatio?: T;
-  tags?: T;
-  featured?: T;
-  status?: T;
-  order?: T;
-  publishDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "limitedtimeoffers_select".
- */
-export interface LimitedtimeoffersSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  startDate?: T;
-  endDate?: T;
-  ctaText?: T;
-  ctaUrl?: T;
-  featuredImage?: T;
-  projectCode?: T;
-  status?: T;
-  projects?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos_select".
- */
-export interface VideosSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  description?: T;
-  cloudinaryPublicId?: T;
-  thumbnailUrl?: T;
-  orientation?: T;
-  status?: T;
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "locations_select".
- */
-export interface LocationsSelect<T extends boolean = true> {
-  siteKey?: T;
-  name?: T;
-  slug?: T;
-  region?: T;
-  city?: T;
-  county?: T;
-  state?: T;
-  zipCodes?:
-    | T
-    | {
-        zip?: T;
-        id?: T;
-      };
-  coordinates?:
-    | T
-    | {
-        latitude?: T;
-        longitude?: T;
-      };
-  description?: T;
-  featuredImage?: T;
-  projectCode?: T;
-  serviceRadiusMeters?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navigation_select".
- */
-export interface NavigationSelect<T extends boolean = true> {
-  siteKey?: T;
-  label?: T;
-  slug?: T;
-  items?:
-    | T
-    | {
-        text?: T;
-        url?: T;
-        order?: T;
-        subItems?:
-          | T
-          | {
-              text?: T;
-              url?: T;
-              order?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team_select".
- */
-export interface TeamSelect<T extends boolean = true> {
-  siteKey?: T;
-  name?: T;
-  slug?: T;
-  role?: T;
-  bio?: T;
-  headshotUrl?: T;
-  yearsOfExperience?: T;
-  certifications?:
-    | T
-    | {
-        certification?: T;
-        id?: T;
-      };
-  projectCode?: T;
-  featured?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  siteKey?: T;
-  quote?: T;
-  author?: T;
-  company?: T;
-  rating?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ads_select".
- */
-export interface AdsSelect<T extends boolean = true> {
-  siteKey?: T;
-  headline?: T;
-  copy?: T;
-  imageUrl?: T;
-  url?: T;
-  startDate?: T;
-  endDate?: T;
-  landingPageSlug?: T;
-  landingPageContent?: T;
-  projectCode?: T;
-  projects?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages_select".
- */
-export interface PagesSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  seo?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  layout?:
-    | T
-    | {
-        hero?:
-          | T
-          | {
-              heading?: T;
-              subheading?: T;
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
-        content?:
-          | T
-          | {
-              content?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blocks_select".
- */
-export interface BlocksSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  type?: T;
-  content?:
-    | T
-    | {
-        heading?: T;
-        subheading?: T;
-        richText?: T;
-        image?: T;
-        backgroundColor?: T;
-        ctaButton?:
-          | T
-          | {
-              label?: T;
-              link?: T;
-              style?: T;
-            };
-        features?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              icon?: T;
-              id?: T;
-            };
-        testimonials?: T;
-      };
-  isGlobal?: T;
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
- */
-export interface RedirectsSelect<T extends boolean = true> {
-  siteKey?: T;
-  slug?: T;
-  target?: T;
-  statusCode?: T;
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services_select".
- */
-export interface ServicesSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  summary?: T;
-  featuredImage?: T;
-  content?: T;
-  features?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
-  pricing?:
-    | T
-    | {
-        priceType?: T;
-        price?: T;
-        pricePeriod?: T;
-      };
-  relatedServices?: T;
-  seo?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landingPages_select".
- */
-export interface LandingPagesSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  heroImage?: T;
-  body?:
-    | T
-    | {
-        hero?:
-          | T
-          | {
-              heading?: T;
-              subheading?: T;
-              backgroundImage?: T;
-              id?: T;
-              blockName?: T;
-            };
-        content?:
-          | T
-          | {
-              content?: T;
-              id?: T;
-              blockName?: T;
-            };
-        callToAction?:
-          | T
-          | {
-              heading?: T;
-              text?: T;
-              buttonText?: T;
-              buttonLink?: T;
-              buttonStyle?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  callToAction?:
-    | T
-    | {
-        text?: T;
-        link?: T;
-        style?: T;
-      };
-  conversionGoal?: T;
-  abTestIdentifier?: T;
-  conversionTracking?:
-    | T
-    | {
-        goalID?: T;
-        eventCategory?: T;
-        eventAction?: T;
-      };
-  targetAudience?: T;
-  campaignAssociation?: T;
-  structuredData?: T;
-  pageSettings?:
-    | T
-    | {
-        noIndex?: T;
-        hideNavigation?: T;
-        hideFooter?: T;
-      };
-  seo?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-        canonicalUrl?: T;
-      };
-  visibility?: T;
-  isFeatured?: T;
-  sortOrder?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSettings_select".
- */
-export interface SiteSettingsSelect<T extends boolean = true> {
-  siteKey?: T;
-  siteTitle?: T;
-  isDefaultSite?: T;
-  branding?:
-    | T
-    | {
-        logoUrl?: T;
-      };
-  seo?:
-    | T
-    | {
-        metaTitle?: T;
-        metaDescription?: T;
-        ogImage?: T;
-      };
-  contact?:
-    | T
-    | {
-        phoneNumber?: T;
-        emailAddress?: T;
-        contactFormUrl?: T;
-        facebookUrl?: T;
-        instagramUrl?: T;
-        mapLink?: T;
-        contactCtaText?: T;
-      };
-  navigation?:
-    | T
-    | {
-        stickyEnabled?: T;
-        primaryNav?:
-          | T
-          | {
-              label?: T;
-              href?: T;
-              id?: T;
-            };
-        footerNav?:
-          | T
-          | {
-              label?: T;
-              href?: T;
-              id?: T;
-            };
-        ctaLabel?: T;
-        ctaHref?: T;
-        mobileNavVariant?: T;
-      };
-  analytics?:
-    | T
-    | {
-        gtmContainerId?: T;
-        gtagId?: T;
-        facebookPixelId?: T;
-        headerScripts?: T;
-        footerScripts?: T;
-        cookieConsentEnabled?: T;
-      };
-  performance?:
-    | T
-    | {
-        lazyLoadMedia?: T;
-        imageCompressionEnabled?: T;
-        cacheControl?: T;
-        cdnBaseUrl?: T;
-      };
-  integrations?:
-    | T
-    | {
-        integrationsPlaceholder?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolioLanding_select".
- */
-export interface PortfolioLandingSelect<T extends boolean = true> {
-  siteKey?: T;
-  heroImage?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroRichText?: T;
-  title?: T;
-  headline?: T;
-  description?: T;
-  residentialHero?:
-    | T
-    | {
-        title?: T;
-        subhead?: T;
-        cloudinaryTag?: T;
-      };
-  renovationHero?:
-    | T
-    | {
-        title?: T;
-        subhead?: T;
-        cloudinaryTag?: T;
-      };
-  commercialHero?:
-    | T
-    | {
-        title?: T;
-        subhead?: T;
-        cloudinaryTag?: T;
-      };
-  sections?:
-    | T
-    | {
-        sectionKey?: T;
-        title?: T;
-        description?: T;
-        cloudinaryTag?: T;
-        linkTo?: T;
-        id?: T;
-      };
-  status?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolioProjects_select".
- */
-export interface PortfolioProjectsSelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  projectCode?: T;
-  slug?: T;
-  category?: T;
-  shortDescription?: T;
-  fullDescription?: T;
-  heroImage?: T;
-  projectImages?:
-    | T
-    | {
-        cloudinaryTag?: T;
-        caption?: T;
-        aspectRatio?: T;
-        id?: T;
-      };
-  linkedJourney?: T;
-  featured?: T;
-  completionDate?: T;
-  clientName?: T;
-  projectLocation?: T;
-  projectDetails?:
-    | T
-    | {
-        budget?: T;
-        duration?: T;
-        highlights?:
-          | T
-          | {
-              highlight?: T;
-              id?: T;
-            };
-      };
-  published?: T;
-  publishDate?: T;
-  seo?:
-    | T
-    | {
-        metaTitle?: T;
-        metaDescription?: T;
-      };
   createdAt?: T;
   updatedAt?: T;
 }
@@ -4054,109 +3640,46 @@ export interface JourneysSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about_select".
+ * via the `definition` "journeysLanding_select".
  */
-export interface AboutSelect<T extends boolean = true> {
+export interface JourneysLandingSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
-  heroSection?:
+  heroImage?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  headline?: T;
+  description?: T;
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landingPages_select".
+ */
+export interface LandingPagesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  heroImage?: T;
+  body?:
     | T
     | {
-        headline?: T;
-        subheadline?: T;
-        heroImage?: T;
-      };
-  contentBlocks?:
-    | T
-    | {
-        richText?:
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
           | T
           | {
               content?: T;
-              id?: T;
-              blockName?: T;
-            };
-        fullWidthImage?:
-          | T
-          | {
-              cloudinaryTag?: T;
-              caption?: T;
-              aspectRatio?: T;
-              id?: T;
-              blockName?: T;
-            };
-        imageGallery?:
-          | T
-          | {
-              title?: T;
-              columns?: T;
-              images?:
-                | T
-                | {
-                    cloudinaryTag?: T;
-                    caption?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        videoEmbed?:
-          | T
-          | {
-              cloudinaryVideoTag?: T;
-              title?: T;
-              autoplay?: T;
-              id?: T;
-              blockName?: T;
-            };
-        quote?:
-          | T
-          | {
-              text?: T;
-              author?: T;
-              authorTitle?: T;
-              style?: T;
-              id?: T;
-              blockName?: T;
-            };
-        teamShowcase?:
-          | T
-          | {
-              heading?: T;
-              description?: T;
-              displayMode?: T;
-              selectedMembers?: T;
-              columns?: T;
-              id?: T;
-              blockName?: T;
-            };
-        companyValues?:
-          | T
-          | {
-              heading?: T;
-              values?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    icon?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        stats?:
-          | T
-          | {
-              heading?: T;
-              stats?:
-                | T
-                | {
-                    value?: T;
-                    label?: T;
-                    suffix?: T;
-                    id?: T;
-                  };
               id?: T;
               blockName?: T;
             };
@@ -4164,21 +3687,453 @@ export interface AboutSelect<T extends boolean = true> {
           | T
           | {
               heading?: T;
-              description?: T;
+              text?: T;
               buttonText?: T;
               buttonLink?: T;
-              backgroundStyle?: T;
+              buttonStyle?: T;
               id?: T;
               blockName?: T;
             };
       };
+  callToAction?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        style?: T;
+      };
+  conversionGoal?: T;
+  abTestIdentifier?: T;
+  conversionTracking?:
+    | T
+    | {
+        goalID?: T;
+        eventCategory?: T;
+        eventAction?: T;
+      };
+  targetAudience?: T;
+  campaignAssociation?: T;
+  structuredData?: T;
+  pageSettings?:
+    | T
+    | {
+        noIndex?: T;
+        hideNavigation?: T;
+        hideFooter?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        canonicalUrl?: T;
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "limitedtimeoffers_select".
+ */
+export interface LimitedtimeoffersSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  description?: T;
+  startDate?: T;
+  endDate?: T;
+  ctaText?: T;
+  ctaUrl?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  status?: T;
+  projects?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "locations_select".
+ */
+export interface LocationsSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  region?: T;
+  city?: T;
+  county?: T;
+  state?: T;
+  zipCodes?:
+    | T
+    | {
+        zip?: T;
+        id?: T;
+      };
+  coordinates?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+      };
+  description?: T;
+  featuredImage?: T;
+  projectCode?: T;
+  serviceRadiusMeters?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  siteKey?: T;
+  alt?: T;
+  caption?: T;
+  mediaType?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  source?: T;
+  cloudinary?:
+    | T
+    | {
+        id?: T;
+        url?: T;
+        secureUrl?: T;
+        format?: T;
+        width?: T;
+        height?: T;
+        bytes?: T;
+        resourceType?: T;
+        folder?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  siteKey?: T;
+  label?: T;
+  slug?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        url?: T;
+        order?: T;
+        subItems?:
+          | T
+          | {
+              text?: T;
+              url?: T;
+              order?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioLanding_select".
+ */
+export interface PortfolioLandingSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroImage?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  title?: T;
+  headline?: T;
+  description?: T;
+  residentialHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
+  renovationHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
+  commercialHero?:
+    | T
+    | {
+        title?: T;
+        subhead?: T;
+        cloudinaryTag?: T;
+      };
+  sections?:
+    | T
+    | {
+        sectionKey?: T;
+        title?: T;
+        description?: T;
+        cloudinaryTag?: T;
+        linkTo?: T;
+        id?: T;
+      };
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolioProjects_select".
+ */
+export interface PortfolioProjectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  projectCode?: T;
+  slug?: T;
+  category?: T;
+  shortDescription?: T;
+  fullDescription?: T;
+  heroImage?: T;
+  projectImages?:
+    | T
+    | {
+        cloudinaryTag?: T;
+        caption?: T;
+        aspectRatio?: T;
+        id?: T;
+      };
+  linkedJourney?: T;
+  featured?: T;
+  completionDate?: T;
+  clientName?: T;
+  projectLocation?: T;
+  projectDetails?:
+    | T
+    | {
+        budget?: T;
+        duration?: T;
+        highlights?:
+          | T
+          | {
+              highlight?: T;
+              id?: T;
+            };
+      };
+  published?: T;
+  publishDate?: T;
   seo?:
     | T
     | {
         metaTitle?: T;
         metaDescription?: T;
-        metaImage?: T;
       };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  projectCode?: T;
+  title?: T;
+  status?: T;
+  description?: T;
+  location?:
+    | T
+    | {
+        street?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+        county?: T;
+        subdivision?: T;
+        coordinates?:
+          | T
+          | {
+              latitude?: T;
+              longitude?: T;
+            };
+      };
+  featuredImage?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reals_select".
+ */
+export interface RealsSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  headline?: T;
+  description?: T;
+  cloudinaryTags?: T;
+  loopStartTime?: T;
+  cloudinaryPublicId?: T;
+  posterPublicId?: T;
+  thumbnails?: T;
+  regenerateThumbnails?: T;
+  tags?: T;
+  featured?: T;
+  status?: T;
+  order?: T;
+  publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realsIndex_select".
+ */
+export interface RealsIndexSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroImage?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  siteKey?: T;
+  slug?: T;
+  target?: T;
+  statusCode?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scenes_select".
+ */
+export interface ScenesSelect<T extends boolean = true> {
+  siteKey?: T;
+  cloudinaryEnvironment?: T;
+  title?: T;
+  slug?: T;
+  altText?: T;
+  headline?: T;
+  description?: T;
+  cloudinaryTags?: T;
+  cloudinaryPublicId?: T;
+  focalPoint?:
+    | T
+    | {
+        x?: T;
+        y?: T;
+      };
+  aspectRatio?: T;
+  tags?: T;
+  featured?: T;
+  status?: T;
+  order?: T;
+  publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  summary?: T;
+  featuredImage?: T;
+  content?: T;
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  pricing?:
+    | T
+    | {
+        priceType?: T;
+        price?: T;
+        pricePeriod?: T;
+      };
+  relatedServices?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
   createdAt?: T;
   updatedAt?: T;
 }
@@ -4233,75 +4188,184 @@ export interface SignatureServicesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactPage_select".
+ * via the `definition` "siteSettings_select".
  */
-export interface ContactPageSelect<T extends boolean = true> {
+export interface SiteSettingsSelect<T extends boolean = true> {
   siteKey?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroImage?: T;
-  contactDetails?:
+  siteTitle?: T;
+  isDefaultSite?: T;
+  branding?:
+    | T
+    | {
+        logoUrl?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  contact?:
     | T
     | {
         phoneNumber?: T;
         emailAddress?: T;
-        address?:
-          | T
-          | {
-              street?: T;
-              city?: T;
-              state?: T;
-              zip?: T;
-            };
-        mapEmbedCode?: T;
+        contactFormUrl?: T;
+        facebookUrl?: T;
+        instagramUrl?: T;
+        mapLink?: T;
+        contactCtaText?: T;
       };
-  trustIndicators?:
+  navigation?:
     | T
     | {
-        title?: T;
-        description?: T;
-        optionalIconOrImage?: T;
-        id?: T;
+        stickyEnabled?: T;
+        primaryNav?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        footerNav?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        ctaHref?: T;
+        mobileNavVariant?: T;
       };
-  formHeading?: T;
-  formEmbedCode?: T;
-  formFallbackEnabled?: T;
-  formFallbackMessage?: T;
-  metaTitle?: T;
-  metaDescription?: T;
-  structuredDataJSON?: T;
-  showMap?: T;
-  highlightPhoneNumber?: T;
-  useFormEmbed?: T;
-  createdAt?: T;
+  analytics?:
+    | T
+    | {
+        gtmContainerId?: T;
+        gtagId?: T;
+        facebookPixelId?: T;
+        headerScripts?: T;
+        footerScripts?: T;
+        cookieConsentEnabled?: T;
+      };
+  performance?:
+    | T
+    | {
+        lazyLoadMedia?: T;
+        imageCompressionEnabled?: T;
+        cacheControl?: T;
+        cdnBaseUrl?: T;
+      };
+  integrations?:
+    | T
+    | {
+        integrationsPlaceholder?: T;
+      };
   updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "realsIndex_select".
+ * via the `definition` "spotlights_select".
  */
-export interface RealsIndexSelect<T extends boolean = true> {
-  siteKey?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroImage?: T;
-  createdAt?: T;
-  updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "journeysLanding_select".
- */
-export interface JourneysLandingSelect<T extends boolean = true> {
+export interface SpotlightsSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
-  heroImage?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroRichText?: T;
+  slug?: T;
   headline?: T;
   description?: T;
+  cloudinaryTags?: T;
+  tags?: T;
+  featured?: T;
   status?: T;
+  order?: T;
+  publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  siteKey?: T;
+  parentTag?: T;
+  slug?: T;
+  childTags?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  siteKey?: T;
+  name?: T;
+  slug?: T;
+  role?: T;
+  bio?: T;
+  headshotUrl?: T;
+  yearsOfExperience?: T;
+  certifications?:
+    | T
+    | {
+        certification?: T;
+        id?: T;
+      };
+  projectCode?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  siteKey?: T;
+  quote?: T;
+  author?: T;
+  company?: T;
+  rating?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  description?: T;
+  cloudinaryPublicId?: T;
+  thumbnailUrl?: T;
+  orientation?: T;
+  status?: T;
+  visibility?: T;
+  isFeatured?: T;
+  sortOrder?: T;
   createdAt?: T;
   updatedAt?: T;
 }

@@ -3,8 +3,13 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 
 const Gallery: CollectionConfig = {
   slug: 'gallery',
+  labels: {
+    singular: 'Gallery Page',
+    plural: 'Gallery Pages',
+  },
   admin: { 
     useAsTitle: 'title',
+    description: 'Individual gallery media items and pages',
     group: 'Content',
   },
   fields: [
