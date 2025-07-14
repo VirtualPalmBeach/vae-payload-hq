@@ -48,6 +48,40 @@ const GalleriesIndex: CollectionConfig = {
         placeholder: 'e.g., gallery-hero-luxury',
       },
     },
+    {
+      name: 'heroHeading',
+      label: 'Hero Heading',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Main heading for the gallery index hero section',
+      },
+    },
+    {
+      name: 'heroSubheading',
+      label: 'Hero Subheading',
+      type: 'text',
+      admin: {
+        description: 'Subheading text for the gallery index hero section',
+      },
+    },
+    {
+      name: 'heroRichText',
+      label: 'Hero Rich Text',
+      type: 'richText',
+      admin: {
+        description: 'Rich text content for the gallery index hero section',
+      },
+    },
+    {
+      name: 'heroImage',
+      label: 'Hero Image',
+      type: 'text',
+      admin: {
+        description: 'Cloudinary tag for hero image fallback',
+        placeholder: 'e.g., gallery-hero-fallback',
+      },
+    },
     
     // Publishing Controls
     {

@@ -937,6 +937,32 @@ export interface Gallery {
    */
   cloudinaryHeroTag: string;
   /**
+   * Main heading for the gallery hero section
+   */
+  heroHeading: string;
+  /**
+   * Subheading text for the gallery hero section
+   */
+  heroSubheading?: string | null;
+  /**
+   * Rich text content for the gallery hero section
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
    * Images for the gallery
    */
   imageAssets?:
@@ -1012,6 +1038,36 @@ export interface GalleriesIndex {
    * Cloudinary tag for the hero image
    */
   cloudinaryHeroTag: string;
+  /**
+   * Main heading for the gallery index hero section
+   */
+  heroHeading: string;
+  /**
+   * Subheading text for the gallery index hero section
+   */
+  heroSubheading?: string | null;
+  /**
+   * Rich text content for the gallery index hero section
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for hero image fallback
+   */
+  heroImage?: string | null;
   /**
    * Make this page visible on the website
    */
@@ -3355,6 +3411,9 @@ export interface GalleriesSelect<T extends boolean = true> {
   category?: T;
   description?: T;
   cloudinaryHeroTag?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
   imageAssets?:
     | T
     | {
@@ -3383,6 +3442,10 @@ export interface GalleriesIndexSelect<T extends boolean = true> {
   title?: T;
   introText?: T;
   cloudinaryHeroTag?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  heroImage?: T;
   published?: T;
   seo?:
     | T

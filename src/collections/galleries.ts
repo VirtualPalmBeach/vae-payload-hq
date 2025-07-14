@@ -112,6 +112,31 @@ const Galleries: CollectionConfig = {
       },
     },
     {
+      name: 'heroHeading',
+      label: 'Hero Heading',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Main heading for the gallery hero section',
+      },
+    },
+    {
+      name: 'heroSubheading',
+      label: 'Hero Subheading',
+      type: 'text',
+      admin: {
+        description: 'Subheading text for the gallery hero section',
+      },
+    },
+    {
+      name: 'heroRichText',
+      label: 'Hero Rich Text',
+      type: 'richText',
+      admin: {
+        description: 'Rich text content for the gallery hero section',
+      },
+    },
+    {
       name: 'imageAssets',
       label: 'Gallery Images',
       type: 'array',
