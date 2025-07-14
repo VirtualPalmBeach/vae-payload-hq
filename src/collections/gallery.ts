@@ -46,6 +46,22 @@ const Gallery: CollectionConfig = {
       },
     },
     {
+      name: 'heroVideoTag',
+      label: 'Hero Video Tag',
+      type: 'text',
+      admin: {
+        description: 'Optional Cloudinary tag for custom hero video. Overrides shared gallery hero when present.',
+      },
+    },
+    {
+      name: 'heroImageTag',
+      label: 'Hero Image Tag',
+      type: 'text',
+      admin: {
+        description: 'Optional Cloudinary tag for custom hero image fallback. Used when heroVideoTag is empty.',
+      },
+    },
+    {
       name: 'order',
       label: 'Order',
       type: 'number',

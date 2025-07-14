@@ -976,6 +976,14 @@ export interface Gallery1 {
    * Comma-separated tags for Cloudinary search (e.g., ANT2101,fireFeatures,Photo)
    */
   cloudinaryTag: string;
+  /**
+   * Optional Cloudinary tag for custom hero video. Overrides shared gallery hero when present.
+   */
+  heroVideoTag?: string | null;
+  /**
+   * Optional Cloudinary tag for custom hero image fallback. Used when heroVideoTag is empty.
+   */
+  heroImageTag?: string | null;
   order: number;
   featured?: boolean | null;
   adminNotes?: string | null;
@@ -3347,6 +3355,8 @@ export interface GallerySelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   cloudinaryTag?: T;
+  heroVideoTag?: T;
+  heroImageTag?: T;
   order?: T;
   featured?: T;
   adminNotes?: T;
