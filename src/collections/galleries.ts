@@ -22,7 +22,10 @@ const Galleries: CollectionConfig = {
   },
   fields: [
     // Site Configuration
-    commonSiteKeyField,
+    {
+      ...commonSiteKeyField,
+      unique: true,
+    },
     
     // Core Fields
     {
@@ -147,6 +150,28 @@ const Galleries: CollectionConfig = {
     },
     ...timestampedFields,
   ],
+  hooks: {
+    beforeValidate: [
+      async ({ data, operation, req }) => {
+        if (operation === 'create' || (operation === 'update' && data.siteKey)) {
+          const { payload } = req
+          const existingDocs = await payload.find({
+            collection: 'galleries',
+            where: {
+              siteKey: { equals: data.siteKey },
+              ...(data.id ? { id: { not_equals: data.id } } : {}),
+            },
+          })
+          
+          if (existingDocs.totalDocs > 0) {
+            throw new Error(`A gallery index already exists for site ${data.siteKey}. Only one gallery index is allowed per site.`)
+          }
+        }
+        
+        return data
+      },
+    ],
+  },
 }
 
 export default Galleries
