@@ -78,7 +78,6 @@ export interface Config {
     faqs: Faq;
     galleries: Gallery;
     galleriesIndex: GalleriesIndex;
-    gallery: Gallery1;
     homepage: Homepage;
     journeys: Journey;
     journeysLanding: JourneysLanding;
@@ -121,7 +120,6 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     galleriesIndex: GalleriesIndexSelect<false> | GalleriesIndexSelect<true>;
-    gallery: GallerySelect<false> | GallerySelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     journeys: JourneysSelect<false> | JourneysSelect<true>;
     journeysLanding: JourneysLandingSelect<false> | JourneysLandingSelect<true>;
@@ -1030,56 +1028,6 @@ export interface GalleriesIndex {
   };
   createdAt: string;
   updatedAt: string;
-}
-/**
- * Individual gallery media items and pages
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery".
- */
-export interface Gallery1 {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  title: string;
-  /**
-   * URL-friendly identifier for this gallery page
-   */
-  slug: string;
-  description?: string | null;
-  /**
-   * Comma-separated tags for Cloudinary search (e.g., ANT2101,fireFeatures,Photo)
-   */
-  cloudinaryTag: string;
-  /**
-   * Optional Cloudinary tag for custom hero video. Overrides shared gallery hero when present.
-   */
-  heroVideoTag?: string | null;
-  /**
-   * Optional Cloudinary tag for custom hero image fallback. Used when heroVideoTag is empty.
-   */
-  heroImageTag?: string | null;
-  order: number;
-  featured?: boolean | null;
-  adminNotes?: string | null;
-  /**
-   * Controls aspect ratio for gallery image pop-up
-   */
-  mediaAspect?: ('square' | 'landscape' | 'portrait' | 'wide') | null;
-  publishDate?: string | null;
-  categories?:
-    | {
-        relationTo: 'categories';
-        value: string | Category;
-      }[]
-    | null;
-  tags?:
-    | {
-        relationTo: 'tags';
-        value: string | Tag;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2938,10 +2886,6 @@ export interface PayloadLockedDocument {
         value: string | GalleriesIndex;
       } | null)
     | ({
-        relationTo: 'gallery';
-        value: string | Gallery1;
-      } | null)
-    | ({
         relationTo: 'homepage';
         value: string | Homepage;
       } | null)
@@ -3448,28 +3392,6 @@ export interface GalleriesIndexSelect<T extends boolean = true> {
       };
   createdAt?: T;
   updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery_select".
- */
-export interface GallerySelect<T extends boolean = true> {
-  siteKey?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  cloudinaryTag?: T;
-  heroVideoTag?: T;
-  heroImageTag?: T;
-  order?: T;
-  featured?: T;
-  adminNotes?: T;
-  mediaAspect?: T;
-  publishDate?: T;
-  categories?: T;
-  tags?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

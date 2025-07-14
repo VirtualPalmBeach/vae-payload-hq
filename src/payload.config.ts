@@ -28,7 +28,6 @@ import { Testimonials } from './collections/testimonials'
 import { BlogPosts } from './collections/blogposts'
 import ContactForm from './collections/contactform'
 import Events from './collections/events'
-import Gallery from './collections/gallery'
 import Galleries from './collections/galleries'
 import LimitedTimeOffers from './collections/limitedtimeoffers'
 import Locations from './collections/locations'
@@ -103,7 +102,6 @@ export default buildConfig({
     FAQs,
     Galleries,
     GalleriesIndex,
-    Gallery,
     Homepage,
     Journeys,
     journeysLanding,
