@@ -4,14 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',
-  labels: {
-    singular: 'Gallery Index',
-    plural: 'Galleries Index',
-  },
   admin: {
     useAsTitle: 'title',
-    description: 'Gallery collections with dynamic image sourcing',
-    defaultColumns: ['title', 'slug', 'status'],
+    description: 'Individual gallery pages',
+    defaultColumns: ['title', 'category', 'galleryCode', 'published', 'updatedAt'],
     group: 'Content',
   },
   access: {
@@ -22,19 +18,37 @@ const Galleries: CollectionConfig = {
   },
   fields: [
     // Site Configuration
-    {
-      ...commonSiteKeyField,
-      unique: true,
-    },
+    commonSiteKeyField,
     
-    // Core Fields
+    // Core Gallery Fields
     {
       name: 'title',
       label: 'Gallery Title',
       type: 'text',
       required: true,
       admin: {
-        description: 'Display name for this gallery',
+        description: 'Title of the gallery',
+      },
+    },
+    {
+      name: 'galleryCode',
+      label: 'Gallery Code',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: {
+        description: 'Unique gallery identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)',
+        placeholder: 'GAL2401',
+      },
+      validate: (value: string | null | undefined) => {
+        if (!value) return 'Gallery code is required'
+        if (typeof value !== 'string') return 'Gallery code must be a string'
+        const pattern = /^[A-Z]{3}\d{4}$/
+        if (!pattern.test(value)) {
+          return 'Gallery code must be 3 uppercase letters followed by 4 digits (e.g., GAL2401)'
+        }
+        return true
       },
     },
     {
@@ -43,135 +57,178 @@ const Galleries: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      index: true,
       admin: {
-        description: 'URL-friendly identifier for this gallery (e.g., "featured-projects")',
+        position: 'sidebar',
+        description: 'URL-friendly identifier (auto-generated from title)',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, originalDoc, data }) => {
+            if (!value && data?.title) {
+              return data.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '')
+            }
+            return value
+          },
+        ],
       },
     },
-    
-    // Hero Section Fields - Index Hero Pattern v1
     {
-      name: 'heroMedia',
-      label: 'Hero Image',
-      type: 'relationship',
-      relationTo: 'media',
-      required: false,
-    },
-    {
-      name: 'heroHeading',
-      label: 'Hero Heading',
-      type: 'text',
+      name: 'category',
+      label: 'Category',
+      type: 'select',
       required: true,
-      maxLength: 200,
-      defaultValue: 'Gallery',
+      options: [
+        { label: 'Inspiration', value: 'inspiration' },
+        { label: 'Project', value: 'project' },
+        { label: 'Aesthetic', value: 'aesthetic' },
+      ],
       admin: {
-        description: 'Headline text over the hero image.',
+        position: 'sidebar',
+        description: 'Gallery category for organization',
       },
     },
     {
-      name: 'heroSubheading',
-      label: 'Hero Subheading',
-      type: 'text',
-      required: false,
-      maxLength: 300,
-      admin: {
-        description: 'Optional subheading for additional context.',
-      },
-    },
-    {
-      name: 'heroRichText',
-      label: 'Hero Rich Text',
+      name: 'description',
+      label: 'Description',
       type: 'richText',
       admin: {
-        description: 'Optional supporting text below the hero heading.',
+        description: 'Detailed gallery description',
       },
     },
     
-    // Gallery Images Array
+    // Visual Content
     {
-      name: 'images',
+      name: 'cloudinaryHeroTag',
+      label: 'Hero Image Tag',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Cloudinary tag for the gallery hero image',
+        placeholder: 'e.g., gallery-luxury-pool-hero',
+      },
+    },
+    {
+      name: 'imageAssets',
       label: 'Gallery Images',
       type: 'array',
-      required: false,
+      minRows: 1,
       admin: {
-        description: 'Images to display in this gallery with optional labels',
-        initCollapsed: false,
+        description: 'Images for the gallery',
       },
       fields: [
         {
-          name: 'media',
-          label: 'Image',
-          type: 'relationship',
-          relationTo: 'media',
+          name: 'cloudinaryTag',
+          label: 'Cloudinary Tag',
+          type: 'text',
           required: true,
           admin: {
-            description: 'Select an image from the media library',
+            description: 'Tag for gallery image',
+            placeholder: 'e.g., gallery-project-123-image-1',
           },
         },
         {
-          name: 'cardLabel',
-          label: 'Card Label',
+          name: 'caption',
+          label: 'Image Caption',
           type: 'text',
-          required: false,
-          maxLength: 100,
           admin: {
-            description: 'Optional label displayed as overlay on the image card',
-            placeholder: 'e.g., Featured Project, Award Winner',
+            description: 'Optional caption for this image',
+          },
+        },
+        {
+          name: 'aspectRatio',
+          label: 'Aspect Ratio',
+          type: 'select',
+          options: [
+            { label: 'Landscape (16:9)', value: '16:9' },
+            { label: 'Portrait (9:16)', value: '9:16' },
+            { label: 'Square (1:1)', value: '1:1' },
+            { label: 'Wide (21:9)', value: '21:9' },
+            { label: 'Standard (4:3)', value: '4:3' },
+          ],
+          defaultValue: '16:9',
+          admin: {
+            description: 'Preferred display aspect ratio',
           },
         },
       ],
     },
     
-    // Legacy Image Source Configuration (Deprecated - for backward compatibility)
+    // Publishing Controls
     {
-      name: 'imageSource',
-      label: 'Image Source (Legacy)',
-      type: 'text',
-      required: false,
+      name: 'published',
+      label: 'Published',
+      type: 'checkbox',
+      defaultValue: false,
+      required: true,
       admin: {
-        description: 'DEPRECATED - Use Gallery Images array instead. Cloudinary folder path for gallery images.',
-        placeholder: 'e.g., gallery/features, gallery/materials',
-        condition: (data) => !data.images || data.images.length === 0,
+        position: 'sidebar',
+        description: 'Make this gallery visible on the website',
+      },
+    },
+    {
+      name: 'publishDate',
+      label: 'Publish Date',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        description: 'When to publish this gallery',
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
       },
     },
     
-    // Publishing & Timestamps
+    // SEO Fields
     {
-      name: 'status',
-      label: 'Status',
-      type: 'select',
-      options: [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Published', value: 'published' },
-      ],
-      defaultValue: 'draft',
+      name: 'seo',
+      label: 'SEO',
+      type: 'group',
       admin: {
         position: 'sidebar',
       },
+      fields: [
+        {
+          name: 'metaTitle',
+          label: 'Meta Title',
+          type: 'text',
+          admin: {
+            description: 'Override the default meta title',
+          },
+        },
+        {
+          name: 'metaDescription',
+          label: 'Meta Description',
+          type: 'textarea',
+          admin: {
+            description: 'Override the default meta description',
+          },
+        },
+      ],
     },
+    
+    // Timestamps
     ...timestampedFields,
   ],
-  hooks: {
-    beforeValidate: [
-      async ({ data, operation, req }) => {
-        if (data && (operation === 'create' || (operation === 'update' && data.siteKey))) {
-          const { payload } = req
-          const existingDocs = await payload.find({
-            collection: 'galleries',
-            where: {
-              siteKey: { equals: data.siteKey },
-              ...(data.id ? { id: { not_equals: data.id } } : {}),
-            },
-          })
-          
-          if (existingDocs.totalDocs > 0) {
-            throw new Error(`A gallery index already exists for site ${data.siteKey}. Only one gallery index is allowed per site.`)
-          }
-        }
-        
-        return data
-      },
-    ],
-  },
+  indexes: [
+    {
+      fields: ['galleryCode', 'siteKey'],
+      unique: true,
+    },
+    {
+      fields: ['slug', 'siteKey'],
+      unique: true,
+    },
+    {
+      fields: ['category', 'publishDate'],
+    },
+    {
+      fields: ['siteKey', 'published', 'category'],
+    },
+  ],
 }
 
 export default Galleries

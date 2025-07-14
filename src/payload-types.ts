@@ -890,7 +890,7 @@ export interface Faq {
   createdAt: string;
 }
 /**
- * Gallery collections with dynamic image sourcing
+ * Individual gallery pages
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "galleries".
@@ -899,26 +899,25 @@ export interface Gallery {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Display name for this gallery
+   * Title of the gallery
    */
   title: string;
   /**
-   * URL-friendly identifier for this gallery (e.g., "featured-projects")
+   * Unique gallery identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)
+   */
+  galleryCode: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
    */
   slug: string;
-  heroMedia?: (string | null) | Media;
   /**
-   * Headline text over the hero image.
+   * Gallery category for organization
    */
-  heroHeading: string;
+  category: 'inspiration' | 'project' | 'aesthetic';
   /**
-   * Optional subheading for additional context.
+   * Detailed gallery description
    */
-  heroSubheading?: string | null;
-  /**
-   * Optional supporting text below the hero heading.
-   */
-  heroRichText?: {
+  description?: {
     root: {
       type: string;
       children: {
@@ -934,26 +933,47 @@ export interface Gallery {
     [k: string]: unknown;
   } | null;
   /**
-   * Images to display in this gallery with optional labels
+   * Cloudinary tag for the gallery hero image
    */
-  images?:
+  cloudinaryHeroTag: string;
+  /**
+   * Images for the gallery
+   */
+  imageAssets?:
     | {
         /**
-         * Select an image from the media library
+         * Tag for gallery image
          */
-        media: string | Media;
+        cloudinaryTag: string;
         /**
-         * Optional label displayed as overlay on the image card
+         * Optional caption for this image
          */
-        cardLabel?: string | null;
+        caption?: string | null;
+        /**
+         * Preferred display aspect ratio
+         */
+        aspectRatio?: ('16:9' | '9:16' | '1:1' | '21:9' | '4:3') | null;
         id?: string | null;
       }[]
     | null;
   /**
-   * DEPRECATED - Use Gallery Images array instead. Cloudinary folder path for gallery images.
+   * Make this gallery visible on the website
    */
-  imageSource?: string | null;
-  status?: ('draft' | 'published') | null;
+  published: boolean;
+  /**
+   * When to publish this gallery
+   */
+  publishDate?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -3328,20 +3348,27 @@ export interface FaqsSelect<T extends boolean = true> {
 export interface GalleriesSelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
+  galleryCode?: T;
   slug?: T;
-  heroMedia?: T;
-  heroHeading?: T;
-  heroSubheading?: T;
-  heroRichText?: T;
-  images?:
+  category?: T;
+  description?: T;
+  cloudinaryHeroTag?: T;
+  imageAssets?:
     | T
     | {
-        media?: T;
-        cardLabel?: T;
+        cloudinaryTag?: T;
+        caption?: T;
+        aspectRatio?: T;
         id?: T;
       };
-  imageSource?: T;
-  status?: T;
+  published?: T;
+  publishDate?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
   createdAt?: T;
   updatedAt?: T;
 }
