@@ -77,6 +77,7 @@ export interface Config {
     events: Event;
     faqs: Faq;
     galleries: Gallery;
+    galleriesIndex: GalleriesIndex;
     gallery: Gallery1;
     homepage: Homepage;
     journeys: Journey;
@@ -119,6 +120,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
+    galleriesIndex: GalleriesIndexSelect<false> | GalleriesIndexSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     journeys: JourneysSelect<false> | JourneysSelect<true>;
@@ -964,6 +966,58 @@ export interface Gallery {
    * When to publish this gallery
    */
   publishDate?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Gallery index page configuration
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleriesIndex".
+ */
+export interface GalleriesIndex {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Title for the gallery index page
+   */
+  title: string;
+  /**
+   * Rich text content for the gallery index page introduction
+   */
+  introText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for the hero image
+   */
+  cloudinaryHeroTag: string;
+  /**
+   * Make this page visible on the website
+   */
+  published: boolean;
   seo?: {
     /**
      * Override the default meta title
@@ -2880,6 +2934,10 @@ export interface PayloadLockedDocument {
         value: string | Gallery;
       } | null)
     | ({
+        relationTo: 'galleriesIndex';
+        value: string | GalleriesIndex;
+      } | null)
+    | ({
         relationTo: 'gallery';
         value: string | Gallery1;
       } | null)
@@ -3363,6 +3421,25 @@ export interface GalleriesSelect<T extends boolean = true> {
       };
   published?: T;
   publishDate?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleriesIndex_select".
+ */
+export interface GalleriesIndexSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  introText?: T;
+  cloudinaryHeroTag?: T;
+  published?: T;
   seo?:
     | T
     | {
