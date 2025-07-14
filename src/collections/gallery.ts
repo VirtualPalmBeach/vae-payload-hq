@@ -1,5 +1,5 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Gallery: CollectionConfig = {
   slug: 'gallery',
@@ -7,7 +7,7 @@ const Gallery: CollectionConfig = {
     singular: 'Gallery Page',
     plural: 'Gallery Pages',
   },
-  admin: { 
+  admin: {
     useAsTitle: 'title',
     description: 'Individual gallery media items and pages',
     group: 'Content',
@@ -21,20 +21,29 @@ const Gallery: CollectionConfig = {
       required: true,
     },
     {
-      name: 'caption',
-      label: 'Caption',
-      type: 'text',
-    },
-    {
-      name: 'imageUrl',
-      label: 'Image URL',
+      name: 'slug',
+      label: 'Slug',
       type: 'text',
       required: true,
+      unique: true,
+      admin: {
+        description: 'URL-friendly identifier for this gallery page',
+      },
     },
     {
-      name: 'videoUrl',
-      label: 'Video URL',
+      name: 'description',
+      label: 'Description',
       type: 'text',
+    },
+    {
+      name: 'cloudinaryTag',
+      label: 'Cloudinary Tag',
+      type: 'text',
+      required: true,
+      admin: {
+        description:
+          'Comma-separated tags for Cloudinary search (e.g., ANT2101,fireFeatures,Photo)',
+      },
     },
     {
       name: 'order',
@@ -43,26 +52,49 @@ const Gallery: CollectionConfig = {
       required: true,
     },
     {
-      name: 'projectCode',
-      label: 'Project Code',
-      type: 'text',
-    },
-    {
       name: 'featured',
       label: 'Featured',
       type: 'checkbox',
     },
     {
+      name: 'adminNotes',
+      label: 'Admin Notes',
+      type: 'textarea',
+      admin: {
+        hidden: true,
+      },
+    },
+    {
+      name: 'mediaAspect',
+      label: 'Media Aspect Ratio',
+      type: 'select',
+      defaultValue: 'square',
+      admin: {
+        description: 'Controls aspect ratio for gallery image pop-up',
+      },
+      options: [
+        {
+          label: 'Square (1:1)',
+          value: 'square',
+        },
+        {
+          label: 'Landscape (16:9)',
+          value: 'landscape',
+        },
+        {
+          label: 'Portrait (4:5)',
+          value: 'portrait',
+        },
+        {
+          label: 'Wide (21:9)',
+          value: 'wide',
+        },
+      ],
+    },
+    {
       name: 'publishDate',
       label: 'Publish Date',
       type: 'date',
-    },
-    {
-      name: 'projects',
-      label: 'Projects',
-      type: 'relationship',
-      relationTo: ['projects'] as const,
-      hasMany: true,
     },
     {
       name: 'categories',
@@ -79,6 +111,6 @@ const Gallery: CollectionConfig = {
       hasMany: true,
     },
   ],
-};
+}
 
-export default Gallery;
+export default Gallery

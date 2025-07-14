@@ -967,19 +967,23 @@ export interface Gallery1 {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   title: string;
-  caption?: string | null;
-  imageUrl: string;
-  videoUrl?: string | null;
+  /**
+   * URL-friendly identifier for this gallery page
+   */
+  slug: string;
+  description?: string | null;
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., ANT2101,fireFeatures,Photo)
+   */
+  cloudinaryTag: string;
   order: number;
-  projectCode?: string | null;
   featured?: boolean | null;
+  adminNotes?: string | null;
+  /**
+   * Controls aspect ratio for gallery image pop-up
+   */
+  mediaAspect?: ('square' | 'landscape' | 'portrait' | 'wide') | null;
   publishDate?: string | null;
-  projects?:
-    | {
-        relationTo: 'projects';
-        value: string | Project;
-      }[]
-    | null;
   categories?:
     | {
         relationTo: 'categories';
@@ -3340,14 +3344,14 @@ export interface GalleriesSelect<T extends boolean = true> {
 export interface GallerySelect<T extends boolean = true> {
   siteKey?: T;
   title?: T;
-  caption?: T;
-  imageUrl?: T;
-  videoUrl?: T;
+  slug?: T;
+  description?: T;
+  cloudinaryTag?: T;
   order?: T;
-  projectCode?: T;
   featured?: T;
+  adminNotes?: T;
+  mediaAspect?: T;
   publishDate?: T;
-  projects?: T;
   categories?: T;
   tags?: T;
   updatedAt?: T;
