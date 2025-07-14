@@ -153,7 +153,7 @@ const Galleries: CollectionConfig = {
   hooks: {
     beforeValidate: [
       async ({ data, operation, req }) => {
-        if (operation === 'create' || (operation === 'update' && data.siteKey)) {
+        if (data && (operation === 'create' || (operation === 'update' && data.siteKey))) {
           const { payload } = req
           const existingDocs = await payload.find({
             collection: 'galleries',
