@@ -12,6 +12,12 @@ const Gallery: CollectionConfig = {
     description: 'Individual gallery media items and pages',
     group: 'Content',
   },
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
   fields: [
     commonSiteKeyField,
     {
