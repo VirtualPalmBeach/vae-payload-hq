@@ -963,25 +963,9 @@ export interface Gallery {
     [k: string]: unknown;
   } | null;
   /**
-   * Images for the gallery
+   * Cloudinary tag for dynamically fetching gallery images
    */
-  imageAssets?:
-    | {
-        /**
-         * Tag for gallery image
-         */
-        cloudinaryTag: string;
-        /**
-         * Optional caption for this image
-         */
-        caption?: string | null;
-        /**
-         * Preferred display aspect ratio
-         */
-        aspectRatio?: ('16:9' | '9:16' | '1:1' | '21:9' | '4:3') | null;
-        id?: string | null;
-      }[]
-    | null;
+  galleryTag: string;
   /**
    * Make this gallery visible on the website
    */
@@ -3414,14 +3398,7 @@ export interface GalleriesSelect<T extends boolean = true> {
   heroHeading?: T;
   heroSubheading?: T;
   heroRichText?: T;
-  imageAssets?:
-    | T
-    | {
-        cloudinaryTag?: T;
-        caption?: T;
-        aspectRatio?: T;
-        id?: T;
-      };
+  galleryTag?: T;
   published?: T;
   publishDate?: T;
   seo?:

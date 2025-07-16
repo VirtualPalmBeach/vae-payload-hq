@@ -64,7 +64,7 @@ const Galleries: CollectionConfig = {
       },
       hooks: {
         beforeValidate: [
-          ({ value, originalDoc, data }) => {
+          ({ value, data }) => {
             if (!value && data?.title) {
               return data.title
                 .toLowerCase()
@@ -137,49 +137,14 @@ const Galleries: CollectionConfig = {
       },
     },
     {
-      name: 'imageAssets',
-      label: 'Gallery Images',
-      type: 'array',
-      minRows: 1,
+      name: 'galleryTag',
+      label: 'Gallery Tag',
+      type: 'text',
+      required: true,
       admin: {
-        description: 'Images for the gallery',
+        description: 'Cloudinary tag for dynamically fetching gallery images',
+        placeholder: 'e.g., gallery-luxury-pool-2024',
       },
-      fields: [
-        {
-          name: 'cloudinaryTag',
-          label: 'Cloudinary Tag',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Tag for gallery image',
-            placeholder: 'e.g., gallery-project-123-image-1',
-          },
-        },
-        {
-          name: 'caption',
-          label: 'Image Caption',
-          type: 'text',
-          admin: {
-            description: 'Optional caption for this image',
-          },
-        },
-        {
-          name: 'aspectRatio',
-          label: 'Aspect Ratio',
-          type: 'select',
-          options: [
-            { label: 'Landscape (16:9)', value: '16:9' },
-            { label: 'Portrait (9:16)', value: '9:16' },
-            { label: 'Square (1:1)', value: '1:1' },
-            { label: 'Wide (21:9)', value: '21:9' },
-            { label: 'Standard (4:3)', value: '4:3' },
-          ],
-          defaultValue: '16:9',
-          admin: {
-            description: 'Preferred display aspect ratio',
-          },
-        },
-      ],
     },
     
     // Publishing Controls
