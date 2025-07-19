@@ -52,6 +52,8 @@ import SignatureServices from './collections/SignatureServices'
 import ContactPage from './collections/ContactPage'
 import RealsIndex from './collections/RealsIndex'
 import journeysLanding from './collections/journeysLanding'
+import AnswersLanding from './collections/answersLanding'
+import AnswersEntries from './collections/answersEntries'
 import GalleriesIndex from './collections/galleriesIndex'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -93,6 +95,8 @@ export default buildConfig({
   collections: [
     About,
     Ads,
+    AnswersLanding,
+    AnswersEntries,
     Blocks,
     BlogPosts,
     Categories,

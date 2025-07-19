@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     about: About;
     ads: Ad;
+    answersLanding: AnswersLanding;
+    answersEntries: AnswersEntry;
     blocks: Block;
     blogPosts: BlogPost;
     categories: Category;
@@ -111,6 +113,8 @@ export interface Config {
   collectionsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
     ads: AdsSelect<false> | AdsSelect<true>;
+    answersLanding: AnswersLandingSelect<false> | AnswersLandingSelect<true>;
+    answersEntries: AnswersEntriesSelect<false> | AnswersEntriesSelect<true>;
     blocks: BlocksSelect<false> | BlocksSelect<true>;
     blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -528,6 +532,623 @@ export interface Tag {
   order?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * Answers landing page configuration with dynamic sections
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "answersLanding".
+ */
+export interface AnswersLanding {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Headline text over the hero image.
+   */
+  heroHeading: string;
+  /**
+   * Optional subheading for additional context.
+   */
+  heroSubheading?: string | null;
+  /**
+   * Optional supporting text below the hero heading.
+   */
+  heroRichText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for the hero background image.
+   */
+  heroImageTag?: string | null;
+  /**
+   * Internal title for this answers landing page
+   */
+  title: string;
+  /**
+   * Configure the answers sections displayed on the landing page
+   */
+  sections?:
+    | {
+        /**
+         * Internal identifier for this section
+         */
+        sectionKey: 'faqs' | 'guides' | 'resources' | 'support';
+        /**
+         * Public-facing title for this answers section
+         */
+        title: string;
+        /**
+         * Optional supporting copy for this answers section
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Tag used to fetch images from Cloudinary for this section
+         */
+        cloudinaryTag: string;
+        /**
+         * Route path for this answers section (e.g., /answers/faqs)
+         */
+        linkTo: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * SEO and social media metadata
+   */
+  meta?: {
+    /**
+     * Override the default meta title for SEO
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description for SEO
+     */
+    metaDescription?: string | null;
+    /**
+     * Cloudinary tag for the social media share image
+     */
+    ogImageTag?: string | null;
+  };
+  status?: ('draft' | 'published') | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Individual answer entries for FAQs, guides, and support content
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "answersEntries".
+ */
+export interface AnswersEntry {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Title of the answer entry
+   */
+  title: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
+   */
+  slug: string;
+  /**
+   * Answer category for filtering and organization
+   */
+  category: 'faq' | 'guide' | 'resource' | 'support';
+  /**
+   * Optional hero headline for featured answer pages
+   */
+  heroHeadline?: string | null;
+  /**
+   * Supporting hero content for answer detail pages
+   */
+  heroSubhead?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Cloudinary tag for the hero background image
+   */
+  heroImageTag?: string | null;
+  /**
+   * Flexible content sections for structuring the answer
+   */
+  contentSections?:
+    | {
+        /**
+         * Type of content section
+         */
+        sectionType: 'text' | 'steps' | 'video' | 'links' | 'cta';
+        /**
+         * Optional title for this section
+         */
+        title?: string | null;
+        /**
+         * Main content for this section
+         */
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Cloudinary tag for section media (images/videos)
+         */
+        mediaTag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional: Link to a related client journey or case study
+   */
+  linkedJourney?: {
+    relationTo: 'journeys';
+    value: string | Journey;
+  } | null;
+  /**
+   * Display prominently in answer listings
+   */
+  featured?: boolean | null;
+  /**
+   * Manual sort order within category (lower numbers first)
+   */
+  order?: number | null;
+  /**
+   * Comma-separated tags for search and filtering
+   */
+  tags?: string | null;
+  /**
+   * Make this answer visible on the website
+   */
+  published: boolean;
+  /**
+   * When to publish this answer
+   */
+  publishDate?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "journeys".
+ */
+export interface Journey {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * The main headline for your story. Keep it compelling and under 60 characters for best display.
+   */
+  title: string;
+  /**
+   * URL-friendly identifier (auto-generated from title)
+   */
+  slug: string;
+  /**
+   * Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).
+   */
+  shortDescription: string;
+  /**
+   * Opening narrative that sets the scene. This appears before content blocks and should introduce the story's main themes.
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.
+   */
+  contentBlocks?:
+    | (
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | {
+            /**
+             * Cloudinary tag for the image
+             */
+            cloudinaryTag: string;
+            /**
+             * Optional image caption
+             */
+            caption?: string | null;
+            aspectRatio?: ('16:9' | '21:9' | '1:1' | '4:3') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'fullWidthImage';
+          }
+        | {
+            columns?: ('2' | '3' | '4') | null;
+            images?:
+              | {
+                  cloudinaryTag: string;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGrid';
+          }
+        | {
+            /**
+             * Cloudinary public ID or tag for the video
+             */
+            cloudinaryVideoTag: string;
+            /**
+             * Optional caption below the video
+             */
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            text: string;
+            author: string;
+            authorTitle?: string | null;
+            style?: ('centered' | 'left' | 'pull') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quote';
+          }
+        | {
+            heading: string;
+            description?: string | null;
+            buttonText: string;
+            buttonLink: string;
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            backgroundStyle?: ('gray' | 'blue' | 'white') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBlock';
+          }
+        | {
+            style?: ('line' | 'dots' | 'space') | null;
+            size?: ('small' | 'medium' | 'large') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'divider';
+          }
+        | {
+            /**
+             * Heading displayed above the feedback form
+             */
+            heading?: string | null;
+            /**
+             * Optional description or instructions for the form
+             */
+            description?: string | null;
+            /**
+             * Type of feedback form (for future Formbricks configuration)
+             */
+            formType?: ('general' | 'inquiry' | 'testimonial' | 'survey') | null;
+            /**
+             * Message shown after successful form submission
+             */
+            successMessage?: string | null;
+            /**
+             * Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.
+             */
+            formId?: string | null;
+            /**
+             * How the form appears to users
+             */
+            triggerMode?: ('inline' | 'modal' | 'slide') | null;
+            /**
+             * Optional: Delay before showing form (for modal/slide modes)
+             */
+            triggerDelay?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'feedbackForm';
+          }
+        | {
+            heading?: string | null;
+            entries?:
+              | {
+                  date: string;
+                  title: string;
+                  description?: string | null;
+                  /**
+                   * Optional: Cloudinary tag for event image/video
+                   */
+                  mediaTag?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
+        | {
+            heading?: string | null;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  /**
+                   * Optional: Unit or qualifier
+                   */
+                  suffix?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            heading?: string | null;
+            questions?:
+              | {
+                  question: string;
+                  answer: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  /**
+                   * Optional: Group similar questions
+                   */
+                  category?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Show all answers expanded on page load
+             */
+            expandedByDefault?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+      )[]
+    | null;
+  /**
+   * Story category for filtering and organization
+   */
+  category: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
+  /**
+   * Optional: Link to portfolio project (e.g., ROD2301)
+   */
+  projectCode?: string | null;
+  /**
+   * Display prominently in story grids
+   */
+  featured?: boolean | null;
+  /**
+   * Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.
+   */
+  heroImage?: string | null;
+  /**
+   * Story publication date
+   */
+  publishedDate: string;
+  storyDetails?: {
+    /**
+     * Estimated reading time
+     */
+    readingTime?: string | null;
+    /**
+     * Story author or contributor
+     */
+    author?: string | null;
+    /**
+     * State abbreviation
+     */
+    state?: string | null;
+    /**
+     * City where the project is located
+     */
+    cityName?: string | null;
+    /**
+     * Zip code for location
+     */
+    zipCode?: string | null;
+    /**
+     * Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)
+     */
+    locationPoint?: {
+      /**
+       * North/South position (-90 to 90)
+       */
+      latitude?: number | null;
+      /**
+       * East/West position (-180 to 180)
+       */
+      longitude?: number | null;
+    };
+    /**
+     * Keywords for search and filtering (lowercase, hyphenated)
+     */
+    tags?:
+      | {
+          tag: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Additional images for the story
+   */
+  galleryImages?:
+    | {
+        /**
+         * Tag for gallery image
+         */
+        cloudinaryTag: string;
+        /**
+         * Optional caption for this image
+         */
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  callToAction?: {
+    /**
+     * Button or link text
+     */
+    text?: string | null;
+    /**
+     * URL for the call to action
+     */
+    link?: string | null;
+    style?: ('primary' | 'secondary' | 'link') | null;
+  };
+  /**
+   * Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.
+   */
+  seriesKey?: string | null;
+  /**
+   * Make this story visible on the website
+   */
+  published: boolean;
+  /**
+   * Optional: Schedule when this story should be published
+   */
+  scheduledPublishDate?: string | null;
+  /**
+   * Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).
+   */
+  versionNumber?: string | null;
+  /**
+   * Document what changed in this version. Helpful for team collaboration and content audits.
+   */
+  revisionNotes?: string | null;
+  seo?: {
+    /**
+     * Override the default meta title
+     */
+    metaTitle?: string | null;
+    /**
+     * Override the default meta description
+     */
+    metaDescription?: string | null;
+  };
+  /**
+   * Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.
+   */
+  structuredData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.
+   */
+  canonicalUrl?: string | null;
+  /**
+   * Track previous URLs for future redirect management
+   */
+  redirectHistory?:
+    | {
+        oldSlug: string;
+        redirectDate: string;
+        id?: string | null;
+      }[]
+    | null;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1168,392 +1789,6 @@ export interface Homepage {
    * Lower numbers display first
    */
   sortOrder?: number | null;
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "journeys".
- */
-export interface Journey {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * The main headline for your story. Keep it compelling and under 60 characters for best display.
-   */
-  title: string;
-  /**
-   * URL-friendly identifier (auto-generated from title)
-   */
-  slug: string;
-  /**
-   * Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).
-   */
-  shortDescription: string;
-  /**
-   * Opening narrative that sets the scene. This appears before content blocks and should introduce the story's main themes.
-   */
-  fullDescription?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.
-   */
-  contentBlocks?:
-    | (
-        | {
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'richText';
-          }
-        | {
-            /**
-             * Cloudinary tag for the image
-             */
-            cloudinaryTag: string;
-            /**
-             * Optional image caption
-             */
-            caption?: string | null;
-            aspectRatio?: ('16:9' | '21:9' | '1:1' | '4:3') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'fullWidthImage';
-          }
-        | {
-            columns?: ('2' | '3' | '4') | null;
-            images?:
-              | {
-                  cloudinaryTag: string;
-                  caption?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'imageGrid';
-          }
-        | {
-            /**
-             * Cloudinary public ID or tag for the video
-             */
-            cloudinaryVideoTag: string;
-            /**
-             * Optional caption below the video
-             */
-            caption?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'video';
-          }
-        | {
-            text: string;
-            author: string;
-            authorTitle?: string | null;
-            style?: ('centered' | 'left' | 'pull') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'quote';
-          }
-        | {
-            heading: string;
-            description?: string | null;
-            buttonText: string;
-            buttonLink: string;
-            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
-            backgroundStyle?: ('gray' | 'blue' | 'white') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'callToActionBlock';
-          }
-        | {
-            style?: ('line' | 'dots' | 'space') | null;
-            size?: ('small' | 'medium' | 'large') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'divider';
-          }
-        | {
-            /**
-             * Heading displayed above the feedback form
-             */
-            heading?: string | null;
-            /**
-             * Optional description or instructions for the form
-             */
-            description?: string | null;
-            /**
-             * Type of feedback form (for future Formbricks configuration)
-             */
-            formType?: ('general' | 'inquiry' | 'testimonial' | 'survey') | null;
-            /**
-             * Message shown after successful form submission
-             */
-            successMessage?: string | null;
-            /**
-             * Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.
-             */
-            formId?: string | null;
-            /**
-             * How the form appears to users
-             */
-            triggerMode?: ('inline' | 'modal' | 'slide') | null;
-            /**
-             * Optional: Delay before showing form (for modal/slide modes)
-             */
-            triggerDelay?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'feedbackForm';
-          }
-        | {
-            heading?: string | null;
-            entries?:
-              | {
-                  date: string;
-                  title: string;
-                  description?: string | null;
-                  /**
-                   * Optional: Cloudinary tag for event image/video
-                   */
-                  mediaTag?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'timeline';
-          }
-        | {
-            heading?: string | null;
-            stats?:
-              | {
-                  value: string;
-                  label: string;
-                  /**
-                   * Optional: Unit or qualifier
-                   */
-                  suffix?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'stats';
-          }
-        | {
-            heading?: string | null;
-            questions?:
-              | {
-                  question: string;
-                  answer: {
-                    root: {
-                      type: string;
-                      children: {
-                        type: string;
-                        version: number;
-                        [k: string]: unknown;
-                      }[];
-                      direction: ('ltr' | 'rtl') | null;
-                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                      indent: number;
-                      version: number;
-                    };
-                    [k: string]: unknown;
-                  };
-                  /**
-                   * Optional: Group similar questions
-                   */
-                  category?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            /**
-             * Show all answers expanded on page load
-             */
-            expandedByDefault?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'faq';
-          }
-      )[]
-    | null;
-  /**
-   * Story category for filtering and organization
-   */
-  category: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
-  /**
-   * Optional: Link to portfolio project (e.g., ROD2301)
-   */
-  projectCode?: string | null;
-  /**
-   * Display prominently in story grids
-   */
-  featured?: boolean | null;
-  /**
-   * Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.
-   */
-  heroImage?: string | null;
-  /**
-   * Story publication date
-   */
-  publishedDate: string;
-  storyDetails?: {
-    /**
-     * Estimated reading time
-     */
-    readingTime?: string | null;
-    /**
-     * Story author or contributor
-     */
-    author?: string | null;
-    /**
-     * State abbreviation
-     */
-    state?: string | null;
-    /**
-     * City where the project is located
-     */
-    cityName?: string | null;
-    /**
-     * Zip code for location
-     */
-    zipCode?: string | null;
-    /**
-     * Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)
-     */
-    locationPoint?: {
-      /**
-       * North/South position (-90 to 90)
-       */
-      latitude?: number | null;
-      /**
-       * East/West position (-180 to 180)
-       */
-      longitude?: number | null;
-    };
-    /**
-     * Keywords for search and filtering (lowercase, hyphenated)
-     */
-    tags?:
-      | {
-          tag: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  /**
-   * Additional images for the story
-   */
-  galleryImages?:
-    | {
-        /**
-         * Tag for gallery image
-         */
-        cloudinaryTag: string;
-        /**
-         * Optional caption for this image
-         */
-        caption?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  callToAction?: {
-    /**
-     * Button or link text
-     */
-    text?: string | null;
-    /**
-     * URL for the call to action
-     */
-    link?: string | null;
-    style?: ('primary' | 'secondary' | 'link') | null;
-  };
-  /**
-   * Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.
-   */
-  seriesKey?: string | null;
-  /**
-   * Make this story visible on the website
-   */
-  published: boolean;
-  /**
-   * Optional: Schedule when this story should be published
-   */
-  scheduledPublishDate?: string | null;
-  /**
-   * Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).
-   */
-  versionNumber?: string | null;
-  /**
-   * Document what changed in this version. Helpful for team collaboration and content audits.
-   */
-  revisionNotes?: string | null;
-  seo?: {
-    /**
-     * Override the default meta title
-     */
-    metaTitle?: string | null;
-    /**
-     * Override the default meta description
-     */
-    metaDescription?: string | null;
-  };
-  /**
-   * Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.
-   */
-  structuredData?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  /**
-   * Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.
-   */
-  canonicalUrl?: string | null;
-  /**
-   * Track previous URLs for future redirect management
-   */
-  redirectHistory?:
-    | {
-        oldSlug: string;
-        redirectDate: string;
-        id?: string | null;
-      }[]
-    | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2890,6 +3125,14 @@ export interface PayloadLockedDocument {
         value: string | Ad;
       } | null)
     | ({
+        relationTo: 'answersLanding';
+        value: string | AnswersLanding;
+      } | null)
+    | ({
+        relationTo: 'answersEntries';
+        value: string | AnswersEntry;
+      } | null)
+    | ({
         relationTo: 'blocks';
         value: string | Block;
       } | null)
@@ -3217,6 +3460,74 @@ export interface AdsSelect<T extends boolean = true> {
   tags?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "answersLanding_select".
+ */
+export interface AnswersLandingSelect<T extends boolean = true> {
+  siteKey?: T;
+  heroHeading?: T;
+  heroSubheading?: T;
+  heroRichText?: T;
+  heroImageTag?: T;
+  title?: T;
+  sections?:
+    | T
+    | {
+        sectionKey?: T;
+        title?: T;
+        description?: T;
+        cloudinaryTag?: T;
+        linkTo?: T;
+        id?: T;
+      };
+  meta?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImageTag?: T;
+      };
+  status?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "answersEntries_select".
+ */
+export interface AnswersEntriesSelect<T extends boolean = true> {
+  siteKey?: T;
+  title?: T;
+  slug?: T;
+  category?: T;
+  heroHeadline?: T;
+  heroSubhead?: T;
+  heroImageTag?: T;
+  contentSections?:
+    | T
+    | {
+        sectionType?: T;
+        title?: T;
+        content?: T;
+        mediaTag?: T;
+        id?: T;
+      };
+  linkedJourney?: T;
+  featured?: T;
+  order?: T;
+  tags?: T;
+  published?: T;
+  publishDate?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  createdAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
