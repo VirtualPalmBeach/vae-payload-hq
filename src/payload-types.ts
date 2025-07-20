@@ -659,7 +659,20 @@ export interface AnswersEntry {
   /**
    * Answer category for filtering and organization
    */
-  category: 'faq' | 'guide' | 'resource' | 'support';
+  category:
+    | 'reviews'
+    | 'our-process'
+    | 'design-philosophy'
+    | 'client-experience'
+    | 'craftsmanship'
+    | 'materials-technology'
+    | 'awards-recognition'
+    | 'luxury-details'
+    | 'design-inspiration'
+    | 'peace-of-mind'
+    | 'built-to-last'
+    | 'complete-project-delivery'
+    | 'the-selah-standard';
   /**
    * Optional hero headline for featured answer pages
    */
