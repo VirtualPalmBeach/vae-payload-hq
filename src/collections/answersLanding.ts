@@ -73,65 +73,134 @@ const AnswersLanding: CollectionConfig = {
       },
     },
     
-    // Answers Sections Array
+    // Content Blocks - Following journeys.ts pattern
     {
-      name: 'sections',
-      label: 'Answers Sections',
-      type: 'array',
+      name: 'contentBlocks',
+      label: 'Content Blocks',
+      type: 'blocks',
       admin: {
-        description: 'Configure the answers sections displayed on the landing page',
-        initCollapsed: false,
+        description: 'Build your answers page with flexible content blocks. Mix journey links, internal pages, and rich text content.',
       },
-      fields: [
+      blocks: [
+        // Journeys Link Block
         {
-          name: 'sectionKey',
-          label: 'Section Key',
-          type: 'select',
-          required: true,
-          options: [
-            { label: 'FAQs', value: 'faqs' },
-            { label: 'Guides', value: 'guides' },
-            { label: 'Resources', value: 'resources' },
-            { label: 'Support', value: 'support' },
+          slug: 'journeysLinkBlock',
+          labels: {
+            singular: 'Journeys Link Block',
+            plural: 'Journeys Link Blocks',
+          },
+          fields: [
+            {
+              name: 'title',
+              label: 'Title',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Display title for this journeys section',
+              },
+            },
+            {
+              name: 'description',
+              label: 'Description',
+              type: 'richText',
+              admin: {
+                description: 'Optional description text for this section',
+              },
+            },
+            {
+              name: 'cloudinaryTag',
+              label: 'Cloudinary Tag',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Tag used to fetch the featured image from Cloudinary',
+              },
+            },
+            {
+              name: 'journeysCategory',
+              label: 'Journeys Category',
+              type: 'select',
+              required: true,
+              options: [
+                { label: 'Client Story', value: 'client-story' },
+                { label: 'Spotlight', value: 'spotlight' },
+                { label: 'Insight', value: 'insight' },
+                { label: 'Testimonial', value: 'testimonial' },
+                { label: 'Guided Tour', value: 'guided-tour' },
+                { label: 'Elements', value: 'elements' },
+              ],
+              admin: {
+                description: 'Filter journeys by this category',
+              },
+            },
           ],
-          admin: {
-            description: 'Internal identifier for this section',
-          },
         },
+        
+        // Internal Page Block
         {
-          name: 'title',
-          label: 'Display Title',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Public-facing title for this answers section',
+          slug: 'internalPageBlock',
+          labels: {
+            singular: 'Internal Page Block',
+            plural: 'Internal Page Blocks',
           },
+          fields: [
+            {
+              name: 'title',
+              label: 'Title',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Display title for this page link',
+              },
+            },
+            {
+              name: 'description',
+              label: 'Description',
+              type: 'richText',
+              admin: {
+                description: 'Optional description text for this page',
+              },
+            },
+            {
+              name: 'cloudinaryTag',
+              label: 'Cloudinary Tag',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Tag used to fetch the featured image from Cloudinary',
+              },
+            },
+            {
+              name: 'linkTo',
+              label: 'Link To',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Internal page path (e.g., /services/pool-construction)',
+                placeholder: '/services/example-page',
+              },
+            },
+          ],
         },
+        
+        // Rich Text Block
         {
-          name: 'description',
-          label: 'Section Description',
-          type: 'richText',
-          admin: {
-            description: 'Optional supporting copy for this answers section',
+          slug: 'richTextBlock',
+          labels: {
+            singular: 'Rich Text Block',
+            plural: 'Rich Text Blocks',
           },
-        },
-        {
-          name: 'cloudinaryTag',
-          label: 'Cloudinary Tag',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Tag used to fetch images from Cloudinary for this section',
-          },
-        },
-        {
-          name: 'linkTo',
-          label: 'Link To',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Route path for this answers section (e.g., /answers/faqs)',
-          },
+          fields: [
+            {
+              name: 'content',
+              label: 'Content',
+              type: 'richText',
+              required: true,
+              admin: {
+                description: 'Rich text content with formatting options',
+              },
+            },
+          ],
         },
       ],
     },

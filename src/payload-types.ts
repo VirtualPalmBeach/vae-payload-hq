@@ -577,46 +577,104 @@ export interface AnswersLanding {
    */
   title: string;
   /**
-   * Configure the answers sections displayed on the landing page
+   * Build your answers page with flexible content blocks. Mix journey links, internal pages, and rich text content.
    */
-  sections?:
-    | {
-        /**
-         * Internal identifier for this section
-         */
-        sectionKey: 'faqs' | 'guides' | 'resources' | 'support';
-        /**
-         * Public-facing title for this answers section
-         */
-        title: string;
-        /**
-         * Optional supporting copy for this answers section
-         */
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+  contentBlocks?:
+    | (
+        | {
+            /**
+             * Display title for this journeys section
+             */
+            title: string;
+            /**
+             * Optional description text for this section
+             */
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        /**
-         * Tag used to fetch images from Cloudinary for this section
-         */
-        cloudinaryTag: string;
-        /**
-         * Route path for this answers section (e.g., /answers/faqs)
-         */
-        linkTo: string;
-        id?: string | null;
-      }[]
+            } | null;
+            /**
+             * Tag used to fetch the featured image from Cloudinary
+             */
+            cloudinaryTag: string;
+            /**
+             * Filter journeys by this category
+             */
+            journeysCategory: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'journeysLinkBlock';
+          }
+        | {
+            /**
+             * Display title for this page link
+             */
+            title: string;
+            /**
+             * Optional description text for this page
+             */
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Tag used to fetch the featured image from Cloudinary
+             */
+            cloudinaryTag: string;
+            /**
+             * Internal page path (e.g., /services/pool-construction)
+             */
+            linkTo: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'internalPageBlock';
+          }
+        | {
+            /**
+             * Rich text content with formatting options
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richTextBlock';
+          }
+      )[]
     | null;
   /**
    * SEO and social media metadata
@@ -3511,15 +3569,36 @@ export interface AnswersLandingSelect<T extends boolean = true> {
   heroRichText?: T;
   heroImageTag?: T;
   title?: T;
-  sections?:
+  contentBlocks?:
     | T
     | {
-        sectionKey?: T;
-        title?: T;
-        description?: T;
-        cloudinaryTag?: T;
-        linkTo?: T;
-        id?: T;
+        journeysLinkBlock?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              cloudinaryTag?: T;
+              journeysCategory?: T;
+              id?: T;
+              blockName?: T;
+            };
+        internalPageBlock?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              cloudinaryTag?: T;
+              linkTo?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richTextBlock?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
