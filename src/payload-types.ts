@@ -687,42 +687,68 @@ export interface AnswersEntry {
    */
   heroImageTag?: string | null;
   /**
-   * Flexible content sections for structuring the answer
+   * Build your answer with flexible content blocks. Mix text, quotes, and images to create comprehensive answers. Drag to reorder blocks.
    */
-  contentSections?:
-    | {
-        /**
-         * Type of content section
-         */
-        sectionType: 'text' | 'steps' | 'video' | 'links' | 'cta';
-        /**
-         * Optional title for this section
-         */
-        title?: string | null;
-        /**
-         * Main content for this section
-         */
-        content?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+  contentBlocks?:
+    | (
+        | {
+            /**
+             * Main text content with formatting options
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        /**
-         * Cloudinary tag for section media (images/videos)
-         */
-        mediaTag?: string | null;
-        id?: string | null;
-      }[]
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richTextBlock';
+          }
+        | {
+            /**
+             * The quote or highlighted text
+             */
+            text: string;
+            /**
+             * Optional: Person or source of the quote
+             */
+            author?: string | null;
+            /**
+             * Visual style for the quote
+             */
+            style?: ('standard' | 'large' | 'highlight') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quoteBlock';
+          }
+        | {
+            /**
+             * Cloudinary tag for the image
+             */
+            cloudinaryTag: string;
+            /**
+             * Descriptive text for accessibility and SEO
+             */
+            altText: string;
+            /**
+             * Optional caption displayed below the image
+             */
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageBlock';
+          }
+      )[]
     | null;
   /**
    * Optional: Link to a related client journey or case study
@@ -3505,14 +3531,34 @@ export interface AnswersEntriesSelect<T extends boolean = true> {
   heroHeadline?: T;
   heroSubhead?: T;
   heroImageTag?: T;
-  contentSections?:
+  contentBlocks?:
     | T
     | {
-        sectionType?: T;
-        title?: T;
-        content?: T;
-        mediaTag?: T;
-        id?: T;
+        richTextBlock?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quoteBlock?:
+          | T
+          | {
+              text?: T;
+              author?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageBlock?:
+          | T
+          | {
+              cloudinaryTag?: T;
+              altText?: T;
+              caption?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   linkedJourney?: T;
   featured?: T;

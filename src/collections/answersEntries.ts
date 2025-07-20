@@ -102,57 +102,114 @@ const AnswersEntries: CollectionConfig = {
       },
     },
     
-    // Content Sections
+    // Content Blocks - Following journeys.ts pattern
     {
-      name: 'contentSections',
-      label: 'Content Sections',
-      type: 'array',
+      name: 'contentBlocks',
+      label: 'Content Blocks',
+      type: 'blocks',
       admin: {
-        description: 'Flexible content sections for structuring the answer',
+        description: 'Build your answer with flexible content blocks. Mix text, quotes, and images to create comprehensive answers. Drag to reorder blocks.',
       },
-      fields: [
+      blocks: [
+        // Rich Text Block
         {
-          name: 'sectionType',
-          label: 'Section Type',
-          type: 'select',
-          required: true,
-          options: [
-            { label: 'Text Content', value: 'text' },
-            { label: 'Step-by-Step', value: 'steps' },
-            { label: 'Video Tutorial', value: 'video' },
-            { label: 'Related Links', value: 'links' },
-            { label: 'Call to Action', value: 'cta' },
+          slug: 'richTextBlock',
+          labels: {
+            singular: 'Rich Text Block',
+            plural: 'Rich Text Blocks',
+          },
+          fields: [
+            {
+              name: 'content',
+              label: 'Content',
+              type: 'richText',
+              required: true,
+              admin: {
+                description: 'Main text content with formatting options',
+              },
+            },
           ],
-          admin: {
-            description: 'Type of content section',
-          },
         },
+        
+        // Quote Block
         {
-          name: 'title',
-          label: 'Section Title',
-          type: 'text',
-          required: false,
-          admin: {
-            description: 'Optional title for this section',
+          slug: 'quoteBlock',
+          labels: {
+            singular: 'Quote Block',
+            plural: 'Quote Blocks',
           },
+          fields: [
+            {
+              name: 'text',
+              label: 'Quote Text',
+              type: 'textarea',
+              required: true,
+              admin: {
+                description: 'The quote or highlighted text',
+              },
+            },
+            {
+              name: 'author',
+              label: 'Author',
+              type: 'text',
+              admin: {
+                description: 'Optional: Person or source of the quote',
+              },
+            },
+            {
+              name: 'style',
+              label: 'Quote Style',
+              type: 'select',
+              options: [
+                { label: 'Standard', value: 'standard' },
+                { label: 'Large', value: 'large' },
+                { label: 'Highlight', value: 'highlight' },
+              ],
+              defaultValue: 'standard',
+              admin: {
+                description: 'Visual style for the quote',
+              },
+            },
+          ],
         },
+        
+        // Image Block
         {
-          name: 'content',
-          label: 'Section Content',
-          type: 'richText',
-          admin: {
-            description: 'Main content for this section',
+          slug: 'imageBlock',
+          labels: {
+            singular: 'Image Block',
+            plural: 'Image Blocks',
           },
-        },
-        {
-          name: 'mediaTag',
-          label: 'Media Tag',
-          type: 'text',
-          required: false,
-          admin: {
-            description: 'Cloudinary tag for section media (images/videos)',
-            placeholder: 'e.g., answer-guide-step-1',
-          },
+          fields: [
+            {
+              name: 'cloudinaryTag',
+              label: 'Cloudinary Tag',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Cloudinary tag for the image',
+                placeholder: 'e.g., answer-diagram-pool-maintenance',
+              },
+            },
+            {
+              name: 'altText',
+              label: 'Alt Text',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Descriptive text for accessibility and SEO',
+                placeholder: 'e.g., Diagram showing pool filter maintenance steps',
+              },
+            },
+            {
+              name: 'caption',
+              label: 'Caption',
+              type: 'text',
+              admin: {
+                description: 'Optional caption displayed below the image',
+              },
+            },
+          ],
         },
       ],
     },
