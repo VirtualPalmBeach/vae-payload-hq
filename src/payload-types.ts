@@ -2176,17 +2176,23 @@ export interface Navigation {
         text: string;
         url: string;
         order?: number | null;
+        openInNewTab?: boolean | null;
         subItems?:
           | {
               text: string;
               url: string;
               order?: number | null;
+              openInNewTab?: boolean | null;
               id?: string | null;
             }[]
           | null;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Screen size at which to switch to mobile navigation
+   */
+  mobileBreakpoint?: ('sm' | 'md' | 'lg') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3052,30 +3058,30 @@ export interface SiteSetting {
     phoneNumber?: string | null;
     emailAddress?: string | null;
     contactFormUrl?: string | null;
-    facebookUrl?: string | null;
-    instagramUrl?: string | null;
+    socialLinks?:
+      | {
+          platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube' | 'tiktok';
+          url: string;
+          /**
+           * Optional: CSS class for custom icon
+           */
+          icon?: string | null;
+          id?: string | null;
+        }[]
+      | null;
     mapLink?: string | null;
-    contactCtaText?: string | null;
   };
-  navigation?: {
-    stickyEnabled?: boolean | null;
-    primaryNav?:
-      | {
-          label: string;
-          href: string;
-          id?: string | null;
-        }[]
-      | null;
-    footerNav?:
-      | {
-          label: string;
-          href: string;
-          id?: string | null;
-        }[]
-      | null;
-    ctaLabel?: string | null;
-    ctaHref?: string | null;
-    mobileNavVariant?: ('drawer' | 'dropdown' | 'full') | null;
+  globalCtas?: {
+    headerCta?: {
+      text?: string | null;
+      url?: string | null;
+      style?: ('primary' | 'secondary' | 'outline') | null;
+    };
+    footerCta?: {
+      heading?: string | null;
+      text?: string | null;
+      url?: string | null;
+    };
   };
   analytics?: {
     gtmContainerId?: string | null;
@@ -4363,16 +4369,19 @@ export interface NavigationSelect<T extends boolean = true> {
         text?: T;
         url?: T;
         order?: T;
+        openInNewTab?: T;
         subItems?:
           | T
           | {
               text?: T;
               url?: T;
               order?: T;
+              openInNewTab?: T;
               id?: T;
             };
         id?: T;
       };
+  mobileBreakpoint?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -4741,32 +4750,33 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         phoneNumber?: T;
         emailAddress?: T;
         contactFormUrl?: T;
-        facebookUrl?: T;
-        instagramUrl?: T;
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              icon?: T;
+              id?: T;
+            };
         mapLink?: T;
-        contactCtaText?: T;
       };
-  navigation?:
+  globalCtas?:
     | T
     | {
-        stickyEnabled?: T;
-        primaryNav?:
+        headerCta?:
           | T
           | {
-              label?: T;
-              href?: T;
-              id?: T;
+              text?: T;
+              url?: T;
+              style?: T;
             };
-        footerNav?:
+        footerCta?:
           | T
           | {
-              label?: T;
-              href?: T;
-              id?: T;
+              heading?: T;
+              text?: T;
+              url?: T;
             };
-        ctaLabel?: T;
-        ctaHref?: T;
-        mobileNavVariant?: T;
       };
   analytics?:
     | T

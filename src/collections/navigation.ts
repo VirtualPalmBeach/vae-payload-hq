@@ -3,7 +3,10 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 
 const Navigation: CollectionConfig = {
   slug: 'navigation',
-  admin: { useAsTitle: 'label' },
+  admin: { 
+    useAsTitle: 'label',
+    group: 'Content'
+  },
   access: {
     read: () => true, // <-- ADD THIS
   },
@@ -31,15 +34,41 @@ const Navigation: CollectionConfig = {
         { name: 'url', type: 'text', required: true },
         { name: 'order', type: 'number' },
         {
+          name: 'openInNewTab',
+          label: 'Open in New Tab',
+          type: 'checkbox',
+          defaultValue: false
+        },
+        {
           name: 'subItems',
           type: 'array',
           fields: [
             { name: 'text', type: 'text', required: true },
             { name: 'url', type: 'text', required: true },
             { name: 'order', type: 'number' },
+            {
+              name: 'openInNewTab',
+              label: 'Open in New Tab',
+              type: 'checkbox',
+              defaultValue: false
+            },
           ],
         },
       ],
+    },
+    {
+      name: 'mobileBreakpoint',
+      label: 'Mobile Breakpoint',
+      type: 'select',
+      defaultValue: 'md',
+      options: [
+        { label: 'Small (640px)', value: 'sm' },
+        { label: 'Medium (768px)', value: 'md' },
+        { label: 'Large (1024px)', value: 'lg' }
+      ],
+      admin: {
+        description: 'Screen size at which to switch to mobile navigation'
+      }
     },
   ],
 };

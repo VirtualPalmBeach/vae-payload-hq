@@ -6,6 +6,7 @@ const SiteSettings: CollectionConfig = {
   admin: {
     useAsTitle: 'siteTitle',
     description: 'Site-wide configuration including branding, SEO, contact, and integrations',
+    group: 'Content'
   },
   access: {
     read: () => true,
@@ -91,106 +92,102 @@ const SiteSettings: CollectionConfig = {
               type: 'text',
             },
             {
-              name: 'facebookUrl',
-              label: 'Facebook URL',
-              type: 'text',
-            },
-            {
-              name: 'instagramUrl',
-              label: 'Instagram URL',
-              type: 'text',
+              name: 'socialLinks',
+              label: 'Social Media Links',
+              type: 'array',
+              fields: [
+                {
+                  name: 'platform',
+                  label: 'Platform',
+                  type: 'select',
+                  required: true,
+                  options: [
+                    { label: 'Facebook', value: 'facebook' },
+                    { label: 'Instagram', value: 'instagram' },
+                    { label: 'Twitter', value: 'twitter' },
+                    { label: 'LinkedIn', value: 'linkedin' },
+                    { label: 'YouTube', value: 'youtube' },
+                    { label: 'TikTok', value: 'tiktok' }
+                  ]
+                },
+                {
+                  name: 'url',
+                  label: 'URL',
+                  type: 'text',
+                  required: true
+                },
+                {
+                  name: 'icon',
+                  label: 'Custom Icon Class',
+                  type: 'text',
+                  admin: {
+                    description: 'Optional: CSS class for custom icon'
+                  }
+                }
+              ]
             },
             {
               name: 'mapLink',
               label: 'Map Link',
               type: 'text',
             },
-            {
-              name: 'contactCtaText',
-              label: 'CTA Text',
-              type: 'text',
-            },
           ],
         },
         {
-          label: 'Navigation',
-          name: 'navigation',
+          label: 'Global CTAs',
+          name: 'globalCtas',
           fields: [
             {
-              name: 'stickyEnabled',
-              label: 'Sticky Navigation',
-              type: 'checkbox',
-              defaultValue: true,
-            },
-            {
-              name: 'primaryNav',
-              label: 'Primary Navigation',
-              type: 'array',
+              name: 'headerCta',
+              label: 'Header CTA',
+              type: 'group',
               fields: [
                 {
-                  name: 'label',
-                  label: 'Label',
-                  type: 'text',
-                  required: true,
+                  name: 'text',
+                  label: 'Button Text',
+                  type: 'text'
                 },
                 {
-                  name: 'href',
-                  label: 'Href',
-                  type: 'text',
-                  required: true,
+                  name: 'url',
+                  label: 'Button URL',
+                  type: 'text'
                 },
-              ],
+                {
+                  name: 'style',
+                  label: 'Button Style',
+                  type: 'select',
+                  defaultValue: 'primary',
+                  options: [
+                    { label: 'Primary', value: 'primary' },
+                    { label: 'Secondary', value: 'secondary' },
+                    { label: 'Outline', value: 'outline' }
+                  ]
+                }
+              ]
             },
             {
-              name: 'footerNav',
-              label: 'Footer Navigation',
-              type: 'array',
+              name: 'footerCta',
+              label: 'Footer CTA',
+              type: 'group',
               fields: [
                 {
-                  name: 'label',
-                  label: 'Label',
-                  type: 'text',
-                  required: true,
+                  name: 'heading',
+                  label: 'CTA Heading',
+                  type: 'text'
                 },
                 {
-                  name: 'href',
-                  label: 'Href',
-                  type: 'text',
-                  required: true,
-                },
-              ],
-            },
-            {
-              name: 'ctaLabel',
-              label: 'CTA Button Label',
-              type: 'text',
-            },
-            {
-              name: 'ctaHref',
-              label: 'CTA Button URL',
-              type: 'text',
-            },
-            {
-              name: 'mobileNavVariant',
-              label: 'Mobile Navigation Style',
-              type: 'select',
-              defaultValue: 'drawer',
-              options: [
-                {
-                  label: 'Drawer',
-                  value: 'drawer',
+                  name: 'text',
+                  label: 'Button Text',
+                  type: 'text'
                 },
                 {
-                  label: 'Dropdown',
-                  value: 'dropdown',
-                },
-                {
-                  label: 'Full',
-                  value: 'full',
-                },
-              ],
-            },
-          ],
+                  name: 'url',
+                  label: 'Button URL',
+                  type: 'text'
+                }
+              ]
+            }
+          ]
         },
         {
           label: 'Analytics',
