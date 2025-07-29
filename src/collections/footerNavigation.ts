@@ -23,67 +23,34 @@ const FooterNavigation: CollectionConfig = {
     commonSiteKeyField,
     {
       name: 'links',
-      type: 'array',
       label: 'Footer Links',
+      type: 'array',
+      fields: [
+        { name: 'label', label: 'Link Label', type: 'text', required: true },
+        { name: 'url', label: 'URL', type: 'text', required: true },
+        { name: 'openInNewTab', label: 'Open in New Tab', type: 'checkbox', required: false },
+      ],
+    },
+    {
+      name: 'socialLinks',
+      label: 'Social Links',
+      type: 'array',
       fields: [
         {
-          name: 'label',
-          type: 'text',
+          name: 'platform',
+          label: 'Platform',
+          type: 'select',
           required: true,
+          options: ['Facebook', 'Instagram', 'LinkedIn', 'Twitter', 'YouTube'],
         },
-        {
-          name: 'url',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Internal path (e.g., /about) or external URL',
-          },
-        },
-        {
-          name: 'openInNewTab',
-          type: 'checkbox',
-          label: 'Open in new tab',
-          defaultValue: false,
-        },
+        { name: 'url', label: 'URL', type: 'text', required: true },
       ],
-      admin: {
-        description: 'Navigation links to display in the footer',
-      },
     },
     {
       name: 'disclaimer',
       type: 'richText',
       label: 'Footer Disclaimer',
-      admin: {
-        description: 'Optional disclaimer or copyright text',
-      },
-    },
-    {
-      name: 'socialLinks',
-      type: 'array',
-      label: 'Social Media Links',
-      fields: [
-        {
-          name: 'platform',
-          type: 'select',
-          required: true,
-          options: [
-            { label: 'Facebook', value: 'facebook' },
-            { label: 'Instagram', value: 'instagram' },
-            { label: 'Twitter', value: 'twitter' },
-            { label: 'LinkedIn', value: 'linkedin' },
-            { label: 'YouTube', value: 'youtube' },
-          ],
-        },
-        {
-          name: 'url',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Full URL to social media profile',
-          },
-        },
-      ],
+      required: false,
     },
   ],
 }

@@ -1622,23 +1622,21 @@ export interface FooterNavigation {
    */
   title: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Navigation links to display in the footer
-   */
   links?:
     | {
         label: string;
-        /**
-         * Internal path (e.g., /about) or external URL
-         */
         url: string;
         openInNewTab?: boolean | null;
         id?: string | null;
       }[]
     | null;
-  /**
-   * Optional disclaimer or copyright text
-   */
+  socialLinks?:
+    | {
+        platform: 'Facebook' | 'Instagram' | 'LinkedIn' | 'Twitter' | 'YouTube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   disclaimer?: {
     root: {
       type: string;
@@ -1654,16 +1652,6 @@ export interface FooterNavigation {
     };
     [k: string]: unknown;
   } | null;
-  socialLinks?:
-    | {
-        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube';
-        /**
-         * Full URL to social media profile
-         */
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3917,7 +3905,6 @@ export interface FooterNavigationSelect<T extends boolean = true> {
         openInNewTab?: T;
         id?: T;
       };
-  disclaimer?: T;
   socialLinks?:
     | T
     | {
@@ -3925,6 +3912,7 @@ export interface FooterNavigationSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  disclaimer?: T;
   updatedAt?: T;
   createdAt?: T;
 }
