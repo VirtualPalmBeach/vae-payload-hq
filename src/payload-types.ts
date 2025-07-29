@@ -78,6 +78,7 @@ export interface Config {
     contactPage: ContactPage;
     events: Event;
     faqs: Faq;
+    footerNavigation: FooterNavigation;
     galleries: Gallery;
     galleriesIndex: GalleriesIndex;
     homepage: Homepage;
@@ -122,6 +123,7 @@ export interface Config {
     contactPage: ContactPageSelect<false> | ContactPageSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
+    footerNavigation: FooterNavigationSelect<false> | FooterNavigationSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     galleriesIndex: GalleriesIndexSelect<false> | GalleriesIndexSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
@@ -1604,6 +1606,64 @@ export interface Faq {
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   question: string;
   answer?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Configure footer navigation links and disclaimer text
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footerNavigation".
+ */
+export interface FooterNavigation {
+  id: string;
+  /**
+   * Internal title for this footer configuration
+   */
+  title: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Navigation links to display in the footer
+   */
+  links?:
+    | {
+        label: string;
+        /**
+         * Internal path (e.g., /about) or external URL
+         */
+        url: string;
+        openInNewTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional disclaimer or copyright text
+   */
+  disclaimer?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube';
+        /**
+         * Full URL to social media profile
+         */
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3264,6 +3324,10 @@ export interface PayloadLockedDocument {
         value: string | Faq;
       } | null)
     | ({
+        relationTo: 'footerNavigation';
+        value: string | FooterNavigation;
+      } | null)
+    | ({
         relationTo: 'galleries';
         value: string | Gallery;
       } | null)
@@ -3835,6 +3899,32 @@ export interface FaqsSelect<T extends boolean = true> {
   siteKey?: T;
   question?: T;
   answer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footerNavigation_select".
+ */
+export interface FooterNavigationSelect<T extends boolean = true> {
+  title?: T;
+  siteKey?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        openInNewTab?: T;
+        id?: T;
+      };
+  disclaimer?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

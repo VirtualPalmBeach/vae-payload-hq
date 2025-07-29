@@ -1,11 +1,11 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Navigation: CollectionConfig = {
   slug: 'navigation',
-  admin: { 
+  admin: {
     useAsTitle: 'label',
-    group: 'Content'
+    group: 'Navigation',
   },
   access: {
     read: () => true, // <-- ADD THIS
@@ -37,7 +37,7 @@ const Navigation: CollectionConfig = {
           name: 'openInNewTab',
           label: 'Open in New Tab',
           type: 'checkbox',
-          defaultValue: false
+          defaultValue: false,
         },
         {
           name: 'subItems',
@@ -50,7 +50,7 @@ const Navigation: CollectionConfig = {
               name: 'openInNewTab',
               label: 'Open in New Tab',
               type: 'checkbox',
-              defaultValue: false
+              defaultValue: false,
             },
           ],
         },
@@ -64,13 +64,13 @@ const Navigation: CollectionConfig = {
       options: [
         { label: 'Small (640px)', value: 'sm' },
         { label: 'Medium (768px)', value: 'md' },
-        { label: 'Large (1024px)', value: 'lg' }
+        { label: 'Large (1024px)', value: 'lg' },
       ],
       admin: {
-        description: 'Screen size at which to switch to mobile navigation'
-      }
+        description: 'Screen size at which to switch to mobile navigation',
+      },
     },
   ],
-};
+}
 
-export default Navigation;
+export default Navigation

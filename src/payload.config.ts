@@ -55,6 +55,7 @@ import journeysLanding from './collections/journeysLanding'
 import AnswersLanding from './collections/answersLanding'
 import AnswersEntries from './collections/answersEntries'
 import GalleriesIndex from './collections/galleriesIndex'
+import FooterNavigation from './collections/footerNavigation'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -104,6 +105,7 @@ export default buildConfig({
     ContactPage,
     Events,
     FAQs,
+    FooterNavigation,
     Galleries,
     GalleriesIndex,
     Homepage,
