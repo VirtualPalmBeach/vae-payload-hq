@@ -37,7 +37,6 @@ const SignatureServices: CollectionConfig = {
               name: 'shortDescription',
               label: 'Short Description',
               type: 'textarea',
-              required: true,
               maxLength: 500,
               admin: {
                 description: 'Brief overview of the service (for cards and listings)',
@@ -150,7 +149,8 @@ const SignatureServices: CollectionConfig = {
               label: 'Service Type',
               type: 'text',
               admin: {
-                description: 'Optional service type for schema.org alignment (e.g., "PoolConstruction", "PoolDesign")',
+                description:
+                  'Optional service type for schema.org alignment (e.g., "PoolConstruction", "PoolDesign")',
               },
             },
           ],

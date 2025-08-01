@@ -2961,7 +2961,7 @@ export interface SignatureService {
   /**
    * Brief overview of the service (for cards and listings)
    */
-  shortDescription: string;
+  shortDescription?: string | null;
   /**
    * Cloudinary tag for the hero image
    */
