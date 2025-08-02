@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 import { timestampedFields } from '../fields/timestampedFields';
 import { optionalDisplayFields } from '../fields/optionalFields';
+import { ContactFormBlock } from '../blocks/ContactFormBlock';
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -98,6 +99,7 @@ const Pages: CollectionConfig = {
             },
           ],
         },
+        ContactFormBlock,
       ],
     },
     ...optionalDisplayFields,

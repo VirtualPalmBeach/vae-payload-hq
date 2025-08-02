@@ -34,6 +34,32 @@ const SiteSettings: CollectionConfig = {
       },
     },
     {
+      name: 'siteUrl',
+      label: 'Site URL',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'The full URL of this site (e.g., https://example.com)',
+      },
+    },
+    {
+      name: 'timezone',
+      label: 'Timezone',
+      type: 'select',
+      required: true,
+      defaultValue: 'America/Chicago',
+      options: [
+        { label: 'Eastern Time (America/New_York)', value: 'America/New_York' },
+        { label: 'Central Time (America/Chicago)', value: 'America/Chicago' },
+        { label: 'Mountain Time (America/Denver)', value: 'America/Denver' },
+        { label: 'Pacific Time (America/Los_Angeles)', value: 'America/Los_Angeles' },
+        { label: 'Arizona Time (America/Phoenix)', value: 'America/Phoenix' },
+      ],
+      admin: {
+        description: 'Timezone for this site',
+      },
+    },
+    {
       type: 'tabs',
       tabs: [
         {
@@ -69,6 +95,22 @@ const SiteSettings: CollectionConfig = {
               name: 'ogImage',
               label: 'Default Social Image',
               type: 'text',
+            },
+            {
+              name: 'robotsTxt',
+              label: 'Robots.txt Content',
+              type: 'textarea',
+              admin: {
+                description: 'Content for the robots.txt file',
+              },
+            },
+            {
+              name: 'googleSiteVerification',
+              label: 'Google Site Verification Code',
+              type: 'text',
+              admin: {
+                description: 'Google verification meta tag content value',
+              },
             },
           ],
         },

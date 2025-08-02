@@ -1412,14 +1412,98 @@ export interface BlogPost {
 export interface ContactForm {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  name: string;
-  email: string;
-  postalCode: string;
-  phone?: string | null;
-  message: string;
+  /**
+   * Internal name for this form configuration
+   */
+  title: string;
+  /**
+   * Optional internal description of form purpose
+   */
+  description?: string | null;
+  steps: {
+    stepTitle: string;
+    stepDescription?: string | null;
+    fields: {
+      label: string;
+      /**
+       * Unique identifier for this field (no spaces)
+       */
+      fieldKey: string;
+      fieldType: 'text' | 'email' | 'phone' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'postalCode';
+      placeholder?: string | null;
+      required?: boolean | null;
+      /**
+       * Optional regex pattern for validation
+       */
+      validationPattern?: string | null;
+      options?:
+        | {
+            label: string;
+            value: string;
+            id?: string | null;
+          }[]
+        | null;
+      id?: string | null;
+    }[];
+    /**
+     * Define conditional navigation to other steps
+     */
+    branchingRules?:
+      | {
+          /**
+           * The field to check for conditions
+           */
+          fieldKey: string;
+          condition: 'equals' | 'notEquals' | 'contains' | 'greaterThan' | 'lessThan';
+          value: string;
+          /**
+           * Zero-based index of the step to navigate to
+           */
+          nextStep: number;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  confirmationState?: {
+    title?: string | null;
+    message?: string | null;
+    ctaButtonLabel?: string | null;
+    ctaUrl?: string | null;
+  };
+  adminNotifications?: {
+    priority?: ('low' | 'normal' | 'high') | null;
+    /**
+     * Mark as read/unread
+     */
+    read?: boolean | null;
+    sendNotificationEmail?: boolean | null;
+    notificationRecipients?:
+      | {
+          email: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Optional custom subject line. Use {{fieldKey}} for dynamic values
+     */
+    emailSubjectTemplate?: string | null;
+  };
+  integrations?: {
+    enableExternalRouting?: boolean | null;
+    integrationType?: ('formbricks' | 'n8n' | 'zapier' | 'other') | null;
+    /**
+     * Webhook URL or integration identifier
+     */
+    endpointIdentifier?: string | null;
+    /**
+     * JSON template for the payload. Use {{fieldKey}} for dynamic values
+     */
+    payloadTemplate?: string | null;
+  };
+  internalNotes?: string | null;
   sourcePage?: string | null;
   referrer?: string | null;
-  internalNotes?: string | null;
   submittedAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1498,32 +1582,48 @@ export interface ContactPage {
    * Text prompt that appears just above the embedded form
    */
   formHeading?: string | null;
-  /**
-   * Formbricks or other form provider embed code. Paste the complete embed script/iframe here.
-   */
-  formEmbedCode?: string | null;
-  /**
-   * Show fallback message if the embedded form fails to load
-   */
-  formFallbackEnabled?: boolean | null;
-  /**
-   * Message shown if the embedded form fails to load
-   */
-  formFallbackMessage?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
+  contactFormConfiguration: {
+    /**
+     * Choose between legacy embed forms or new multi-step forms
+     */
+    formType: 'legacy' | 'multiStep';
+    legacyFormConfig?: {
+      /**
+       * Legacy HubSpot embed. Deprecated - consider using Multi-Step Forms instead.
+       */
+      formEmbedCode?: string | null;
+      /**
+       * Legacy form embed toggle. Deprecated - this field will be removed in future versions.
+       */
+      useFormEmbed?: boolean | null;
+      /**
+       * Legacy fallback. Deprecated - multi-step forms handle errors automatically.
+       */
+      formFallbackEnabled?: boolean | null;
+      /**
+       * Legacy fallback message. Deprecated - use Multi-Step Forms for better error handling.
+       */
+      formFallbackMessage?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
         [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
+      } | null;
     };
-    [k: string]: unknown;
-  } | null;
+    /**
+     * Choose which multi-step form to display on this page
+     */
+    selectedForm?: (string | null) | ContactForm;
+  };
   /**
    * SEO title (defaults to hero heading if empty)
    */
@@ -1552,10 +1652,6 @@ export interface ContactPage {
    * Allows frontend to emphasize phone on mobile
    */
   highlightPhoneNumber?: boolean | null;
-  /**
-   * Toggle to use Formbricks vs fallback ContactForm
-   */
-  useFormEmbed?: boolean | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2287,6 +2383,27 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'content';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
           }
       )[]
     | null;
@@ -3091,6 +3208,14 @@ export interface SiteSetting {
    * Designates this as the default fallback site
    */
   isDefaultSite?: boolean | null;
+  /**
+   * The full URL of this site (e.g., https://example.com)
+   */
+  siteUrl: string;
+  /**
+   * Timezone for this site
+   */
+  timezone: 'America/New_York' | 'America/Chicago' | 'America/Denver' | 'America/Los_Angeles' | 'America/Phoenix';
   branding?: {
     /**
      * Recommended dimensions: 250x80px (3.125:1)
@@ -3101,6 +3226,14 @@ export interface SiteSetting {
     metaTitle?: string | null;
     metaDescription?: string | null;
     ogImage?: string | null;
+    /**
+     * Content for the robots.txt file
+     */
+    robotsTxt?: string | null;
+    /**
+     * Google verification meta tag content value
+     */
+    googleSiteVerification?: string | null;
   };
   contact?: {
     phoneNumber?: string | null;
@@ -3803,14 +3936,75 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface ContactFormSelect<T extends boolean = true> {
   siteKey?: T;
-  name?: T;
-  email?: T;
-  postalCode?: T;
-  phone?: T;
-  message?: T;
+  title?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        stepTitle?: T;
+        stepDescription?: T;
+        fields?:
+          | T
+          | {
+              label?: T;
+              fieldKey?: T;
+              fieldType?: T;
+              placeholder?: T;
+              required?: T;
+              validationPattern?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        branchingRules?:
+          | T
+          | {
+              fieldKey?: T;
+              condition?: T;
+              value?: T;
+              nextStep?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  confirmationState?:
+    | T
+    | {
+        title?: T;
+        message?: T;
+        ctaButtonLabel?: T;
+        ctaUrl?: T;
+      };
+  adminNotifications?:
+    | T
+    | {
+        priority?: T;
+        read?: T;
+        sendNotificationEmail?: T;
+        notificationRecipients?:
+          | T
+          | {
+              email?: T;
+              id?: T;
+            };
+        emailSubjectTemplate?: T;
+      };
+  integrations?:
+    | T
+    | {
+        enableExternalRouting?: T;
+        integrationType?: T;
+        endpointIdentifier?: T;
+        payloadTemplate?: T;
+      };
+  internalNotes?: T;
   sourcePage?: T;
   referrer?: T;
-  internalNotes?: T;
   submittedAt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -3848,15 +4042,25 @@ export interface ContactPageSelect<T extends boolean = true> {
         id?: T;
       };
   formHeading?: T;
-  formEmbedCode?: T;
-  formFallbackEnabled?: T;
-  formFallbackMessage?: T;
+  contactFormConfiguration?:
+    | T
+    | {
+        formType?: T;
+        legacyFormConfig?:
+          | T
+          | {
+              formEmbedCode?: T;
+              useFormEmbed?: T;
+              formFallbackEnabled?: T;
+              formFallbackMessage?: T;
+            };
+        selectedForm?: T;
+      };
   metaTitle?: T;
   metaDescription?: T;
   structuredDataJSON?: T;
   showMap?: T;
   highlightPhoneNumber?: T;
-  useFormEmbed?: T;
   createdAt?: T;
   updatedAt?: T;
 }
@@ -4497,6 +4701,21 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   visibility?: T;
   isFeatured?: T;
@@ -4810,6 +5029,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteKey?: T;
   siteTitle?: T;
   isDefaultSite?: T;
+  siteUrl?: T;
+  timezone?: T;
   branding?:
     | T
     | {
@@ -4821,6 +5042,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         metaTitle?: T;
         metaDescription?: T;
         ogImage?: T;
+        robotsTxt?: T;
+        googleSiteVerification?: T;
       };
   contact?:
     | T

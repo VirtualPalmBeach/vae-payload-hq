@@ -168,31 +168,82 @@ const ContactPage: CollectionConfig = {
               },
             },
             {
-              name: 'formEmbedCode',
-              label: 'Form Embed Code',
-              type: 'code',
-              admin: {
-                language: 'html',
-                description: 'Formbricks or other form provider embed code. Paste the complete embed script/iframe here.',
-              },
-            },
-            {
-              name: 'formFallbackEnabled',
-              label: 'Enable Form Fallback',
-              type: 'checkbox',
-              defaultValue: true,
-              admin: {
-                description: 'Show fallback message if the embedded form fails to load',
-              },
-            },
-            {
-              name: 'formFallbackMessage',
-              label: 'Form Fallback Message',
-              type: 'richText',
-              admin: {
-                description: 'Message shown if the embedded form fails to load',
-                condition: (data) => data?.formFallbackEnabled === true,
-              },
+              name: 'contactFormConfiguration',
+              label: 'Contact Form Configuration',
+              type: 'group',
+              fields: [
+                {
+                  name: 'formType',
+                  label: 'Form Type',
+                  type: 'select',
+                  defaultValue: 'legacy',
+                  required: true,
+                  options: [
+                    { label: 'Legacy Embed', value: 'legacy' },
+                    { label: 'Multi-Step Form', value: 'multiStep' },
+                  ],
+                  admin: {
+                    description: 'Choose between legacy embed forms or new multi-step forms',
+                  },
+                },
+                {
+                  name: 'legacyFormConfig',
+                  label: 'Legacy Form Configuration',
+                  type: 'group',
+                  admin: {
+                    condition: (data) => data?.contactFormConfiguration?.formType === 'legacy',
+                  },
+                  fields: [
+                    {
+                      name: 'formEmbedCode',
+                      label: 'Form Embed Code',
+                      type: 'code',
+                      admin: {
+                        language: 'html',
+                        description: 'Legacy HubSpot embed. Deprecated - consider using Multi-Step Forms instead.',
+                      },
+                    },
+                    {
+                      name: 'useFormEmbed',
+                      label: 'Use Form Embed',
+                      type: 'checkbox',
+                      defaultValue: false,
+                      admin: {
+                        description: 'Legacy form embed toggle. Deprecated - this field will be removed in future versions.',
+                      },
+                    },
+                    {
+                      name: 'formFallbackEnabled',
+                      label: 'Enable Form Fallback',
+                      type: 'checkbox',
+                      defaultValue: true,
+                      admin: {
+                        description: 'Legacy fallback. Deprecated - multi-step forms handle errors automatically.',
+                      },
+                    },
+                    {
+                      name: 'formFallbackMessage',
+                      label: 'Form Fallback Message',
+                      type: 'richText',
+                      admin: {
+                        description: 'Legacy fallback message. Deprecated - use Multi-Step Forms for better error handling.',
+                        condition: (data) => data?.contactFormConfiguration?.legacyFormConfig?.formFallbackEnabled === true,
+                      },
+                    },
+                  ],
+                },
+                {
+                  name: 'selectedForm',
+                  label: 'Select Multi-Step Form',
+                  type: 'relationship',
+                  relationTo: 'contactForm',
+                  required: true,
+                  admin: {
+                    condition: (data) => data?.contactFormConfiguration?.formType === 'multiStep',
+                    description: 'Choose which multi-step form to display on this page',
+                  },
+                },
+              ],
             },
           ],
         },
@@ -255,15 +306,6 @@ const ContactPage: CollectionConfig = {
               defaultValue: false,
               admin: {
                 description: 'Allows frontend to emphasize phone on mobile',
-              },
-            },
-            {
-              name: 'useFormEmbed',
-              label: 'Use Form Embed',
-              type: 'checkbox',
-              defaultValue: false,
-              admin: {
-                description: 'Toggle to use Formbricks vs fallback ContactForm',
               },
             },
           ],
