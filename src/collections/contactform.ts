@@ -7,6 +7,12 @@ const ContactForm: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'priority', 'read', 'createdAt'],
   },
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
   fields: [
     // Preserved fields
     commonSiteKeyField,
