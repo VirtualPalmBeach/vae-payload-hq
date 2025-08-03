@@ -24,7 +24,6 @@ const FormSubmissions: CollectionConfig = {
       label: 'Contact Form',
       type: 'relationship',
       relationTo: 'contactForm',
-      required: true,
       admin: {
         description: 'The contact form configuration this submission belongs to',
       },
@@ -33,25 +32,21 @@ const FormSubmissions: CollectionConfig = {
       name: 'name',
       label: 'Name',
       type: 'text',
-      required: true,
     },
     {
       name: 'email',
       label: 'Email',
       type: 'email',
-      required: true,
     },
     {
       name: 'postalCode',
       label: 'Postal Code',
       type: 'text',
-      required: true,
     },
     {
       name: 'message',
       label: 'Message',
       type: 'textarea',
-      required: true,
     },
     {
       name: 'phone',
@@ -64,7 +59,6 @@ const FormSubmissions: CollectionConfig = {
       name: 'sourceSite',
       label: 'Source Site',
       type: 'text',
-      required: true,
       admin: {
         position: 'sidebar',
         description: 'The site this submission originated from',
@@ -74,7 +68,6 @@ const FormSubmissions: CollectionConfig = {
       name: 'sourcePage',
       label: 'Source Page',
       type: 'text',
-      required: true,
       admin: {
         position: 'sidebar',
         description: 'The page URL this submission originated from',

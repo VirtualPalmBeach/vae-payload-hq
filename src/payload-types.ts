@@ -1762,20 +1762,20 @@ export interface Formsubmission {
   /**
    * The contact form configuration this submission belongs to
    */
-  formId: string | ContactForm;
-  name: string;
-  email: string;
-  postalCode: string;
-  message: string;
+  formId?: (string | null) | ContactForm;
+  name?: string | null;
+  email?: string | null;
+  postalCode?: string | null;
+  message?: string | null;
   phone?: string | null;
   /**
    * The site this submission originated from
    */
-  sourceSite: string;
+  sourceSite?: string | null;
   /**
    * The page URL this submission originated from
    */
-  sourcePage: string;
+  sourcePage?: string | null;
   /**
    * The referring URL if available
    */
