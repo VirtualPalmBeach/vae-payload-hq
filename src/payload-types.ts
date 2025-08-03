@@ -79,6 +79,7 @@ export interface Config {
     events: Event;
     faqs: Faq;
     footerNavigation: FooterNavigation;
+    formsubmissions: Formsubmission;
     galleries: Gallery;
     galleriesIndex: GalleriesIndex;
     homepage: Homepage;
@@ -124,6 +125,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     footerNavigation: FooterNavigationSelect<false> | FooterNavigationSelect<true>;
+    formsubmissions: FormsubmissionsSelect<false> | FormsubmissionsSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     galleriesIndex: GalleriesIndexSelect<false> | GalleriesIndexSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
@@ -1748,6 +1750,41 @@ export interface FooterNavigation {
     };
     [k: string]: unknown;
   } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "formsubmissions".
+ */
+export interface Formsubmission {
+  id: string;
+  /**
+   * The contact form configuration this submission belongs to
+   */
+  formId: string | ContactForm;
+  name: string;
+  email: string;
+  postalCode: string;
+  message: string;
+  phone?: string | null;
+  /**
+   * The site this submission originated from
+   */
+  sourceSite: string;
+  /**
+   * The page URL this submission originated from
+   */
+  sourcePage: string;
+  /**
+   * The referring URL if available
+   */
+  referrer?: string | null;
+  submittedAt?: string | null;
+  /**
+   * Internal notes about this submission
+   */
+  adminNotes?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -3449,6 +3486,10 @@ export interface PayloadLockedDocument {
         value: string | FooterNavigation;
       } | null)
     | ({
+        relationTo: 'formsubmissions';
+        value: string | Formsubmission;
+      } | null)
+    | ({
         relationTo: 'galleries';
         value: string | Gallery;
       } | null)
@@ -4117,6 +4158,25 @@ export interface FooterNavigationSelect<T extends boolean = true> {
         id?: T;
       };
   disclaimer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "formsubmissions_select".
+ */
+export interface FormsubmissionsSelect<T extends boolean = true> {
+  formId?: T;
+  name?: T;
+  email?: T;
+  postalCode?: T;
+  message?: T;
+  phone?: T;
+  sourceSite?: T;
+  sourcePage?: T;
+  referrer?: T;
+  submittedAt?: T;
+  adminNotes?: T;
   updatedAt?: T;
   createdAt?: T;
 }

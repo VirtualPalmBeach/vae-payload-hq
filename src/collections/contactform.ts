@@ -3,9 +3,14 @@ import { commonSiteKeyField } from './commonSiteKeyField'
 
 const ContactForm: CollectionConfig = {
   slug: 'contactForm',
+  labels: {
+    singular: 'Contact Forms',
+    plural: 'Contact Forms',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'priority', 'read', 'createdAt'],
+    group: 'Forms',
   },
   access: {
     read: () => true,

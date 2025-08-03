@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const RealsIndex: CollectionConfig = {
   slug: 'realsIndex',
+  labels: {
+    singular: 'Reals Landing',
+    plural: 'Reals Landings',
+  },
   admin: {
     useAsTitle: 'heroHeading',
     defaultColumns: ['heroHeading', 'siteKey', 'updatedAt'],
@@ -19,7 +23,7 @@ const RealsIndex: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Hero Content Fields - following ContactPage exact pattern
     {
       name: 'heroHeading',
@@ -46,11 +50,12 @@ const RealsIndex: CollectionConfig = {
       type: 'text',
       required: false,
       admin: {
-        description: 'Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.',
+        description:
+          'Cloudinary tags for the background hero image. Enter comma-separated tags for flexible search.',
         placeholder: 'e.g., selah-pro,reals,hero',
       },
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],

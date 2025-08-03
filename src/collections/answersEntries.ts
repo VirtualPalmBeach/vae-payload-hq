@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const AnswersEntries: CollectionConfig = {
   slug: 'answersEntries',
+  labels: {
+    singular: 'Answers Page',
+    plural: 'Answers Pages',
+  },
   admin: {
     useAsTitle: 'title',
     description: 'Individual answer entries for FAQs, guides, and support content',
@@ -19,7 +23,7 @@ const AnswersEntries: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Core Answer Fields
     {
       name: 'title',
@@ -80,7 +84,7 @@ const AnswersEntries: CollectionConfig = {
         description: 'Answer category for filtering and organization',
       },
     },
-    
+
     // Hero Content
     {
       name: 'heroHeadline',
@@ -110,14 +114,15 @@ const AnswersEntries: CollectionConfig = {
         placeholder: 'e.g., answers-faq-hero',
       },
     },
-    
+
     // Content Blocks - Following journeys.ts pattern
     {
       name: 'contentBlocks',
       label: 'Content Blocks',
       type: 'blocks',
       admin: {
-        description: 'Build your answer with flexible content blocks. Mix text, quotes, and images to create comprehensive answers. Drag to reorder blocks.',
+        description:
+          'Build your answer with flexible content blocks. Mix text, quotes, and images to create comprehensive answers. Drag to reorder blocks.',
       },
       blocks: [
         // Rich Text Block
@@ -139,7 +144,7 @@ const AnswersEntries: CollectionConfig = {
             },
           ],
         },
-        
+
         // Quote Block
         {
           slug: 'quoteBlock',
@@ -181,7 +186,7 @@ const AnswersEntries: CollectionConfig = {
             },
           ],
         },
-        
+
         // Image Block
         {
           slug: 'imageBlock',
@@ -222,7 +227,7 @@ const AnswersEntries: CollectionConfig = {
         },
       ],
     },
-    
+
     // Journey Integration (Optional)
     {
       name: 'linkedJourney',
@@ -234,7 +239,7 @@ const AnswersEntries: CollectionConfig = {
         description: 'Optional: Link to a related client journey or case study',
       },
     },
-    
+
     // Metadata & Organization
     {
       name: 'featured',
@@ -264,7 +269,7 @@ const AnswersEntries: CollectionConfig = {
         placeholder: 'e.g., installation, troubleshooting, warranty',
       },
     },
-    
+
     // Publishing Controls
     {
       name: 'published',
@@ -289,7 +294,7 @@ const AnswersEntries: CollectionConfig = {
         },
       },
     },
-    
+
     // SEO Fields
     {
       name: 'seo',
@@ -317,7 +322,7 @@ const AnswersEntries: CollectionConfig = {
         },
       ],
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],

@@ -1,14 +1,18 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
-import { timestampedFields } from '../fields/timestampedFields';
-import { optionalDisplayFields } from '../fields/optionalFields';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
+import { timestampedFields } from '../fields/timestampedFields'
+import { optionalDisplayFields } from '../fields/optionalFields'
 
 const Homepage: CollectionConfig = {
   slug: 'homepage',
-  admin: { 
+  labels: {
+    singular: 'Home Page',
+    plural: 'Home Pages',
+  },
+  admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'conversionGoal', 'updatedAt'],
-    group: 'Content'
+    group: 'Content',
   },
   access: {
     read: () => true,
@@ -345,6 +349,6 @@ const Homepage: CollectionConfig = {
     ...optionalDisplayFields,
     ...timestampedFields,
   ],
-};
+}
 
-export default Homepage;
+export default Homepage

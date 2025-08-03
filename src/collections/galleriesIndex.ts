@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const GalleriesIndex: CollectionConfig = {
   slug: 'galleriesIndex',
+  labels: {
+    singular: 'Gallery Landing',
+    plural: 'Galleries Landings',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'siteKey', 'published', 'updatedAt'],
@@ -19,7 +23,7 @@ const GalleriesIndex: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Core Fields
     {
       name: 'title',
@@ -82,7 +86,7 @@ const GalleriesIndex: CollectionConfig = {
         placeholder: 'e.g., gallery-hero-fallback',
       },
     },
-    
+
     // Publishing Controls
     {
       name: 'published',
@@ -95,7 +99,7 @@ const GalleriesIndex: CollectionConfig = {
         description: 'Make this page visible on the website',
       },
     },
-    
+
     // SEO Fields
     {
       name: 'seo',
@@ -123,7 +127,7 @@ const GalleriesIndex: CollectionConfig = {
         },
       ],
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],
@@ -139,12 +143,14 @@ const GalleriesIndex: CollectionConfig = {
               ...(data.id ? { id: { not_equals: data.id } } : {}),
             },
           })
-          
+
           if (existingDocs.totalDocs > 0) {
-            throw new Error(`A galleries index already exists for site ${data.siteKey}. Only one galleries index is allowed per site.`)
+            throw new Error(
+              `A galleries index already exists for site ${data.siteKey}. Only one galleries index is allowed per site.`,
+            )
           }
         }
-        
+
         return data
       },
     ],

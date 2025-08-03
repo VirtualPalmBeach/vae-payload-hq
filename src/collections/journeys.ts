@@ -4,10 +4,23 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const Journeys: CollectionConfig = {
   slug: 'journeys',
+  labels: {
+    singular: 'Journey (Stories) Page',
+    plural: 'Journeys (Stories) Pages',
+  },
   admin: {
     useAsTitle: 'title',
-    description: 'Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.',
-    defaultColumns: ['title', 'category', 'published', 'featured', 'heroImage', 'scheduledPublishDate', 'updatedAt'],
+    description:
+      'Story-based content for client journeys, spotlights, and insights. Use content blocks to build rich, engaging narratives.',
+    defaultColumns: [
+      'title',
+      'category',
+      'published',
+      'featured',
+      'heroImage',
+      'scheduledPublishDate',
+      'updatedAt',
+    ],
     listSearchableFields: ['title', 'shortDescription', 'projectCode', 'seriesKey'],
     group: 'Content',
   },
@@ -20,7 +33,7 @@ const Journeys: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // === HERO & VISUAL SECTION ===
     // Core Story Fields
     {
@@ -29,7 +42,8 @@ const Journeys: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'The main headline for your story. Keep it compelling and under 60 characters for best display.',
+        description:
+          'The main headline for your story. Keep it compelling and under 60 characters for best display.',
       },
     },
     {
@@ -63,7 +77,8 @@ const Journeys: CollectionConfig = {
       required: true,
       maxLength: 200,
       admin: {
-        description: 'Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).',
+        description:
+          'Brief summary for card displays and SEO meta descriptions. Write a compelling hook that entices readers (max 200 chars).',
       },
     },
     {
@@ -71,10 +86,11 @@ const Journeys: CollectionConfig = {
       label: 'Story Introduction',
       type: 'richText',
       admin: {
-        description: 'Opening narrative that sets the scene. This appears before content blocks and should introduce the story\'s main themes.',
+        description:
+          "Opening narrative that sets the scene. This appears before content blocks and should introduce the story's main themes.",
       },
     },
-    
+
     // === CONTENT & BLOCKS SECTION ===
     // Content Blocks - Self-contained flexible content
     {
@@ -82,7 +98,8 @@ const Journeys: CollectionConfig = {
       label: 'Content Blocks',
       type: 'blocks',
       admin: {
-        description: 'Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.',
+        description:
+          'Build your story with flexible content blocks. Mix text, images, videos, timelines, stats, and more to create engaging narratives. Drag to reorder blocks.',
       },
       blocks: [
         // Rich Text Block
@@ -101,7 +118,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Full Width Image Block
         {
           slug: 'fullWidthImage',
@@ -141,7 +158,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Image Grid Block
         {
           slug: 'imageGrid',
@@ -183,7 +200,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Video Block - Cloudinary Only
         {
           slug: 'video',
@@ -212,7 +229,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Quote Block
         {
           slug: 'quote',
@@ -251,7 +268,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Call to Action Block
         {
           slug: 'callToActionBlock',
@@ -307,7 +324,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Divider Block
         {
           slug: 'divider',
@@ -340,7 +357,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Feedback Form Block - Scaffolding for future Formbricks integration
         {
           slug: 'feedbackForm',
@@ -395,7 +412,8 @@ const Journeys: CollectionConfig = {
               label: 'Formbricks Form ID',
               type: 'text',
               admin: {
-                description: 'Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.',
+                description:
+                  'Optional: Connect a Formbricks form by entering its ID. Find this in your Formbricks dashboard under Form Settings > General.',
                 placeholder: 'e.g., clh1234567890abcdef',
               },
             },
@@ -425,7 +443,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Timeline Block - v3.0
         // Display project milestones in chronological order. Perfect for renovation stories and multi-phase projects.
         {
@@ -481,7 +499,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // Stats Block - v3.0
         // Display numeric highlights with labels and optional suffixes
         {
@@ -535,7 +553,7 @@ const Journeys: CollectionConfig = {
             },
           ],
         },
-        
+
         // FAQ Block - v3.0
         // Question and answer pairs with optional categorization
         {
@@ -592,7 +610,7 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // === METADATA & ORGANIZATION SECTION ===
     // Categorization
     {
@@ -635,7 +653,7 @@ const Journeys: CollectionConfig = {
         description: 'Display prominently in story grids',
       },
     },
-    
+
     // Visual Content
     {
       name: 'heroImage',
@@ -649,7 +667,8 @@ const Journeys: CollectionConfig = {
         return true
       },
       admin: {
-        description: 'Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.',
+        description:
+          'Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.',
         placeholder: 'e.g., journey-client-pool-transformation',
       },
     },
@@ -668,7 +687,7 @@ const Journeys: CollectionConfig = {
         },
       },
     },
-    
+
     // Story Details
     {
       name: 'storyDetails',
@@ -724,7 +743,8 @@ const Journeys: CollectionConfig = {
           label: 'Location Coordinates',
           type: 'group',
           admin: {
-            description: 'Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)',
+            description:
+              'Optional: GPS coordinates for future mapping features. Use decimal degrees format (e.g., Dallas: 32.7767, -96.7970)',
           },
           fields: [
             {
@@ -777,7 +797,7 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // Gallery Images (optional)
     {
       name: 'galleryImages',
@@ -806,7 +826,7 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // Call to Action (optional)
     {
       name: 'callToAction',
@@ -844,7 +864,7 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // === ORGANIZATION SECTION ===
     // Series Management
     {
@@ -852,11 +872,12 @@ const Journeys: CollectionConfig = {
       label: 'Series Key',
       type: 'text',
       admin: {
-        description: 'Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.',
+        description:
+          'Optional: Group multi-part stories together. Use lowercase with hyphens (e.g., "pool-renovation-series"). Stories with the same key will be linked.',
         placeholder: 'renovation-series-2024',
       },
     },
-    
+
     // === PUBLISHING & SEO SECTION ===
     // Publishing Controls
     {
@@ -882,7 +903,7 @@ const Journeys: CollectionConfig = {
         },
       },
     },
-    
+
     // Version Control
     {
       name: 'versionNumber',
@@ -890,7 +911,8 @@ const Journeys: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
-        description: 'Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).',
+        description:
+          'Track content versions for editorial workflow. Use semantic versioning (e.g., 1.0 for initial, 1.1 for minor updates, 2.0 for major rewrites).',
         placeholder: '1.0',
       },
     },
@@ -900,11 +922,12 @@ const Journeys: CollectionConfig = {
       type: 'textarea',
       admin: {
         position: 'sidebar',
-        description: 'Document what changed in this version. Helpful for team collaboration and content audits.',
+        description:
+          'Document what changed in this version. Helpful for team collaboration and content audits.',
         placeholder: 'Initial publish, Updated images, etc.',
       },
     },
-    
+
     // SEO Fields
     {
       name: 'seo',
@@ -932,14 +955,15 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // Advanced SEO/AEO - v3.0
     {
       name: 'structuredData',
       label: 'Structured Data (JSON-LD)',
       type: 'json',
       admin: {
-        description: 'Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.',
+        description:
+          'Optional: Add schema.org JSON-LD markup for rich search results. Common types: Article, FAQPage, HowTo, Event. Validate at schema.org/validator before publishing.',
       },
     },
     {
@@ -947,7 +971,8 @@ const Journeys: CollectionConfig = {
       label: 'Canonical URL',
       type: 'text',
       admin: {
-        description: 'Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.',
+        description:
+          'Optional: Override the default canonical URL. Use when content exists at multiple URLs or when migrating from another domain. Must be absolute URL.',
         placeholder: 'https://selah.pro/journeys/custom-url',
       },
     },
@@ -974,7 +999,7 @@ const Journeys: CollectionConfig = {
         },
       ],
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],

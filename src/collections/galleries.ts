@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',
+  labels: {
+    singular: 'Gallery Page',
+    plural: 'Galleries Pages',
+  },
   admin: {
     useAsTitle: 'title',
     description: 'Individual gallery pages',
@@ -19,7 +23,7 @@ const Galleries: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Core Gallery Fields
     {
       name: 'title',
@@ -38,7 +42,8 @@ const Galleries: CollectionConfig = {
       unique: true,
       index: true,
       admin: {
-        description: 'Unique gallery identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)',
+        description:
+          'Unique gallery identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)',
         placeholder: 'GAL2401',
       },
       validate: (value: string | null | undefined) => {
@@ -99,7 +104,7 @@ const Galleries: CollectionConfig = {
         description: 'Detailed gallery description',
       },
     },
-    
+
     // Visual Content
     {
       name: 'cloudinaryHeroTag',
@@ -146,7 +151,7 @@ const Galleries: CollectionConfig = {
         placeholder: 'e.g., gallery-luxury-pool-2024',
       },
     },
-    
+
     // Publishing Controls
     {
       name: 'published',
@@ -171,7 +176,7 @@ const Galleries: CollectionConfig = {
         },
       },
     },
-    
+
     // SEO Fields
     {
       name: 'seo',
@@ -199,7 +204,7 @@ const Galleries: CollectionConfig = {
         },
       ],
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],

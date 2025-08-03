@@ -3,6 +3,10 @@ import { commonSiteKeyField } from './commonSiteKeyField'
 
 const Reals: CollectionConfig = {
   slug: 'reals',
+  labels: {
+    singular: 'Reals Page',
+    plural: 'Reals Pages',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'status', 'featured', 'order'],

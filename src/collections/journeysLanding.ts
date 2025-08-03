@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const journeysLanding: CollectionConfig = {
   slug: 'journeysLanding',
+  labels: {
+    singular: 'Journeys (Stories) Landing',
+    plural: 'Journeys (Stories) Landings',
+  },
   admin: {
     useAsTitle: 'title',
     description: 'Journeys landing page configuration - Index Hero Pattern v1',
@@ -19,7 +23,7 @@ const journeysLanding: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Page Title
     {
       name: 'title',
@@ -31,7 +35,7 @@ const journeysLanding: CollectionConfig = {
         description: 'Internal title for this journeys landing page',
       },
     },
-    
+
     // Hero Section Fields - Index Hero Pattern v1
     {
       name: 'heroImage',
@@ -72,7 +76,7 @@ const journeysLanding: CollectionConfig = {
         description: 'Optional supporting text below the hero heading.',
       },
     },
-    
+
     // Content Fields
     {
       name: 'headline',
@@ -90,7 +94,7 @@ const journeysLanding: CollectionConfig = {
         description: 'Supporting description text for the journeys landing page',
       },
     },
-    
+
     // Publishing Status
     {
       name: 'status',
@@ -105,7 +109,7 @@ const journeysLanding: CollectionConfig = {
         position: 'sidebar',
       },
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],

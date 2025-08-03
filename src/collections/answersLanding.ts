@@ -4,6 +4,10 @@ import { timestampedFields } from '../fields/timestampedFields'
 
 const AnswersLanding: CollectionConfig = {
   slug: 'answersLanding',
+  labels: {
+    singular: 'Answers Landing',
+    plural: 'Answers Landings',
+  },
   admin: {
     useAsTitle: 'title',
     description: 'Answers landing page configuration with dynamic sections',
@@ -19,7 +23,7 @@ const AnswersLanding: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Hero Section Fields
     {
       name: 'heroHeading',
@@ -60,7 +64,7 @@ const AnswersLanding: CollectionConfig = {
         placeholder: 'e.g., selah-pro,answers,hero',
       },
     },
-    
+
     // Content Fields
     {
       name: 'title',
@@ -72,14 +76,15 @@ const AnswersLanding: CollectionConfig = {
         description: 'Internal title for this answers landing page',
       },
     },
-    
+
     // Content Blocks - Following journeys.ts pattern
     {
       name: 'contentBlocks',
       label: 'Content Blocks',
       type: 'blocks',
       admin: {
-        description: 'Build your answers page with flexible content blocks. Mix journey links, internal pages, and rich text content.',
+        description:
+          'Build your answers page with flexible content blocks. Mix journey links, internal pages, and rich text content.',
       },
       blocks: [
         // Journeys Link Block
@@ -135,7 +140,7 @@ const AnswersLanding: CollectionConfig = {
             },
           ],
         },
-        
+
         // Internal Page Block
         {
           slug: 'internalPageBlock',
@@ -182,7 +187,7 @@ const AnswersLanding: CollectionConfig = {
             },
           ],
         },
-        
+
         // Rich Text Block
         {
           slug: 'richTextBlock',
@@ -204,7 +209,7 @@ const AnswersLanding: CollectionConfig = {
         },
       ],
     },
-    
+
     // Meta Fields
     {
       name: 'meta',
@@ -241,7 +246,7 @@ const AnswersLanding: CollectionConfig = {
         },
       ],
     },
-    
+
     // Publishing & Timestamps
     {
       name: 'status',
