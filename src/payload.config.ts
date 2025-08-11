@@ -57,6 +57,8 @@ import AnswersLanding from './collections/answersLanding'
 import AnswersEntries from './collections/answersEntries'
 import GalleriesIndex from './collections/galleriesIndex'
 import FooterNavigation from './collections/footerNavigation'
+import SeoEntries from './collections/seoEntries'
+import ServiceAreas from './collections/serviceAreas'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -64,6 +66,8 @@ export default buildConfig({
     'https://vae-payload-hq.payloadcms.app',
     'https://selah.pro',
     'https://www.selah.pro',
+    'https://selahpools.com',
+    'https://www.selahpools.com',
     'https://selah-pro-catalyst-4mfx8xe65-selah-designs-projects.vercel.app',
     'https://selah-pro-catalyst-le0l93e6z-selah-designs-projects.vercel.app',
     'http://localhost:3000',
@@ -75,6 +79,8 @@ export default buildConfig({
     'https://vae-payload-hq.payloadcms.app',
     'https://selah.pro',
     'https://www.selah.pro',
+    'https://selahpools.com',
+    'https://www.selahpools.com',
     'https://selah-pro-catalyst-4mfx8xe65-selah-designs-projects.vercel.app',
     'https://selah-pro-catalyst-le0l93e6z-selah-designs-projects.vercel.app',
     'http://localhost:3000',
@@ -126,6 +132,8 @@ export default buildConfig({
     RealsIndex,
     Redirects,
     Scenes,
+    SeoEntries,
+    ServiceAreas,
     Services,
     SignatureServices,
     SiteSettings,
@@ -136,8 +144,7 @@ export default buildConfig({
     Users,
     Videos,
   ],
-  globals: [
-  ],
+  globals: [],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

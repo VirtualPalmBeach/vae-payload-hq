@@ -98,6 +98,8 @@ export interface Config {
     realsIndex: RealsIndex;
     redirects: Redirect;
     scenes: Scene;
+    seoEntries: SeoEntry;
+    serviceAreas: ServiceArea;
     services: Service;
     signatureServices: SignatureService;
     siteSettings: SiteSetting;
@@ -144,6 +146,8 @@ export interface Config {
     realsIndex: RealsIndexSelect<false> | RealsIndexSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     scenes: ScenesSelect<false> | ScenesSelect<true>;
+    seoEntries: SeoEntriesSelect<false> | SeoEntriesSelect<true>;
+    serviceAreas: ServiceAreasSelect<false> | ServiceAreasSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     signatureServices: SignatureServicesSelect<false> | SignatureServicesSelect<true>;
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
@@ -2317,28 +2321,67 @@ export interface Limitedtimeoffer {
 export interface Location {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Display label for this location (e.g., "Argyle")
+   */
   name: string;
+  /**
+   * URL-friendly identifier (auto-generated from city-state if empty)
+   */
   slug: string;
-  region: string;
+  /**
+   * City name (letters, spaces, periods, apostrophes, hyphens only)
+   */
   city: string;
-  county: string;
+  /**
+   * 2-letter US state code (e.g., TX, CA)
+   */
   state: string;
+  /**
+   * 5-digit US ZIP code
+   */
+  postalCode: string;
+  /**
+   * County name (optional)
+   */
+  county?: string | null;
+  /**
+   * Marketing region grouping (optional)
+   */
+  region?: string | null;
+  /**
+   * Latitude coordinate (-90 to 90)
+   */
+  lat?: number | null;
+  /**
+   * Longitude coordinate (-180 to 180)
+   */
+  lng?: number | null;
+  coordinates?: {
+    latitude?: number | null;
+    longitude?: number | null;
+  };
   zipCodes?:
     | {
         zip?: string | null;
         id?: string | null;
       }[]
     | null;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
+  /**
+   * Optional description of this location
+   */
   description?: string | null;
   /**
-   * Cloudinary URL
+   * Cloudinary public_id for location image
    */
   featuredImage?: string | null;
+  /**
+   * Internal project code reference
+   */
   projectCode?: string | null;
+  /**
+   * Service area radius in meters
+   */
   serviceRadiusMeters?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -3037,6 +3080,149 @@ export interface Scene {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seoEntries".
+ */
+export interface SeoEntry {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * The route path to override SEO for (e.g., /services/pool-design)
+   */
+  routeKey: string;
+  /**
+   * Optional area-specific override (e.g., dallas, fort-worth)
+   */
+  areaKey?: string | null;
+  seo: {
+    /**
+     * Page title for search results (max 70 chars)
+     */
+    title: string;
+    /**
+     * Meta description for search results (max 300 chars)
+     */
+    description: string;
+    /**
+     * Override canonical URL path (must start with /, no trailing slash except root)
+     */
+    canonicalPathOverride?: string | null;
+    /**
+     * Prevent search engines from indexing this page
+     */
+    noindex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page
+     */
+    nofollow?: boolean | null;
+    /**
+     * Override label for this page in breadcrumbs
+     */
+    breadcrumbsLabel?: string | null;
+  };
+  social?: {
+    /**
+     * Cloudinary public_id for social share image
+     */
+    ogImageRef?: string | null;
+    /**
+     * Title for social media shares
+     */
+    ogTitle?: string | null;
+    /**
+     * Description for social media shares
+     */
+    ogDescription?: string | null;
+    /**
+     * Title specifically for Twitter/X shares
+     */
+    twitterTitle?: string | null;
+    /**
+     * Description specifically for Twitter/X shares
+     */
+    twitterDescription?: string | null;
+  };
+  jsonLd?: {
+    /**
+     * Include WebPage structured data
+     */
+    webPage?: boolean | null;
+    /**
+     * Include BreadcrumbList structured data
+     */
+    breadcrumbList?: boolean | null;
+    article?: {
+      /**
+       * Article headline (required for Article schema)
+       */
+      headline: string;
+      datePublished?: string | null;
+      dateModified?: string | null;
+      authorName?: string | null;
+      /**
+       * Reference to location for this article
+       */
+      contentLocationRef?: (string | null) | Location;
+    };
+    videoObject?: {
+      /**
+       * Video title (required for VideoObject schema)
+       */
+      name: string;
+      description?: string | null;
+      uploadDate?: string | null;
+      /**
+       * ISO 8601 duration (e.g., PT4M30S for 4 minutes 30 seconds)
+       */
+      duration?: string | null;
+      /**
+       * Full URL to video thumbnail
+       */
+      thumbnailURL?: string | null;
+      /**
+       * Full URL to video file (required for VideoObject schema)
+       */
+      contentURL: string;
+    };
+    service?: {
+      /**
+       * Service name (defaults to "Pool Design & Build" if omitted)
+       */
+      name?: string | null;
+      description?: string | null;
+      /**
+       * Reference to service areas (to be implemented)
+       */
+      areaServedRefs?: (string | ServiceArea)[] | null;
+    };
+  };
+  status: 'draft' | 'review' | 'published';
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "serviceAreas".
+ */
+export interface ServiceArea {
+  id: string;
+  /**
+   * Public name for this service area
+   */
+  label: string;
+  /**
+   * URL-friendly identifier (auto-generated from label if empty)
+   */
+  slug: string;
+  /**
+   * List of locations included in this service area
+   */
+  locations: (string | Location)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
@@ -3560,6 +3746,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'scenes';
         value: string | Scene;
+      } | null)
+    | ({
+        relationTo: 'seoEntries';
+        value: string | SeoEntry;
+      } | null)
+    | ({
+        relationTo: 'serviceAreas';
+        value: string | ServiceArea;
       } | null)
     | ({
         relationTo: 'services';
@@ -4642,21 +4836,24 @@ export interface LocationsSelect<T extends boolean = true> {
   siteKey?: T;
   name?: T;
   slug?: T;
-  region?: T;
   city?: T;
-  county?: T;
   state?: T;
-  zipCodes?:
-    | T
-    | {
-        zip?: T;
-        id?: T;
-      };
+  postalCode?: T;
+  county?: T;
+  region?: T;
+  lat?: T;
+  lng?: T;
   coordinates?:
     | T
     | {
         latitude?: T;
         longitude?: T;
+      };
+  zipCodes?:
+    | T
+    | {
+        zip?: T;
+        id?: T;
       };
   description?: T;
   featuredImage?: T;
@@ -4989,6 +5186,81 @@ export interface ScenesSelect<T extends boolean = true> {
   status?: T;
   order?: T;
   publishDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seoEntries_select".
+ */
+export interface SeoEntriesSelect<T extends boolean = true> {
+  siteKey?: T;
+  routeKey?: T;
+  areaKey?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        canonicalPathOverride?: T;
+        noindex?: T;
+        nofollow?: T;
+        breadcrumbsLabel?: T;
+      };
+  social?:
+    | T
+    | {
+        ogImageRef?: T;
+        ogTitle?: T;
+        ogDescription?: T;
+        twitterTitle?: T;
+        twitterDescription?: T;
+      };
+  jsonLd?:
+    | T
+    | {
+        webPage?: T;
+        breadcrumbList?: T;
+        article?:
+          | T
+          | {
+              headline?: T;
+              datePublished?: T;
+              dateModified?: T;
+              authorName?: T;
+              contentLocationRef?: T;
+            };
+        videoObject?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              uploadDate?: T;
+              duration?: T;
+              thumbnailURL?: T;
+              contentURL?: T;
+            };
+        service?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              areaServedRefs?: T;
+            };
+      };
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "serviceAreas_select".
+ */
+export interface ServiceAreasSelect<T extends boolean = true> {
+  label?: T;
+  slug?: T;
+  locations?: T;
   updatedAt?: T;
   createdAt?: T;
 }

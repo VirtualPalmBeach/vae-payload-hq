@@ -1,12 +1,12 @@
-import { CollectionConfig } from 'payload';
-import { commonSiteKeyField } from './commonSiteKeyField';
+import { CollectionConfig } from 'payload'
+import { commonSiteKeyField } from './commonSiteKeyField'
 
 const SiteSettings: CollectionConfig = {
   slug: 'siteSettings',
   admin: {
     useAsTitle: 'siteTitle',
     description: 'Site-wide configuration including branding, SEO, contact, and integrations',
-    group: 'Content'
+    group: 'Settings',
   },
   access: {
     read: () => true,
@@ -149,24 +149,24 @@ const SiteSettings: CollectionConfig = {
                     { label: 'Twitter', value: 'twitter' },
                     { label: 'LinkedIn', value: 'linkedin' },
                     { label: 'YouTube', value: 'youtube' },
-                    { label: 'TikTok', value: 'tiktok' }
-                  ]
+                    { label: 'TikTok', value: 'tiktok' },
+                  ],
                 },
                 {
                   name: 'url',
                   label: 'URL',
                   type: 'text',
-                  required: true
+                  required: true,
                 },
                 {
                   name: 'icon',
                   label: 'Custom Icon Class',
                   type: 'text',
                   admin: {
-                    description: 'Optional: CSS class for custom icon'
-                  }
-                }
-              ]
+                    description: 'Optional: CSS class for custom icon',
+                  },
+                },
+              ],
             },
             {
               name: 'mapLink',
@@ -187,12 +187,12 @@ const SiteSettings: CollectionConfig = {
                 {
                   name: 'text',
                   label: 'Button Text',
-                  type: 'text'
+                  type: 'text',
                 },
                 {
                   name: 'url',
                   label: 'Button URL',
-                  type: 'text'
+                  type: 'text',
                 },
                 {
                   name: 'style',
@@ -202,10 +202,10 @@ const SiteSettings: CollectionConfig = {
                   options: [
                     { label: 'Primary', value: 'primary' },
                     { label: 'Secondary', value: 'secondary' },
-                    { label: 'Outline', value: 'outline' }
-                  ]
-                }
-              ]
+                    { label: 'Outline', value: 'outline' },
+                  ],
+                },
+              ],
             },
             {
               name: 'footerCta',
@@ -215,21 +215,21 @@ const SiteSettings: CollectionConfig = {
                 {
                   name: 'heading',
                   label: 'CTA Heading',
-                  type: 'text'
+                  type: 'text',
                 },
                 {
                   name: 'text',
                   label: 'Button Text',
-                  type: 'text'
+                  type: 'text',
                 },
                 {
                   name: 'url',
                   label: 'Button URL',
-                  type: 'text'
-                }
-              ]
-            }
-          ]
+                  type: 'text',
+                },
+              ],
+            },
+          ],
         },
         {
           label: 'Analytics',
@@ -319,6 +319,6 @@ const SiteSettings: CollectionConfig = {
       ],
     },
   ],
-};
+}
 
-export default SiteSettings;
+export default SiteSettings
