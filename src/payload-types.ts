@@ -2372,6 +2372,10 @@ export interface Location {
    */
   description?: string | null;
   /**
+   * Area identifier for this location
+   */
+  areaId?: string | null;
+  /**
    * Cloudinary public_id for location image
    */
   featuredImage?: string | null;
@@ -4864,6 +4868,7 @@ export interface LocationsSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
+  areaId?: T;
   featuredImage?: T;
   projectCode?: T;
   serviceRadiusMeters?: T;

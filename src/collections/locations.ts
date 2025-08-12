@@ -282,6 +282,15 @@ const Locations: CollectionConfig = {
       },
     },
     {
+      name: 'areaId',
+      label: 'Area ID',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Area identifier for this location',
+      },
+    },
+    {
       name: 'featuredImage',
       label: 'Featured Image',
       type: 'text',
