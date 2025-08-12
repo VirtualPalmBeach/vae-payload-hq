@@ -3222,6 +3222,10 @@ export interface ServiceArea {
    * Lowest number is highest value Tier
    */
   serviceAreaTier?: ('tier1' | 'tier2' | 'tier3' | 'tier4' | 'tier5' | 'tier6' | 'tier7') | null;
+  /**
+   * Market (regional airport code)
+   */
+  market?: ('DFW' | 'PBI' | 'AUS' | 'ECP') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -5266,6 +5270,7 @@ export interface ServiceAreasSelect<T extends boolean = true> {
   slug?: T;
   locations?: T;
   serviceAreaTier?: T;
+  market?: T;
   updatedAt?: T;
   createdAt?: T;
 }

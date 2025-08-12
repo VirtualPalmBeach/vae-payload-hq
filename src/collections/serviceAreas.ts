@@ -130,6 +130,33 @@ const ServiceAreas: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'market',
+      label: 'Market',
+      type: 'select',
+      required: false,
+      admin: {
+        description: 'Market (regional airport code)',
+      },
+      options: [
+        {
+          label: 'DFW',
+          value: 'DFW',
+        },
+        {
+          label: 'PBI',
+          value: 'PBI',
+        },
+        {
+          label: 'AUS',
+          value: 'AUS',
+        },
+        {
+          label: 'ECP',
+          value: 'ECP',
+        },
+      ],
+    },
   ],
   indexes: [
     {
