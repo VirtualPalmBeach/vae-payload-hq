@@ -3218,6 +3218,10 @@ export interface ServiceArea {
    * List of locations included in this service area
    */
   locations: (string | Location)[];
+  /**
+   * Lowest number is highest value Tier
+   */
+  serviceAreaTier?: ('tier1' | 'tier2' | 'tier3' | 'tier4' | 'tier5' | 'tier6' | 'tier7') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -5261,6 +5265,7 @@ export interface ServiceAreasSelect<T extends boolean = true> {
   label?: T;
   slug?: T;
   locations?: T;
+  serviceAreaTier?: T;
   updatedAt?: T;
   createdAt?: T;
 }

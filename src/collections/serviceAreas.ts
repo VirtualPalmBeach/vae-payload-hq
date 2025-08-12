@@ -8,7 +8,7 @@ const ServiceAreas: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'label',
-    group: 'Settings',
+    group: 'SEO',
     defaultColumns: ['label', 'slug', 'locations', 'updatedAt'],
   },
   versions: {
@@ -90,6 +90,45 @@ const ServiceAreas: CollectionConfig = {
       admin: {
         description: 'List of locations included in this service area',
       },
+    },
+    {
+      name: 'serviceAreaTier',
+      label: 'Service Area Tier',
+      type: 'select',
+      required: false,
+      admin: {
+        description: 'Lowest number is highest value Tier',
+      },
+      options: [
+        {
+          label: 'Tier 1 (Highest)',
+          value: 'tier1',
+        },
+        {
+          label: 'Tier 2',
+          value: 'tier2',
+        },
+        {
+          label: 'Tier 3',
+          value: 'tier3',
+        },
+        {
+          label: 'Tier 4',
+          value: 'tier4',
+        },
+        {
+          label: 'Tier 5',
+          value: 'tier5',
+        },
+        {
+          label: 'Tier 6',
+          value: 'tier6',
+        },
+        {
+          label: 'Tier 7 (Lowest)',
+          value: 'tier7',
+        },
+      ],
     },
   ],
   indexes: [

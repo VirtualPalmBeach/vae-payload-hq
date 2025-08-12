@@ -9,7 +9,7 @@ const Locations: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Settings',
+    group: 'SEO',
     defaultColumns: ['name', 'city', 'state', 'postalCode', 'updatedAt'],
   },
   versions: {
@@ -29,7 +29,7 @@ const Locations: CollectionConfig = {
         if (data?.name) {
           data.name = String(data.name).trim()
         }
-        
+
         if (data?.city) {
           data.city = String(data.city).trim()
           // Basic validation - just ensure it's not empty
@@ -37,7 +37,7 @@ const Locations: CollectionConfig = {
             throw new Error('City cannot be empty')
           }
         }
-        
+
         if (data?.state) {
           data.state = String(data.state).trim().toUpperCase()
           // Basic validation - just ensure it's 2 characters
@@ -45,7 +45,7 @@ const Locations: CollectionConfig = {
             throw new Error('State must be 2 characters')
           }
         }
-        
+
         if (data?.postalCode) {
           data.postalCode = String(data.postalCode).trim()
           // Basic validation - just ensure it's 5 characters
@@ -53,16 +53,16 @@ const Locations: CollectionConfig = {
             throw new Error('Postal code must be 5 characters')
           }
         }
-        
+
         // Optional fields
         if (data?.county) {
           data.county = String(data.county).trim()
         }
-        
+
         if (data?.region) {
           data.region = String(data.region).trim()
         }
-        
+
         // Generate or validate slug
         if (data?.slug) {
           // Ensure slug is lowercase and hyphenated
@@ -82,7 +82,7 @@ const Locations: CollectionConfig = {
             .replace(/-+/g, '-')
             .replace(/^-|-$/g, '')
         }
-        
+
         // Validate coordinates if present
         if (data?.lat !== undefined && data?.lat !== null) {
           const lat = Number(data.lat)
@@ -91,7 +91,7 @@ const Locations: CollectionConfig = {
           }
           data.lat = lat
         }
-        
+
         if (data?.lng !== undefined && data?.lng !== null) {
           const lng = Number(data.lng)
           if (isNaN(lng) || lng < -180 || lng > 180) {
@@ -99,7 +99,7 @@ const Locations: CollectionConfig = {
           }
           data.lng = lng
         }
-        
+
         // Handle legacy coordinates group (backward compatibility)
         if (data?.coordinates) {
           if (data.coordinates.latitude !== undefined && data.lat === undefined) {
@@ -117,7 +117,7 @@ const Locations: CollectionConfig = {
           // Remove old coordinates group after migration
           delete data.coordinates
         }
-        
+
         return data
       },
     ],
