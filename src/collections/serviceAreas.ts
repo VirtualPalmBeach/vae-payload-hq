@@ -157,6 +157,15 @@ const ServiceAreas: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'serviceAreaDescription',
+      label: 'Service Area Description',
+      type: 'textarea',
+      required: false,
+      admin: {
+        description: 'Optional description of this area grouping',
+      },
+    },
   ],
   indexes: [
     {

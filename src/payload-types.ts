@@ -3230,6 +3230,10 @@ export interface ServiceArea {
    * Market (regional airport code)
    */
   market?: ('DFW' | 'PBI' | 'AUS' | 'ECP') | null;
+  /**
+   * Optional description of this area grouping
+   */
+  serviceAreaDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -5276,6 +5280,7 @@ export interface ServiceAreasSelect<T extends boolean = true> {
   locations?: T;
   serviceAreaTier?: T;
   market?: T;
+  serviceAreaDescription?: T;
   updatedAt?: T;
   createdAt?: T;
 }
