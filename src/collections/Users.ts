@@ -14,7 +14,22 @@ export const Users: CollectionConfig = {
   },
 
   fields: [
-    // “email” field added automatically by Payload
+    // "email" field added automatically by Payload
     // Additional custom fields may be declared below
+    {
+      name: 'role',
+      label: 'Role',
+      type: 'select',
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+        { label: 'SEO Service', value: 'seoService' },
+      ],
+      defaultValue: 'admin',
+      required: true,
+      admin: {
+        description: 'User role determines access permissions',
+      },
+    },
   ],
 }

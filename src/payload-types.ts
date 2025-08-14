@@ -3593,6 +3593,10 @@ export interface Spotlight {
  */
 export interface User {
   id: string;
+  /**
+   * User role determines access permissions
+   */
+  role: 'admin' | 'editor' | 'seoService';
   updatedAt: string;
   createdAt: string;
   enableAPIKey?: boolean | null;
@@ -5530,6 +5534,7 @@ export interface TestimonialsSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   enableAPIKey?: T;
