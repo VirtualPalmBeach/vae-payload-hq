@@ -19,7 +19,7 @@ const PortfolioProjects: CollectionConfig = {
   fields: [
     // Site Configuration
     commonSiteKeyField,
-    
+
     // Core Project Fields
     {
       name: 'title',
@@ -38,15 +38,16 @@ const PortfolioProjects: CollectionConfig = {
       unique: true,
       index: true,
       admin: {
-        description: 'Universal project identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)',
+        description:
+          'Universal project identifier - Format: ABC2301 (3 letters + 2 year digits + 2 sequence)',
         placeholder: 'ROD2301',
       },
       validate: (value: string | null | undefined) => {
         if (!value) return 'Project code is required'
         if (typeof value !== 'string') return 'Project code must be a string'
-        const pattern = /^[A-Z]{3}\d{4}$/
+        const pattern = /^[A-Z]{3}\d{2}[A-Z0-9]\d$/
         if (!pattern.test(value)) {
-          return 'Project code must be 3 uppercase letters followed by 4 digits (e.g., ROD2301)'
+          return 'Project code must be 3 uppercase letters, 2 digits, then an alphanumeric, then a final digit (e.g., ROD2301 or COL24F1)'
         }
         return true
       },
@@ -109,7 +110,7 @@ const PortfolioProjects: CollectionConfig = {
         description: 'Detailed project description for the project detail page',
       },
     },
-    
+
     // Visual Content
     {
       name: 'heroImage',
@@ -166,7 +167,7 @@ const PortfolioProjects: CollectionConfig = {
         },
       ],
     },
-    
+
     // Journey Integration (Optional)
     {
       name: 'linkedJourney',
@@ -178,7 +179,7 @@ const PortfolioProjects: CollectionConfig = {
         description: 'Optional: Link to a detailed project journey or case study',
       },
     },
-    
+
     // Metadata & Organization
     {
       name: 'featured',
@@ -220,7 +221,7 @@ const PortfolioProjects: CollectionConfig = {
         placeholder: 'e.g., Dallas, TX',
       },
     },
-    
+
     // Project Details
     {
       name: 'projectDetails',
@@ -268,7 +269,7 @@ const PortfolioProjects: CollectionConfig = {
         },
       ],
     },
-    
+
     // Publishing Controls
     {
       name: 'published',
@@ -293,7 +294,7 @@ const PortfolioProjects: CollectionConfig = {
         },
       },
     },
-    
+
     // SEO Fields
     {
       name: 'seo',
@@ -321,7 +322,7 @@ const PortfolioProjects: CollectionConfig = {
         },
       ],
     },
-    
+
     // Timestamps
     ...timestampedFields,
   ],
