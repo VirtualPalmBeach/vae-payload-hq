@@ -21,23 +21,12 @@ const Reals: CollectionConfig = {
           label: 'Cockpit',
           fields: [
             {
-              name: 'preview',
-              label: 'Preview',
-              type: 'ui',
-              admin: {
-                components: {
-                  Field: undefined, // Placeholder for future CloudinaryPreview component
-                },
-              },
-            },
-            {
-              name: 'cloudinaryTags',
-              label: 'Cloudinary Tags',
+              name: 'posterUrl',
+              label: 'Poster URL',
               type: 'text',
-              required: true,
               admin: {
-                description:
-                  'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
+                readOnly: true,
+                description: 'Generated poster URL (click to verify)',
               },
             },
             {
@@ -57,16 +46,13 @@ const Reals: CollectionConfig = {
               },
             },
             {
-              name: 'loopStartTime',
-              label: 'Loop Start Time (sec)',
-              type: 'number',
-              min: 0,
-              max: 25,
-              defaultValue: 0.5,
+              name: 'cloudinaryTags',
+              label: 'Cloudinary Tags',
+              type: 'text',
+              required: true,
               admin: {
                 description:
-                  '0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).',
-                step: 0.1,
+                  'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
               },
             },
             {
@@ -111,6 +97,19 @@ const Reals: CollectionConfig = {
                 position: 'sidebar',
                 description:
                   'Display priority (higher numbers appear first; leave blank for default position)',
+              },
+            },
+            {
+              name: 'loopStartTime',
+              label: 'Loop Start Time (sec)',
+              type: 'number',
+              min: 0,
+              max: 25,
+              defaultValue: 0.5,
+              admin: {
+                description:
+                  '0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).',
+                step: 0.1,
               },
             },
           ],
@@ -193,13 +192,39 @@ const Reals: CollectionConfig = {
   },
   hooks: {
     beforeValidate: [
-      ({ data }) => {
+      async ({ data, req }) => {
         if (data && !data.slug && data.title) {
-          data.slug = data.title
+          const baseSlug = data.title
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
             .substring(0, 80);
+          
+          // Check for slug collisions
+          let finalSlug = baseSlug;
+          let counter = 2;
+          
+          const { payload } = req;
+          
+          while (true) {
+            const existing = await payload.find({
+              collection: 'reals',
+              where: {
+                slug: { equals: finalSlug },
+                ...(data.id ? { id: { not_equals: data.id } } : {}),
+              },
+              limit: 1,
+            });
+            
+            if (existing.docs.length === 0) {
+              break;
+            }
+            
+            finalSlug = `${baseSlug}-${counter}`;
+            counter++;
+          }
+          
+          data.slug = finalSlug;
         }
         return data;
       },

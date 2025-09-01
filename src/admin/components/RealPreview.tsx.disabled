@@ -1,0 +1,124 @@
+'use client'
+import React from 'react'
+import { useDocumentInfo } from '@payloadcms/ui'
+import type { UIFieldClientComponent } from '@payloadcms/ui'
+
+interface DocumentData {
+  posterUrl?: string
+  cloudinaryPublicId?: string
+  posterPublicId?: string
+}
+
+type StatusType = 'pending' | 'ready'
+
+const RealPreview = ((props) => {
+  const { savedDocumentData } = useDocumentInfo()
+  const documentData = savedDocumentData as DocumentData
+
+  const { posterUrl, cloudinaryPublicId, posterPublicId } = documentData || {}
+
+  // Determine status based on available data
+  const getStatus = (): StatusType => {
+    return posterUrl ? 'ready' : 'pending'
+  }
+
+  const status = getStatus()
+
+  // Status chip component
+  const StatusChip: React.FC<{ status: StatusType }> = ({ status }) => {
+    const getStatusConfig = (status: StatusType) => {
+      switch (status) {
+        case 'ready':
+          return { color: '#22c55e', bg: '#dcfce7', text: 'Ready' }
+        case 'pending':
+          return { color: '#6b7280', bg: '#f3f4f6', text: 'Pending' }
+      }
+    }
+
+    const config = getStatusConfig(status)
+
+    return (
+      <span
+        style={{
+          backgroundColor: config.bg,
+          color: config.color,
+          padding: '4px 8px',
+          borderRadius: '4px',
+          fontSize: '12px',
+          fontWeight: '500',
+          display: 'inline-block',
+        }}
+      >
+        {config.text}
+      </span>
+    )
+  }
+
+  return (
+    <div style={{ marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+        <label style={{ fontWeight: '600', fontSize: '14px' }}>{label}</label>
+        <StatusChip status={status} />
+      </div>
+
+      <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '1rem', backgroundColor: '#f9fafb' }}>
+        {posterUrl ? (
+          <div>
+            <img
+              src={posterUrl}
+              alt="Video preview"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: '6px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement
+                target.style.display = 'none'
+                const errorDiv = target.nextSibling as HTMLElement
+                if (errorDiv) {
+                  errorDiv.style.display = 'block'
+                }
+              }}
+            />
+            <div
+              style={{
+                display: 'none',
+                color: '#dc2626',
+                fontSize: '14px',
+                fontStyle: 'italic',
+                textAlign: 'center',
+                padding: '2rem',
+              }}
+            >
+              Failed to load preview image
+            </div>
+          </div>
+        ) : (
+          <div
+            style={{
+              color: '#6b7280',
+              fontSize: '14px',
+              fontStyle: 'italic',
+              textAlign: 'center',
+              padding: '2rem',
+            }}
+          >
+            Waiting for n8n...
+          </div>
+        )}
+
+        {/* Technical Details */}
+        {(cloudinaryPublicId || posterPublicId) && (
+          <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '8px', borderTop: '1px solid #e5e7eb', paddingTop: '8px' }}>
+            {cloudinaryPublicId && <div>Video ID: {cloudinaryPublicId}</div>}
+            {posterPublicId && <div>Poster ID: {posterPublicId}</div>}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}) as UIFieldClientComponent
+
+export default RealPreview

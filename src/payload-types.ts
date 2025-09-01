@@ -2863,18 +2863,18 @@ export interface Real {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
   /**
-   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
+   * Generated poster URL (click to verify)
    */
-  cloudinaryTags: string;
+  posterUrl?: string | null;
   title: string;
   /**
    * URL-friendly identifier for the Reals page (auto-generated if left blank)
    */
   slug: string;
   /**
-   * 0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
+   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
    */
-  loopStartTime?: number | null;
+  cloudinaryTags: string;
   /**
    * Display prominently on gallery index
    */
@@ -2885,6 +2885,10 @@ export interface Real {
    * Display priority (higher numbers appear first; leave blank for default position)
    */
   order?: number | null;
+  /**
+   * 0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
+   */
+  loopStartTime?: number | null;
   /**
    * Headline for this Reals page
    */
@@ -5136,14 +5140,15 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface RealsSelect<T extends boolean = true> {
   siteKey?: T;
-  cloudinaryTags?: T;
+  posterUrl?: T;
   title?: T;
   slug?: T;
-  loopStartTime?: T;
+  cloudinaryTags?: T;
   featured?: T;
   status?: T;
   publishDate?: T;
   order?: T;
+  loopStartTime?: T;
   headline?: T;
   description?: T;
   cloudinaryPublicId?: T;
