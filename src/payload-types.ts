@@ -2862,11 +2862,29 @@ export interface PortfolioProject {
 export interface Real {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
+   */
+  cloudinaryTags: string;
   title: string;
   /**
-   * URL-friendly identifier for the Reals page
+   * URL-friendly identifier for the Reals page (auto-generated if left blank)
    */
   slug: string;
+  /**
+   * 0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
+   */
+  loopStartTime?: number | null;
+  /**
+   * Display prominently on gallery index
+   */
+  featured?: boolean | null;
+  status?: ('draft' | 'published') | null;
+  publishDate?: string | null;
+  /**
+   * Display priority (higher numbers appear first; leave blank for default position)
+   */
+  order?: number | null;
   /**
    * Headline for this Reals page
    */
@@ -2889,14 +2907,6 @@ export interface Real {
    * Brief description of this Reals page
    */
   description?: string | null;
-  /**
-   * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
-   */
-  cloudinaryTags: string;
-  /**
-   * Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
-   */
-  loopStartTime?: number | null;
   /**
    * Auto-generated from Cloudinary tags search
    */
@@ -2925,16 +2935,6 @@ export interface Real {
    * Organize this Reals with gallery tags
    */
   tags?: (string | Tag)[] | null;
-  /**
-   * Display prominently on gallery index
-   */
-  featured?: boolean | null;
-  status?: ('draft' | 'published') | null;
-  /**
-   * Display priority (higher numbers appear first; leave blank for default position)
-   */
-  order?: number | null;
-  publishDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -5136,21 +5136,21 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface RealsSelect<T extends boolean = true> {
   siteKey?: T;
+  cloudinaryTags?: T;
   title?: T;
   slug?: T;
+  loopStartTime?: T;
+  featured?: T;
+  status?: T;
+  publishDate?: T;
+  order?: T;
   headline?: T;
   description?: T;
-  cloudinaryTags?: T;
-  loopStartTime?: T;
   cloudinaryPublicId?: T;
   posterPublicId?: T;
   thumbnails?: T;
   regenerateThumbnails?: T;
   tags?: T;
-  featured?: T;
-  status?: T;
-  order?: T;
-  publishDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }

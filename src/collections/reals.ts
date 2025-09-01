@@ -15,153 +15,195 @@ const Reals: CollectionConfig = {
   fields: [
     commonSiteKeyField,
     {
-      name: 'title',
-      label: 'Title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
-      required: true,
-      admin: {
-        position: 'sidebar',
-        description: 'URL-friendly identifier for the Reals page',
-      },
-    },
-    {
-      name: 'headline',
-      label: 'Headline',
-      type: 'richText',
-      admin: {
-        description: 'Headline for this Reals page',
-      },
-    },
-    {
-      name: 'description',
-      label: 'Description',
-      type: 'textarea',
-      admin: {
-        description: 'Brief description of this Reals page',
-      },
-    },
-    {
-      name: 'cloudinaryTags',
-      label: 'Cloudinary Tags',
-      type: 'text',
-      required: true,
-      admin: {
-        description:
-          'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
-      },
-    },
-    {
-      name: 'loopStartTime',
-      label: 'Loop Start Time (sec)',
-      type: 'number',
-      min: 0,
-      max: 25,
-      defaultValue: 0.5,
-      admin: {
-        description:
-          'Optional. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).',
-        step: 0.1,
-      },
-    },
-    {
-      name: 'cloudinaryPublicId',
-      label: 'Cloudinary Public ID',
-      type: 'text',
-      admin: {
-        readOnly: true,
-        description: 'Auto-generated from Cloudinary tags search',
-      },
-    },
-    {
-      name: 'posterPublicId',
-      label: 'Poster Public ID',
-      type: 'text',
-      admin: {
-        readOnly: true,
-        description: 'Auto-generated poster frame ID',
-      },
-    },
-    {
-      name: 'thumbnails',
-      label: 'Thumbnails',
-      type: 'json',
-      admin: {
-        readOnly: true,
-        description: 'Generated thumbnail URLs for responsive display',
-      },
-    },
-    {
-      name: 'regenerateThumbnails',
-      label: 'Regenerate Thumbnails',
-      type: 'checkbox',
-      admin: {
-        description: 'Check to regenerate thumbnails on next save',
-      },
-    },
-    {
-      name: 'tags',
-      label: 'Gallery Tags',
-      type: 'relationship',
-      relationTo: 'tags',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-        description: 'Organize this Reals with gallery tags',
-      },
-    },
-    {
-      name: 'featured',
-      label: 'Featured',
-      type: 'checkbox',
-      admin: {
-        position: 'sidebar',
-        description: 'Display prominently on gallery index',
-      },
-    },
-    {
-      name: 'status',
-      label: 'Status',
-      type: 'select',
-      options: [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Published', value: 'published' },
-      ],
-      defaultValue: 'draft',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
-      name: 'order',
-      label: 'Order',
-      type: 'number',
-      admin: {
-        position: 'sidebar',
-        description:
-          'Display priority (higher numbers appear first; leave blank for default position)',
-      },
-    },
-    {
-      name: 'publishDate',
-      label: 'Publish Date',
-      type: 'date',
-      defaultValue: () => new Date(),
-      admin: {
-        position: 'sidebar',
-        date: {
-          pickerAppearance: 'dayAndTime',
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Cockpit',
+          fields: [
+            {
+              name: 'preview',
+              label: 'Preview',
+              type: 'ui',
+              admin: {
+                components: {
+                  Field: undefined, // Placeholder for future CloudinaryPreview component
+                },
+              },
+            },
+            {
+              name: 'cloudinaryTags',
+              label: 'Cloudinary Tags',
+              type: 'text',
+              required: true,
+              admin: {
+                description:
+                  'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
+              },
+            },
+            {
+              name: 'title',
+              label: 'Title',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'slug',
+              label: 'Slug',
+              type: 'text',
+              required: true,
+              admin: {
+                position: 'sidebar',
+                description: 'URL-friendly identifier for the Reals page (auto-generated if left blank)',
+              },
+            },
+            {
+              name: 'loopStartTime',
+              label: 'Loop Start Time (sec)',
+              type: 'number',
+              min: 0,
+              max: 25,
+              defaultValue: 0.5,
+              admin: {
+                description:
+                  '0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).',
+                step: 0.1,
+              },
+            },
+            {
+              name: 'featured',
+              label: 'Featured',
+              type: 'checkbox',
+              admin: {
+                position: 'sidebar',
+                description: 'Display prominently on gallery index',
+              },
+            },
+            {
+              name: 'status',
+              label: 'Status',
+              type: 'select',
+              options: [
+                { label: 'Draft', value: 'draft' },
+                { label: 'Published', value: 'published' },
+              ],
+              defaultValue: 'draft',
+              admin: {
+                position: 'sidebar',
+              },
+            },
+            {
+              name: 'publishDate',
+              label: 'Publish Date',
+              type: 'date',
+              defaultValue: () => new Date(),
+              admin: {
+                position: 'sidebar',
+                date: {
+                  pickerAppearance: 'dayAndTime',
+                },
+              },
+            },
+            {
+              name: 'order',
+              label: 'Order',
+              type: 'number',
+              admin: {
+                position: 'sidebar',
+                description:
+                  'Display priority (higher numbers appear first; leave blank for default position)',
+              },
+            },
+          ],
         },
-      },
+        {
+          label: 'Advanced',
+          fields: [
+            {
+              name: 'headline',
+              label: 'Headline',
+              type: 'richText',
+              admin: {
+                description: 'Headline for this Reals page',
+              },
+            },
+            {
+              name: 'description',
+              label: 'Description',
+              type: 'textarea',
+              admin: {
+                description: 'Brief description of this Reals page',
+              },
+            },
+            {
+              name: 'cloudinaryPublicId',
+              label: 'Cloudinary Public ID',
+              type: 'text',
+              admin: {
+                readOnly: true,
+                description: 'Auto-generated from Cloudinary tags search',
+              },
+            },
+            {
+              name: 'posterPublicId',
+              label: 'Poster Public ID',
+              type: 'text',
+              admin: {
+                readOnly: true,
+                description: 'Auto-generated poster frame ID',
+              },
+            },
+            {
+              name: 'thumbnails',
+              label: 'Thumbnails',
+              type: 'json',
+              admin: {
+                readOnly: true,
+                description: 'Generated thumbnail URLs for responsive display',
+              },
+            },
+            {
+              name: 'regenerateThumbnails',
+              label: 'Regenerate Thumbnails',
+              type: 'checkbox',
+              admin: {
+                description: 'Check to regenerate thumbnails on next save',
+              },
+            },
+            {
+              name: 'tags',
+              label: 'Gallery Tags',
+              type: 'relationship',
+              relationTo: 'tags',
+              hasMany: true,
+              admin: {
+                position: 'sidebar',
+                description: 'Organize this Reals with gallery tags',
+              },
+            },
+          ],
+        },
+      ],
     },
   ],
   access: {
     read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
+  hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (data && !data.slug && data.title) {
+          data.slug = data.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '')
+            .substring(0, 80);
+        }
+        return data;
+      },
+    ],
   },
 }
 
