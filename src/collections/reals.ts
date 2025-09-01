@@ -21,15 +21,6 @@ const Reals: CollectionConfig = {
           label: 'Cockpit',
           fields: [
             {
-              name: 'posterUrl',
-              label: 'Poster URL',
-              type: 'text',
-              admin: {
-                readOnly: true,
-                description: 'Generated poster URL (click to verify)',
-              },
-            },
-            {
               name: 'title',
               label: 'Title',
               type: 'text',
@@ -53,6 +44,15 @@ const Reals: CollectionConfig = {
               admin: {
                 description:
                   'Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)',
+              },
+            },
+            {
+              name: 'videoUrl',
+              label: 'Video URL',
+              type: 'text',
+              admin: {
+                readOnly: true,
+                description: 'Direct video link from n8n automation - click to open in new tab',
               },
             },
             {

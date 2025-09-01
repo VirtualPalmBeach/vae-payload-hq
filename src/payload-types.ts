@@ -2862,10 +2862,6 @@ export interface PortfolioProject {
 export interface Real {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Generated poster URL (click to verify)
-   */
-  posterUrl?: string | null;
   title: string;
   /**
    * URL-friendly identifier for the Reals page (auto-generated if left blank)
@@ -2875,6 +2871,10 @@ export interface Real {
    * Comma-separated tags for Cloudinary search (e.g., ANT2101,IRL,Reals,Social,Video)
    */
   cloudinaryTags: string;
+  /**
+   * Direct video link from n8n automation - click to open in new tab
+   */
+  videoUrl?: string | null;
   /**
    * Display prominently on gallery index
    */
@@ -5140,10 +5140,10 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface RealsSelect<T extends boolean = true> {
   siteKey?: T;
-  posterUrl?: T;
   title?: T;
   slug?: T;
   cloudinaryTags?: T;
+  videoUrl?: T;
   featured?: T;
   status?: T;
   publishDate?: T;
