@@ -229,6 +229,41 @@ const Reals: CollectionConfig = {
         return data;
       },
     ],
+    afterChange: [
+      async ({ doc, previousDoc }) => {
+        // Skip if N8N webhook URL not configured
+        if (!process.env.N8N_VIDEO_URL_WEBHOOK) {
+          return;
+        }
+
+        const automationFields = new Set(['videoUrl', 'cloudinaryPublicId', 'posterPublicId', 'thumbnails']);
+        const metaKeys = new Set(['updatedAt', 'createdAt', 'id', 'versions', '_status']);
+        
+        // Find changed keys
+        const changedKeys = Object.keys(doc).filter(key => doc[key] !== previousDoc?.[key]);
+        
+        // Skip if only automation + meta fields changed
+        const significantChanges = changedKeys.filter(key => 
+          !automationFields.has(key) && !metaKeys.has(key)
+        );
+        
+        if (significantChanges.length === 0) {
+          return;
+        }
+        
+        // Trigger N8N webhook
+        try {
+          await fetch(process.env.N8N_VIDEO_URL_WEBHOOK, {
+            method: 'POST',
+            body: JSON.stringify({ id: doc.id }),
+            headers: { 'Content-Type': 'application/json' },
+            signal: AbortSignal.timeout(5000)
+          });
+        } catch {
+          // Swallow errors - save must succeed
+        }
+      }
+    ],
   },
 }
 
