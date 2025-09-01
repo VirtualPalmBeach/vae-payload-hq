@@ -253,14 +253,19 @@ const Reals: CollectionConfig = {
         
         // Trigger N8N webhook
         try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000);
+          
           await fetch(process.env.N8N_VIDEO_URL_WEBHOOK, {
             method: 'POST',
-            body: JSON.stringify({ id: doc.id }),
             headers: { 'Content-Type': 'application/json' },
-            signal: AbortSignal.timeout(5000)
-          });
+            body: JSON.stringify({ id: doc.id }),
+            signal: controller.signal
+          }).catch(() => {}); // Swallow all errors including timeouts
+          
+          clearTimeout(timeoutId);
         } catch {
-          // Swallow errors - save must succeed
+          // Additional catch for any unforeseen issues
         }
       }
     ],
