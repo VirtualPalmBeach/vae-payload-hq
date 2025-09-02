@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { isAdmin } from '../access/helpers'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -8,10 +9,10 @@ export const Users: CollectionConfig = {
   },
 
   access: {
-    read: ({ req }) => Boolean(req.user),     // Any authenticated user can read
-    create: ({ req }) => Boolean(req.user),   // Any authenticated user can create  
-    update: ({ req }) => Boolean(req.user),   // Any authenticated user can update
-    delete: ({ req }) => Boolean(req.user),   // Any authenticated user can delete
+    read: isAdmin,     // Admin-only read access
+    create: isAdmin,   // Admin-only create access
+    update: isAdmin,   // Admin-only update access  
+    delete: isAdmin,   // Admin-only delete access
   },
 
   // expanded config enables API‑key support
