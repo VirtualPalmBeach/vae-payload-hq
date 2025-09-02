@@ -247,42 +247,23 @@ const Reals: CollectionConfig = {
     ],
     afterChange: [
       async ({ doc, previousDoc }) => {
-        // Skip if N8N webhook URL not configured
-        if (!process.env.N8N_VIDEO_URL_WEBHOOK) {
-          return;
-        }
+        const url = process.env.N8N_VIDEO_URL_WEBHOOK
+        if (!url) return
 
-        const automationFields = new Set(['videoUrl', 'cloudinaryPublicId', 'posterPublicId', 'thumbnails']);
-        const metaKeys = new Set(['updatedAt', 'createdAt', 'id', 'versions', '_status']);
-        
-        // Find changed keys
-        const changedKeys = Object.keys(doc).filter(key => doc[key] !== previousDoc?.[key]);
-        
-        // Skip if only automation + meta fields changed
-        const significantChanges = changedKeys.filter(key => 
-          !automationFields.has(key) && !metaKeys.has(key)
-        );
-        
-        if (significantChanges.length === 0) {
-          return;
-        }
-        
-        // Trigger N8N webhook
+        const ignore = new Set([
+          'id','createdAt','updatedAt','_status','versions','_verified','_verificationToken',
+          'videoUrl','cloudinaryPublicId','posterPublicId','thumbnails'  // Prevent N8N loops
+        ])
+        const changed = Object.keys(doc).filter(k => doc[k] !== previousDoc?.[k] && !ignore.has(k))
+        if (changed.length === 0) return
+
         try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 5000);
-          
-          await fetch(process.env.N8N_VIDEO_URL_WEBHOOK, {
+          await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: doc.id }),
-            signal: controller.signal
-          }).catch(() => {}); // Swallow all errors including timeouts
-          
-          clearTimeout(timeoutId);
-        } catch {
-          // Additional catch for any unforeseen issues
-        }
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ id: doc.id, slug: doc.slug, changed }),
+          })
+        } catch {}
       }
     ],
   },
