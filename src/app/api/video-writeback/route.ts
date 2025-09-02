@@ -3,7 +3,7 @@ import { getPayload } from 'payload'
 import configPromise from '@/payload.config'
 
 export async function POST(req: NextRequest) {
-  const secret = req.headers.get('x-writeback-secret')
+  const secret = req.headers.get('x-automation-secret')
   
   if (!secret || secret !== process.env.N8N_WRITEBACK_SECRET) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 })
