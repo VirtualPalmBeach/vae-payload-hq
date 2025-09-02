@@ -13,6 +13,7 @@ async function getRole(req: PayloadRequest): Promise<string | undefined> {
       collection: 'users',
       id: req.user.id,
       overrideAccess: true,
+      depth: 0,
     })
     const role =
       typeof (user as { role?: unknown }).role === 'string'
@@ -20,7 +21,8 @@ async function getRole(req: PayloadRequest): Promise<string | undefined> {
         : undefined
     roleCache.set(req, role)
     return role
-  } catch {
+  } catch (error) {
+    console.error('Failed to resolve user role:', error)
     roleCache.set(req, undefined)
     return undefined
   }

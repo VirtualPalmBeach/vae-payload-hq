@@ -259,9 +259,15 @@ const Reals: CollectionConfig = {
         if (changed.length === 0) return
 
         try {
+          const secret = process.env.N8N_WRITEBACK_SECRET
+          if (!secret) return // Skip if secret not configured
+
           await fetch(url, {
             method: 'POST',
-            headers: { 'content-type': 'application/json' },
+            headers: {
+              'content-type': 'application/json',
+              'X-Automation-Secret': secret,
+            },
             body: JSON.stringify({ id: doc.id, slug: doc.slug, changed }),
           })
         } catch {}
