@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { getPayload } from 'payload'
+import configPromise from '@/payload.config'
 
 export async function POST(req: NextRequest) {
   const secret = req.headers.get('x-writeback-secret')
@@ -9,7 +10,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { id, data } = await req.json()
-  const payload = await getPayload()
+  const payload = await getPayload({ config: configPromise })
 
   try {
     await payload.update({
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
     })
     
     return Response.json({ success: true })
-  } catch (error) {
+  } catch (_error) {
     return Response.json({ error: 'Update failed' }, { status: 500 })
   }
 }
