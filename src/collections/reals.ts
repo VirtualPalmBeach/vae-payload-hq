@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin, isAdminOrDesigner } from '../access/helpers'
 
 const Reals: CollectionConfig = {
   slug: 'reals',
@@ -202,9 +203,9 @@ const Reals: CollectionConfig = {
   ],
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
-    update: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
-    delete: ({ req: { user } }) => Boolean(user && user.role === 'admin'),
+    create: isAdminOrDesigner,
+    update: isAdminOrDesigner,
+    delete: isAdmin,
   },
   hooks: {
     beforeValidate: [

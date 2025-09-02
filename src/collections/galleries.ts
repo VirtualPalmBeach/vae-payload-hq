@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
+import { isAdmin, isAdminOrDesigner } from '../access/helpers'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',
@@ -16,9 +17,9 @@ const Galleries: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
-    update: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
-    delete: ({ req: { user } }) => Boolean(user && user.role === 'admin'),
+    create: isAdminOrDesigner,
+    update: isAdminOrDesigner,
+    delete: isAdmin,
   },
   fields: [
     // Site Configuration
