@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin } from '../access/helpers'
 import { timestampedFields } from '../fields/timestampedFields'
 import { optionalDisplayFields } from '../fields/optionalFields'
 
@@ -16,6 +17,9 @@ const Homepage: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

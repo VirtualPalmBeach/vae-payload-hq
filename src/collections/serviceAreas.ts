@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload'
+import { canRead, canCreate, canUpdate, canDelete } from '../access/helpers'
 
 const ServiceAreas: CollectionConfig = {
   slug: 'serviceAreas',
@@ -16,10 +17,10 @@ const ServiceAreas: CollectionConfig = {
     maxPerDoc: 10,
   },
   access: {
-    read: () => true, // Public read
-    create: ({ req: { user } }) => Boolean(user), // Admin only
-    update: ({ req: { user } }) => Boolean(user), // Admin only
-    delete: ({ req: { user } }) => Boolean(user), // Admin only
+    read: canRead,
+    create: canCreate,
+    update: canUpdate,
+    delete: canDelete,
   },
   hooks: {
     beforeValidate: [

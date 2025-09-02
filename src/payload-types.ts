@@ -3600,7 +3600,7 @@ export interface User {
   /**
    * User role determines access permissions
    */
-  role: 'admin' | 'editor' | 'seoService';
+  role: 'admin' | 'editor' | 'seoService' | 'designer';
   updatedAt: string;
   createdAt: string;
   enableAPIKey?: boolean | null;

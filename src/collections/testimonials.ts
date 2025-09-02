@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
+import { isAdmin } from '../access/helpers';
 
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
@@ -8,6 +9,9 @@ export const Testimonials: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

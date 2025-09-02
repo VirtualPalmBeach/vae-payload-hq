@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin } from '../access/helpers'
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blogPosts',
@@ -7,8 +8,10 @@ export const BlogPosts: CollectionConfig = {
     useAsTitle: 'title',
   },
   access: {
-    read: () => true, // Allow public reading of blog posts
-    // create, update, delete remain restricted to authenticated users
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

@@ -3,6 +3,7 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 import { timestampedFields } from '../fields/timestampedFields';
 import { optionalDisplayFields } from '../fields/optionalFields';
 import { ContactFormBlock } from '../blocks/ContactFormBlock';
+import { isAdmin } from '../access/helpers';
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -12,6 +13,9 @@ const Pages: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

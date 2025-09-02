@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
+import { isAdmin } from '../access/helpers'
 
 const AnswersEntries: CollectionConfig = {
   slug: 'answersEntries',
@@ -16,9 +17,9 @@ const AnswersEntries: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: () => true,
-    update: () => true,
-    delete: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     // Site Configuration

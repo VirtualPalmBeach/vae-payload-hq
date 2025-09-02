@@ -50,6 +50,10 @@ const Reals: CollectionConfig = {
               name: 'videoUrl',
               label: 'Video URL',
               type: 'text',
+              access: {
+                create: () => false,
+                update: () => false,
+              },
               admin: {
                 readOnly: true,
                 description: 'Direct video link from n8n automation - click to open in new tab',
@@ -137,6 +141,10 @@ const Reals: CollectionConfig = {
               name: 'cloudinaryPublicId',
               label: 'Cloudinary Public ID',
               type: 'text',
+              access: {
+                create: () => false,
+                update: () => false,
+              },
               admin: {
                 readOnly: true,
                 description: 'Auto-generated from Cloudinary tags search',
@@ -146,6 +154,10 @@ const Reals: CollectionConfig = {
               name: 'posterPublicId',
               label: 'Poster Public ID',
               type: 'text',
+              access: {
+                create: () => false,
+                update: () => false,
+              },
               admin: {
                 readOnly: true,
                 description: 'Auto-generated poster frame ID',
@@ -155,6 +167,10 @@ const Reals: CollectionConfig = {
               name: 'thumbnails',
               label: 'Thumbnails',
               type: 'json',
+              access: {
+                create: () => false,
+                update: () => false,
+              },
               admin: {
                 readOnly: true,
                 description: 'Generated thumbnail URLs for responsive display',
@@ -186,9 +202,9 @@ const Reals: CollectionConfig = {
   ],
   access: {
     read: () => true,
-    create: () => true,
-    update: () => true,
-    delete: () => true,
+    create: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
+    update: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
+    delete: ({ req: { user } }) => Boolean(user && user.role === 'admin'),
   },
   hooks: {
     beforeValidate: [

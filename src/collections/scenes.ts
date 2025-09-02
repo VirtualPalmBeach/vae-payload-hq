@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin } from '../access/helpers'
 
 const Scenes: CollectionConfig = {
   slug: 'scenes',
@@ -189,6 +190,9 @@ const Scenes: CollectionConfig = {
   ],
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
 }
 

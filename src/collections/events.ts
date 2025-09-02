@@ -1,9 +1,16 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
+import { isAdmin } from '../access/helpers';
 
 const Events: CollectionConfig = {
   slug: 'events',
   admin: { useAsTitle: 'title' },
+  access: {
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
+  },
   fields: [
     commonSiteKeyField,
     {

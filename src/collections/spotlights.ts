@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin } from '../access/helpers'
 
 const Spotlights: CollectionConfig = {
   slug: 'spotlights',
@@ -107,6 +108,9 @@ const Spotlights: CollectionConfig = {
   ],
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
 }
 

@@ -1,11 +1,15 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
+import { isAdmin } from '../access/helpers';
 
 const Projects: CollectionConfig = {
   slug: 'projects',
   admin: { useAsTitle: 'title' },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
+import { isAdmin } from '../access/helpers'
 
 const PortfolioLanding: CollectionConfig = {
   slug: 'portfolioLanding',
@@ -12,9 +13,9 @@ const PortfolioLanding: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: () => true,
-    update: () => true,
-    delete: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     // Site Configuration

@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
+import { isAdmin } from '../access/helpers'
 
 const Navigation: CollectionConfig = {
   slug: 'navigation',
@@ -8,7 +9,10 @@ const Navigation: CollectionConfig = {
     group: 'Navigation',
   },
   access: {
-    read: () => true, // <-- ADD THIS
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

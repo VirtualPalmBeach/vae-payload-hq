@@ -1,4 +1,5 @@
-import { CollectionConfig } from 'payload';
+import { CollectionConfig } from 'payload'
+import { isAdmin } from '../access/helpers';
 import { commonSiteKeyField } from './commonSiteKeyField';
 import { timestampedFields } from '../fields/timestampedFields';
 import { optionalDisplayFields } from '../fields/optionalFields';
@@ -8,6 +9,12 @@ const Redirects: CollectionConfig = {
   admin: {
     useAsTitle: 'slug',
     defaultColumns: ['slug', 'target', 'statusCode'],
+  },
+  access: {
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

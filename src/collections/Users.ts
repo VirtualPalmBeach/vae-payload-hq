@@ -1,10 +1,18 @@
 import type { CollectionConfig } from 'payload'
+import { isAdmin } from '../access/helpers'
 
 export const Users: CollectionConfig = {
   slug: 'users',
 
   admin: {
     useAsTitle: 'email',
+  },
+
+  access: {
+    read: isAdmin,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
 
   // expanded config enables API‑key support
@@ -24,8 +32,9 @@ export const Users: CollectionConfig = {
         { label: 'Admin', value: 'admin' },
         { label: 'Editor', value: 'editor' },
         { label: 'SEO Service', value: 'seoService' },
+        { label: 'Designer', value: 'designer' },
       ],
-      defaultValue: 'admin',
+      defaultValue: 'editor',
       required: true,
       admin: {
         description: 'User role determines access permissions',

@@ -2,12 +2,16 @@ import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 import { optionalDisplayFields } from '../fields/optionalFields';
 import { timestampedFields } from '../fields/timestampedFields';
+import { isAdmin } from '../access/helpers';
 
 const Videos: CollectionConfig = {
   slug: 'videos',
   admin: { useAsTitle: 'title' },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     commonSiteKeyField,

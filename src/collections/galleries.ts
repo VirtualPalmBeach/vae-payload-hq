@@ -16,9 +16,9 @@ const Galleries: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: () => true,
-    update: () => true,
-    delete: () => true,
+    create: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
+    update: ({ req: { user } }) => Boolean(user && ['admin', 'designer'].includes(user.role)),
+    delete: ({ req: { user } }) => Boolean(user && user.role === 'admin'),
   },
   fields: [
     // Site Configuration
