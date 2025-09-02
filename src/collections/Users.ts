@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { isAdmin } from '../access/helpers'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -9,10 +8,10 @@ export const Users: CollectionConfig = {
   },
 
   access: {
-    read: isAdmin,
-    create: isAdmin,
-    update: isAdmin,
-    delete: isAdmin,
+    read: ({ req }) => Boolean(req.user),     // Any authenticated user can read
+    create: ({ req }) => Boolean(req.user),   // Any authenticated user can create  
+    update: ({ req }) => Boolean(req.user),   // Any authenticated user can update
+    delete: ({ req }) => Boolean(req.user),   // Any authenticated user can delete
   },
 
   // expanded config enables API‑key support
@@ -36,6 +35,7 @@ export const Users: CollectionConfig = {
       ],
       defaultValue: 'editor',
       required: true,
+      saveToJWT: true,
       admin: {
         description: 'User role determines access permissions',
       },
