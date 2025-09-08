@@ -34,7 +34,8 @@ const Reals: CollectionConfig = {
               required: true,
               admin: {
                 position: 'sidebar',
-                description: 'URL-friendly identifier for the Reals page (auto-generated if left blank)',
+                description:
+                  'URL-friendly identifier for the Reals page (auto-generated if left blank)',
               },
             },
             {
@@ -52,11 +53,11 @@ const Reals: CollectionConfig = {
               label: 'Video URL',
               type: 'text',
               access: {
-                create: () => false,
-                update: () => false,
+                create: ({ req }) => req.user?.role === 'admin',
+                update: ({ req }) => req.user?.role === 'admin',
               },
               admin: {
-                readOnly: true,
+                readOnly: false,
                 description: 'Direct video link from n8n automation - click to open in new tab',
               },
             },
@@ -215,14 +216,14 @@ const Reals: CollectionConfig = {
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
-            .substring(0, 80);
-          
+            .substring(0, 80)
+
           // Check for slug collisions
-          let finalSlug = baseSlug;
-          let counter = 2;
-          
-          const { payload } = req;
-          
+          let finalSlug = baseSlug
+          let counter = 2
+
+          const { payload } = req
+
           while (true) {
             const existing = await payload.find({
               collection: 'reals',
@@ -231,19 +232,19 @@ const Reals: CollectionConfig = {
                 ...(data.id ? { id: { not_equals: data.id } } : {}),
               },
               limit: 1,
-            });
-            
+            })
+
             if (existing.docs.length === 0) {
-              break;
+              break
             }
-            
-            finalSlug = `${baseSlug}-${counter}`;
-            counter++;
+
+            finalSlug = `${baseSlug}-${counter}`
+            counter++
           }
-          
-          data.slug = finalSlug;
+
+          data.slug = finalSlug
         }
-        return data;
+        return data
       },
     ],
     afterChange: [
@@ -252,10 +253,21 @@ const Reals: CollectionConfig = {
         if (!url) return
 
         const ignore = new Set([
-          'id','createdAt','updatedAt','_status','versions','_verified','_verificationToken',
-          'videoUrl','cloudinaryPublicId','posterPublicId','thumbnails'  // Prevent N8N loops
+          'id',
+          'createdAt',
+          'updatedAt',
+          '_status',
+          'versions',
+          '_verified',
+          '_verificationToken',
+          'videoUrl',
+          'cloudinaryPublicId',
+          'posterPublicId',
+          'thumbnails', // Prevent N8N loops
         ])
-        const changed = Object.keys(doc).filter(k => doc[k] !== previousDoc?.[k] && !ignore.has(k))
+        const changed = Object.keys(doc).filter(
+          (k) => doc[k] !== previousDoc?.[k] && !ignore.has(k),
+        )
         if (changed.length === 0) return
 
         try {
@@ -271,7 +283,7 @@ const Reals: CollectionConfig = {
             body: JSON.stringify({ id: doc.id, slug: doc.slug, changed }),
           })
         } catch {}
-      }
+      },
     ],
   },
 }
