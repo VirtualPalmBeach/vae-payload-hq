@@ -2894,6 +2894,10 @@ export interface Real {
    */
   order?: number | null;
   /**
+   * 5 is highest; view order uses Rating before Order. Featured overrides both.
+   */
+  rating: number;
+  /**
    * 0–3s recommended. Start time (in seconds) for animated thumbnail loop. Supports decimals (e.g., 2.5).
    */
   loopStartTime?: number | null;
@@ -5165,6 +5169,7 @@ export interface RealsSelect<T extends boolean = true> {
   status?: T;
   publishDate?: T;
   order?: T;
+  rating?: T;
   loopStartTime?: T;
   headline?: T;
   description?: T;

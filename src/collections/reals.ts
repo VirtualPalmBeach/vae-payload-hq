@@ -106,6 +106,19 @@ const Reals: CollectionConfig = {
               },
             },
             {
+              name: 'rating',
+              label: 'Rating',
+              type: 'number',
+              required: true,
+              defaultValue: 3,
+              min: 1,
+              max: 5,
+              admin: {
+                position: 'sidebar',
+                description: '5 is highest; view order uses Rating before Order. Featured overrides both.',
+              },
+            },
+            {
               name: 'loopStartTime',
               label: 'Loop Start Time (sec)',
               type: 'number',
