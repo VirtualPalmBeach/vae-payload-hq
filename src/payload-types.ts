@@ -1818,6 +1818,14 @@ export interface Gallery {
    */
   category: 'inspiration' | 'project' | 'aesthetic';
   /**
+   * Featured overrides rating in sort.
+   */
+  featured?: boolean | null;
+  /**
+   * 1 shows before 5 in Gallery index.
+   */
+  rating: number;
+  /**
    * Detailed gallery description
    */
   description?: {
@@ -3613,6 +3621,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -4408,6 +4423,8 @@ export interface GalleriesSelect<T extends boolean = true> {
   galleryCode?: T;
   slug?: T;
   category?: T;
+  featured?: T;
+  rating?: T;
   description?: T;
   cloudinaryHeroTag?: T;
   heroHeading?: T;
@@ -5552,6 +5569,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

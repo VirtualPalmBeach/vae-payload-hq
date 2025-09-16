@@ -3,6 +3,8 @@ import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 import { isAdmin, isAdminOrDesigner } from '../access/helpers'
 
+// Sort order: featured DESC, rating ASC, publishedAt DESC, title ASC, id ASC
+
 const Galleries: CollectionConfig = {
   slug: 'galleries',
   labels: {
@@ -95,6 +97,29 @@ const Galleries: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Gallery category for organization',
+      },
+    },
+    {
+      name: 'featured',
+      label: 'Featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Featured overrides rating in sort.',
+      },
+    },
+    {
+      name: 'rating',
+      label: 'Rating',
+      type: 'number',
+      required: true,
+      defaultValue: 3,
+      min: 1,
+      max: 5,
+      admin: {
+        position: 'sidebar',
+        description: '1 shows before 5 in Gallery index.',
       },
     },
     {
