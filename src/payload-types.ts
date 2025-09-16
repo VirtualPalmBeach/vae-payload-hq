@@ -1822,7 +1822,7 @@ export interface Gallery {
    */
   featured?: boolean | null;
   /**
-   * 1 shows before 5 in Gallery index.
+   * 5 is highest; view order sorts highest to lowest. Featured overrides rating.
    */
   rating: number;
   /**

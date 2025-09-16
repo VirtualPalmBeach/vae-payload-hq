@@ -119,7 +119,7 @@ const Galleries: CollectionConfig = {
       max: 5,
       admin: {
         position: 'sidebar',
-        description: '1 shows before 5 in Gallery index.',
+        description: '5 is highest; view order sorts highest to lowest. Featured overrides rating.',
       },
     },
     {
