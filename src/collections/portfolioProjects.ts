@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
-import { isAdmin } from '../access/helpers'
+import { isAdmin, isAdminOrDesigner } from '../access/helpers'
 
 const PortfolioProjects: CollectionConfig = {
   slug: 'portfolioProjects',
@@ -13,8 +13,8 @@ const PortfolioProjects: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: isAdmin,
-    update: isAdmin,
+    create: isAdminOrDesigner,
+    update: isAdminOrDesigner,
     delete: isAdmin,
   },
   fields: [
