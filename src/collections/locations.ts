@@ -318,10 +318,6 @@ const Locations: CollectionConfig = {
   ],
   indexes: [
     {
-      fields: ['slug'],
-      unique: true,
-    },
-    {
       fields: ['city', 'state'],
     },
     {

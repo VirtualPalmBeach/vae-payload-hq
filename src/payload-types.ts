@@ -962,7 +962,7 @@ export interface Journey {
           }
         | {
             /**
-             * Cloudinary public ID or tag for the video
+             * Cloudinary public ID for the video
              */
             cloudinaryVideoTag: string;
             /**

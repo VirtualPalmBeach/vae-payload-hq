@@ -168,12 +168,7 @@ const ServiceAreas: CollectionConfig = {
       },
     },
   ],
-  indexes: [
-    {
-      fields: ['slug'],
-      unique: true,
-    },
-  ],
+  indexes: [],
 }
 
 export default ServiceAreas

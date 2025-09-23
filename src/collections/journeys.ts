@@ -212,11 +212,11 @@ const Journeys: CollectionConfig = {
           fields: [
             {
               name: 'cloudinaryVideoTag',
-              label: 'Cloudinary Video Tag',
+              label: 'Cloudinary Video ID (copy from Cloudinary)',
               type: 'text',
               required: true,
               admin: {
-                description: 'Cloudinary public ID or tag for the video',
+                description: 'Cloudinary public ID for the video',
                 placeholder: 'e.g., journey-pool-transformation-timelapse',
               },
             },
