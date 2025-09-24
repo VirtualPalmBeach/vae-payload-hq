@@ -627,6 +627,9 @@ const Journeys: CollectionConfig = {
         { label: 'Testimonial', value: 'testimonial' },
         { label: 'Guided Tour', value: 'guided-tour' },
         { label: 'Elements', value: 'elements' },
+        { label: 'Answers', value: 'answers' },
+        { label: 'Technology', value: 'technology' },
+        { label: 'Renderings', value: 'renderings' },
       ],
       admin: {
         position: 'sidebar',
@@ -652,6 +655,25 @@ const Journeys: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Display prominently in story grids',
+      },
+    },
+    {
+      name: 'featuredTier',
+      label: 'Featured Tier',
+      type: 'number',
+      defaultValue: 0,
+      admin: {
+        position: 'sidebar',
+        description: '0 none, 1 hero-eligible, 2 featured-below',
+      },
+    },
+    {
+      name: 'categoryGroup',
+      label: 'Category Group',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        description: '1,2,3 or empty',
       },
     },
 

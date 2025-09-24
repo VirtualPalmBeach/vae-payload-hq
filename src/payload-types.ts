@@ -1108,7 +1108,16 @@ export interface Journey {
   /**
    * Story category for filtering and organization
    */
-  category: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
+  category:
+    | 'client-story'
+    | 'spotlight'
+    | 'insight'
+    | 'testimonial'
+    | 'guided-tour'
+    | 'elements'
+    | 'answers'
+    | 'technology'
+    | 'renderings';
   /**
    * Optional: Link to portfolio project (e.g., ROD2301)
    */
@@ -1117,6 +1126,14 @@ export interface Journey {
    * Display prominently in story grids
    */
   featured?: boolean | null;
+  /**
+   * 0 none, 1 hero-eligible, 2 featured-below
+   */
+  featuredTier?: number | null;
+  /**
+   * 1,2,3 or empty
+   */
+  categoryGroup?: number | null;
   /**
    * Cloudinary tag for the main story image (required for published stories). This image appears in story cards and hero sections.
    */
@@ -4694,6 +4711,8 @@ export interface JourneysSelect<T extends boolean = true> {
   category?: T;
   projectCode?: T;
   featured?: T;
+  featuredTier?: T;
+  categoryGroup?: T;
   heroImage?: T;
   publishedDate?: T;
   storyDetails?:
