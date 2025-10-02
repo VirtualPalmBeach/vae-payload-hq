@@ -2047,6 +2047,27 @@ export interface Homepage {
             blockName?: string | null;
             blockType: 'callToAction';
           }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
       )[]
     | null;
   callToAction?: {
@@ -4522,6 +4543,16 @@ export interface HomepageSelect<T extends boolean = true> {
               buttonText?: T;
               buttonLink?: T;
               buttonStyle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
               id?: T;
               blockName?: T;
             };
