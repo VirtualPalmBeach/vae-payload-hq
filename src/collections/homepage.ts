@@ -218,6 +218,16 @@ const Homepage: CollectionConfig = {
               },
             },
             {
+              name: 'sectionMedia',
+              label: 'Section Media (Optional)',
+              type: 'text',
+              required: false,
+              admin: {
+                description: 'Cloudinary path for optional logo/brand media above heading (supports image, GIF, or video - e.g., "logos/brand-icon.png")',
+                placeholder: 'logos/brand-icon.png',
+              },
+            },
+            {
               name: 'cards',
               label: 'Feature Cards',
               type: 'array',
@@ -254,6 +264,16 @@ const Homepage: CollectionConfig = {
                   admin: {
                     description: 'Cloudinary path for card background image (e.g., "Project/QUI2301/photos/ohp3bprqtrruurskjyim.jpg")',
                     placeholder: 'Project/ABC1234/photos/filename.jpg',
+                  },
+                },
+                {
+                  name: 'linkUrl',
+                  label: 'Card Link (Optional)',
+                  type: 'text',
+                  required: false,
+                  admin: {
+                    description: 'Optional URL when card is clicked (e.g., "/services/design" or "https://external.com")',
+                    placeholder: '/services/design',
                   },
                 },
               ],

@@ -2078,6 +2078,10 @@ export interface Homepage {
              */
             description?: string | null;
             /**
+             * Cloudinary path for optional logo/brand media above heading (supports image, GIF, or video - e.g., "logos/brand-icon.png")
+             */
+            sectionMedia?: string | null;
+            /**
              * Feature cards with images and descriptions
              */
             cards: {
@@ -2093,6 +2097,10 @@ export interface Homepage {
                * Cloudinary path for card background image (e.g., "Project/QUI2301/photos/ohp3bprqtrruurskjyim.jpg")
                */
               cloudinaryPath: string;
+              /**
+               * Optional URL when card is clicked (e.g., "/services/design" or "https://external.com")
+               */
+              linkUrl?: string | null;
               id?: string | null;
             }[];
             id?: string | null;
@@ -4592,12 +4600,14 @@ export interface HomepageSelect<T extends boolean = true> {
           | {
               heading?: T;
               description?: T;
+              sectionMedia?: T;
               cards?:
                 | T
                 | {
                     title?: T;
                     description?: T;
                     cloudinaryPath?: T;
+                    linkUrl?: T;
                     id?: T;
                   };
               id?: T;
