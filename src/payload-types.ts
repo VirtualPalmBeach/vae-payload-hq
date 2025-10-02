@@ -2068,6 +2068,37 @@ export interface Homepage {
             blockName?: string | null;
             blockType: 'ratingBand';
           }
+        | {
+            /**
+             * Main heading for the feature grid section
+             */
+            heading: string;
+            /**
+             * Supporting text below the heading
+             */
+            description?: string | null;
+            /**
+             * Feature cards with images and descriptions
+             */
+            cards: {
+              /**
+               * Feature card heading
+               */
+              title: string;
+              /**
+               * Feature card description text
+               */
+              description: string;
+              /**
+               * Cloudinary path for card background image (e.g., "Project/QUI2301/photos/ohp3bprqtrruurskjyim.jpg")
+               */
+              cloudinaryPath: string;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureGrid';
+          }
       )[]
     | null;
   callToAction?: {
@@ -4553,6 +4584,22 @@ export interface HomepageSelect<T extends boolean = true> {
               source?: T;
               platforms?: T;
               reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureGrid?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    cloudinaryPath?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

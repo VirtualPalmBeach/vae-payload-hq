@@ -191,6 +191,75 @@ const Homepage: CollectionConfig = {
             },
           ],
         },
+        {
+          slug: 'featureGrid',
+          labels: {
+            singular: 'Feature Grid',
+            plural: 'Feature Grids',
+          },
+          fields: [
+            {
+              name: 'heading',
+              label: 'Section Heading',
+              type: 'text',
+              required: true,
+              defaultValue: 'Choose Selah Pools',
+              admin: {
+                description: 'Main heading for the feature grid section',
+              },
+            },
+            {
+              name: 'description',
+              label: 'Section Description',
+              type: 'textarea',
+              required: false,
+              admin: {
+                description: 'Supporting text below the heading',
+              },
+            },
+            {
+              name: 'cards',
+              label: 'Feature Cards',
+              type: 'array',
+              required: true,
+              minRows: 1,
+              maxRows: 6,
+              admin: {
+                description: 'Feature cards with images and descriptions',
+              },
+              fields: [
+                {
+                  name: 'title',
+                  label: 'Card Title',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    description: 'Feature card heading',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Card Description',
+                  type: 'textarea',
+                  required: true,
+                  admin: {
+                    description: 'Feature card description text',
+                  },
+                },
+                {
+                  name: 'cloudinaryPath',
+                  label: 'Background Image Path',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    description: 'Cloudinary path for card background image (e.g., "Project/QUI2301/photos/ohp3bprqtrruurskjyim.jpg")',
+                    placeholder: 'Project/ABC1234/photos/filename.jpg',
+                  },
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
