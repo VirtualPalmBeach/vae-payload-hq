@@ -2,6 +2,10 @@ import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
 import { timestampedFields } from '../fields/timestampedFields';
 import { optionalDisplayFields } from '../fields/optionalFields';
+import { HeroBlock } from '../blocks/HeroBlock';
+import { ContentBlock } from '../blocks/ContentBlock';
+import { CallToActionBlock } from '../blocks/CallToActionBlock';
+import { RatingBandBlock } from '../blocks/RatingBandBlock';
 
 const LandingPages: CollectionConfig = {
   slug: 'landingPages',
@@ -43,94 +47,10 @@ const LandingPages: CollectionConfig = {
       type: 'blocks',
       minRows: 1,
       blocks: [
-        {
-          slug: 'hero',
-          labels: {
-            singular: 'Hero',
-            plural: 'Heroes',
-          },
-          fields: [
-            {
-              name: 'heading',
-              label: 'Heading',
-              type: 'text',
-            },
-            {
-              name: 'subheading',
-              label: 'Subheading',
-              type: 'textarea',
-            },
-            {
-              name: 'backgroundImage',
-              label: 'Background Image',
-              type: 'upload',
-              relationTo: 'media',
-            },
-          ],
-        },
-        {
-          slug: 'content',
-          labels: {
-            singular: 'Content Block',
-            plural: 'Content Blocks',
-          },
-          fields: [
-            {
-              name: 'content',
-              label: 'Content',
-              type: 'richText',
-            },
-          ],
-        },
-        {
-          slug: 'callToAction',
-          labels: {
-            singular: 'Call to Action',
-            plural: 'Calls to Action',
-          },
-          fields: [
-            {
-              name: 'heading',
-              label: 'Heading',
-              type: 'text',
-            },
-            {
-              name: 'text',
-              label: 'Text',
-              type: 'textarea',
-            },
-            {
-              name: 'buttonText',
-              label: 'Button Text',
-              type: 'text',
-            },
-            {
-              name: 'buttonLink',
-              label: 'Button Link',
-              type: 'text',
-            },
-            {
-              name: 'buttonStyle',
-              label: 'Button Style',
-              type: 'select',
-              options: [
-                {
-                  label: 'Primary',
-                  value: 'primary',
-                },
-                {
-                  label: 'Secondary',
-                  value: 'secondary',
-                },
-                {
-                  label: 'Outline',
-                  value: 'outline',
-                },
-              ],
-              defaultValue: 'primary',
-            },
-          ],
-        },
+        HeroBlock,
+        ContentBlock,
+        CallToActionBlock,
+        RatingBandBlock,
       ],
     },
     {

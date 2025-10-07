@@ -2255,14 +2255,38 @@ export interface LandingPage {
   body?:
     | (
         | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
             heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
             subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
             backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
           }
         | {
+            /**
+             * Rich text content using Lexical editor
+             */
             content?: {
               root: {
                 type: string;
@@ -2278,19 +2302,75 @@ export interface LandingPage {
               };
               [k: string]: unknown;
             } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'content';
           }
         | {
+            /**
+             * Main CTA headline
+             */
             heading?: string | null;
+            /**
+             * Supporting description text
+             */
             text?: string | null;
+            /**
+             * Primary button label
+             */
             buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
             buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
             buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
             id?: string | null;
             blockName?: string | null;
             blockType: 'callToAction';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
           }
       )[]
     | null;
@@ -4896,6 +4976,14 @@ export interface LandingPagesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -4903,6 +4991,9 @@ export interface LandingPagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
@@ -4914,6 +5005,23 @@ export interface LandingPagesSelect<T extends boolean = true> {
               buttonText?: T;
               buttonLink?: T;
               buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
               id?: T;
               blockName?: T;
             };
