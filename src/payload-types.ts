@@ -2372,6 +2372,49 @@ export interface LandingPage {
             blockName?: string | null;
             blockType: 'ratingBand';
           }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Featured image for this section
+             */
+            image?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
       )[]
     | null;
   callToAction?: {
@@ -5022,6 +5065,18 @@ export interface LandingPagesSelect<T extends boolean = true> {
               source?: T;
               platforms?: T;
               reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              image?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
