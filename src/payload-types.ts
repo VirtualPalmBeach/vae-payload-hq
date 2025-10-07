@@ -2400,6 +2400,10 @@ export interface LandingPage {
              */
             assetPublicId?: string | null;
             /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
              * DEPRECATED: Use assetPublicId field instead
              */
             legacyImage?: (string | null) | Media;
@@ -5078,6 +5082,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
               heading?: T;
               body?: T;
               assetPublicId?: T;
+              isAnimated?: T;
               legacyImage?: T;
               layout?: T;
               ctaText?: T;

@@ -35,6 +35,15 @@ export const ImageTextSplitBlock: Block = {
       },
     },
     {
+      name: 'isAnimated',
+      type: 'checkbox',
+      label: 'Animated Asset',
+      defaultValue: false,
+      admin: {
+        description: 'Check if this is an animated GIF or video. Only needed if file extension doesn\'t indicate animation.',
+      },
+    },
+    {
       name: 'legacyImage',
       type: 'upload',
       relationTo: 'media',
