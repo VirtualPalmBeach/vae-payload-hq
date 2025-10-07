@@ -7,6 +7,7 @@ import { ContentBlock } from '../blocks/ContentBlock';
 import { CallToActionBlock } from '../blocks/CallToActionBlock';
 import { RatingBandBlock } from '../blocks/RatingBandBlock';
 import { ImageTextSplitBlock } from '../blocks/ImageTextSplitBlock';
+import { FeatureShowcaseBlock } from '../blocks/FeatureShowcaseBlock';
 
 const LandingPages: CollectionConfig = {
   slug: 'landingPages',
@@ -53,6 +54,7 @@ const LandingPages: CollectionConfig = {
         CallToActionBlock,
         RatingBandBlock,
         ImageTextSplitBlock,
+        FeatureShowcaseBlock,
       ],
     },
     {

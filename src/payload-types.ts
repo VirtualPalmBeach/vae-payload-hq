@@ -2423,6 +2423,61 @@ export interface LandingPage {
             blockName?: string | null;
             blockType: 'imageTextSplit';
           }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
       )[]
     | null;
   callToAction?: {
@@ -5087,6 +5142,27 @@ export interface LandingPagesSelect<T extends boolean = true> {
               layout?: T;
               ctaText?: T;
               ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
