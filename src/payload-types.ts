@@ -2396,9 +2396,13 @@ export interface LandingPage {
               [k: string]: unknown;
             } | null;
             /**
-             * Featured image for this section
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
              */
-            image?: (string | null) | Media;
+            assetPublicId?: string | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
             /**
              * Position of image relative to text content
              */
@@ -5073,7 +5077,8 @@ export interface LandingPagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               body?: T;
-              image?: T;
+              assetPublicId?: T;
+              legacyImage?: T;
               layout?: T;
               ctaText?: T;
               ctaLink?: T;

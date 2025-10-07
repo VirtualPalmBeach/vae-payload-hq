@@ -26,13 +26,22 @@ export const ImageTextSplitBlock: Block = {
       },
     },
     {
-      name: 'image',
-      label: 'Image',
+      name: 'assetPublicId',
+      type: 'text',
+      label: 'Asset Public ID',
+      required: false,
+      admin: {
+        description: 'Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)',
+      },
+    },
+    {
+      name: 'legacyImage',
       type: 'upload',
       relationTo: 'media',
       required: false,
       admin: {
-        description: 'Featured image for this section',
+        description: 'DEPRECATED: Use assetPublicId field instead',
+        condition: (data) => !data.assetPublicId,
       },
     },
     {
