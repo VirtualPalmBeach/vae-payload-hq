@@ -1373,6 +1373,9 @@ export interface Media {
 export interface Testimonial {
   id: string;
   siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Testimonial content (recommended: 300-500 characters for optimal display)
+   */
   quote: string;
   author: string;
   company?: string | null;

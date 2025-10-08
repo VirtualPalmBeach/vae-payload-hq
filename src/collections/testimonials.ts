@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload';
 import { commonSiteKeyField } from './commonSiteKeyField';
-import { isAdmin } from '../access/helpers';
+import { isAdmin, isAdminOrDesigner } from '../access/helpers';
 
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
@@ -10,8 +10,8 @@ export const Testimonials: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: isAdmin,
-    update: isAdmin,
+    create: isAdminOrDesigner,
+    update: isAdminOrDesigner,
     delete: isAdmin,
   },
   fields: [
@@ -21,6 +21,10 @@ export const Testimonials: CollectionConfig = {
       label: 'Testimonial Quote',
       type: 'textarea',
       required: true,
+      maxLength: 500,
+      admin: {
+        description: 'Testimonial content (recommended: 300-500 characters for optimal display)',
+      },
     },
     {
       name: 'author',
