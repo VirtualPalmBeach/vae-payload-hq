@@ -2478,6 +2478,41 @@ export interface LandingPage {
             blockName?: string | null;
             blockType: 'featureShowcase';
           }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
       )[]
     | null;
   callToAction?: {
@@ -5161,6 +5196,23 @@ export interface LandingPagesSelect<T extends boolean = true> {
                     isAnimated?: T;
                     ctaText?: T;
                     ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
                     id?: T;
                   };
               id?: T;
