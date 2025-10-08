@@ -2513,6 +2513,45 @@ export interface LandingPage {
             blockName?: string | null;
             blockType: 'proofPoints';
           }
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
       )[]
     | null;
   callToAction?: {
@@ -5215,6 +5254,29 @@ export interface LandingPagesSelect<T extends boolean = true> {
                     link?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
