@@ -2576,6 +2576,55 @@ export interface LandingPage {
             blockName?: string | null;
             blockType: 'callToActionBand';
           }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
       )[]
     | null;
   callToAction?: {
@@ -5301,6 +5350,23 @@ export interface LandingPagesSelect<T extends boolean = true> {
               backgroundType?: T;
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
               id?: T;
               blockName?: T;
             };
