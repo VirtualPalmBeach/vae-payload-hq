@@ -84,8 +84,28 @@ export const VideoTestimonialBlock: Block = {
       type: 'text',
       required: false,
       admin: {
-        description: 'Optional project reference code for linking to portfolio',
+        description: 'Optional project reference code (metadata only, not used for linking)',
         placeholder: 'ABC1234',
+      },
+    },
+    {
+      name: 'ctaLink',
+      label: 'CTA Link',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Optional link URL (e.g., /journeys/client-story or /portfolio/residential)',
+        placeholder: '/journeys/client-story',
+      },
+    },
+    {
+      name: 'ctaText',
+      label: 'CTA Link Text',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Link text (only displayed if ctaLink is provided)',
+        placeholder: 'View Full Story',
       },
     },
     {

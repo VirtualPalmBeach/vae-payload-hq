@@ -2667,9 +2667,17 @@ export interface LandingPage {
              */
             authorTitle?: string | null;
             /**
-             * Optional project reference code for linking to portfolio
+             * Optional project reference code (metadata only, not used for linking)
              */
             projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
             /**
              * Background style for the video section
              */
@@ -5442,6 +5450,8 @@ export interface LandingPagesSelect<T extends boolean = true> {
               authorName?: T;
               authorTitle?: T;
               projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
               backgroundType?: T;
               backgroundColor?: T;
               backgroundImagePublicId?: T;
