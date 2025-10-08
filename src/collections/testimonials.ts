@@ -6,6 +6,7 @@ export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
   admin: {
     useAsTitle: 'author',
+    group: 'Content',
   },
   access: {
     read: () => true,
@@ -38,6 +39,66 @@ export const Testimonials: CollectionConfig = {
       type: 'number',
       min: 1,
       max: 5,
+    },
+    {
+      name: 'authorImagePublicId',
+      label: 'Author Image Public ID',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Cloudinary public_id for author headshot (e.g., testimonials/john-doe.jpg)',
+        placeholder: 'testimonials/author-headshot.jpg',
+      },
+    },
+    {
+      name: 'projectCode',
+      label: 'Project Code',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Reference code for related project',
+        placeholder: 'ABC1234',
+      },
+    },
+    {
+      name: 'title',
+      label: 'Title/Role',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Job title or role (e.g., "Homeowner", "Project Manager")',
+        placeholder: 'Homeowner',
+      },
+    },
+    {
+      name: 'isFeatured',
+      label: 'Featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Mark as featured testimonial for special display',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'isActive',
+      label: 'Active',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Control visibility - uncheck to hide from display',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'hasVideoTestimonial',
+      label: 'Has Video Testimonial',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Indicates if this testimonial includes video content',
+        position: 'sidebar',
+      },
     },
   ],
 };

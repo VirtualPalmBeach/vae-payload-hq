@@ -1377,6 +1377,30 @@ export interface Testimonial {
   author: string;
   company?: string | null;
   rating?: number | null;
+  /**
+   * Cloudinary public_id for author headshot (e.g., testimonials/john-doe.jpg)
+   */
+  authorImagePublicId?: string | null;
+  /**
+   * Reference code for related project
+   */
+  projectCode?: string | null;
+  /**
+   * Job title or role (e.g., "Homeowner", "Project Manager")
+   */
+  title?: string | null;
+  /**
+   * Mark as featured testimonial for special display
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Control visibility - uncheck to hide from display
+   */
+  isActive?: boolean | null;
+  /**
+   * Indicates if this testimonial includes video content
+   */
+  hasVideoTestimonial?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -6023,6 +6047,12 @@ export interface TestimonialsSelect<T extends boolean = true> {
   author?: T;
   company?: T;
   rating?: T;
+  authorImagePublicId?: T;
+  projectCode?: T;
+  title?: T;
+  isFeatured?: T;
+  isActive?: T;
+  hasVideoTestimonial?: T;
   updatedAt?: T;
   createdAt?: T;
 }
