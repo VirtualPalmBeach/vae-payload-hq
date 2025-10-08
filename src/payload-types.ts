@@ -619,7 +619,16 @@ export interface AnswersLanding {
             /**
              * Filter journeys by this category
              */
-            journeysCategory: 'client-story' | 'spotlight' | 'insight' | 'testimonial' | 'guided-tour' | 'elements';
+            journeysCategory:
+              | 'client-story'
+              | 'spotlight'
+              | 'insight'
+              | 'testimonial'
+              | 'guided-tour'
+              | 'elements'
+              | 'answers'
+              | 'technology'
+              | 'renderings';
             id?: string | null;
             blockName?: string | null;
             blockType: 'journeysLinkBlock';
@@ -2627,6 +2636,55 @@ export interface LandingPage {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code for linking to portfolio
+             */
+            projectCode?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
           }
       )[]
     | null;
@@ -5370,6 +5428,23 @@ export interface LandingPagesSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };

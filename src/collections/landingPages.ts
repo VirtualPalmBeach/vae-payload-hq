@@ -12,6 +12,7 @@ import { FeatureShowcaseBlock } from '../blocks/FeatureShowcaseBlock';
 import { ProofPointsBlock } from '../blocks/ProofPointsBlock';
 import { CallToActionBandBlock } from '../blocks/CallToActionBandBlock';
 import { TestimonialsGatewayBlock } from '../blocks/TestimonialsGatewayBlock';
+import { VideoTestimonialBlock } from '../blocks/VideoTestimonialBlock';
 
 const LandingPages: CollectionConfig = {
   slug: 'landingPages',
@@ -65,6 +66,7 @@ const LandingPages: CollectionConfig = {
         ProofPointsBlock,
         CallToActionBandBlock,
         TestimonialsGatewayBlock,
+        VideoTestimonialBlock,
       ],
     },
     {

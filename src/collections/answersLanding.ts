@@ -134,6 +134,9 @@ const AnswersLanding: CollectionConfig = {
                 { label: 'Testimonial', value: 'testimonial' },
                 { label: 'Guided Tour', value: 'guided-tour' },
                 { label: 'Elements', value: 'elements' },
+                { label: 'Answers', value: 'answers' },
+                { label: 'Technology', value: 'technology' },
+                { label: 'Renderings', value: 'renderings' },
               ],
               admin: {
                 description: 'Filter journeys by this category',
