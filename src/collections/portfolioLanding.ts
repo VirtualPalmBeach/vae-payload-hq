@@ -2,6 +2,13 @@ import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 import { isAdmin } from '../access/helpers'
+import { CallToActionBandBlock } from '../blocks/CallToActionBandBlock'
+import { FeatureShowcaseBlock } from '../blocks/FeatureShowcaseBlock'
+import { ImageTextSplitBlock } from '../blocks/ImageTextSplitBlock'
+import { ProofPointsBlock } from '../blocks/ProofPointsBlock'
+import { RatingBandBlock } from '../blocks/RatingBandBlock'
+import { TestimonialsGatewayBlock } from '../blocks/TestimonialsGatewayBlock'
+import { VideoTestimonialBlock } from '../blocks/VideoTestimonialBlock'
 
 const PortfolioLanding: CollectionConfig = {
   slug: 'portfolioLanding',
@@ -300,6 +307,22 @@ const PortfolioLanding: CollectionConfig = {
       ],
     },
     
+    // Page Layout
+    {
+      name: 'layout',
+      label: 'Page Layout',
+      type: 'blocks',
+      blocks: [
+        CallToActionBandBlock,
+        FeatureShowcaseBlock,
+        ImageTextSplitBlock,
+        ProofPointsBlock,
+        RatingBandBlock,
+        TestimonialsGatewayBlock,
+        VideoTestimonialBlock,
+      ],
+    },
+
     // Publishing & Timestamps
     {
       name: 'status',

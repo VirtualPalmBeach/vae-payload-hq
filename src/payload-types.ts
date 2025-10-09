@@ -355,6 +355,317 @@ export interface About {
           }
       )[]
     | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   seo?: {
     /**
      * Override page title for SEO (60 chars max)
@@ -410,6 +721,84 @@ export interface Team {
     | null;
   projectCode?: string | null;
   featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Important for accessibility and SEO
+   */
+  alt: string;
+  caption?: string | null;
+  mediaType?: ('image' | 'document' | 'video' | 'audio') | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Credit the creator or source if needed
+   */
+  source?: string | null;
+  cloudinary: {
+    id?: string | null;
+    url: string;
+    secureUrl?: string | null;
+    format?: string | null;
+    width?: number | null;
+    height?: number | null;
+    bytes?: number | null;
+    resourceType?: string | null;
+    folder?: string | null;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Testimonial content (recommended: 300-500 characters for optimal display)
+   */
+  quote: string;
+  author: string;
+  company?: string | null;
+  rating?: number | null;
+  /**
+   * Cloudinary public_id for author headshot (e.g., testimonials/john-doe.jpg)
+   */
+  authorImagePublicId?: string | null;
+  /**
+   * Reference code for related project
+   */
+  projectCode?: string | null;
+  /**
+   * Job title or role (e.g., "Homeowner", "Project Manager")
+   */
+  title?: string | null;
+  /**
+   * Mark as featured testimonial for special display
+   */
+  isFeatured?: boolean | null;
+  /**
+   * Control visibility - uncheck to hide from display
+   */
+  isActive?: boolean | null;
+  /**
+   * Indicates if this testimonial includes video content
+   */
+  hasVideoTestimonial?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -690,6 +1079,317 @@ export interface AnswersLanding {
             id?: string | null;
             blockName?: string | null;
             blockType: 'richTextBlock';
+          }
+      )[]
+    | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
           }
       )[]
     | null;
@@ -1114,6 +1814,317 @@ export interface Journey {
           }
       )[]
     | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   /**
    * Story category for filtering and organization
    */
@@ -1337,84 +2348,6 @@ export interface Block {
   sortOrder?: number | null;
   createdAt: string;
   updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Important for accessibility and SEO
-   */
-  alt: string;
-  caption?: string | null;
-  mediaType?: ('image' | 'document' | 'video' | 'audio') | null;
-  tags?:
-    | {
-        tag?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Credit the creator or source if needed
-   */
-  source?: string | null;
-  cloudinary: {
-    id?: string | null;
-    url: string;
-    secureUrl?: string | null;
-    format?: string | null;
-    width?: number | null;
-    height?: number | null;
-    bytes?: number | null;
-    resourceType?: string | null;
-    folder?: string | null;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Testimonial content (recommended: 300-500 characters for optimal display)
-   */
-  quote: string;
-  author: string;
-  company?: string | null;
-  rating?: number | null;
-  /**
-   * Cloudinary public_id for author headshot (e.g., testimonials/john-doe.jpg)
-   */
-  authorImagePublicId?: string | null;
-  /**
-   * Reference code for related project
-   */
-  projectCode?: string | null;
-  /**
-   * Job title or role (e.g., "Homeowner", "Project Manager")
-   */
-  title?: string | null;
-  /**
-   * Mark as featured testimonial for special display
-   */
-  isFeatured?: boolean | null;
-  /**
-   * Control visibility - uncheck to hide from display
-   */
-  isActive?: boolean | null;
-  /**
-   * Indicates if this testimonial includes video content
-   */
-  hasVideoTestimonial?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1930,6 +2863,317 @@ export interface Gallery {
    * Cloudinary tag for dynamically fetching gallery images
    */
   galleryTag: string;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   /**
    * Make this gallery visible on the website
    */
@@ -2142,6 +3386,317 @@ export interface Homepage {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureGrid';
+          }
+      )[]
+    | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
           }
       )[]
     | null;
@@ -3204,6 +4759,317 @@ export interface PortfolioLanding {
         id?: string | null;
       }[]
     | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   status?: ('draft' | 'published') | null;
   createdAt: string;
   updatedAt: string;
@@ -3329,6 +5195,317 @@ export interface PortfolioProject {
    * When to publish this project
    */
   publishDate?: string | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   seo?: {
     /**
      * Override the default meta title
@@ -3775,6 +5952,317 @@ export interface Service {
     pricePeriod?: ('onetime' | 'hour' | 'day' | 'month' | 'year') | null;
   };
   relatedServices?: (string | Service)[] | null;
+  layout?:
+    | (
+        | {
+            /**
+             * Action message - direct and outcome-focused (max 80 characters)
+             */
+            heading: string;
+            /**
+             * Optional supporting line (max 160 characters)
+             */
+            subheading?: string | null;
+            /**
+             * Main call-to-action button
+             */
+            primaryCta: {
+              text: string;
+              link: string;
+            };
+            /**
+             * Optional lighter-weight alternative action
+             */
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
+            /**
+             * Background style for the band
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            heading?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            features: {
+              title: string;
+              body: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              mediaType?: ('none' | 'icon' | 'image') | null;
+              /**
+               * Cloudinary public_id path for PNG icon (e.g., feature-icons/checkmark.png)
+               */
+              iconPublicId?: string | null;
+              /**
+               * Cloudinary public_id (e.g., selah-pro/features/feature-1)
+               */
+              imagePublicId?: string | null;
+              /**
+               * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+               */
+              isAnimated?: boolean | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
+             * Optional lead-in text (e.g., "Trusted by Families Across America")
+             */
+            eyebrow?: string | null;
+            /**
+             * Strong statement about credibility (e.g., "Results That Speak for Themselves")
+             */
+            heading: string;
+            /**
+             * Add 3-6 credibility metrics
+             */
+            items: {
+              /**
+               * Concise statistic (e.g., "250+", "4.9★", "15 Years")
+               */
+              value: string;
+              /**
+               * Short descriptor (e.g., "Projects Delivered")
+               */
+              label: string;
+              /**
+               * Optional clarifier (e.g., "BBB A+ Since 2018")
+               */
+              footnote?: string | null;
+              /**
+               * Optional source or case study URL
+               */
+              link?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'proofPoints';
+          }
+        | {
+            /**
+             * Average rating (0-5, one decimal precision)
+             */
+            rating: number;
+            /**
+             * Review source name (e.g., "Ratings & Reviews")
+             */
+            source: string;
+            /**
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
+             */
+            platforms?: string | null;
+            /**
+             * Total number of reviews (whole number)
+             */
+            reviewCount?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ratingBand';
+          }
+        | {
+            /**
+             * Optional heading or intro text for testimonials section
+             */
+            heading?: string | null;
+            /**
+             * Manual: hand-pick testimonials. Auto: query active testimonials by filters.
+             */
+            displayMode: 'manual' | 'auto';
+            /**
+             * Hand-pick specific testimonials for display
+             */
+            testimonials?: (string | Testimonial)[] | null;
+            /**
+             * Maximum number of testimonials to display (default: 1)
+             */
+            limit?: number | null;
+            /**
+             * Display style for testimonials
+             */
+            layoutVariant: 'carousel' | 'grid' | 'single';
+            /**
+             * Display star ratings when available
+             */
+            showRatings?: boolean | null;
+            /**
+             * Auto-advance interval for carousel (default: 9 seconds)
+             */
+            rotationInterval?: number | null;
+            /**
+             * Background style for testimonials section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            /**
+             * Enable fade-in animations on scroll reveal
+             */
+            isAnimated?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Optional section heading
+             */
+            heading?: string | null;
+            /**
+             * Optional supporting text
+             */
+            subheading?: string | null;
+            /**
+             * Cloudinary public_id for the testimonial video (e.g., testimonials/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster/thumbnail image public_id
+             */
+            posterPublicId?: string | null;
+            /**
+             * Optional pull quote or summary text (max 300 characters)
+             */
+            quote?: string | null;
+            /**
+             * Name of the person giving the testimonial
+             */
+            authorName?: string | null;
+            /**
+             * Job title, role, or location (e.g., "Homeowner, Dallas TX")
+             */
+            authorTitle?: string | null;
+            /**
+             * Optional project reference code (metadata only, not used for linking)
+             */
+            projectCode?: string | null;
+            /**
+             * Optional link URL (e.g., /journeys/client-story or /portfolio/residential)
+             */
+            ctaLink?: string | null;
+            /**
+             * Link text (only displayed if ctaLink is provided)
+             */
+            ctaText?: string | null;
+            /**
+             * Background style for the video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional custom background color (hex code)
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoTestimonial';
+          }
+      )[]
+    | null;
   seo?: {
     /**
      * If left blank, the service title will be used
@@ -4475,6 +6963,131 @@ export interface AboutSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   seo?:
     | T
     | {
@@ -4544,6 +7157,131 @@ export interface AnswersLandingSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -4914,6 +7652,131 @@ export interface GalleriesSelect<T extends boolean = true> {
   heroSubheading?: T;
   heroRichText?: T;
   galleryTag?: T;
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   published?: T;
   publishDate?: T;
   seo?:
@@ -5012,6 +7875,131 @@ export interface HomepageSelect<T extends boolean = true> {
                     linkUrl?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -5194,6 +8182,131 @@ export interface JourneysSelect<T extends boolean = true> {
                     id?: T;
                   };
               expandedByDefault?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -5718,6 +8831,131 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
         linkTo?: T;
         id?: T;
       };
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   status?: T;
   createdAt?: T;
   updatedAt?: T;
@@ -5762,6 +9000,131 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
       };
   published?: T;
   publishDate?: T;
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   seo?:
     | T
     | {
@@ -5990,6 +9353,131 @@ export interface ServicesSelect<T extends boolean = true> {
         pricePeriod?: T;
       };
   relatedServices?: T;
+  layout?:
+    | T
+    | {
+        callToActionBand?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              primaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureShowcase?:
+          | T
+          | {
+              heading?: T;
+              introText?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    body?: T;
+                    mediaType?: T;
+                    iconPublicId?: T;
+                    imagePublicId?: T;
+                    isAnimated?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        proofPoints?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    footnote?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ratingBand?:
+          | T
+          | {
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGateway?:
+          | T
+          | {
+              heading?: T;
+              displayMode?: T;
+              testimonials?: T;
+              limit?: T;
+              layoutVariant?: T;
+              showRatings?: T;
+              rotationInterval?: T;
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoTestimonial?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              videoPublicId?: T;
+              posterPublicId?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              projectCode?: T;
+              ctaLink?: T;
+              ctaText?: T;
+              backgroundType?: T;
+              backgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   seo?:
     | T
     | {
