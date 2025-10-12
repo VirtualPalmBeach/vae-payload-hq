@@ -1124,6 +1124,168 @@ export interface AnswersLanding {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -1177,6 +1339,35 @@ export interface AnswersLanding {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -1413,6 +1604,109 @@ export interface AnswersLanding {
   status?: ('draft' | 'published') | null;
   createdAt: string;
   updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactForm".
+ */
+export interface ContactForm {
+  id: string;
+  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
+  /**
+   * Internal name for this form configuration
+   */
+  title: string;
+  /**
+   * Optional internal description of form purpose
+   */
+  description?: string | null;
+  steps: {
+    stepTitle: string;
+    stepDescription?: string | null;
+    fields: {
+      label: string;
+      /**
+       * Unique identifier for this field (no spaces)
+       */
+      fieldKey: string;
+      fieldType: 'text' | 'email' | 'phone' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'postalCode';
+      placeholder?: string | null;
+      required?: boolean | null;
+      /**
+       * Optional regex pattern for validation
+       */
+      validationPattern?: string | null;
+      options?:
+        | {
+            label: string;
+            value: string;
+            id?: string | null;
+          }[]
+        | null;
+      id?: string | null;
+    }[];
+    /**
+     * Define conditional navigation to other steps
+     */
+    branchingRules?:
+      | {
+          /**
+           * The field to check for conditions
+           */
+          fieldKey: string;
+          condition: 'equals' | 'notEquals' | 'contains' | 'greaterThan' | 'lessThan';
+          value: string;
+          /**
+           * Zero-based index of the step to navigate to
+           */
+          nextStep: number;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  confirmationState?: {
+    title?: string | null;
+    message?: string | null;
+    ctaButtonLabel?: string | null;
+    ctaUrl?: string | null;
+  };
+  adminNotifications?: {
+    priority?: ('low' | 'normal' | 'high') | null;
+    /**
+     * Mark as read/unread
+     */
+    read?: boolean | null;
+    sendNotificationEmail?: boolean | null;
+    notificationRecipients?:
+      | {
+          email: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Optional custom subject line. Use {{fieldKey}} for dynamic values
+     */
+    emailSubjectTemplate?: string | null;
+  };
+  integrations?: {
+    enableExternalRouting?: boolean | null;
+    integrationType?: ('formbricks' | 'n8n' | 'zapier' | 'other') | null;
+    /**
+     * Webhook URL or integration identifier
+     */
+    endpointIdentifier?: string | null;
+    /**
+     * JSON template for the payload. Use {{fieldKey}} for dynamic values
+     */
+    payloadTemplate?: string | null;
+  };
+  internalNotes?: string | null;
+  sourcePage?: string | null;
+  referrer?: string | null;
+  submittedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Individual answer entries for FAQs, guides, and support content
@@ -1856,6 +2150,168 @@ export interface Journey {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -1909,6 +2365,35 @@ export interface Journey {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -2399,109 +2884,6 @@ export interface BlogPost {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactForm".
- */
-export interface ContactForm {
-  id: string;
-  siteKey: 'selahPools' | 'selahPro' | 'dfwPoolBuilder' | 'southlakeOutdoor' | 'omegaPoolServices';
-  /**
-   * Internal name for this form configuration
-   */
-  title: string;
-  /**
-   * Optional internal description of form purpose
-   */
-  description?: string | null;
-  steps: {
-    stepTitle: string;
-    stepDescription?: string | null;
-    fields: {
-      label: string;
-      /**
-       * Unique identifier for this field (no spaces)
-       */
-      fieldKey: string;
-      fieldType: 'text' | 'email' | 'phone' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'postalCode';
-      placeholder?: string | null;
-      required?: boolean | null;
-      /**
-       * Optional regex pattern for validation
-       */
-      validationPattern?: string | null;
-      options?:
-        | {
-            label: string;
-            value: string;
-            id?: string | null;
-          }[]
-        | null;
-      id?: string | null;
-    }[];
-    /**
-     * Define conditional navigation to other steps
-     */
-    branchingRules?:
-      | {
-          /**
-           * The field to check for conditions
-           */
-          fieldKey: string;
-          condition: 'equals' | 'notEquals' | 'contains' | 'greaterThan' | 'lessThan';
-          value: string;
-          /**
-           * Zero-based index of the step to navigate to
-           */
-          nextStep: number;
-          id?: string | null;
-        }[]
-      | null;
-    id?: string | null;
-  }[];
-  confirmationState?: {
-    title?: string | null;
-    message?: string | null;
-    ctaButtonLabel?: string | null;
-    ctaUrl?: string | null;
-  };
-  adminNotifications?: {
-    priority?: ('low' | 'normal' | 'high') | null;
-    /**
-     * Mark as read/unread
-     */
-    read?: boolean | null;
-    sendNotificationEmail?: boolean | null;
-    notificationRecipients?:
-      | {
-          email: string;
-          id?: string | null;
-        }[]
-      | null;
-    /**
-     * Optional custom subject line. Use {{fieldKey}} for dynamic values
-     */
-    emailSubjectTemplate?: string | null;
-  };
-  integrations?: {
-    enableExternalRouting?: boolean | null;
-    integrationType?: ('formbricks' | 'n8n' | 'zapier' | 'other') | null;
-    /**
-     * Webhook URL or integration identifier
-     */
-    endpointIdentifier?: string | null;
-    /**
-     * JSON template for the payload. Use {{fieldKey}} for dynamic values
-     */
-    payloadTemplate?: string | null;
-  };
-  internalNotes?: string | null;
-  sourcePage?: string | null;
-  referrer?: string | null;
-  submittedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contactPage".
  */
 export interface ContactPage {
@@ -2905,6 +3287,168 @@ export interface Gallery {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -2958,6 +3502,35 @@ export interface Gallery {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -3431,6 +4004,168 @@ export interface Homepage {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -3484,6 +4219,35 @@ export interface Homepage {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -3847,32 +4611,96 @@ export interface LandingPage {
     | (
         | {
             /**
-             * Main hero headline - displays prominently over background
+             * Action message - direct and outcome-focused (max 80 characters)
              */
-            heading?: string | null;
+            heading: string;
             /**
-             * Supporting text below the headline
+             * Optional supporting line (max 160 characters)
              */
             subheading?: string | null;
             /**
-             * Hero background image (21:9 aspect recommended)
+             * Main call-to-action button
              */
-            backgroundImage?: (string | null) | Media;
+            primaryCta: {
+              text: string;
+              link: string;
+            };
             /**
-             * Cloudinary video player embed URL (overrides background image if provided)
+             * Optional lighter-weight alternative action
              */
-            videoUrl?: string | null;
+            secondaryCta?: {
+              text?: string | null;
+              link?: string | null;
+            };
             /**
-             * Optional CTA button displayed within the hero
+             * Background style for the band
              */
-            cta?: {
-              ctaText?: string | null;
-              ctaLink?: string | null;
-              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToActionBand';
+          }
+        | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
             };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'hero';
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
           }
         | {
             /**
@@ -3911,108 +4739,76 @@ export interface LandingPage {
           }
         | {
             /**
-             * Main CTA headline
+             * Section title shown above the FAQs.
              */
-            heading?: string | null;
+            headline: string;
             /**
-             * Supporting description text
+             * Optional intro sentence below the headline.
              */
-            text?: string | null;
+            subheadline?: string | null;
             /**
-             * Primary button label
+             * FAQ question and answer pairs (maximum 12 items)
              */
-            buttonText?: string | null;
-            /**
-             * URL or path for primary button (e.g., /contact or https://example.com)
-             */
-            buttonLink?: string | null;
-            /**
-             * Visual style variant for the button
-             */
-            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
-            /**
-             * Add an optional second CTA button
-             */
-            secondaryButton?: {
-              secondaryButtonText?: string | null;
-              secondaryButtonLink?: string | null;
-              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'callToAction';
-          }
-        | {
-            /**
-             * Average rating (0-5, one decimal precision)
-             */
-            rating: number;
-            /**
-             * Review source name (e.g., "Ratings & Reviews")
-             */
-            source: string;
-            /**
-             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
-             */
-            platforms?: string | null;
-            /**
-             * Total number of reviews (whole number)
-             */
-            reviewCount?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'ratingBand';
-          }
-        | {
-            /**
-             * Section headline
-             */
-            heading: string;
-            /**
-             * Rich text content using Lexical editor
-             */
-            body?: {
-              root: {
-                type: string;
-                children: {
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
                   type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
                   version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
+                };
+                [k: string]: unknown;
               };
-              [k: string]: unknown;
-            } | null;
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
             /**
-             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             * Controls FAQ grid layout.
              */
-            assetPublicId?: string | null;
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
             /**
-             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             * Background treatment for the section.
              */
-            isAnimated?: boolean | null;
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
             /**
-             * DEPRECATED: Use assetPublicId field instead
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
              */
-            legacyImage?: (string | null) | Media;
+            backgroundColor?: string | null;
             /**
-             * Position of image relative to text content
+             * Cloudinary public ID for section background image.
              */
-            layout: 'imageLeft' | 'imageRight';
+            backgroundImageTag?: string | null;
             /**
-             * Optional call-to-action button label
+             * Enable subtle parallax on background image.
              */
-            ctaText?: string | null;
+            enableParallax?: boolean | null;
             /**
-             * URL or path for the CTA button
+             * Entrance animation for the section and items.
              */
-            ctaLink?: string | null;
+            animation?: boolean | null;
             id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
             blockName?: string | null;
-            blockType: 'imageTextSplit';
+            blockType: 'faq';
           }
         | {
             heading?: string | null;
@@ -4071,6 +4867,86 @@ export interface LandingPage {
           }
         | {
             /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            /**
+             * Section headline
+             */
+            heading: string;
+            /**
+             * Rich text content using Lexical editor
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Cloudinary public_id (e.g., selah-pro/stock/luxury-pool-hero)
+             */
+            assetPublicId?: string | null;
+            /**
+             * Check if this is an animated GIF or video. Only needed if file extension doesn't indicate animation.
+             */
+            isAnimated?: boolean | null;
+            /**
+             * DEPRECATED: Use assetPublicId field instead
+             */
+            legacyImage?: (string | null) | Media;
+            /**
+             * Position of image relative to text content
+             */
+            layout: 'imageLeft' | 'imageRight';
+            /**
+             * Optional call-to-action button label
+             */
+            ctaText?: string | null;
+            /**
+             * URL or path for the CTA button
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageTextSplit';
+          }
+        | {
+            /**
              * Optional lead-in text (e.g., "Trusted by Families Across America")
              */
             eyebrow?: string | null;
@@ -4106,42 +4982,24 @@ export interface LandingPage {
           }
         | {
             /**
-             * Action message - direct and outcome-focused (max 80 characters)
+             * Average rating (0-5, one decimal precision)
              */
-            heading: string;
+            rating: number;
             /**
-             * Optional supporting line (max 160 characters)
+             * Review source name (e.g., "Ratings & Reviews")
              */
-            subheading?: string | null;
+            source: string;
             /**
-             * Main call-to-action button
+             * Optional platforms line (e.g., "(Houzz, Home Advisor, BBB, Google Reviews)")
              */
-            primaryCta: {
-              text: string;
-              link: string;
-            };
+            platforms?: string | null;
             /**
-             * Optional lighter-weight alternative action
+             * Total number of reviews (whole number)
              */
-            secondaryCta?: {
-              text?: string | null;
-              link?: string | null;
-            };
-            /**
-             * Background style for the band
-             */
-            backgroundType: 'light' | 'dark' | 'image';
-            /**
-             * Optional hex color override (e.g., #1a2b3c). Overrides light/dark preset.
-             */
-            customBackgroundColor?: string | null;
-            /**
-             * Cloudinary public_id for background image
-             */
-            backgroundImagePublicId?: string | null;
+            reviewCount?: number | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'callToActionBand';
+            blockType: 'ratingBand';
           }
         | {
             /**
@@ -4801,6 +5659,168 @@ export interface PortfolioLanding {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -4854,6 +5874,35 @@ export interface PortfolioLanding {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -5237,6 +6286,168 @@ export interface PortfolioProject {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -5290,6 +6501,35 @@ export interface PortfolioProject {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -5994,6 +7234,168 @@ export interface Service {
             blockType: 'callToActionBand';
           }
         | {
+            /**
+             * Main CTA headline
+             */
+            heading?: string | null;
+            /**
+             * Supporting description text
+             */
+            text?: string | null;
+            /**
+             * Primary button label
+             */
+            buttonText?: string | null;
+            /**
+             * URL or path for primary button (e.g., /contact or https://example.com)
+             */
+            buttonLink?: string | null;
+            /**
+             * Visual style variant for the button
+             */
+            buttonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            /**
+             * Add an optional second CTA button
+             */
+            secondaryButton?: {
+              secondaryButtonText?: string | null;
+              secondaryButtonLink?: string | null;
+              secondaryButtonStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            /**
+             * Select the contact form configuration to display
+             */
+            form: string | ContactForm;
+            displayOptions?: {
+              /**
+               * Choose how the form displays on different screen sizes
+               */
+              layoutMode?: ('inline' | 'fullscreen-on-mobile') | null;
+              /**
+               * Override the default submit button text
+               */
+              customCtaText?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            /**
+             * Rich text content using Lexical editor
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Control the maximum width of the content container
+             */
+            layout?: ('full' | 'wide' | 'narrow' | 'prose') | null;
+            /**
+             * Horizontal alignment of text content
+             */
+            alignment?: ('left' | 'center' | 'right') | null;
+            /**
+             * Background color for the content section
+             */
+            backgroundColor?: ('none' | 'light' | 'dark' | 'accent') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            /**
+             * Section title shown above the FAQs.
+             */
+            headline: string;
+            /**
+             * Optional intro sentence below the headline.
+             */
+            subheadline?: string | null;
+            /**
+             * FAQ question and answer pairs (maximum 12 items)
+             */
+            faqItems: {
+              /**
+               * The collapsible button label.
+               */
+              question: string;
+              /**
+               * Answer body; supports basic formatting and links.
+               */
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              /**
+               * Optional Cloudinary public ID or tag for a per-item icon. Leave blank for no icon.
+               */
+              iconTag?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Controls FAQ grid layout.
+             */
+            layoutStyle?: ('singleColumn' | 'twoColumn' | 'centered') | null;
+            /**
+             * Background treatment for the section.
+             */
+            backgroundStyle?: ('none' | 'light' | 'dark' | 'image') | null;
+            /**
+             * Optional background color token or hex (e.g., #0B1220 or bg-stone-50).
+             */
+            backgroundColor?: string | null;
+            /**
+             * Cloudinary public ID for section background image.
+             */
+            backgroundImageTag?: string | null;
+            /**
+             * Enable subtle parallax on background image.
+             */
+            enableParallax?: boolean | null;
+            /**
+             * Entrance animation for the section and items.
+             */
+            animation?: boolean | null;
+            id?: string | null;
+            /**
+             * Editor-only notes; never rendered.
+             */
+            notes?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -6047,6 +7449,35 @@ export interface Service {
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureShowcase';
+          }
+        | {
+            /**
+             * Main hero headline - displays prominently over background
+             */
+            heading?: string | null;
+            /**
+             * Supporting text below the headline
+             */
+            subheading?: string | null;
+            /**
+             * Hero background image (21:9 aspect recommended)
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Cloudinary video player embed URL (overrides background image if provided)
+             */
+            videoUrl?: string | null;
+            /**
+             * Optional CTA button displayed within the hero
+             */
+            cta?: {
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              ctaStyle?: ('primary' | 'secondary' | 'outline') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
           }
         | {
             /**
@@ -7187,6 +8618,72 @@ export interface AnswersLandingSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -7204,6 +8701,23 @@ export interface AnswersLandingSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -7678,6 +9192,72 @@ export interface GalleriesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -7695,6 +9275,23 @@ export interface GalleriesSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -7905,6 +9502,72 @@ export interface HomepageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -7922,6 +9585,23 @@ export interface HomepageSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -8212,6 +9892,72 @@ export interface JourneysSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -8229,6 +9975,23 @@ export interface JourneysSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -8405,30 +10168,26 @@ export interface LandingPagesSelect<T extends boolean = true> {
   body?:
     | T
     | {
-        hero?:
+        callToActionBand?:
           | T
           | {
               heading?: T;
               subheading?: T;
-              backgroundImage?: T;
-              videoUrl?: T;
-              cta?:
+              primaryCta?:
                 | T
                 | {
-                    ctaText?: T;
-                    ctaLink?: T;
-                    ctaStyle?: T;
+                    text?: T;
+                    link?: T;
                   };
-              id?: T;
-              blockName?: T;
-            };
-        content?:
-          | T
-          | {
-              content?: T;
-              layout?: T;
-              alignment?: T;
-              backgroundColor?: T;
+              secondaryCta?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -8450,28 +10209,52 @@ export interface LandingPagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        ratingBand?:
-          | T
-          | {
-              rating?: T;
-              source?: T;
-              platforms?: T;
-              reviewCount?: T;
-              id?: T;
-              blockName?: T;
-            };
-        imageTextSplit?:
+        contactForm?:
           | T
           | {
               heading?: T;
-              body?: T;
-              assetPublicId?: T;
-              isAnimated?: T;
-              legacyImage?: T;
-              layout?: T;
-              ctaText?: T;
-              ctaLink?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
               id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
               blockName?: T;
             };
         featureShowcase?:
@@ -8495,6 +10278,37 @@ export interface LandingPagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageTextSplit?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              assetPublicId?: T;
+              isAnimated?: T;
+              legacyImage?: T;
+              layout?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
         proofPoints?:
           | T
           | {
@@ -8512,26 +10326,13 @@ export interface LandingPagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        callToActionBand?:
+        ratingBand?:
           | T
           | {
-              heading?: T;
-              subheading?: T;
-              primaryCta?:
-                | T
-                | {
-                    text?: T;
-                    link?: T;
-                  };
-              secondaryCta?:
-                | T
-                | {
-                    text?: T;
-                    link?: T;
-                  };
-              backgroundType?: T;
-              customBackgroundColor?: T;
-              backgroundImagePublicId?: T;
+              rating?: T;
+              source?: T;
+              platforms?: T;
+              reviewCount?: T;
               id?: T;
               blockName?: T;
             };
@@ -8857,6 +10658,72 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -8874,6 +10741,23 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -9026,6 +10910,72 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -9043,6 +10993,23 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;
@@ -9379,6 +11346,72 @@ export interface ServicesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonStyle?: T;
+              secondaryButton?:
+                | T
+                | {
+                    secondaryButtonText?: T;
+                    secondaryButtonLink?: T;
+                    secondaryButtonStyle?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              form?: T;
+              displayOptions?:
+                | T
+                | {
+                    layoutMode?: T;
+                    customCtaText?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              layout?: T;
+              alignment?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              headline?: T;
+              subheadline?: T;
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    iconTag?: T;
+                    id?: T;
+                  };
+              layoutStyle?: T;
+              backgroundStyle?: T;
+              backgroundColor?: T;
+              backgroundImageTag?: T;
+              enableParallax?: T;
+              animation?: T;
+              id?: T;
+              notes?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -9396,6 +11429,23 @@ export interface ServicesSelect<T extends boolean = true> {
                     ctaText?: T;
                     ctaLink?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    ctaText?: T;
+                    ctaLink?: T;
+                    ctaStyle?: T;
                   };
               id?: T;
               blockName?: T;

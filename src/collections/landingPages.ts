@@ -3,16 +3,7 @@ import { commonSiteKeyField } from './commonSiteKeyField';
 import { timestampedFields } from '../fields/timestampedFields';
 import { optionalDisplayFields } from '../fields/optionalFields';
 import { isAdmin, isAdminOrDesigner } from '../access/helpers';
-import { HeroBlock } from '../blocks/HeroBlock';
-import { ContentBlock } from '../blocks/ContentBlock';
-import { CallToActionBlock } from '../blocks/CallToActionBlock';
-import { RatingBandBlock } from '../blocks/RatingBandBlock';
-import { ImageTextSplitBlock } from '../blocks/ImageTextSplitBlock';
-import { FeatureShowcaseBlock } from '../blocks/FeatureShowcaseBlock';
-import { ProofPointsBlock } from '../blocks/ProofPointsBlock';
-import { CallToActionBandBlock } from '../blocks/CallToActionBandBlock';
-import { TestimonialsGatewayBlock } from '../blocks/TestimonialsGatewayBlock';
-import { VideoTestimonialBlock } from '../blocks/VideoTestimonialBlock';
+import { sharedLayoutBlocks } from '../blocks/sharedBlocks';
 
 const LandingPages: CollectionConfig = {
   slug: 'landingPages',
@@ -56,18 +47,7 @@ const LandingPages: CollectionConfig = {
       label: 'Body Content',
       type: 'blocks',
       minRows: 1,
-      blocks: [
-        HeroBlock,
-        ContentBlock,
-        CallToActionBlock,
-        RatingBandBlock,
-        ImageTextSplitBlock,
-        FeatureShowcaseBlock,
-        ProofPointsBlock,
-        CallToActionBandBlock,
-        TestimonialsGatewayBlock,
-        VideoTestimonialBlock,
-      ],
+      blocks: sharedLayoutBlocks,
     },
     {
       name: 'callToAction',
