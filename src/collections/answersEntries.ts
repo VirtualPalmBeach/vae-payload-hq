@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 import { isAdmin, isAdminOrDesigner } from '../access/helpers'
+import { sharedLayoutBlocks } from '../blocks/sharedBlocks'
 
 const AnswersEntries: CollectionConfig = {
   slug: 'answersEntries',
@@ -226,6 +227,14 @@ const AnswersEntries: CollectionConfig = {
           ],
         },
       ],
+    },
+
+    // New modular layout field
+    {
+      name: 'layout',
+      label: 'Page Layout',
+      type: 'blocks',
+      blocks: sharedLayoutBlocks,
     },
 
     // Journey Integration (Optional)

@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload'
 import { commonSiteKeyField } from './commonSiteKeyField'
 import { timestampedFields } from '../fields/timestampedFields'
 import { isAdmin } from '../access/helpers'
+import { sharedLayoutBlocks } from '../blocks/sharedBlocks'
 
 const SignatureServices: CollectionConfig = {
   slug: 'signatureServices',
@@ -273,6 +274,15 @@ const SignatureServices: CollectionConfig = {
         },
       ],
     },
+
+    // Page Layout
+    {
+      name: 'layout',
+      label: 'Page Layout',
+      type: 'blocks',
+      blocks: sharedLayoutBlocks,
+    },
+
     ...timestampedFields,
   ],
   indexes: [
