@@ -6,6 +6,7 @@ import { CallToActionBlock } from './CallToActionBlock'
 import { ContactFormBlock } from './ContactFormBlock'
 import { ContentBlock } from './ContentBlock'
 import { FAQBlock } from './FAQBlock'
+import { ContentSectionBlock } from './ContentSection/config'
 import { FeatureShowcaseBlock } from './FeatureShowcaseBlock'
 import { HeroBlock } from './HeroBlock'
 import { ImageTextSplitBlock } from './ImageTextSplitBlock'
@@ -20,6 +21,7 @@ export const sharedLayoutBlocks = [
   ContactFormBlock,
   ContentBlock,
   FAQBlock,
+  ContentSectionBlock,
   FeatureShowcaseBlock,
   HeroBlock,
   ImageTextSplitBlock,

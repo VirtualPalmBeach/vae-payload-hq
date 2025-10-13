@@ -1286,6 +1286,198 @@ export interface AnswersLanding {
             blockType: 'faq';
           }
         | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -2034,6 +2226,198 @@ export interface AnswersEntry {
             notes?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
           }
         | {
             heading?: string | null;
@@ -2812,6 +3196,198 @@ export interface Journey {
             notes?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
           }
         | {
             heading?: string | null;
@@ -3951,6 +4527,198 @@ export interface Gallery {
             blockType: 'faq';
           }
         | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -4668,6 +5436,198 @@ export interface Homepage {
             blockType: 'faq';
           }
         | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -5311,6 +6271,198 @@ export interface LandingPage {
             notes?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
           }
         | {
             heading?: string | null;
@@ -6323,6 +7475,198 @@ export interface PortfolioLanding {
             blockType: 'faq';
           }
         | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -6948,6 +8292,198 @@ export interface PortfolioProject {
             notes?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
           }
         | {
             heading?: string | null;
@@ -7898,6 +9434,198 @@ export interface Service {
             blockType: 'faq';
           }
         | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
+          }
+        | {
             heading?: string | null;
             introText?: {
               root: {
@@ -8545,6 +10273,198 @@ export interface SignatureService {
             notes?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Optional pre-heading label (e.g., "Case Study", "Featured Project")
+             */
+            eyebrow?: string | null;
+            /**
+             * Primary heading (H2-level)
+             */
+            heading: string;
+            /**
+             * Optional secondary heading
+             */
+            subheading?: string | null;
+            /**
+             * Story narrative with rich text formatting
+             */
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Image or video asset
+             */
+            media?: (string | null) | Media;
+            /**
+             * Position of media relative to content
+             */
+            mediaPosition?: ('left' | 'right' | 'full' | 'stacked') | null;
+            /**
+             * Visual treatment for media element
+             */
+            mediaStyle?: ('framed' | 'overlap' | 'fullBleed') | null;
+            /**
+             * Display key metrics or statistics (max 4 items)
+             */
+            statsRow?:
+              | {
+                  label: string;
+                  /**
+                   * Numeric value or short text
+                   */
+                  value: string;
+                  /**
+                   * Optional unit (e.g., "sqft", "%", "days")
+                   */
+                  unit?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional testimonial or quote callout
+             */
+            quoteStrip?: {
+              quote?: string | null;
+              /**
+               * Name of person quoted
+               */
+              attribution?: string | null;
+              /**
+               * Optional role or title
+               */
+              role?: string | null;
+              /**
+               * Display visual divider above/below quote
+               */
+              showDivider?: boolean | null;
+            };
+            /**
+             * List of features or benefits with icons (max 6 items)
+             */
+            iconList?:
+              | {
+                  /**
+                   * Cloudinary public ID or icon identifier
+                   */
+                  iconTag?: string | null;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Background treatment for the section
+             */
+            backgroundStyle?: ('minimal' | 'light' | 'dark' | 'image' | 'customColor' | 'gradient') | null;
+            /**
+             * Hex color with hash prefix (e.g., #1a2b3c)
+             */
+            backgroundColorCustom?: string | null;
+            /**
+             * Background image asset
+             */
+            backgroundImage?: (string | null) | Media;
+            /**
+             * Gradient direction and style
+             */
+            gradientStyle?: ('none' | 'topToBottom' | 'leftToRight' | 'radial') | null;
+            /**
+             * Apply frosted glass (backdrop blur) effect to content container
+             */
+            frostedGlass?: boolean | null;
+            /**
+             * Text color scheme (auto adapts to background)
+             */
+            textColorScheme?: ('auto' | 'light' | 'dark') | null;
+            /**
+             * Maximum content width
+             */
+            maxWidth?: ('narrow' | 'standard' | 'wide') | null;
+            /**
+             * Vertical padding for the section
+             */
+            paddingSize?: ('compact' | 'standard' | 'spacious') | null;
+            /**
+             * Entrance animation style
+             */
+            animation?: ('fadeIn' | 'slideUp' | 'parallax' | 'none') | null;
+            /**
+             * Delay before animation starts (milliseconds)
+             */
+            animationDelay?: number | null;
+            /**
+             * Animation duration (milliseconds)
+             */
+            animationDuration?: number | null;
+            /**
+             * Parallax effect intensity (0 = subtle, 1 = strong)
+             */
+            parallaxIntensity?: number | null;
+            /**
+             * Geographic location for project context
+             */
+            projectLocation?: string | null;
+            /**
+             * Project completion or publication date
+             */
+            projectDate?: string | null;
+            /**
+             * Project type or category
+             */
+            projectCategory?: string | null;
+            /**
+             * Optional CTA button
+             */
+            cta?: {
+              label?: string | null;
+              /**
+               * Absolute or relative URL
+               */
+              link?: string | null;
+              style?: ('primary' | 'secondary' | 'linkOnly') | null;
+              /**
+               * Optional icon identifier or Cloudinary public ID
+               */
+              ctaIcon?: string | null;
+            };
+            /**
+             * Override default media alt text for accessibility
+             */
+            altTextOverride?: string | null;
+            /**
+             * Anchor ID for in-page linking (lowercase, hyphenated)
+             */
+            sectionId?: string | null;
+            /**
+             * SEO and content keywords (max 10)
+             */
+            keywords?:
+              | {
+                  keyword?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Geographic metadata for local search optimization
+             */
+            geoReference?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSection';
           }
         | {
             heading?: string | null;
@@ -9688,6 +11608,75 @@ export interface AnswersLandingSelect<T extends boolean = true> {
               notes?: T;
               blockName?: T;
             };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -9946,6 +11935,75 @@ export interface AnswersEntriesSelect<T extends boolean = true> {
               animation?: T;
               id?: T;
               notes?: T;
+              blockName?: T;
+            };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
               blockName?: T;
             };
         featureShowcase?:
@@ -10470,6 +12528,75 @@ export interface GalleriesSelect<T extends boolean = true> {
               notes?: T;
               blockName?: T;
             };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -10778,6 +12905,75 @@ export interface HomepageSelect<T extends boolean = true> {
               animation?: T;
               id?: T;
               notes?: T;
+              blockName?: T;
+            };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
               blockName?: T;
             };
         featureShowcase?:
@@ -11170,6 +13366,75 @@ export interface JourneysSelect<T extends boolean = true> {
               notes?: T;
               blockName?: T;
             };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -11467,6 +13732,75 @@ export interface LandingPagesSelect<T extends boolean = true> {
               animation?: T;
               id?: T;
               notes?: T;
+              blockName?: T;
+            };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
               blockName?: T;
             };
         featureShowcase?:
@@ -11936,6 +14270,75 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
               notes?: T;
               blockName?: T;
             };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -12186,6 +14589,75 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
               animation?: T;
               id?: T;
               notes?: T;
+              blockName?: T;
+            };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
               blockName?: T;
             };
         featureShowcase?:
@@ -12624,6 +15096,75 @@ export interface ServicesSelect<T extends boolean = true> {
               notes?: T;
               blockName?: T;
             };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
+              blockName?: T;
+            };
         featureShowcase?:
           | T
           | {
@@ -12889,6 +15430,75 @@ export interface SignatureServicesSelect<T extends boolean = true> {
               animation?: T;
               id?: T;
               notes?: T;
+              blockName?: T;
+            };
+        contentSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              body?: T;
+              media?: T;
+              mediaPosition?: T;
+              mediaStyle?: T;
+              statsRow?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    unit?: T;
+                    id?: T;
+                  };
+              quoteStrip?:
+                | T
+                | {
+                    quote?: T;
+                    attribution?: T;
+                    role?: T;
+                    showDivider?: T;
+                  };
+              iconList?:
+                | T
+                | {
+                    iconTag?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundStyle?: T;
+              backgroundColorCustom?: T;
+              backgroundImage?: T;
+              gradientStyle?: T;
+              frostedGlass?: T;
+              textColorScheme?: T;
+              maxWidth?: T;
+              paddingSize?: T;
+              animation?: T;
+              animationDelay?: T;
+              animationDuration?: T;
+              parallaxIntensity?: T;
+              projectLocation?: T;
+              projectDate?: T;
+              projectCategory?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    style?: T;
+                    ctaIcon?: T;
+                  };
+              altTextOverride?: T;
+              sectionId?: T;
+              keywords?:
+                | T
+                | {
+                    keyword?: T;
+                    id?: T;
+                  };
+              geoReference?: T;
+              id?: T;
               blockName?: T;
             };
         featureShowcase?:
