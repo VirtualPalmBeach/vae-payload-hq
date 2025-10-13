@@ -48,13 +48,13 @@ export const ContentSectionBlock: Block = {
       },
     },
     {
-      name: 'media',
-      type: 'upload',
-      label: 'Media',
-      relationTo: 'media',
+      name: 'mediaPublicId',
+      type: 'text',
+      label: 'Media Public ID',
       required: false,
       admin: {
-        description: 'Image or video asset',
+        description: 'Cloudinary public ID for image or video',
+        placeholder: 'Project/ROD2301/photos/example-image',
       },
     },
     {
@@ -245,13 +245,13 @@ export const ContentSectionBlock: Block = {
       },
     },
     {
-      name: 'backgroundImage',
-      type: 'upload',
-      label: 'Background Image',
-      relationTo: 'media',
+      name: 'backgroundImagePublicId',
+      type: 'text',
+      label: 'Background Image Public ID',
       required: false,
       admin: {
-        description: 'Background image asset',
+        description: 'Cloudinary public ID for background image',
+        placeholder: 'Project/ROD2301/photos/background-image',
         condition: (data: any, siblingData: any) => {
           const style = siblingData?.backgroundStyle || data?.backgroundStyle
           return style === 'image'

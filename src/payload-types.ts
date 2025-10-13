@@ -1317,9 +1317,9 @@ export interface AnswersLanding {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -1386,9 +1386,9 @@ export interface AnswersLanding {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -2259,9 +2259,9 @@ export interface AnswersEntry {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -2328,9 +2328,9 @@ export interface AnswersEntry {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -3229,9 +3229,9 @@ export interface Journey {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -3298,9 +3298,9 @@ export interface Journey {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -4558,9 +4558,9 @@ export interface Gallery {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -4627,9 +4627,9 @@ export interface Gallery {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -5467,9 +5467,9 @@ export interface Homepage {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -5536,9 +5536,9 @@ export interface Homepage {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -6304,9 +6304,9 @@ export interface LandingPage {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -6373,9 +6373,9 @@ export interface LandingPage {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -7506,9 +7506,9 @@ export interface PortfolioLanding {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -7575,9 +7575,9 @@ export interface PortfolioLanding {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -8325,9 +8325,9 @@ export interface PortfolioProject {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -8394,9 +8394,9 @@ export interface PortfolioProject {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -9465,9 +9465,9 @@ export interface Service {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -9534,9 +9534,9 @@ export interface Service {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -10306,9 +10306,9 @@ export interface SignatureService {
               [k: string]: unknown;
             } | null;
             /**
-             * Image or video asset
+             * Cloudinary public ID for image or video
              */
-            media?: (string | null) | Media;
+            mediaPublicId?: string | null;
             /**
              * Position of media relative to content
              */
@@ -10375,9 +10375,9 @@ export interface SignatureService {
              */
             backgroundColorCustom?: string | null;
             /**
-             * Background image asset
+             * Cloudinary public ID for background image
              */
-            backgroundImage?: (string | null) | Media;
+            backgroundImagePublicId?: string | null;
             /**
              * Gradient direction and style
              */
@@ -11615,7 +11615,7 @@ export interface AnswersLandingSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -11644,7 +11644,7 @@ export interface AnswersLandingSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -11944,7 +11944,7 @@ export interface AnswersEntriesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -11973,7 +11973,7 @@ export interface AnswersEntriesSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -12535,7 +12535,7 @@ export interface GalleriesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -12564,7 +12564,7 @@ export interface GalleriesSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -12914,7 +12914,7 @@ export interface HomepageSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -12943,7 +12943,7 @@ export interface HomepageSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -13373,7 +13373,7 @@ export interface JourneysSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -13402,7 +13402,7 @@ export interface JourneysSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -13741,7 +13741,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -13770,7 +13770,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -14277,7 +14277,7 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -14306,7 +14306,7 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -14598,7 +14598,7 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -14627,7 +14627,7 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -15103,7 +15103,7 @@ export interface ServicesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -15132,7 +15132,7 @@ export interface ServicesSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
@@ -15439,7 +15439,7 @@ export interface SignatureServicesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               body?: T;
-              media?: T;
+              mediaPublicId?: T;
               mediaPosition?: T;
               mediaStyle?: T;
               statsRow?:
@@ -15468,7 +15468,7 @@ export interface SignatureServicesSelect<T extends boolean = true> {
                   };
               backgroundStyle?: T;
               backgroundColorCustom?: T;
-              backgroundImage?: T;
+              backgroundImagePublicId?: T;
               gradientStyle?: T;
               frostedGlass?: T;
               textColorScheme?: T;
