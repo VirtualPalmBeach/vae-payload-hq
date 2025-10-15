@@ -609,6 +609,159 @@ export interface About {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -1719,6 +1872,159 @@ export interface AnswersLanding {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -2658,6 +2964,159 @@ export interface AnswersEntry {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
           }
         | {
             /**
@@ -3628,6 +4087,159 @@ export interface Journey {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
           }
         | {
             /**
@@ -4960,6 +5572,159 @@ export interface Gallery {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -5869,6 +6634,159 @@ export interface Homepage {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -6703,6 +7621,159 @@ export interface LandingPage {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
           }
         | {
             /**
@@ -7908,6 +8979,159 @@ export interface PortfolioLanding {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -8724,6 +9948,159 @@ export interface PortfolioProject {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialsGateway';
+          }
+        | {
+            /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
           }
         | {
             /**
@@ -9867,6 +11244,159 @@ export interface Service {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -10708,6 +12238,159 @@ export interface SignatureService {
           }
         | {
             /**
+             * Cloudinary public_id for the video asset (e.g., videos/client-story-001)
+             */
+            videoPublicId: string;
+            /**
+             * Optional custom poster image public_id. Auto-generates from video first frame if empty.
+             */
+            posterPublicId?: string | null;
+            /**
+             * Video aspect ratio - determines wrapper component
+             */
+            ratio: '9:16' | '16:9' | '21:9';
+            /**
+             * Optional caption or description text with rich formatting support
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Custom event tracking label for analytics (e.g., 'hero-video', 'testimonial-001')
+             */
+            analyticsTag?: string | null;
+            /**
+             * Start video muted (required for autoplay compliance on mobile)
+             */
+            startMuted?: boolean | null;
+            /**
+             * Auto-play video when visible in viewport (muted autoplay only)
+             */
+            autoplay?: boolean | null;
+            /**
+             * Play a short muted loop preview (3-4 seconds) before user interaction
+             */
+            loopPreview?: boolean | null;
+            /**
+             * Enable hover-to-preview on desktop (fine pointer devices only)
+             */
+            hoverPreview?: boolean | null;
+            /**
+             * Video controls display style
+             */
+            controlsVariant?: ('default' | 'minimal') | null;
+            /**
+             * Start playback at N seconds into the video
+             */
+            startTime?: number | null;
+            /**
+             * Duration of loop preview in seconds (0.5 to 5.0)
+             */
+            previewDurationSec?: number | null;
+            /**
+             * Force autoplay even when user has prefers-reduced-motion enabled (use sparingly)
+             */
+            reducedMotionOverride?: boolean | null;
+            /**
+             * Show browser native video controls (fallback safety for accessibility)
+             */
+            showNativeControls?: boolean | null;
+            /**
+             * Display share button overlay on video
+             */
+            showShare?: boolean | null;
+            /**
+             * Show call-to-action overlay when video ends
+             */
+            showCTAOnEnd?: boolean | null;
+            /**
+             * CTA button text (required if Show CTA On End is enabled)
+             */
+            ctaLabel?: string | null;
+            /**
+             * CTA button link URL (absolute or relative)
+             */
+            ctaHref?: string | null;
+            /**
+             * Optional watermark text or Cloudinary public_id for overlay logo
+             */
+            watermarkOverlay?: string | null;
+            /**
+             * Advanced visual enhancements - optional luxury features
+             */
+            cinematicFeatures?: {
+              /**
+               * Enable brand-tinted fade and blur transitions on play/pause
+               */
+              enableCinematicReveal?: boolean | null;
+              /**
+               * Crossfade poster seamlessly into first video frame (optical continuity)
+               */
+              enablePosterOpticalMatch?: boolean | null;
+              /**
+               * Sample dominant frame color and tint page background during playback
+               */
+              enableAmbientGlow?: boolean | null;
+              /**
+               * Dynamic highlight following cursor or touch movement
+               */
+              enableSpecularHighlight?: boolean | null;
+              /**
+               * Deliver HDR (HEVC/AVIF) streams when supported (auto-fallback to SDR)
+               */
+              hdrPreferred?: boolean | null;
+            };
+            /**
+             * Advanced configuration options for fine-tuning (admin-only)
+             */
+            advancedTuning?: {
+              /**
+               * Intersection observer threshold for autoplay trigger (0-1)
+               */
+              ioThresholdAutoplay?: number | null;
+              /**
+               * Intersection observer threshold for auto-pause (0-1)
+               */
+              ioThresholdPause?: number | null;
+              /**
+               * Cloudinary quality optimization policy
+               */
+              networkPolicy?: ('auto' | 'eco' | 'low') | null;
+              /**
+               * Maximum video width in pixels (optional constraint for widescreen)
+               */
+              maxWidthClamp?: number | null;
+            };
+            /**
+             * Background style for video section
+             */
+            backgroundType: 'light' | 'dark' | 'image';
+            /**
+             * Optional hex color override (e.g., #1a2b3c)
+             */
+            customBackgroundColor?: string | null;
+            /**
+             * Cloudinary public_id for background image
+             */
+            backgroundImagePublicId?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'universalVideoPlayer';
+          }
+        | {
+            /**
              * Optional section heading
              */
             heading?: string | null;
@@ -11423,6 +13106,51 @@ export interface AboutSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -11773,6 +13501,51 @@ export interface AnswersLandingSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -12099,6 +13872,51 @@ export interface AnswersEntriesSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -12693,6 +14511,51 @@ export interface GalleriesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -13069,6 +14932,51 @@ export interface HomepageSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -13531,6 +15439,51 @@ export interface JourneysSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -13896,6 +15849,51 @@ export interface LandingPagesSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -14435,6 +16433,51 @@ export interface PortfolioLandingSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -14753,6 +16796,51 @@ export interface PortfolioProjectsSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };
@@ -15261,6 +17349,51 @@ export interface ServicesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
+              id?: T;
+              blockName?: T;
+            };
         videoTestimonial?:
           | T
           | {
@@ -15594,6 +17727,51 @@ export interface SignatureServicesSelect<T extends boolean = true> {
               customBackgroundColor?: T;
               backgroundImagePublicId?: T;
               isAnimated?: T;
+              id?: T;
+              blockName?: T;
+            };
+        universalVideoPlayer?:
+          | T
+          | {
+              videoPublicId?: T;
+              posterPublicId?: T;
+              ratio?: T;
+              caption?: T;
+              analyticsTag?: T;
+              startMuted?: T;
+              autoplay?: T;
+              loopPreview?: T;
+              hoverPreview?: T;
+              controlsVariant?: T;
+              startTime?: T;
+              previewDurationSec?: T;
+              reducedMotionOverride?: T;
+              showNativeControls?: T;
+              showShare?: T;
+              showCTAOnEnd?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              watermarkOverlay?: T;
+              cinematicFeatures?:
+                | T
+                | {
+                    enableCinematicReveal?: T;
+                    enablePosterOpticalMatch?: T;
+                    enableAmbientGlow?: T;
+                    enableSpecularHighlight?: T;
+                    hdrPreferred?: T;
+                  };
+              advancedTuning?:
+                | T
+                | {
+                    ioThresholdAutoplay?: T;
+                    ioThresholdPause?: T;
+                    networkPolicy?: T;
+                    maxWidthClamp?: T;
+                  };
+              backgroundType?: T;
+              customBackgroundColor?: T;
+              backgroundImagePublicId?: T;
               id?: T;
               blockName?: T;
             };

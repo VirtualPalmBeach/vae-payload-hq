@@ -8,6 +8,7 @@ import { ImageTextSplitBlock } from '../blocks/ImageTextSplitBlock'
 import { ProofPointsBlock } from '../blocks/ProofPointsBlock'
 import { RatingBandBlock } from '../blocks/RatingBandBlock'
 import { TestimonialsGatewayBlock } from '../blocks/TestimonialsGatewayBlock'
+import { UniversalVideoPlayerBlock } from '../blocks/UniversalVideoPlayerBlock'
 import { VideoTestimonialBlock } from '../blocks/VideoTestimonialBlock'
 
 const About: CollectionConfig = {
@@ -496,6 +497,7 @@ const About: CollectionConfig = {
         ProofPointsBlock,
         RatingBandBlock,
         TestimonialsGatewayBlock,
+        UniversalVideoPlayerBlock,
         VideoTestimonialBlock,
       ],
     },

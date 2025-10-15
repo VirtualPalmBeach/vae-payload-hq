@@ -13,6 +13,7 @@ import { ImageTextSplitBlock } from './ImageTextSplitBlock'
 import { ProofPointsBlock } from './ProofPointsBlock'
 import { RatingBandBlock } from './RatingBandBlock'
 import { TestimonialsGatewayBlock } from './TestimonialsGatewayBlock'
+import { UniversalVideoPlayerBlock } from './UniversalVideoPlayerBlock'
 import { VideoTestimonialBlock } from './VideoTestimonialBlock'
 
 export const sharedLayoutBlocks = [
@@ -28,5 +29,6 @@ export const sharedLayoutBlocks = [
   ProofPointsBlock,
   RatingBandBlock,
   TestimonialsGatewayBlock,
+  UniversalVideoPlayerBlock,
   VideoTestimonialBlock,
 ]
